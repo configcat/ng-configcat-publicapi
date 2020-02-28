@@ -61,6 +61,7 @@ export class AppModule {}
 ### 3. Usage:
 ```
 import { ProductsService } from 'ng-configcat-publicapi';
+
 export class AppComponent {
     constructor(private productsService: ProductsService) { }
 
