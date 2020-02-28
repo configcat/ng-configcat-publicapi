@@ -60,9 +60,14 @@ export class AppModule {}
 
 ### 3. Usage:
 ```
-import { DefaultApi } from 'ng-configcat-publicapi';
-
+import { ProductsService } from 'ng-configcat-publicapi';
 export class AppComponent {
-     constructor(private apiGateway: DefaultApi) { }
+    constructor(private productsService: ProductsService) { }
+
+    getProducts() {
+       this.productsService.v1ProductsGet().subscribe(products => {
+           // Do something with the products.
+       });
+    }
 }
 ```
