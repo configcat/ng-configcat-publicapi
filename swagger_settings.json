@@ -1,5 +1,6 @@
 {
   "apiPackage" : "ng-configcat-publicapi",
   "npmName": "ng-configcat-publicapi",
-  "npmVersion": "1.7.0"
+  "npmVersion": "1.7.0",
+  "ngVersion": "11"
 }
