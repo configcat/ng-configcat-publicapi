@@ -5,7 +5,7 @@ node_js:
 services:
  - docker
 before_install:
- - docker run --rm -v ${PWD}:/local swaggerapi/swagger-codegen-cli-v3:latest generate -i $SWAGGER_JSON -l typescript-angular -o /local -c /local/swagger_settings.json >/dev/null 
+ - docker run --rm -v ${PWD}:/local swaggerapi/swagger-codegen-cli-v3:latest generate -i $SWAGGER_JSON -l typescript-angular -o /local -c /local/swagger_settings.json
 install:
  - npm install
 before_script:
