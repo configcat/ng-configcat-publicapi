@@ -5,7 +5,7 @@ node_js:
 services:
  - docker
 before_install:
- - docker run --rm -v ${PWD}:/local swaggerapi/swagger-codegen-cli-v3:latest generate -i $SWAGGER_JSON -l typescript-angular -o /local -c /local/swagger_settings.json
+ - docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli generate -i $SWAGGER_JSON -g typescript-angular --additional-properties=npmName=ng-configcat-publicapi,npmVersion=2.0.0 -o /local
 install:
  - npm install
 before_script:
