@@ -1,0 +1,65 @@
+name: Public API Angular CI
+
+on:
+  push:
+    branches: [ master ]
+    tags: [ 'v[0-9]+.[0-9]+.[0-9]+' ]
+  pull_request:
+    branches: [ master ]
+    
+  workflow_dispatch:
+  
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+        
+      - name: Generate client
+        run: docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli generate -i ${{ secrets.SWAGGER_JSON }} -g typescript-angular --additional-properties=npmName=ng-configcat-publicapi,npmVersion=2.0.0 -o /local
+
+      - name: Install dependencies
+        run: npm install
+          
+      - name: Build
+        run: npm run build
+
+      - name: SED
+        run: |
+          cd dist
+          sed -i "s/npm install PATH_TO_GENERATED_PACKAGE\/dist.tgz --save/npm install PATH_TO_GENERATED_PACKAGE\/dist.tgz --save\\n\`\`\`/" README.md
+      
+  publish:
+    needs: test
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags')
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          registry-url: 'https://registry.npmjs.org'
+          
+      - name: Generate client
+        run: docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli generate -i ${{ secrets.SWAGGER_JSON }} -g typescript-angular --additional-properties=npmName=ng-configcat-publicapi,npmVersion=2.0.0 -o /local
+
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Build
+        run: npm run build
+
+      - name: SED
+        run: |
+          cd dist
+          sed -i "s/npm install PATH_TO_GENERATED_PACKAGE\/dist.tgz --save/npm install PATH_TO_GENERATED_PACKAGE\/dist.tgz --save\\n\`\`\`/" README.md
+
+      - name: 🚀Publish
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_API_KEY }}
