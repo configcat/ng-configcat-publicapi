@@ -20,11 +20,7 @@ jobs:
           node-version: 14
         
       - name: Generate client
-        run: docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli generate \
-          -i ${{ secrets.SWAGGER_JSON }} \
-          -g typescript-angular \ 
-          --additional-properties=npmName=ng-configcat-publicapi,npmVersion=2.5.2,ngVersion=12.2.12,apiModulePrefix=PublicApi,configurationPrefix=PublicApi \
-          -o /local
+        run: docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli generate -i ${{ secrets.SWAGGER_JSON }} -g typescript-angular --additional-properties=npmName=ng-configcat-publicapi,npmVersion=2.5.2,ngVersion=12.2.12,apiModulePrefix=PublicApi,configurationPrefix=PublicApi -o /local
 
       - name: Install dependencies
         run: npm install
