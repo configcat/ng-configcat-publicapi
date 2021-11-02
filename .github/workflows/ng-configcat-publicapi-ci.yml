@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
   
 jobs:
-  test:
+  buildandpublish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -23,27 +23,10 @@ jobs:
         run: npm i
           
       - name: Build
-        run: npm run build --configuration production
-
-  publish:
-    needs: test
-    runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags')
-    steps:
-      - uses: actions/checkout@v2
-
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 14
-          registry-url: 'https://registry.npmjs.org'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build
-        run: npm run build --configuration production
+        run: npm run build
 
       - name: 🚀Publish
+        if: startsWith(github.ref, 'refs/tags')
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_API_KEY }}
