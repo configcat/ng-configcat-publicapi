@@ -19,22 +19,11 @@ jobs:
         with:
           node-version: 14
         
-      - name: Generate client
-        run: docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli:v5.2.0 generate -i ${{ secrets.SWAGGER_JSON }} -g typescript-angular --additional-properties=npmName=ng-configcat-publicapi,npmVersion=2.5.7,ngVersion=12.2.12 -o /local
-
       - name: Install dependencies
-        run: | 
-          npm uninstall tsickle --force
-          npm i -D ng-packagr@v12.2.5 typescript@~4.3.5
-          npm i
+        run: npm i
           
       - name: Build
         run: npm run build --configuration production
-
-      - name: SED
-        run: |
-          cd dist
-          sed -i "s/npm install PATH_TO_GENERATED_PACKAGE\/dist.tgz --save/npm install PATH_TO_GENERATED_PACKAGE\/dist.tgz --save\\n\`\`\`/" README.md
 
   publish:
     needs: test
@@ -48,23 +37,12 @@ jobs:
           node-version: 14
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Generate client
-        run: docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli:v5.2.0 generate -i ${{ secrets.SWAGGER_JSON }} -g typescript-angular --additional-properties=npmName=ng-configcat-publicapi,npmVersion=2.5.7,ngVersion=12.2.12 -o /local
-
       - name: Install dependencies
-        run: | 
-          npm uninstall tsickle --force
-          npm i -D ng-packagr@v12.2.5 typescript@~4.3.5
-          npm i
+        run: npm install
 
       - name: Build
         run: npm run build --configuration production
 
-      - name: SED
-        run: |
-          cd dist
-          sed -i "s/npm install PATH_TO_GENERATED_PACKAGE\/dist.tgz --save/npm install PATH_TO_GENERATED_PACKAGE\/dist.tgz --save\\n\`\`\`/" README.md
-      
       - name: 🚀Publish
         run: npm publish --access public
         env:
