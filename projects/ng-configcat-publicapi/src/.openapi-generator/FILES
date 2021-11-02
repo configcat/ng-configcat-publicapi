@@ -92,7 +92,4 @@ model/updateProductRequest.ts
 model/updateSettingValueModel.ts
 model/updateTagModel.ts
 model/userModel.ts
-ng-package.json
-package.json
-tsconfig.json
 variables.ts
