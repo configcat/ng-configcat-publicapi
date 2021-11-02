@@ -1,0 +1,39 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "ng-configcat-publicapi": {
+      "projectType": "library",
+      "root": "projects/ng-configcat-publicapi",
+      "sourceRoot": "projects/ng-configcat-publicapi/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ng-configcat-publicapi/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ng-configcat-publicapi/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ng-configcat-publicapi/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-configcat-publicapi/src/test.ts",
+            "tsConfig": "projects/ng-configcat-publicapi/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-configcat-publicapi/karma.conf.js"
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "ng-configcat-publicapi"
+}
