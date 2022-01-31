@@ -22,7 +22,6 @@ export interface SettingModelHaljson {
     settingType?: SettingType;
     readonly ownerUserEmail?: string | null;
     readonly ownerUserFullName?: string | null;
-    readonly expirationWarningAt?: string | null;
     readonly configId?: string;
     readonly configName?: string | null;
     _embedded?: SettingModelHaljsonEmbedded;

@@ -11,13 +11,10 @@
  */
 
 
-export interface ConfigModelHaljsonEmbeddedProductLinks { 
-    self?: string;
-    configs?: string;
-    environments?: string;
-    tags?: string;
-    permission_groups?: string;
-    members?: string;
-    segments?: string;
-}
+export type SegmentComparator = 'isIn' | 'isNotIn';
+
+export const SegmentComparator = {
+    IsIn: 'isIn' as SegmentComparator,
+    IsNotIn: 'isNotIn' as SegmentComparator
+};
 

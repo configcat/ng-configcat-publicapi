@@ -9,15 +9,14 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { RolloutRuleComparator } from './rolloutRuleComparator';
 
 
-export interface ConfigModelHaljsonEmbeddedProductLinks { 
-    self?: string;
-    configs?: string;
-    environments?: string;
-    tags?: string;
-    permission_groups?: string;
-    members?: string;
-    segments?: string;
+export interface CreateSegmentModel { 
+    name: string;
+    description?: string | null;
+    comparisonAttribute: string;
+    comparator: RolloutRuleComparator;
+    comparisonValue: string;
 }
 

@@ -15,6 +15,7 @@ api/organizations.service.ts
 api/permissionGroups.service.ts
 api/products.service.ts
 api/sDKKeys.service.ts
+api/segments.service.ts
 api/tags.service.ts
 configuration.ts
 encoder.ts
@@ -41,6 +42,7 @@ model/createConfigRequest.ts
 model/createEnvironmentModel.ts
 model/createPermissionGroupRequest.ts
 model/createProductRequest.ts
+model/createSegmentModel.ts
 model/createSettingModel.ts
 model/createTagModel.ts
 model/deleteIntegrationLinkModel.ts
@@ -67,6 +69,10 @@ model/rolloutPercentageItemModel.ts
 model/rolloutRuleComparator.ts
 model/rolloutRuleModel.ts
 model/sdkKeysModel.ts
+model/segmentComparator.ts
+model/segmentListModel.ts
+model/segmentModel.ts
+model/segmentModelHaljson.ts
 model/settingDataModel.ts
 model/settingModel.ts
 model/settingModelHaljson.ts
@@ -88,6 +94,7 @@ model/updateConfigRequest.ts
 model/updateEnvironmentModel.ts
 model/updatePermissionGroupRequest.ts
 model/updateProductRequest.ts
+model/updateSegmentModel.ts
 model/updateSettingValueModel.ts
 model/updateTagModel.ts
 model/userModel.ts

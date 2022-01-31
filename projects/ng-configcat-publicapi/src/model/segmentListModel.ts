@@ -11,13 +11,16 @@
  */
 
 
-export interface ConfigModelHaljsonEmbeddedProductLinks { 
-    self?: string;
-    configs?: string;
-    environments?: string;
-    tags?: string;
-    permission_groups?: string;
-    members?: string;
-    segments?: string;
+export interface SegmentListModel { 
+    usage?: number;
+    segmentId?: string;
+    name?: string | null;
+    description?: string | null;
+    creatorEmail?: string | null;
+    creatorFullName?: string | null;
+    createdAt?: string;
+    lastUpdaterEmail?: string | null;
+    lastUpdaterFullName?: string | null;
+    updatedAt?: string;
 }
 

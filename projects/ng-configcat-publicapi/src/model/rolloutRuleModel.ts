@@ -10,21 +10,27 @@
  * Do not edit the class manually.
  */
 import { RolloutRuleComparator } from './rolloutRuleComparator';
+import { SegmentComparator } from './segmentComparator';
 
 
 export interface RolloutRuleModel { 
     /**
      * The user attribute to compare.
      */
-    comparisonAttribute: string;
+    comparisonAttribute?: string | null;
     comparator?: RolloutRuleComparator;
     /**
      * The value to compare against.
      */
-    comparisonValue: string;
+    comparisonValue?: string | null;
     /**
      * The value to serve when the comparison matches. It must respect the setting type.
      */
     value?: any | null;
+    segmentComparator?: SegmentComparator;
+    /**
+     * The segment to compare against.
+     */
+    segmentId?: string | null;
 }
 

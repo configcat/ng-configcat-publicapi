@@ -34,6 +34,8 @@ export interface UpdatePermissionGroupRequest {
     canRotateSdkKey?: boolean | null;
     canViewProductStatistics?: boolean | null;
     canViewProductAuditLog?: boolean | null;
+    canCreateOrUpdateSegments?: boolean | null;
+    canDeleteSegments?: boolean | null;
     accessType?: AccessType;
     newEnvironmentAccessType?: EnvironmentAccessType;
     environmentAccesses?: Array<EnvironmentAccessModel> | null;

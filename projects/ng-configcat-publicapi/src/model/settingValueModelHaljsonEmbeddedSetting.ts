@@ -23,7 +23,6 @@ export interface SettingValueModelHaljsonEmbeddedSetting {
     readonly creatorFullName?: string | null;
     ownerFullName?: string | null;
     ownerEmail?: string | null;
-    expirationWarningAt?: string | null;
     isWatching?: boolean;
 }
 

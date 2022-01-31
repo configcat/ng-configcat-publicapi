@@ -15,6 +15,7 @@ import { OrganizationsService } from './api/organizations.service';
 import { PermissionGroupsService } from './api/permissionGroups.service';
 import { ProductsService } from './api/products.service';
 import { SDKKeysService } from './api/sDKKeys.service';
+import { SegmentsService } from './api/segments.service';
 import { TagsService } from './api/tags.service';
 
 @NgModule({
