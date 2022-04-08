@@ -9,10 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { ProductModel } from './productModel';
 
 
 export interface SegmentListModel { 
     usage?: number;
+    product?: ProductModel;
     segmentId?: string;
     name?: string | null;
     description?: string | null;

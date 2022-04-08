@@ -71,6 +71,7 @@ model/rolloutRuleModel.ts
 model/sdkKeysModel.ts
 model/segmentComparator.ts
 model/segmentListModel.ts
+model/segmentListModelHaljson.ts
 model/segmentModel.ts
 model/segmentModelHaljson.ts
 model/settingDataModel.ts

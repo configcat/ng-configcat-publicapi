@@ -17,5 +17,7 @@ export interface ProductModel {
     productId?: string;
     name?: string | null;
     description?: string | null;
+    order?: number;
+    reasonRequired?: boolean;
 }
 

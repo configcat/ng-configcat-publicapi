@@ -18,6 +18,8 @@ export interface ProductModelHaljson {
     productId?: string;
     name?: string | null;
     description?: string | null;
+    order?: number;
+    reasonRequired?: boolean;
     _links?: ConfigModelHaljsonEmbeddedProductLinks;
 }
 

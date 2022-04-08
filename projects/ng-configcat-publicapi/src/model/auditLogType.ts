@@ -11,13 +11,14 @@
  */
 
 
-export type AuditLogType = 'productCreated' | 'productChanged' | 'productOwnershipTransferred' | 'productDeleted' | 'teamMemberInvited' | 'teamMemberInvitationRevoked' | 'teamMemberJoined' | 'teamMemberPermissionGroupChanged' | 'teamMemberRemoved' | 'teamMemberLeft' | 'teamMemberInvitationChanged' | 'teamMemberInvitationResent' | 'teamMemberInvitationRejected' | 'configCreated' | 'configChanged' | 'configDeleted' | 'environmentCreated' | 'environmentChanged' | 'environmentDeleted' | 'settingCreated' | 'settingChanged' | 'settingDeleted' | 'settingValueChanged' | 'webHookCreated' | 'webHookChanged' | 'webHookDeleted' | 'subscriptionChanged' | 'permissionGroupCreated' | 'permissionGroupChanged' | 'permissionGroupDeleted' | 'permissionGroupDefault' | 'apiKeyAdded' | 'apiKeyRemoved' | 'integrationAdded' | 'integrationChanged' | 'integrationRemoved' | 'apiKeyConnected' | 'integrationLinkAdded' | 'integrationLinkRemoved' | 'organizationAdded' | 'organizationRemoved' | 'organizationChanged' | 'organizationSubscriptionTypeChanged' | 'organizationAdminAdded' | 'organizationAdminChanged' | 'organizationAdminRemoved' | 'organizationAdminLeft' | 'organizationAdminDisabled2FA' | 'tagAdded' | 'tagChanged' | 'tagRemoved' | 'settingTagAdded' | 'settingTagRemoved' | 'publicApiAccessTokenAdded' | 'publicApiAccessTokenRemoved' | 'domainAdded' | 'domainVerified' | 'domainRemoved' | 'domainSamlConfigured' | 'domainSamlDeleted' | 'autoProvisioningConfigurationChanged' | 'organizationMemberJoined' | 'organizationMemberProductJoinRequested' | 'organizationMemberProductJoinRequestRejected' | 'organizationMemberProductJoinRequestApproved' | 'codeReferencesUploaded' | 'codeReferenceDeleted' | 'codeReferenceStaleBrancheDeleted' | 'segmentCreated' | 'segmentChanged' | 'segmentDeleted';
+export type AuditLogType = 'productCreated' | 'productChanged' | 'productOwnershipTransferred' | 'productDeleted' | 'productsReordered' | 'teamMemberInvited' | 'teamMemberInvitationRevoked' | 'teamMemberJoined' | 'teamMemberPermissionGroupChanged' | 'teamMemberRemoved' | 'teamMemberLeft' | 'teamMemberInvitationChanged' | 'teamMemberInvitationResent' | 'teamMemberInvitationRejected' | 'configCreated' | 'configChanged' | 'configDeleted' | 'configsReordered' | 'environmentCreated' | 'environmentChanged' | 'environmentDeleted' | 'environmentsReordered' | 'settingCreated' | 'settingChanged' | 'settingDeleted' | 'settingsReordered' | 'settingValueChanged' | 'webHookCreated' | 'webHookChanged' | 'webHookDeleted' | 'subscriptionChanged' | 'permissionGroupCreated' | 'permissionGroupChanged' | 'permissionGroupDeleted' | 'permissionGroupDefault' | 'apiKeyAdded' | 'apiKeyRemoved' | 'integrationAdded' | 'integrationChanged' | 'integrationRemoved' | 'apiKeyConnected' | 'integrationLinkAdded' | 'integrationLinkRemoved' | 'organizationAdded' | 'organizationRemoved' | 'organizationChanged' | 'organizationSubscriptionTypeChanged' | 'organizationAdminChanged' | 'organizationAdminLeft' | 'organizationAdminDisabled2FA' | 'tagAdded' | 'tagChanged' | 'tagRemoved' | 'settingTagAdded' | 'settingTagRemoved' | 'publicApiAccessTokenAdded' | 'publicApiAccessTokenRemoved' | 'domainAdded' | 'domainVerified' | 'domainRemoved' | 'domainSamlConfigured' | 'domainSamlDeleted' | 'autoProvisioningConfigurationChanged' | 'organizationMemberJoined' | 'organizationMemberProductJoinRequested' | 'organizationMemberProductJoinRequestRejected' | 'organizationMemberProductJoinRequestApproved' | 'codeReferencesUploaded' | 'codeReferenceDeleted' | 'codeReferenceStaleBranchDeleted' | 'segmentCreated' | 'segmentChanged' | 'segmentDeleted';
 
 export const AuditLogType = {
     ProductCreated: 'productCreated' as AuditLogType,
     ProductChanged: 'productChanged' as AuditLogType,
     ProductOwnershipTransferred: 'productOwnershipTransferred' as AuditLogType,
     ProductDeleted: 'productDeleted' as AuditLogType,
+    ProductsReordered: 'productsReordered' as AuditLogType,
     TeamMemberInvited: 'teamMemberInvited' as AuditLogType,
     TeamMemberInvitationRevoked: 'teamMemberInvitationRevoked' as AuditLogType,
     TeamMemberJoined: 'teamMemberJoined' as AuditLogType,
@@ -30,12 +31,15 @@ export const AuditLogType = {
     ConfigCreated: 'configCreated' as AuditLogType,
     ConfigChanged: 'configChanged' as AuditLogType,
     ConfigDeleted: 'configDeleted' as AuditLogType,
+    ConfigsReordered: 'configsReordered' as AuditLogType,
     EnvironmentCreated: 'environmentCreated' as AuditLogType,
     EnvironmentChanged: 'environmentChanged' as AuditLogType,
     EnvironmentDeleted: 'environmentDeleted' as AuditLogType,
+    EnvironmentsReordered: 'environmentsReordered' as AuditLogType,
     SettingCreated: 'settingCreated' as AuditLogType,
     SettingChanged: 'settingChanged' as AuditLogType,
     SettingDeleted: 'settingDeleted' as AuditLogType,
+    SettingsReordered: 'settingsReordered' as AuditLogType,
     SettingValueChanged: 'settingValueChanged' as AuditLogType,
     WebHookCreated: 'webHookCreated' as AuditLogType,
     WebHookChanged: 'webHookChanged' as AuditLogType,
@@ -57,9 +61,7 @@ export const AuditLogType = {
     OrganizationRemoved: 'organizationRemoved' as AuditLogType,
     OrganizationChanged: 'organizationChanged' as AuditLogType,
     OrganizationSubscriptionTypeChanged: 'organizationSubscriptionTypeChanged' as AuditLogType,
-    OrganizationAdminAdded: 'organizationAdminAdded' as AuditLogType,
     OrganizationAdminChanged: 'organizationAdminChanged' as AuditLogType,
-    OrganizationAdminRemoved: 'organizationAdminRemoved' as AuditLogType,
     OrganizationAdminLeft: 'organizationAdminLeft' as AuditLogType,
     OrganizationAdminDisabled2Fa: 'organizationAdminDisabled2FA' as AuditLogType,
     TagAdded: 'tagAdded' as AuditLogType,
@@ -81,7 +83,7 @@ export const AuditLogType = {
     OrganizationMemberProductJoinRequestApproved: 'organizationMemberProductJoinRequestApproved' as AuditLogType,
     CodeReferencesUploaded: 'codeReferencesUploaded' as AuditLogType,
     CodeReferenceDeleted: 'codeReferenceDeleted' as AuditLogType,
-    CodeReferenceStaleBrancheDeleted: 'codeReferenceStaleBrancheDeleted' as AuditLogType,
+    CodeReferenceStaleBranchDeleted: 'codeReferenceStaleBranchDeleted' as AuditLogType,
     SegmentCreated: 'segmentCreated' as AuditLogType,
     SegmentChanged: 'segmentChanged' as AuditLogType,
     SegmentDeleted: 'segmentDeleted' as AuditLogType

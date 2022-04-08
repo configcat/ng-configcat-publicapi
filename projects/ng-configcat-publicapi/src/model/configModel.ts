@@ -17,5 +17,6 @@ export interface ConfigModel {
     configId?: string;
     name?: string | null;
     description?: string | null;
+    order?: number;
 }
 

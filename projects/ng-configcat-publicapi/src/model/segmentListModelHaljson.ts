@@ -13,14 +13,18 @@ import { ConfigModelHaljsonEmbedded } from './configModelHaljsonEmbedded';
 import { EnvironmentModelHaljsonLinks } from './environmentModelHaljsonLinks';
 
 
-export interface EnvironmentModelHaljson { 
+export interface SegmentListModelHaljson { 
+    usage?: number;
     _embedded?: ConfigModelHaljsonEmbedded;
-    environmentId?: string;
+    segmentId?: string;
     name?: string | null;
-    color?: string | null;
     description?: string | null;
-    order?: number;
-    reasonRequired?: boolean;
+    creatorEmail?: string | null;
+    creatorFullName?: string | null;
+    createdAt?: string;
+    lastUpdaterEmail?: string | null;
+    lastUpdaterFullName?: string | null;
+    updatedAt?: string;
     _links?: EnvironmentModelHaljsonLinks;
 }
 

@@ -47,6 +47,7 @@ export * from './rolloutRuleModel';
 export * from './sdkKeysModel';
 export * from './segmentComparator';
 export * from './segmentListModel';
+export * from './segmentListModelHaljson';
 export * from './segmentModel';
 export * from './segmentModelHaljson';
 export * from './settingDataModel';

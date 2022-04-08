@@ -9,11 +9,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { AuditLogType } from './auditLogType';
 
 
 export interface AuditLogItemModel { 
     auditLogId?: number;
     auditLogDateTime?: string;
+    auditLogTypeEnum?: AuditLogType;
     auditLogType?: string | null;
     userEmail?: string | null;
     userName?: string | null;

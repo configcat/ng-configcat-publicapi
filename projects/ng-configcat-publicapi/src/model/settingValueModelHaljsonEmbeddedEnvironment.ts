@@ -19,6 +19,8 @@ export interface SettingValueModelHaljsonEmbeddedEnvironment {
     name?: string | null;
     color?: string | null;
     description?: string | null;
+    order?: number;
+    reasonRequired?: boolean;
     _links?: EnvironmentModelHaljsonLinks;
 }
 

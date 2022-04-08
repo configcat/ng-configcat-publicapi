@@ -11,10 +11,11 @@
  */
 
 
-export type IntegrationLinkType = 'trello' | 'jira';
+export type IntegrationLinkType = 'trello' | 'jira' | 'monday';
 
 export const IntegrationLinkType = {
     Trello: 'trello' as IntegrationLinkType,
-    Jira: 'jira' as IntegrationLinkType
+    Jira: 'jira' as IntegrationLinkType,
+    Monday: 'monday' as IntegrationLinkType
 };
 

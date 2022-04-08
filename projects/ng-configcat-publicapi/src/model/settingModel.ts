@@ -18,6 +18,7 @@ export interface SettingModel {
     readonly key?: string | null;
     readonly name?: string | null;
     readonly hint?: string | null;
+    readonly order?: number;
     settingType?: SettingType;
     readonly ownerUserEmail?: string | null;
     readonly ownerUserFullName?: string | null;

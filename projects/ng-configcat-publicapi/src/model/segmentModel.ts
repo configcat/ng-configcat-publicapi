@@ -10,12 +10,14 @@
  * Do not edit the class manually.
  */
 import { RolloutRuleComparator } from './rolloutRuleComparator';
+import { ProductModel } from './productModel';
 
 
 export interface SegmentModel { 
     comparisonAttribute?: string | null;
     comparator?: RolloutRuleComparator;
     comparisonValue?: string | null;
+    product?: ProductModel;
     segmentId?: string;
     name?: string | null;
     description?: string | null;

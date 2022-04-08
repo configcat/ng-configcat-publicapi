@@ -33,6 +33,8 @@ export interface PermissionGroupModel {
     readonly canManageIntegrations?: boolean;
     readonly canViewSdkKey?: boolean;
     readonly canRotateSdkKey?: boolean;
+    readonly canCreateOrUpdateSegments?: boolean;
+    readonly canDeleteSegments?: boolean;
     accessType?: AccessType;
     newEnvironmentAccessType?: EnvironmentAccessType;
     environmentAccesses?: Array<EnvironmentAccessModel> | null;

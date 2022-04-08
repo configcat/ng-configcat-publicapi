@@ -17,6 +17,8 @@ export interface EnvironmentAccessModel {
     name?: string | null;
     color?: string | null;
     description?: string | null;
+    order?: number;
+    reasonRequired?: boolean;
     environmentAccessType?: EnvironmentAccessType;
 }
 

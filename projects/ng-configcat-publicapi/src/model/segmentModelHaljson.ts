@@ -9,6 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { ConfigModelHaljsonEmbedded } from './configModelHaljsonEmbedded';
 import { RolloutRuleComparator } from './rolloutRuleComparator';
 import { EnvironmentModelHaljsonLinks } from './environmentModelHaljsonLinks';
 
@@ -17,6 +18,7 @@ export interface SegmentModelHaljson {
     comparisonAttribute?: string | null;
     comparator?: RolloutRuleComparator;
     comparisonValue?: string | null;
+    _embedded?: ConfigModelHaljsonEmbedded;
     segmentId?: string;
     name?: string | null;
     description?: string | null;

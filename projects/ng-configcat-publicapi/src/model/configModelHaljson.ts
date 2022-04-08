@@ -18,6 +18,7 @@ export interface ConfigModelHaljson {
     configId?: string;
     name?: string | null;
     description?: string | null;
+    order?: number;
     _links?: ConfigModelHaljsonLinks;
 }
 

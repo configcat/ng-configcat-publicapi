@@ -18,6 +18,7 @@ export interface SettingDataModel {
     readonly name?: string | null;
     readonly hint?: string | null;
     settingType?: SettingType;
+    readonly order?: number;
     readonly createdAt?: string | null;
     readonly creatorEmail?: string | null;
     readonly creatorFullName?: string | null;
