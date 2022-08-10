@@ -13,7 +13,6 @@ import { ProductModel } from './productModel';
 
 
 export interface SegmentListModel { 
-    usage?: number;
     product?: ProductModel;
     segmentId?: string;
     name?: string | null;
@@ -24,5 +23,6 @@ export interface SegmentListModel {
     lastUpdaterEmail?: string | null;
     lastUpdaterFullName?: string | null;
     updatedAt?: string;
+    usage?: number;
 }
 

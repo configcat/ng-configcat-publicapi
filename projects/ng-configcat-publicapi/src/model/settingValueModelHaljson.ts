@@ -16,11 +16,6 @@ import { EnvironmentModelHaljsonLinks } from './environmentModelHaljsonLinks';
 
 
 export interface SettingValueModelHaljson { 
-    readOnly?: boolean;
-    updatedAt?: string | null;
-    lastUpdaterUserEmail?: string | null;
-    lastUpdaterUserFullName?: string | null;
-    _embedded?: SettingValueModelHaljsonEmbedded;
     /**
      * The targeting rule collection.
      */
@@ -33,6 +28,11 @@ export interface SettingValueModelHaljson {
      * The value to serve. It must respect the setting type.
      */
     value?: any | null;
+    updatedAt?: string | null;
+    lastUpdaterUserEmail?: string | null;
+    lastUpdaterUserFullName?: string | null;
+    _embedded?: SettingValueModelHaljsonEmbedded;
+    readOnly?: boolean;
     _links?: EnvironmentModelHaljsonLinks;
 }
 

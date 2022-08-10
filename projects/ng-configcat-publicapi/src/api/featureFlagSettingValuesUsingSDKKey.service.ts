@@ -13,14 +13,21 @@
 
 import { Inject, Injectable, Optional }                      from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams,
-         HttpResponse, HttpEvent, HttpParameterCodec }       from '@angular/common/http';
+         HttpResponse, HttpEvent, HttpParameterCodec, HttpContext 
+        }       from '@angular/common/http';
 import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
-import { Operation } from '../model/models';
-import { SettingValueModel } from '../model/models';
-import { UpdateSettingValueModel } from '../model/models';
+// @ts-ignore
+import { JsonPatch } from '../model/jsonPatch';
+// @ts-ignore
+import { SettingValueModel } from '../model/settingValueModel';
+// @ts-ignore
+import { SettingValueModelHaljson } from '../model/settingValueModelHaljson';
+// @ts-ignore
+import { UpdateSettingValueModel } from '../model/updateSettingValueModel';
 
+// @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 
@@ -50,6 +57,7 @@ export class FeatureFlagSettingValuesUsingSDKKeyService {
     }
 
 
+    // @ts-ignore
     private addToHttpParams(httpParams: HttpParams, value: any, key?: string): HttpParams {
         if (typeof value === "object" && value instanceof Date === false) {
             httpParams = this.addToHttpParamsRecursive(httpParams, value);
@@ -69,8 +77,7 @@ export class FeatureFlagSettingValuesUsingSDKKeyService {
                 (value as any[]).forEach( elem => httpParams = this.addToHttpParamsRecursive(httpParams, elem, key));
             } else if (value instanceof Date) {
                 if (key != null) {
-                    httpParams = httpParams.append(key,
-                        (value as Date).toISOString().substr(0, 10));
+                    httpParams = httpParams.append(key, (value as Date).toISOString().substr(0, 10));
                 } else {
                    throw Error("key may not be null if value is Date");
                 }
@@ -94,50 +101,62 @@ export class FeatureFlagSettingValuesUsingSDKKeyService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getSettingValueBySdkkey(settingKeyOrId: string, xCONFIGCATSDKKEY?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<SettingValueModel>;
-    public getSettingValueBySdkkey(settingKeyOrId: string, xCONFIGCATSDKKEY?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<HttpResponse<SettingValueModel>>;
-    public getSettingValueBySdkkey(settingKeyOrId: string, xCONFIGCATSDKKEY?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<HttpEvent<SettingValueModel>>;
-    public getSettingValueBySdkkey(settingKeyOrId: string, xCONFIGCATSDKKEY?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<any> {
+    public getSettingValueBySdkkey(settingKeyOrId: string, xCONFIGCATSDKKEY?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<SettingValueModel>;
+    public getSettingValueBySdkkey(settingKeyOrId: string, xCONFIGCATSDKKEY?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<SettingValueModel>>;
+    public getSettingValueBySdkkey(settingKeyOrId: string, xCONFIGCATSDKKEY?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<SettingValueModel>>;
+    public getSettingValueBySdkkey(settingKeyOrId: string, xCONFIGCATSDKKEY?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
         if (settingKeyOrId === null || settingKeyOrId === undefined) {
             throw new Error('Required parameter settingKeyOrId was null or undefined when calling getSettingValueBySdkkey.');
         }
 
-        let headers = this.defaultHeaders;
+        let localVarHeaders = this.defaultHeaders;
         if (xCONFIGCATSDKKEY !== undefined && xCONFIGCATSDKKEY !== null) {
-            headers = headers.set('X-CONFIGCAT-SDKKEY', String(xCONFIGCATSDKKEY));
+            localVarHeaders = localVarHeaders.set('X-CONFIGCAT-SDKKEY', String(xCONFIGCATSDKKEY));
         }
 
-        let credential: string | undefined;
+        let localVarCredential: string | undefined;
         // authentication (Basic) required
-        credential = this.configuration.lookupCredential('Basic');
-        if (credential) {
-            headers = headers.set('Authorization', 'Basic ' + credential);
+        localVarCredential = this.configuration.lookupCredential('Basic');
+        if (localVarCredential) {
+            localVarHeaders = localVarHeaders.set('Authorization', 'Basic ' + localVarCredential);
         }
 
-        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (httpHeaderAcceptSelected === undefined) {
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
                 'application/json',
                 'application/hal+json'
             ];
-            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
         }
 
 
-        let responseType_: 'text' | 'json' = 'json';
-        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
-            responseType_ = 'text';
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
         }
 
         return this.httpClient.get<SettingValueModel>(`${this.configuration.basePath}/v1/settings/${encodeURIComponent(String(settingKeyOrId))}/value`,
             {
+                context: localVarHttpContext,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
-                headers: headers,
+                headers: localVarHeaders,
                 observe: observe,
                 reportProgress: reportProgress
             }
@@ -154,10 +173,10 @@ export class FeatureFlagSettingValuesUsingSDKKeyService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public replaceSettingValueBySdkkey(settingKeyOrId: string, updateSettingValueModel: UpdateSettingValueModel, reason?: string, xCONFIGCATSDKKEY?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<SettingValueModel>;
-    public replaceSettingValueBySdkkey(settingKeyOrId: string, updateSettingValueModel: UpdateSettingValueModel, reason?: string, xCONFIGCATSDKKEY?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<HttpResponse<SettingValueModel>>;
-    public replaceSettingValueBySdkkey(settingKeyOrId: string, updateSettingValueModel: UpdateSettingValueModel, reason?: string, xCONFIGCATSDKKEY?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<HttpEvent<SettingValueModel>>;
-    public replaceSettingValueBySdkkey(settingKeyOrId: string, updateSettingValueModel: UpdateSettingValueModel, reason?: string, xCONFIGCATSDKKEY?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<any> {
+    public replaceSettingValueBySdkkey(settingKeyOrId: string, updateSettingValueModel: UpdateSettingValueModel, reason?: string, xCONFIGCATSDKKEY?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<SettingValueModel>;
+    public replaceSettingValueBySdkkey(settingKeyOrId: string, updateSettingValueModel: UpdateSettingValueModel, reason?: string, xCONFIGCATSDKKEY?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<SettingValueModel>>;
+    public replaceSettingValueBySdkkey(settingKeyOrId: string, updateSettingValueModel: UpdateSettingValueModel, reason?: string, xCONFIGCATSDKKEY?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<SettingValueModel>>;
+    public replaceSettingValueBySdkkey(settingKeyOrId: string, updateSettingValueModel: UpdateSettingValueModel, reason?: string, xCONFIGCATSDKKEY?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
         if (settingKeyOrId === null || settingKeyOrId === undefined) {
             throw new Error('Required parameter settingKeyOrId was null or undefined when calling replaceSettingValueBySdkkey.');
         }
@@ -165,35 +184,40 @@ export class FeatureFlagSettingValuesUsingSDKKeyService {
             throw new Error('Required parameter updateSettingValueModel was null or undefined when calling replaceSettingValueBySdkkey.');
         }
 
-        let queryParameters = new HttpParams({encoder: this.encoder});
+        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         if (reason !== undefined && reason !== null) {
-          queryParameters = this.addToHttpParams(queryParameters,
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
             <any>reason, 'reason');
         }
 
-        let headers = this.defaultHeaders;
+        let localVarHeaders = this.defaultHeaders;
         if (xCONFIGCATSDKKEY !== undefined && xCONFIGCATSDKKEY !== null) {
-            headers = headers.set('X-CONFIGCAT-SDKKEY', String(xCONFIGCATSDKKEY));
+            localVarHeaders = localVarHeaders.set('X-CONFIGCAT-SDKKEY', String(xCONFIGCATSDKKEY));
         }
 
-        let credential: string | undefined;
+        let localVarCredential: string | undefined;
         // authentication (Basic) required
-        credential = this.configuration.lookupCredential('Basic');
-        if (credential) {
-            headers = headers.set('Authorization', 'Basic ' + credential);
+        localVarCredential = this.configuration.lookupCredential('Basic');
+        if (localVarCredential) {
+            localVarHeaders = localVarHeaders.set('Authorization', 'Basic ' + localVarCredential);
         }
 
-        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (httpHeaderAcceptSelected === undefined) {
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
                 'application/json',
                 'application/hal+json'
             ];
-            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
         }
 
 
@@ -201,25 +225,32 @@ export class FeatureFlagSettingValuesUsingSDKKeyService {
         const consumes: string[] = [
             'application/json',
             'text/json',
-            'application/_*+json'
+            'application/*+json'
         ];
         const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected !== undefined) {
-            headers = headers.set('Content-Type', httpContentTypeSelected);
+            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
         }
 
-        let responseType_: 'text' | 'json' = 'json';
-        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
-            responseType_ = 'text';
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
         }
 
         return this.httpClient.put<SettingValueModel>(`${this.configuration.basePath}/v1/settings/${encodeURIComponent(String(settingKeyOrId))}/value`,
             updateSettingValueModel,
             {
-                params: queryParameters,
+                context: localVarHttpContext,
+                params: localVarQueryParameters,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
-                headers: headers,
+                headers: localVarHeaders,
                 observe: observe,
                 reportProgress: reportProgress
             }
@@ -230,79 +261,90 @@ export class FeatureFlagSettingValuesUsingSDKKeyService {
      * Update value
      * This endpoint updates the value of a Feature Flag or Setting  with a collection of [JSON Patch](http://jsonpatch.com) operations in a specified Environment identified by the &lt;a target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot; href&#x3D;\&quot;https://app.configcat.com/sdkkey\&quot;&gt;SDK key&lt;/a&gt; passed in the &#x60;X-CONFIGCAT-SDKKEY&#x60; header.  Only the &#x60;value&#x60;, &#x60;rolloutRules&#x60; and &#x60;percentageRules&#x60; attributes are modifiable by this endpoint.  The advantage of using JSON Patch is that you can describe individual update operations on a resource without touching attributes that you don\&#39;t want to change. It supports collection reordering, so it also  can be used for reordering the targeting rules of a Feature Flag or Setting.  For example: We have the following resource. &#x60;&#x60;&#x60; {  \&quot;rolloutPercentageItems\&quot;: [   {    \&quot;percentage\&quot;: 30,    \&quot;value\&quot;: true   },   {    \&quot;percentage\&quot;: 70,    \&quot;value\&quot;: false   }  ],  \&quot;rolloutRules\&quot;: [],  \&quot;value\&quot;: false } &#x60;&#x60;&#x60; If we send an update request body as below: &#x60;&#x60;&#x60; [  {   \&quot;op\&quot;: \&quot;replace\&quot;,   \&quot;path\&quot;: \&quot;/value\&quot;,   \&quot;value\&quot;: true  } ] &#x60;&#x60;&#x60; Only the default served value is going to be set to &#x60;true&#x60; and all the Percentage Rules are remaining unchanged. So we get a response like this: &#x60;&#x60;&#x60; {  \&quot;rolloutPercentageItems\&quot;: [   {    \&quot;percentage\&quot;: 30,    \&quot;value\&quot;: true   },   {    \&quot;percentage\&quot;: 70,    \&quot;value\&quot;: false   }  ],  \&quot;rolloutRules\&quot;: [],  \&quot;value\&quot;: true } &#x60;&#x60;&#x60;
      * @param settingKeyOrId The key or id of the Setting.
-     * @param operation 
+     * @param jsonPatch 
      * @param reason The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
      * @param xCONFIGCATSDKKEY The ConfigCat SDK Key. (https://app.configcat.com/sdkkey)
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public updateSettingValueBySdkkey(settingKeyOrId: string, operation: Array<Operation>, reason?: string, xCONFIGCATSDKKEY?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<SettingValueModel>;
-    public updateSettingValueBySdkkey(settingKeyOrId: string, operation: Array<Operation>, reason?: string, xCONFIGCATSDKKEY?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<HttpResponse<SettingValueModel>>;
-    public updateSettingValueBySdkkey(settingKeyOrId: string, operation: Array<Operation>, reason?: string, xCONFIGCATSDKKEY?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<HttpEvent<SettingValueModel>>;
-    public updateSettingValueBySdkkey(settingKeyOrId: string, operation: Array<Operation>, reason?: string, xCONFIGCATSDKKEY?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<any> {
+    public updateSettingValueBySdkkey(settingKeyOrId: string, jsonPatch: JsonPatch, reason?: string, xCONFIGCATSDKKEY?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<SettingValueModel>;
+    public updateSettingValueBySdkkey(settingKeyOrId: string, jsonPatch: JsonPatch, reason?: string, xCONFIGCATSDKKEY?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<SettingValueModel>>;
+    public updateSettingValueBySdkkey(settingKeyOrId: string, jsonPatch: JsonPatch, reason?: string, xCONFIGCATSDKKEY?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<SettingValueModel>>;
+    public updateSettingValueBySdkkey(settingKeyOrId: string, jsonPatch: JsonPatch, reason?: string, xCONFIGCATSDKKEY?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
         if (settingKeyOrId === null || settingKeyOrId === undefined) {
             throw new Error('Required parameter settingKeyOrId was null or undefined when calling updateSettingValueBySdkkey.');
         }
-        if (operation === null || operation === undefined) {
-            throw new Error('Required parameter operation was null or undefined when calling updateSettingValueBySdkkey.');
+        if (jsonPatch === null || jsonPatch === undefined) {
+            throw new Error('Required parameter jsonPatch was null or undefined when calling updateSettingValueBySdkkey.');
         }
 
-        let queryParameters = new HttpParams({encoder: this.encoder});
+        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         if (reason !== undefined && reason !== null) {
-          queryParameters = this.addToHttpParams(queryParameters,
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
             <any>reason, 'reason');
         }
 
-        let headers = this.defaultHeaders;
+        let localVarHeaders = this.defaultHeaders;
         if (xCONFIGCATSDKKEY !== undefined && xCONFIGCATSDKKEY !== null) {
-            headers = headers.set('X-CONFIGCAT-SDKKEY', String(xCONFIGCATSDKKEY));
+            localVarHeaders = localVarHeaders.set('X-CONFIGCAT-SDKKEY', String(xCONFIGCATSDKKEY));
         }
 
-        let credential: string | undefined;
+        let localVarCredential: string | undefined;
         // authentication (Basic) required
-        credential = this.configuration.lookupCredential('Basic');
-        if (credential) {
-            headers = headers.set('Authorization', 'Basic ' + credential);
+        localVarCredential = this.configuration.lookupCredential('Basic');
+        if (localVarCredential) {
+            localVarHeaders = localVarHeaders.set('Authorization', 'Basic ' + localVarCredential);
         }
 
-        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (httpHeaderAcceptSelected === undefined) {
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
                 'application/json',
                 'application/hal+json'
             ];
-            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
         }
 
 
         // to determine the Content-Type header
         const consumes: string[] = [
-            'application/json-patch+json',
             'application/json',
             'text/json',
-            'application/_*+json'
+            'application/*+json'
         ];
         const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected !== undefined) {
-            headers = headers.set('Content-Type', httpContentTypeSelected);
+            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
         }
 
-        let responseType_: 'text' | 'json' = 'json';
-        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
-            responseType_ = 'text';
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
         }
 
         return this.httpClient.patch<SettingValueModel>(`${this.configuration.basePath}/v1/settings/${encodeURIComponent(String(settingKeyOrId))}/value`,
-            operation,
+            jsonPatch,
             {
-                params: queryParameters,
+                context: localVarHttpContext,
+                params: localVarQueryParameters,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
-                headers: headers,
+                headers: localVarHeaders,
                 observe: observe,
                 reportProgress: reportProgress
             }

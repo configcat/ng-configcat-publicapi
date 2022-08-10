@@ -14,7 +14,6 @@ import { EnvironmentModelHaljsonLinks } from './environmentModelHaljsonLinks';
 
 
 export interface SegmentListModelHaljson { 
-    usage?: number;
     _embedded?: ConfigModelHaljsonEmbedded;
     segmentId?: string;
     name?: string | null;
@@ -25,6 +24,7 @@ export interface SegmentListModelHaljson {
     lastUpdaterEmail?: string | null;
     lastUpdaterFullName?: string | null;
     updatedAt?: string;
+    usage?: number;
     _links?: EnvironmentModelHaljsonLinks;
 }
 

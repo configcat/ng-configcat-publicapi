@@ -14,6 +14,14 @@ import { SettingType } from './settingType';
 
 export interface CreateSettingModel { 
     /**
+     * A short description for the setting, shown on the Dashboard UI.
+     */
+    hint?: string | null;
+    /**
+     * The IDs of the tags which are attached to the setting.
+     */
+    tags?: Array<number> | null;
+    /**
      * The key of the setting.
      */
     key: string;
@@ -22,13 +30,5 @@ export interface CreateSettingModel {
      */
     name: string;
     settingType: SettingType;
-    /**
-     * A short description for the setting, shown on the Dashboard UI.
-     */
-    hint?: string | null;
-    /**
-     * The IDs of the tags which are attached to the setting.
-     */
-    tags?: Array<number> | null;
 }
 

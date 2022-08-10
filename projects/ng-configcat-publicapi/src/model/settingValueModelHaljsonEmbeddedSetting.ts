@@ -13,15 +13,15 @@ import { SettingType } from './settingType';
 
 
 export interface SettingValueModelHaljsonEmbeddedSetting { 
-    readonly settingId?: number;
-    readonly key?: string | null;
-    readonly name?: string | null;
-    readonly hint?: string | null;
+    settingId?: number;
+    key?: string | null;
+    name?: string | null;
+    hint?: string | null;
     settingType?: SettingType;
-    readonly order?: number;
-    readonly createdAt?: string | null;
-    readonly creatorEmail?: string | null;
-    readonly creatorFullName?: string | null;
+    order?: number;
+    createdAt?: string | null;
+    creatorEmail?: string | null;
+    creatorFullName?: string | null;
     ownerFullName?: string | null;
     ownerEmail?: string | null;
     isWatching?: boolean;

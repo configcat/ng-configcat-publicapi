@@ -13,18 +13,27 @@
 
 import { Inject, Injectable, Optional }                      from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams,
-         HttpResponse, HttpEvent, HttpParameterCodec }       from '@angular/common/http';
+         HttpResponse, HttpEvent, HttpParameterCodec, HttpContext 
+        }       from '@angular/common/http';
 import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
-import { AddOrUpdateIntegrationLinkModel } from '../model/models';
-import { AddOrUpdateJiraIntegrationLinkModel } from '../model/models';
-import { ConnectRequest } from '../model/models';
-import { DeleteIntegrationLinkModel } from '../model/models';
-import { IntegrationLinkDetailsModel } from '../model/models';
-import { IntegrationLinkModel } from '../model/models';
-import { IntegrationLinkType } from '../model/models';
+// @ts-ignore
+import { AddOrUpdateIntegrationLinkModel } from '../model/addOrUpdateIntegrationLinkModel';
+// @ts-ignore
+import { AddOrUpdateJiraIntegrationLinkModel } from '../model/addOrUpdateJiraIntegrationLinkModel';
+// @ts-ignore
+import { ConnectRequest } from '../model/connectRequest';
+// @ts-ignore
+import { DeleteIntegrationLinkModel } from '../model/deleteIntegrationLinkModel';
+// @ts-ignore
+import { IntegrationLinkDetailsModel } from '../model/integrationLinkDetailsModel';
+// @ts-ignore
+import { IntegrationLinkModel } from '../model/integrationLinkModel';
+// @ts-ignore
+import { IntegrationLinkType } from '../model/integrationLinkType';
 
+// @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 
@@ -54,6 +63,7 @@ export class IntegrationLinksService {
     }
 
 
+    // @ts-ignore
     private addToHttpParams(httpParams: HttpParams, value: any, key?: string): HttpParams {
         if (typeof value === "object" && value instanceof Date === false) {
             httpParams = this.addToHttpParamsRecursive(httpParams, value);
@@ -73,8 +83,7 @@ export class IntegrationLinksService {
                 (value as any[]).forEach( elem => httpParams = this.addToHttpParamsRecursive(httpParams, elem, key));
             } else if (value instanceof Date) {
                 if (key != null) {
-                    httpParams = httpParams.append(key,
-                        (value as Date).toISOString().substr(0, 10));
+                    httpParams = httpParams.append(key, (value as Date).toISOString().substr(0, 10));
                 } else {
                    throw Error("key may not be null if value is Date");
                 }
@@ -92,6 +101,7 @@ export class IntegrationLinksService {
 
     /**
      * Add or update Integration link
+     * 
      * @param environmentId The identifier of the Environment.
      * @param settingId The id of the Setting.
      * @param integrationLinkType The integration link\&#39;s type.
@@ -100,10 +110,10 @@ export class IntegrationLinksService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<IntegrationLinkModel>;
-    public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<HttpResponse<IntegrationLinkModel>>;
-    public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<HttpEvent<IntegrationLinkModel>>;
-    public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<any> {
+    public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<IntegrationLinkModel>;
+    public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<IntegrationLinkModel>>;
+    public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<IntegrationLinkModel>>;
+    public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
         if (environmentId === null || environmentId === undefined) {
             throw new Error('Required parameter environmentId was null or undefined when calling addOrUpdateIntegrationLink.');
         }
@@ -117,26 +127,31 @@ export class IntegrationLinksService {
             throw new Error('Required parameter key was null or undefined when calling addOrUpdateIntegrationLink.');
         }
 
-        let headers = this.defaultHeaders;
+        let localVarHeaders = this.defaultHeaders;
 
-        let credential: string | undefined;
+        let localVarCredential: string | undefined;
         // authentication (Basic) required
-        credential = this.configuration.lookupCredential('Basic');
-        if (credential) {
-            headers = headers.set('Authorization', 'Basic ' + credential);
+        localVarCredential = this.configuration.lookupCredential('Basic');
+        if (localVarCredential) {
+            localVarHeaders = localVarHeaders.set('Authorization', 'Basic ' + localVarCredential);
         }
 
-        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (httpHeaderAcceptSelected === undefined) {
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
                 'application/json',
                 'application/hal+json'
             ];
-            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
         }
 
 
@@ -144,24 +159,31 @@ export class IntegrationLinksService {
         const consumes: string[] = [
             'application/json',
             'text/json',
-            'application/_*+json'
+            'application/*+json'
         ];
         const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected !== undefined) {
-            headers = headers.set('Content-Type', httpContentTypeSelected);
+            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
         }
 
-        let responseType_: 'text' | 'json' = 'json';
-        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
-            responseType_ = 'text';
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
         }
 
         return this.httpClient.post<IntegrationLinkModel>(`${this.configuration.basePath}/v1/environments/${encodeURIComponent(String(environmentId))}/settings/${encodeURIComponent(String(settingId))}/integrationLinks/${encodeURIComponent(String(integrationLinkType))}/${encodeURIComponent(String(key))}`,
             addOrUpdateIntegrationLinkModel,
             {
+                context: localVarHttpContext,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
-                headers: headers,
+                headers: localVarHeaders,
                 observe: observe,
                 reportProgress: reportProgress
             }
@@ -170,6 +192,7 @@ export class IntegrationLinksService {
 
     /**
      * Delete Integration link
+     * 
      * @param environmentId The identifier of the Environment.
      * @param settingId The id of the Setting.
      * @param integrationLinkType The integration\&#39;s type.
@@ -177,10 +200,10 @@ export class IntegrationLinksService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<DeleteIntegrationLinkModel>;
-    public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<HttpResponse<DeleteIntegrationLinkModel>>;
-    public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<HttpEvent<DeleteIntegrationLinkModel>>;
-    public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<any> {
+    public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<DeleteIntegrationLinkModel>;
+    public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<DeleteIntegrationLinkModel>>;
+    public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<DeleteIntegrationLinkModel>>;
+    public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
         if (environmentId === null || environmentId === undefined) {
             throw new Error('Required parameter environmentId was null or undefined when calling deleteIntegrationLink.');
         }
@@ -194,39 +217,51 @@ export class IntegrationLinksService {
             throw new Error('Required parameter key was null or undefined when calling deleteIntegrationLink.');
         }
 
-        let headers = this.defaultHeaders;
+        let localVarHeaders = this.defaultHeaders;
 
-        let credential: string | undefined;
+        let localVarCredential: string | undefined;
         // authentication (Basic) required
-        credential = this.configuration.lookupCredential('Basic');
-        if (credential) {
-            headers = headers.set('Authorization', 'Basic ' + credential);
+        localVarCredential = this.configuration.lookupCredential('Basic');
+        if (localVarCredential) {
+            localVarHeaders = localVarHeaders.set('Authorization', 'Basic ' + localVarCredential);
         }
 
-        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (httpHeaderAcceptSelected === undefined) {
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
                 'application/json',
                 'application/hal+json'
             ];
-            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
         }
 
 
-        let responseType_: 'text' | 'json' = 'json';
-        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
-            responseType_ = 'text';
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
         }
 
         return this.httpClient.delete<DeleteIntegrationLinkModel>(`${this.configuration.basePath}/v1/environments/${encodeURIComponent(String(environmentId))}/settings/${encodeURIComponent(String(settingId))}/integrationLinks/${encodeURIComponent(String(integrationLinkType))}/${encodeURIComponent(String(key))}`,
             {
+                context: localVarHttpContext,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
-                headers: headers,
+                headers: localVarHeaders,
                 observe: observe,
                 reportProgress: reportProgress
             }
@@ -235,15 +270,16 @@ export class IntegrationLinksService {
 
     /**
      * Get Integration link
+     * 
      * @param integrationLinkType The integration link\&#39;s type.
      * @param key The key of the integration link.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<IntegrationLinkDetailsModel>;
-    public getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<HttpResponse<IntegrationLinkDetailsModel>>;
-    public getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<HttpEvent<IntegrationLinkDetailsModel>>;
-    public getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<any> {
+    public getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<IntegrationLinkDetailsModel>;
+    public getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<IntegrationLinkDetailsModel>>;
+    public getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<IntegrationLinkDetailsModel>>;
+    public getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
         if (integrationLinkType === null || integrationLinkType === undefined) {
             throw new Error('Required parameter integrationLinkType was null or undefined when calling getIntegrationLinkDetails.');
         }
@@ -251,39 +287,51 @@ export class IntegrationLinksService {
             throw new Error('Required parameter key was null or undefined when calling getIntegrationLinkDetails.');
         }
 
-        let headers = this.defaultHeaders;
+        let localVarHeaders = this.defaultHeaders;
 
-        let credential: string | undefined;
+        let localVarCredential: string | undefined;
         // authentication (Basic) required
-        credential = this.configuration.lookupCredential('Basic');
-        if (credential) {
-            headers = headers.set('Authorization', 'Basic ' + credential);
+        localVarCredential = this.configuration.lookupCredential('Basic');
+        if (localVarCredential) {
+            localVarHeaders = localVarHeaders.set('Authorization', 'Basic ' + localVarCredential);
         }
 
-        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (httpHeaderAcceptSelected === undefined) {
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
                 'application/json',
                 'application/hal+json'
             ];
-            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
         }
 
 
-        let responseType_: 'text' | 'json' = 'json';
-        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
-            responseType_ = 'text';
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
         }
 
         return this.httpClient.get<IntegrationLinkDetailsModel>(`${this.configuration.basePath}/v1/integrationLink/${encodeURIComponent(String(integrationLinkType))}/${encodeURIComponent(String(key))}/details`,
             {
+                context: localVarHttpContext,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
-                headers: headers,
+                headers: localVarHeaders,
                 observe: observe,
                 reportProgress: reportProgress
             }
@@ -298,10 +346,10 @@ export class IntegrationLinksService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public jiraAddOrUpdateIntegrationLink(environmentId: string, settingId: number, key: string, addOrUpdateJiraIntegrationLinkModel?: AddOrUpdateJiraIntegrationLinkModel, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<IntegrationLinkModel>;
-    public jiraAddOrUpdateIntegrationLink(environmentId: string, settingId: number, key: string, addOrUpdateJiraIntegrationLinkModel?: AddOrUpdateJiraIntegrationLinkModel, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<HttpResponse<IntegrationLinkModel>>;
-    public jiraAddOrUpdateIntegrationLink(environmentId: string, settingId: number, key: string, addOrUpdateJiraIntegrationLinkModel?: AddOrUpdateJiraIntegrationLinkModel, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<HttpEvent<IntegrationLinkModel>>;
-    public jiraAddOrUpdateIntegrationLink(environmentId: string, settingId: number, key: string, addOrUpdateJiraIntegrationLinkModel?: AddOrUpdateJiraIntegrationLinkModel, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json'}): Observable<any> {
+    public jiraAddOrUpdateIntegrationLink(environmentId: string, settingId: number, key: string, addOrUpdateJiraIntegrationLinkModel?: AddOrUpdateJiraIntegrationLinkModel, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<IntegrationLinkModel>;
+    public jiraAddOrUpdateIntegrationLink(environmentId: string, settingId: number, key: string, addOrUpdateJiraIntegrationLinkModel?: AddOrUpdateJiraIntegrationLinkModel, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<IntegrationLinkModel>>;
+    public jiraAddOrUpdateIntegrationLink(environmentId: string, settingId: number, key: string, addOrUpdateJiraIntegrationLinkModel?: AddOrUpdateJiraIntegrationLinkModel, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<IntegrationLinkModel>>;
+    public jiraAddOrUpdateIntegrationLink(environmentId: string, settingId: number, key: string, addOrUpdateJiraIntegrationLinkModel?: AddOrUpdateJiraIntegrationLinkModel, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
         if (environmentId === null || environmentId === undefined) {
             throw new Error('Required parameter environmentId was null or undefined when calling jiraAddOrUpdateIntegrationLink.');
         }
@@ -312,26 +360,31 @@ export class IntegrationLinksService {
             throw new Error('Required parameter key was null or undefined when calling jiraAddOrUpdateIntegrationLink.');
         }
 
-        let headers = this.defaultHeaders;
+        let localVarHeaders = this.defaultHeaders;
 
-        let credential: string | undefined;
+        let localVarCredential: string | undefined;
         // authentication (Basic) required
-        credential = this.configuration.lookupCredential('Basic');
-        if (credential) {
-            headers = headers.set('Authorization', 'Basic ' + credential);
+        localVarCredential = this.configuration.lookupCredential('Basic');
+        if (localVarCredential) {
+            localVarHeaders = localVarHeaders.set('Authorization', 'Basic ' + localVarCredential);
         }
 
-        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (httpHeaderAcceptSelected === undefined) {
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
                 'application/json',
                 'application/hal+json'
             ];
-            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
         }
 
 
@@ -339,24 +392,31 @@ export class IntegrationLinksService {
         const consumes: string[] = [
             'application/json',
             'text/json',
-            'application/_*+json'
+            'application/*+json'
         ];
         const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected !== undefined) {
-            headers = headers.set('Content-Type', httpContentTypeSelected);
+            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
         }
 
-        let responseType_: 'text' | 'json' = 'json';
-        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
-            responseType_ = 'text';
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
         }
 
         return this.httpClient.post<IntegrationLinkModel>(`${this.configuration.basePath}/v1/jira/environments/${encodeURIComponent(String(environmentId))}/settings/${encodeURIComponent(String(settingId))}/integrationLinks/${encodeURIComponent(String(key))}`,
             addOrUpdateJiraIntegrationLinkModel,
             {
+                context: localVarHttpContext,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
-                headers: headers,
+                headers: localVarHeaders,
                 observe: observe,
                 reportProgress: reportProgress
             }
@@ -368,29 +428,34 @@ export class IntegrationLinksService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public v1JiraConnectPost(connectRequest?: ConnectRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<any>;
-    public v1JiraConnectPost(connectRequest?: ConnectRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<HttpResponse<any>>;
-    public v1JiraConnectPost(connectRequest?: ConnectRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<HttpEvent<any>>;
-    public v1JiraConnectPost(connectRequest?: ConnectRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined}): Observable<any> {
+    public v1JiraConnectPost(connectRequest?: ConnectRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
+    public v1JiraConnectPost(connectRequest?: ConnectRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
+    public v1JiraConnectPost(connectRequest?: ConnectRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
+    public v1JiraConnectPost(connectRequest?: ConnectRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
 
-        let headers = this.defaultHeaders;
+        let localVarHeaders = this.defaultHeaders;
 
-        let credential: string | undefined;
+        let localVarCredential: string | undefined;
         // authentication (Basic) required
-        credential = this.configuration.lookupCredential('Basic');
-        if (credential) {
-            headers = headers.set('Authorization', 'Basic ' + credential);
+        localVarCredential = this.configuration.lookupCredential('Basic');
+        if (localVarCredential) {
+            localVarHeaders = localVarHeaders.set('Authorization', 'Basic ' + localVarCredential);
         }
 
-        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (httpHeaderAcceptSelected === undefined) {
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
             ];
-            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
         }
 
 
@@ -398,24 +463,31 @@ export class IntegrationLinksService {
         const consumes: string[] = [
             'application/json',
             'text/json',
-            'application/_*+json'
+            'application/*+json'
         ];
         const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected !== undefined) {
-            headers = headers.set('Content-Type', httpContentTypeSelected);
+            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
         }
 
-        let responseType_: 'text' | 'json' = 'json';
-        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
-            responseType_ = 'text';
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
         }
 
         return this.httpClient.post<any>(`${this.configuration.basePath}/v1/jira/Connect`,
             connectRequest,
             {
+                context: localVarHttpContext,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
-                headers: headers,
+                headers: localVarHeaders,
                 observe: observe,
                 reportProgress: reportProgress
             }

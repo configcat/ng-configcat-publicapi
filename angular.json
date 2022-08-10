@@ -35,5 +35,7 @@
       }
     }
   },
-  "defaultProject": "ng-configcat-publicapi"
+  "cli": {
+    "analytics": false
+  }
 }

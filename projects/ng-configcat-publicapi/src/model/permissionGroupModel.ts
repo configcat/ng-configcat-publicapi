@@ -12,31 +12,35 @@
 import { EnvironmentAccessType } from './environmentAccessType';
 import { EnvironmentAccessModel } from './environmentAccessModel';
 import { AccessType } from './accessType';
+import { ProductModel } from './productModel';
 
 
 export interface PermissionGroupModel { 
     permissionGroupId?: number;
     name?: string | null;
     canManageMembers?: boolean;
-    readonly canCreateOrUpdateConfig?: boolean;
-    readonly canDeleteConfig?: boolean;
-    readonly canCreateOrUpdateEnvironment?: boolean;
-    readonly canDeleteEnvironment?: boolean;
-    readonly canCreateOrUpdateSetting?: boolean;
-    readonly canTagSetting?: boolean;
-    readonly canDeleteSetting?: boolean;
-    readonly canCreateOrUpdateTag?: boolean;
-    readonly canDeleteTag?: boolean;
-    readonly canManageWebhook?: boolean;
-    readonly canUseExportImport?: boolean;
-    readonly canManageProductPreferences?: boolean;
-    readonly canManageIntegrations?: boolean;
-    readonly canViewSdkKey?: boolean;
-    readonly canRotateSdkKey?: boolean;
-    readonly canCreateOrUpdateSegments?: boolean;
-    readonly canDeleteSegments?: boolean;
+    canCreateOrUpdateConfig?: boolean;
+    canDeleteConfig?: boolean;
+    canCreateOrUpdateEnvironment?: boolean;
+    canDeleteEnvironment?: boolean;
+    canCreateOrUpdateSetting?: boolean;
+    canTagSetting?: boolean;
+    canDeleteSetting?: boolean;
+    canCreateOrUpdateTag?: boolean;
+    canDeleteTag?: boolean;
+    canManageWebhook?: boolean;
+    canUseExportImport?: boolean;
+    canManageProductPreferences?: boolean;
+    canManageIntegrations?: boolean;
+    canViewSdkKey?: boolean;
+    canRotateSdkKey?: boolean;
+    canCreateOrUpdateSegments?: boolean;
+    canDeleteSegments?: boolean;
+    canViewProductAuditLog?: boolean;
+    canViewProductStatistics?: boolean;
     accessType?: AccessType;
     newEnvironmentAccessType?: EnvironmentAccessType;
     environmentAccesses?: Array<EnvironmentAccessModel> | null;
+    product?: ProductModel;
 }
 
