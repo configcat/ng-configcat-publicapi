@@ -9,10 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { SettingModelHaljsonEmbeddedTagsInner } from './settingModelHaljsonEmbeddedTagsInner';
+import { PatchOperation } from './patchOperation';
 
 
-export interface SettingModelHaljsonEmbedded { 
-    tags?: Array<SettingModelHaljsonEmbeddedTagsInner>;
+export interface JsonPatch { 
+    operations?: Array<PatchOperation> | null;
 }
 

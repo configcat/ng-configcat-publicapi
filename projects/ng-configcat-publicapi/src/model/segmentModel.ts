@@ -14,9 +14,6 @@ import { ProductModel } from './productModel';
 
 
 export interface SegmentModel { 
-    comparisonAttribute?: string | null;
-    comparator?: RolloutRuleComparator;
-    comparisonValue?: string | null;
     product?: ProductModel;
     segmentId?: string;
     name?: string | null;
@@ -27,5 +24,8 @@ export interface SegmentModel {
     lastUpdaterEmail?: string | null;
     lastUpdaterFullName?: string | null;
     updatedAt?: string;
+    comparisonAttribute?: string | null;
+    comparator?: RolloutRuleComparator;
+    comparisonValue?: string | null;
 }
 

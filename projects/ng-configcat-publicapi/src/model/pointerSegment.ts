@@ -9,10 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { SettingModelHaljsonEmbeddedTagsInner } from './settingModelHaljsonEmbeddedTagsInner';
 
 
-export interface SettingModelHaljsonEmbedded { 
-    tags?: Array<SettingModelHaljsonEmbeddedTagsInner>;
+export interface PointerSegment { 
+    readonly source?: string | null;
+    readonly value?: string | null;
 }
 

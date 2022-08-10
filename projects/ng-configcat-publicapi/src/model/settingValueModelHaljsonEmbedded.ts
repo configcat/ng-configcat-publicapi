@@ -11,16 +11,16 @@
  */
 import { SettingValueModelHaljsonEmbeddedConfig } from './settingValueModelHaljsonEmbeddedConfig';
 import { SettingValueModelHaljsonEmbeddedEnvironment } from './settingValueModelHaljsonEmbeddedEnvironment';
+import { SettingValueModelHaljsonEmbeddedSettingTagsInner } from './settingValueModelHaljsonEmbeddedSettingTagsInner';
 import { SettingValueModelHaljsonEmbeddedSetting } from './settingValueModelHaljsonEmbeddedSetting';
-import { SettingValueModelHaljsonEmbeddedIntegrationLinks } from './settingValueModelHaljsonEmbeddedIntegrationLinks';
-import { SettingValueModelHaljsonEmbeddedSettingTags } from './settingValueModelHaljsonEmbeddedSettingTags';
+import { SettingValueModelHaljsonEmbeddedIntegrationLinksInner } from './settingValueModelHaljsonEmbeddedIntegrationLinksInner';
 
 
 export interface SettingValueModelHaljsonEmbedded { 
     setting?: SettingValueModelHaljsonEmbeddedSetting;
     config?: SettingValueModelHaljsonEmbeddedConfig;
     environment?: SettingValueModelHaljsonEmbeddedEnvironment;
-    integrationLinks?: Array<SettingValueModelHaljsonEmbeddedIntegrationLinks>;
-    settingTags?: Array<SettingValueModelHaljsonEmbeddedSettingTags>;
+    integrationLinks?: Array<SettingValueModelHaljsonEmbeddedIntegrationLinksInner>;
+    settingTags?: Array<SettingValueModelHaljsonEmbeddedSettingTagsInner>;
 }
 

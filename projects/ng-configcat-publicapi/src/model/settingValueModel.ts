@@ -19,15 +19,6 @@ import { SettingDataModel } from './settingDataModel';
 
 
 export interface SettingValueModel { 
-    config?: ConfigModel;
-    environment?: EnvironmentModel;
-    readOnly?: boolean;
-    setting?: SettingDataModel;
-    updatedAt?: string | null;
-    lastUpdaterUserEmail?: string | null;
-    lastUpdaterUserFullName?: string | null;
-    integrationLinks?: Array<IntegrationLinkModel> | null;
-    settingTags?: Array<SettingTagModel> | null;
     /**
      * The targeting rule collection.
      */
@@ -40,5 +31,14 @@ export interface SettingValueModel {
      * The value to serve. It must respect the setting type.
      */
     value?: any | null;
+    setting?: SettingDataModel;
+    updatedAt?: string | null;
+    lastUpdaterUserEmail?: string | null;
+    lastUpdaterUserFullName?: string | null;
+    integrationLinks?: Array<IntegrationLinkModel> | null;
+    settingTags?: Array<SettingTagModel> | null;
+    config?: ConfigModel;
+    environment?: EnvironmentModel;
+    readOnly?: boolean;
 }
 

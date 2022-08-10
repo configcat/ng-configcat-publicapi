@@ -14,16 +14,16 @@ import { TagModel } from './tagModel';
 
 
 export interface SettingModel { 
-    readonly settingId?: number;
-    readonly key?: string | null;
-    readonly name?: string | null;
-    readonly hint?: string | null;
-    readonly order?: number;
+    settingId?: number;
+    key?: string | null;
+    name?: string | null;
+    hint?: string | null;
+    order?: number;
     settingType?: SettingType;
-    readonly ownerUserEmail?: string | null;
-    readonly ownerUserFullName?: string | null;
-    readonly configId?: string;
-    readonly configName?: string | null;
+    ownerUserEmail?: string | null;
+    ownerUserFullName?: string | null;
+    configId?: string;
+    configName?: string | null;
     tags?: Array<TagModel> | null;
 }
 

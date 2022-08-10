@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import { EnvironmentAccessType } from './environmentAccessType';
-import { EnvironmentAccessModel } from './environmentAccessModel';
+import { CreateOrUpdateEnvironmentAccessModel } from './createOrUpdateEnvironmentAccessModel';
 import { AccessType } from './accessType';
 
 
@@ -38,6 +38,6 @@ export interface UpdatePermissionGroupRequest {
     canDeleteSegments?: boolean | null;
     accessType?: AccessType;
     newEnvironmentAccessType?: EnvironmentAccessType;
-    environmentAccesses?: Array<EnvironmentAccessModel> | null;
+    environmentAccesses?: Array<CreateOrUpdateEnvironmentAccessModel> | null;
 }
 

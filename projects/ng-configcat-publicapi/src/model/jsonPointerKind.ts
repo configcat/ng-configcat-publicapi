@@ -9,10 +9,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { SettingModelHaljsonEmbeddedTagsInner } from './settingModelHaljsonEmbeddedTagsInner';
 
 
-export interface SettingModelHaljsonEmbedded { 
-    tags?: Array<SettingModelHaljsonEmbeddedTagsInner>;
-}
+export type JsonPointerKind = 'unspecified' | 'plain' | 'uriEncoded';
+
+export const JsonPointerKind = {
+    Unspecified: 'unspecified' as JsonPointerKind,
+    Plain: 'plain' as JsonPointerKind,
+    UriEncoded: 'uriEncoded' as JsonPointerKind
+};
 

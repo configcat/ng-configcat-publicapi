@@ -9,10 +9,15 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { SettingModelHaljsonEmbeddedTagsInner } from './settingModelHaljsonEmbeddedTagsInner';
+import { ConfigModelHaljsonEmbedded } from './configModelHaljsonEmbedded';
+import { EnvironmentModelHaljsonLinks } from './environmentModelHaljsonLinks';
 
 
-export interface SettingModelHaljsonEmbedded { 
-    tags?: Array<SettingModelHaljsonEmbeddedTagsInner>;
+export interface SettingModelHaljsonEmbeddedTagsInner { 
+    _embedded?: ConfigModelHaljsonEmbedded;
+    tagId?: number;
+    name?: string | null;
+    color?: string | null;
+    _links?: EnvironmentModelHaljsonLinks;
 }
 

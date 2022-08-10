@@ -9,10 +9,40 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { SettingModelHaljsonEmbeddedTagsInner } from './settingModelHaljsonEmbeddedTagsInner';
+import { ConfigModelHaljsonEmbedded } from './configModelHaljsonEmbedded';
+import { EnvironmentAccessType } from './environmentAccessType';
+import { EnvironmentAccessModel } from './environmentAccessModel';
+import { EnvironmentModelHaljsonLinks } from './environmentModelHaljsonLinks';
+import { AccessType } from './accessType';
 
 
-export interface SettingModelHaljsonEmbedded { 
-    tags?: Array<SettingModelHaljsonEmbeddedTagsInner>;
+export interface PermissionGroupModelHaljson { 
+    permissionGroupId?: number;
+    name?: string | null;
+    canManageMembers?: boolean;
+    canCreateOrUpdateConfig?: boolean;
+    canDeleteConfig?: boolean;
+    canCreateOrUpdateEnvironment?: boolean;
+    canDeleteEnvironment?: boolean;
+    canCreateOrUpdateSetting?: boolean;
+    canTagSetting?: boolean;
+    canDeleteSetting?: boolean;
+    canCreateOrUpdateTag?: boolean;
+    canDeleteTag?: boolean;
+    canManageWebhook?: boolean;
+    canUseExportImport?: boolean;
+    canManageProductPreferences?: boolean;
+    canManageIntegrations?: boolean;
+    canViewSdkKey?: boolean;
+    canRotateSdkKey?: boolean;
+    canCreateOrUpdateSegments?: boolean;
+    canDeleteSegments?: boolean;
+    canViewProductAuditLog?: boolean;
+    canViewProductStatistics?: boolean;
+    accessType?: AccessType;
+    newEnvironmentAccessType?: EnvironmentAccessType;
+    environmentAccesses?: Array<EnvironmentAccessModel> | null;
+    _embedded?: ConfigModelHaljsonEmbedded;
+    _links?: EnvironmentModelHaljsonLinks;
 }
 

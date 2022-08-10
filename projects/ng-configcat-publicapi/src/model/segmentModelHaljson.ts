@@ -15,9 +15,6 @@ import { EnvironmentModelHaljsonLinks } from './environmentModelHaljsonLinks';
 
 
 export interface SegmentModelHaljson { 
-    comparisonAttribute?: string | null;
-    comparator?: RolloutRuleComparator;
-    comparisonValue?: string | null;
     _embedded?: ConfigModelHaljsonEmbedded;
     segmentId?: string;
     name?: string | null;
@@ -28,6 +25,9 @@ export interface SegmentModelHaljson {
     lastUpdaterEmail?: string | null;
     lastUpdaterFullName?: string | null;
     updatedAt?: string;
+    comparisonAttribute?: string | null;
+    comparator?: RolloutRuleComparator;
+    comparisonValue?: string | null;
     _links?: EnvironmentModelHaljsonLinks;
 }
 
