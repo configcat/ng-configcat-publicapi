@@ -12,5 +12,5 @@ Increase version number by using `npm version patch | minor | major`
     npm version patch
     ```
 1. Push your code
-1. Draft a new release at https://github.com/configcat/ng-configcat-publicapi-ui/releases
-1. Check if package available under https://www.npmjs.com/package/ng-configcat-publicapi-ui
+1. Draft a new release at https://github.com/configcat/ng-configcat-publicapi/releases
+1. Check if package available under https://www.npmjs.com/package/ng-configcat-publicapi
