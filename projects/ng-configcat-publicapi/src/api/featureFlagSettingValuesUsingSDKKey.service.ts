@@ -43,11 +43,15 @@ export class FeatureFlagSettingValuesUsingSDKKeyService {
     public configuration = new Configuration();
     public encoder: HttpParameterCodec;
 
-    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
+    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string|string[], @Optional() configuration: Configuration) {
         if (configuration) {
             this.configuration = configuration;
         }
         if (typeof this.configuration.basePath !== 'string') {
+            if (Array.isArray(basePath) && basePath.length > 0) {
+                basePath = basePath[0];
+            }
+
             if (typeof basePath !== 'string') {
                 basePath = this.basePath;
             }
@@ -151,7 +155,8 @@ export class FeatureFlagSettingValuesUsingSDKKeyService {
             }
         }
 
-        return this.httpClient.get<SettingValueModel>(`${this.configuration.basePath}/v1/settings/${encodeURIComponent(String(settingKeyOrId))}/value`,
+        let localVarPath = `/v1/settings/${this.configuration.encodeParam({name: "settingKeyOrId", value: settingKeyOrId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/value`;
+        return this.httpClient.request<SettingValueModel>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -243,10 +248,11 @@ export class FeatureFlagSettingValuesUsingSDKKeyService {
             }
         }
 
-        return this.httpClient.put<SettingValueModel>(`${this.configuration.basePath}/v1/settings/${encodeURIComponent(String(settingKeyOrId))}/value`,
-            updateSettingValueModel,
+        let localVarPath = `/v1/settings/${this.configuration.encodeParam({name: "settingKeyOrId", value: settingKeyOrId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/value`;
+        return this.httpClient.request<SettingValueModel>('put', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                body: updateSettingValueModel,
                 params: localVarQueryParameters,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -337,10 +343,11 @@ export class FeatureFlagSettingValuesUsingSDKKeyService {
             }
         }
 
-        return this.httpClient.patch<SettingValueModel>(`${this.configuration.basePath}/v1/settings/${encodeURIComponent(String(settingKeyOrId))}/value`,
-            jsonPatch,
+        let localVarPath = `/v1/settings/${this.configuration.encodeParam({name: "settingKeyOrId", value: settingKeyOrId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/value`;
+        return this.httpClient.request<SettingValueModel>('patch', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                body: jsonPatch,
                 params: localVarQueryParameters,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,

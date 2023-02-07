@@ -43,11 +43,15 @@ export class ConfigsService {
     public configuration = new Configuration();
     public encoder: HttpParameterCodec;
 
-    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
+    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string|string[], @Optional() configuration: Configuration) {
         if (configuration) {
             this.configuration = configuration;
         }
         if (typeof this.configuration.basePath !== 'string') {
+            if (Array.isArray(basePath) && basePath.length > 0) {
+                basePath = basePath[0];
+            }
+
             if (typeof basePath !== 'string') {
                 basePath = this.basePath;
             }
@@ -162,10 +166,11 @@ export class ConfigsService {
             }
         }
 
-        return this.httpClient.post<ConfigModel>(`${this.configuration.basePath}/v1/products/${encodeURIComponent(String(productId))}/configs`,
-            createConfigRequest,
+        let localVarPath = `/v1/products/${this.configuration.encodeParam({name: "productId", value: productId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/configs`;
+        return this.httpClient.request<ConfigModel>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                body: createConfigRequest,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
@@ -227,7 +232,8 @@ export class ConfigsService {
             }
         }
 
-        return this.httpClient.delete<any>(`${this.configuration.basePath}/v1/configs/${encodeURIComponent(String(configId))}`,
+        let localVarPath = `/v1/configs/${this.configuration.encodeParam({name: "configId", value: configId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
+        return this.httpClient.request<any>('delete', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -293,7 +299,8 @@ export class ConfigsService {
             }
         }
 
-        return this.httpClient.get<ConfigModel>(`${this.configuration.basePath}/v1/configs/${encodeURIComponent(String(configId))}`,
+        let localVarPath = `/v1/configs/${this.configuration.encodeParam({name: "configId", value: configId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
+        return this.httpClient.request<ConfigModel>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -359,7 +366,8 @@ export class ConfigsService {
             }
         }
 
-        return this.httpClient.get<Array<ConfigModel>>(`${this.configuration.basePath}/v1/products/${encodeURIComponent(String(productId))}/configs`,
+        let localVarPath = `/v1/products/${this.configuration.encodeParam({name: "productId", value: productId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/configs`;
+        return this.httpClient.request<Array<ConfigModel>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -440,10 +448,11 @@ export class ConfigsService {
             }
         }
 
-        return this.httpClient.put<ConfigModel>(`${this.configuration.basePath}/v1/configs/${encodeURIComponent(String(configId))}`,
-            updateConfigRequest,
+        let localVarPath = `/v1/configs/${this.configuration.encodeParam({name: "configId", value: configId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
+        return this.httpClient.request<ConfigModel>('put', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                body: updateConfigRequest,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,

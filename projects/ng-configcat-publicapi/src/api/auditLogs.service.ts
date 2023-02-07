@@ -43,11 +43,15 @@ export class AuditLogsService {
     public configuration = new Configuration();
     public encoder: HttpParameterCodec;
 
-    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
+    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string|string[], @Optional() configuration: Configuration) {
         if (configuration) {
             this.configuration = configuration;
         }
         if (typeof this.configuration.basePath !== 'string') {
+            if (Array.isArray(basePath) && basePath.length > 0) {
+                basePath = basePath[0];
+            }
+
             if (typeof basePath !== 'string') {
                 basePath = this.basePath;
             }
@@ -174,7 +178,8 @@ export class AuditLogsService {
             }
         }
 
-        return this.httpClient.get<Array<AuditLogItemModel>>(`${this.configuration.basePath}/v1/products/${encodeURIComponent(String(productId))}/auditlogs`,
+        let localVarPath = `/v1/products/${this.configuration.encodeParam({name: "productId", value: productId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/auditlogs`;
+        return this.httpClient.request<Array<AuditLogItemModel>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,
@@ -241,7 +246,8 @@ export class AuditLogsService {
             }
         }
 
-        return this.httpClient.get<Array<SettingModel>>(`${this.configuration.basePath}/v1/configs/${encodeURIComponent(String(configId))}/deleted-settings`,
+        let localVarPath = `/v1/configs/${this.configuration.encodeParam({name: "configId", value: configId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/deleted-settings`;
+        return this.httpClient.request<Array<SettingModel>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -339,7 +345,8 @@ export class AuditLogsService {
             }
         }
 
-        return this.httpClient.get<Array<AuditLogItemModel>>(`${this.configuration.basePath}/v1/organizations/${encodeURIComponent(String(organizationId))}/auditlogs`,
+        let localVarPath = `/v1/organizations/${this.configuration.encodeParam({name: "organizationId", value: organizationId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/auditlogs`;
+        return this.httpClient.request<Array<AuditLogItemModel>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,

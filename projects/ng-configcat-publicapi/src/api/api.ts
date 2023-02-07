@@ -1,5 +1,7 @@
 export * from './auditLogs.service';
 import { AuditLogsService } from './auditLogs.service';
+export * from './codeReferences.service';
+import { CodeReferencesService } from './codeReferences.service';
 export * from './configs.service';
 import { ConfigsService } from './configs.service';
 export * from './environments.service';
@@ -28,4 +30,4 @@ export * from './segments.service';
 import { SegmentsService } from './segments.service';
 export * from './tags.service';
 import { TagsService } from './tags.service';
-export const APIS = [AuditLogsService, ConfigsService, EnvironmentsService, FeatureFlagSettingValuesService, FeatureFlagSettingValuesUsingSDKKeyService, FeatureFlagsSettingsService, IntegrationLinksService, MeService, MembersService, OrganizationsService, PermissionGroupsService, ProductsService, SDKKeysService, SegmentsService, TagsService];
+export const APIS = [AuditLogsService, CodeReferencesService, ConfigsService, EnvironmentsService, FeatureFlagSettingValuesService, FeatureFlagSettingValuesUsingSDKKeyService, FeatureFlagsSettingsService, IntegrationLinksService, MeService, MembersService, OrganizationsService, PermissionGroupsService, ProductsService, SDKKeysService, SegmentsService, TagsService];

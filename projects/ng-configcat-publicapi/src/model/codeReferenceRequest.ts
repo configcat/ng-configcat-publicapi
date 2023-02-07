@@ -9,15 +9,41 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { JsonNode } from './jsonNode';
-import { JsonPointer } from './jsonPointer';
-import { OperationType } from './operationType';
+import { FlagReference } from './flagReference';
 
 
-export interface PatchOperation { 
-    op?: OperationType;
-    from?: JsonPointer;
-    path?: JsonPointer;
-    value?: JsonNode;
+export interface CodeReferenceRequest { 
+    /**
+     * The Config\'s identifier the scanning was performed against.
+     */
+    configId: string;
+    /**
+     * The source control repository that contains the scanned code. (Source of the repository selector on the ConfigCat Dashboard)
+     */
+    repository: string;
+    /**
+     * The source control branch on where the scan was performed. (Source of the branch selector on the ConfigCat Dashboard)
+     */
+    branch: string;
+    /**
+     * The related commit\'s URL. (Appears on the ConfigCat Dashboard)
+     */
+    commitUrl?: string | null;
+    /**
+     * The related commit\'s hash. (Appears on the ConfigCat Dashboard)
+     */
+    commitHash?: string | null;
+    /**
+     * The scanning tool\'s name. (Appears on the ConfigCat Dashboard)
+     */
+    uploader?: string | null;
+    /**
+     * The currently active branches of the repository. Each previously uploaded report that belongs to a non-reported active branch is being deleted.
+     */
+    activeBranches?: Array<string> | null;
+    /**
+     * The actual code reference collection.
+     */
+    flagReferences?: Array<FlagReference> | null;
 }
 

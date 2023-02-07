@@ -19,7 +19,7 @@ import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 // @ts-ignore
-import { CreateSettingModel } from '../model/createSettingModel';
+import { CreateSettingInitialValues } from '../model/createSettingInitialValues';
 // @ts-ignore
 import { JsonPatch } from '../model/jsonPatch';
 // @ts-ignore
@@ -43,11 +43,15 @@ export class FeatureFlagsSettingsService {
     public configuration = new Configuration();
     public encoder: HttpParameterCodec;
 
-    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
+    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string|string[], @Optional() configuration: Configuration) {
         if (configuration) {
             this.configuration = configuration;
         }
         if (typeof this.configuration.basePath !== 'string') {
+            if (Array.isArray(basePath) && basePath.length > 0) {
+                basePath = basePath[0];
+            }
+
             if (typeof basePath !== 'string') {
                 basePath = this.basePath;
             }
@@ -97,19 +101,19 @@ export class FeatureFlagsSettingsService {
      * Create Flag
      * This endpoint creates a new Feature Flag or Setting in a specified Config identified by the &#x60;configId&#x60; parameter.  **Important:** The &#x60;key&#x60; attribute must be unique within the given Config.
      * @param configId The identifier of the Config.
-     * @param createSettingModel 
+     * @param createSettingInitialValues 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createSetting(configId: string, createSettingModel: CreateSettingModel, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<SettingModel>;
-    public createSetting(configId: string, createSettingModel: CreateSettingModel, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<SettingModel>>;
-    public createSetting(configId: string, createSettingModel: CreateSettingModel, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<SettingModel>>;
-    public createSetting(configId: string, createSettingModel: CreateSettingModel, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
+    public createSetting(configId: string, createSettingInitialValues: CreateSettingInitialValues, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<SettingModel>;
+    public createSetting(configId: string, createSettingInitialValues: CreateSettingInitialValues, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<SettingModel>>;
+    public createSetting(configId: string, createSettingInitialValues: CreateSettingInitialValues, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<SettingModel>>;
+    public createSetting(configId: string, createSettingInitialValues: CreateSettingInitialValues, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
         if (configId === null || configId === undefined) {
             throw new Error('Required parameter configId was null or undefined when calling createSetting.');
         }
-        if (createSettingModel === null || createSettingModel === undefined) {
-            throw new Error('Required parameter createSettingModel was null or undefined when calling createSetting.');
+        if (createSettingInitialValues === null || createSettingInitialValues === undefined) {
+            throw new Error('Required parameter createSettingInitialValues was null or undefined when calling createSetting.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -162,10 +166,11 @@ export class FeatureFlagsSettingsService {
             }
         }
 
-        return this.httpClient.post<SettingModel>(`${this.configuration.basePath}/v1/configs/${encodeURIComponent(String(configId))}/settings`,
-            createSettingModel,
+        let localVarPath = `/v1/configs/${this.configuration.encodeParam({name: "configId", value: configId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/settings`;
+        return this.httpClient.request<SettingModel>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                body: createSettingInitialValues,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
@@ -227,7 +232,8 @@ export class FeatureFlagsSettingsService {
             }
         }
 
-        return this.httpClient.delete<any>(`${this.configuration.basePath}/v1/settings/${encodeURIComponent(String(settingId))}`,
+        let localVarPath = `/v1/settings/${this.configuration.encodeParam({name: "settingId", value: settingId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}`;
+        return this.httpClient.request<any>('delete', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -293,7 +299,8 @@ export class FeatureFlagsSettingsService {
             }
         }
 
-        return this.httpClient.get<SettingModel>(`${this.configuration.basePath}/v1/settings/${encodeURIComponent(String(settingId))}`,
+        let localVarPath = `/v1/settings/${this.configuration.encodeParam({name: "settingId", value: settingId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}`;
+        return this.httpClient.request<SettingModel>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -359,7 +366,8 @@ export class FeatureFlagsSettingsService {
             }
         }
 
-        return this.httpClient.get<Array<SettingModel>>(`${this.configuration.basePath}/v1/configs/${encodeURIComponent(String(configId))}/settings`,
+        let localVarPath = `/v1/configs/${this.configuration.encodeParam({name: "configId", value: configId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/settings`;
+        return this.httpClient.request<Array<SettingModel>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -440,10 +448,11 @@ export class FeatureFlagsSettingsService {
             }
         }
 
-        return this.httpClient.patch<SettingModel>(`${this.configuration.basePath}/v1/settings/${encodeURIComponent(String(settingId))}`,
-            jsonPatch,
+        let localVarPath = `/v1/settings/${this.configuration.encodeParam({name: "settingId", value: settingId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}`;
+        return this.httpClient.request<SettingModel>('patch', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                body: jsonPatch,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,

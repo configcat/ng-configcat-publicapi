@@ -43,11 +43,15 @@ export class ProductsService {
     public configuration = new Configuration();
     public encoder: HttpParameterCodec;
 
-    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
+    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string|string[], @Optional() configuration: Configuration) {
         if (configuration) {
             this.configuration = configuration;
         }
         if (typeof this.configuration.basePath !== 'string') {
+            if (Array.isArray(basePath) && basePath.length > 0) {
+                basePath = basePath[0];
+            }
+
             if (typeof basePath !== 'string') {
                 basePath = this.basePath;
             }
@@ -162,10 +166,11 @@ export class ProductsService {
             }
         }
 
-        return this.httpClient.post<ProductModel>(`${this.configuration.basePath}/v1/organizations/${encodeURIComponent(String(organizationId))}/products`,
-            createProductRequest,
+        let localVarPath = `/v1/organizations/${this.configuration.encodeParam({name: "organizationId", value: organizationId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/products`;
+        return this.httpClient.request<ProductModel>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                body: createProductRequest,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
@@ -227,7 +232,8 @@ export class ProductsService {
             }
         }
 
-        return this.httpClient.delete<any>(`${this.configuration.basePath}/v1/products/${encodeURIComponent(String(productId))}`,
+        let localVarPath = `/v1/products/${this.configuration.encodeParam({name: "productId", value: productId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
+        return this.httpClient.request<any>('delete', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -293,7 +299,8 @@ export class ProductsService {
             }
         }
 
-        return this.httpClient.get<ProductModel>(`${this.configuration.basePath}/v1/products/${encodeURIComponent(String(productId))}`,
+        let localVarPath = `/v1/products/${this.configuration.encodeParam({name: "productId", value: productId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
+        return this.httpClient.request<ProductModel>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -355,7 +362,8 @@ export class ProductsService {
             }
         }
 
-        return this.httpClient.get<Array<ProductModel>>(`${this.configuration.basePath}/v1/products`,
+        let localVarPath = `/v1/products`;
+        return this.httpClient.request<Array<ProductModel>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -436,10 +444,11 @@ export class ProductsService {
             }
         }
 
-        return this.httpClient.put<ProductModel>(`${this.configuration.basePath}/v1/products/${encodeURIComponent(String(productId))}`,
-            updateProductRequest,
+        let localVarPath = `/v1/products/${this.configuration.encodeParam({name: "productId", value: productId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
+        return this.httpClient.request<ProductModel>('put', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                body: updateProductRequest,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,

@@ -9,15 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { JsonNode } from './jsonNode';
-import { JsonPointer } from './jsonPointer';
-import { OperationType } from './operationType';
+import { JsonNodeOptions } from './jsonNodeOptions';
 
 
-export interface PatchOperation { 
-    op?: OperationType;
-    from?: JsonPointer;
-    path?: JsonPointer;
-    value?: JsonNode;
+export interface JsonNode { 
+    options?: JsonNodeOptions;
+    parent?: JsonNode;
+    root?: JsonNode;
 }
 

@@ -9,15 +9,26 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { JsonNode } from './jsonNode';
-import { JsonPointer } from './jsonPointer';
-import { OperationType } from './operationType';
+import { ReferenceLine } from './referenceLine';
 
 
-export interface PatchOperation { 
-    op?: OperationType;
-    from?: JsonPointer;
-    path?: JsonPointer;
-    value?: JsonNode;
+export interface ReferenceLines { 
+    /**
+     * The file\'s name in where the code reference has been found. (Appears on the ConfigCat Dashboard)
+     */
+    file: string;
+    /**
+     * The file\'s url. (Used to point to the file on the repository\'s website)
+     */
+    fileUrl?: string | null;
+    /**
+     * The lines before the actual reference line.
+     */
+    preLines?: Array<ReferenceLine> | null;
+    /**
+     * The lines after the actual reference line.
+     */
+    postLines?: Array<ReferenceLine> | null;
+    referenceLine: ReferenceLine;
 }
 
