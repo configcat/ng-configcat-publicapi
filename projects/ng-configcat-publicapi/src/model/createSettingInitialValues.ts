@@ -9,15 +9,31 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { JsonNode } from './jsonNode';
-import { JsonPointer } from './jsonPointer';
-import { OperationType } from './operationType';
+import { InitialValue } from './initialValue';
+import { SettingType } from './settingType';
 
 
-export interface PatchOperation { 
-    op?: OperationType;
-    from?: JsonPointer;
-    path?: JsonPointer;
-    value?: JsonNode;
+export interface CreateSettingInitialValues { 
+    /**
+     * A short description for the setting, shown on the Dashboard UI.
+     */
+    hint?: string | null;
+    /**
+     * The IDs of the tags which are attached to the setting.
+     */
+    tags?: Array<number> | null;
+    /**
+     * The key of the setting.
+     */
+    key: string;
+    /**
+     * The name of the setting, shown on the Dashboard UI.
+     */
+    name: string;
+    settingType: SettingType;
+    /**
+     * Optional, initial values of the feature flag or setting in the given Environments.
+     */
+    initialValues?: Array<InitialValue> | null;
 }
 

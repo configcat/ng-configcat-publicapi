@@ -3,6 +3,7 @@ README.md
 api.module.ts
 api/api.ts
 api/auditLogs.service.ts
+api/codeReferences.service.ts
 api/configs.service.ts
 api/environments.service.ts
 api/featureFlagSettingValues.service.ts
@@ -27,6 +28,7 @@ model/addOrUpdateJiraIntegrationLinkModel.ts
 model/addUserToGroupRequest.ts
 model/auditLogItemModel.ts
 model/auditLogType.ts
+model/codeReferenceRequest.ts
 model/configModel.ts
 model/configModelHaljson.ts
 model/configModelHaljsonEmbedded.ts
@@ -45,19 +47,24 @@ model/createOrUpdateEnvironmentAccessModel.ts
 model/createPermissionGroupRequest.ts
 model/createProductRequest.ts
 model/createSegmentModel.ts
-model/createSettingModel.ts
+model/createSettingInitialValues.ts
 model/createTagModel.ts
 model/deleteIntegrationLinkModel.ts
+model/deleteRepositoryReportsRequest.ts
 model/environmentAccessModel.ts
 model/environmentAccessType.ts
 model/environmentModel.ts
 model/environmentModelHaljson.ts
 model/environmentModelHaljsonLinks.ts
+model/flagReference.ts
+model/initialValue.ts
 model/integrationLinkDetail.ts
 model/integrationLinkDetailsModel.ts
 model/integrationLinkModel.ts
 model/integrationLinkType.ts
 model/inviteMembersRequest.ts
+model/jsonNode.ts
+model/jsonNodeOptions.ts
 model/jsonPatch.ts
 model/jsonPointer.ts
 model/jsonPointerKind.ts
@@ -73,6 +80,8 @@ model/permissionGroupModelHaljson.ts
 model/pointerSegment.ts
 model/productModel.ts
 model/productModelHaljson.ts
+model/referenceLine.ts
+model/referenceLines.ts
 model/rolloutPercentageItemModel.ts
 model/rolloutRuleComparator.ts
 model/rolloutRuleModel.ts
@@ -107,4 +116,5 @@ model/updateSegmentModel.ts
 model/updateSettingValueModel.ts
 model/updateTagModel.ts
 model/userModel.ts
+param.ts
 variables.ts

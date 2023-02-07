@@ -43,11 +43,15 @@ export class EnvironmentsService {
     public configuration = new Configuration();
     public encoder: HttpParameterCodec;
 
-    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
+    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string|string[], @Optional() configuration: Configuration) {
         if (configuration) {
             this.configuration = configuration;
         }
         if (typeof this.configuration.basePath !== 'string') {
+            if (Array.isArray(basePath) && basePath.length > 0) {
+                basePath = basePath[0];
+            }
+
             if (typeof basePath !== 'string') {
                 basePath = this.basePath;
             }
@@ -162,10 +166,11 @@ export class EnvironmentsService {
             }
         }
 
-        return this.httpClient.post<EnvironmentModel>(`${this.configuration.basePath}/v1/products/${encodeURIComponent(String(productId))}/environments`,
-            createEnvironmentModel,
+        let localVarPath = `/v1/products/${this.configuration.encodeParam({name: "productId", value: productId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/environments`;
+        return this.httpClient.request<EnvironmentModel>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                body: createEnvironmentModel,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
@@ -227,7 +232,8 @@ export class EnvironmentsService {
             }
         }
 
-        return this.httpClient.delete<any>(`${this.configuration.basePath}/v1/environments/${encodeURIComponent(String(environmentId))}`,
+        let localVarPath = `/v1/environments/${this.configuration.encodeParam({name: "environmentId", value: environmentId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
+        return this.httpClient.request<any>('delete', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -293,7 +299,8 @@ export class EnvironmentsService {
             }
         }
 
-        return this.httpClient.get<EnvironmentModel>(`${this.configuration.basePath}/v1/environments/${encodeURIComponent(String(environmentId))}`,
+        let localVarPath = `/v1/environments/${this.configuration.encodeParam({name: "environmentId", value: environmentId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
+        return this.httpClient.request<EnvironmentModel>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -359,7 +366,8 @@ export class EnvironmentsService {
             }
         }
 
-        return this.httpClient.get<Array<EnvironmentModel>>(`${this.configuration.basePath}/v1/products/${encodeURIComponent(String(productId))}/environments`,
+        let localVarPath = `/v1/products/${this.configuration.encodeParam({name: "productId", value: productId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/environments`;
+        return this.httpClient.request<Array<EnvironmentModel>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -440,10 +448,11 @@ export class EnvironmentsService {
             }
         }
 
-        return this.httpClient.put<EnvironmentModel>(`${this.configuration.basePath}/v1/environments/${encodeURIComponent(String(environmentId))}`,
-            updateEnvironmentModel,
+        let localVarPath = `/v1/environments/${this.configuration.encodeParam({name: "environmentId", value: environmentId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
+        return this.httpClient.request<EnvironmentModel>('put', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                body: updateEnvironmentModel,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,

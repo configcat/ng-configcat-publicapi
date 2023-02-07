@@ -43,11 +43,15 @@ export class MembersService {
     public configuration = new Configuration();
     public encoder: HttpParameterCodec;
 
-    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
+    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string|string[], @Optional() configuration: Configuration) {
         if (configuration) {
             this.configuration = configuration;
         }
         if (typeof this.configuration.basePath !== 'string') {
+            if (Array.isArray(basePath) && basePath.length > 0) {
+                basePath = basePath[0];
+            }
+
             if (typeof basePath !== 'string') {
                 basePath = this.basePath;
             }
@@ -164,10 +168,11 @@ export class MembersService {
             }
         }
 
-        return this.httpClient.post<any>(`${this.configuration.basePath}/v1/organizations/${encodeURIComponent(String(organizationId))}/members/${encodeURIComponent(String(userId))}`,
-            addUserToGroupRequest,
+        let localVarPath = `/v1/organizations/${this.configuration.encodeParam({name: "organizationId", value: organizationId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/members/${this.configuration.encodeParam({name: "userId", value: userId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
+        return this.httpClient.request<any>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                body: addUserToGroupRequest,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
@@ -233,7 +238,8 @@ export class MembersService {
             }
         }
 
-        return this.httpClient.delete<any>(`${this.configuration.basePath}/v1/organizations/${encodeURIComponent(String(organizationId))}/members/${encodeURIComponent(String(userId))}`,
+        let localVarPath = `/v1/organizations/${this.configuration.encodeParam({name: "organizationId", value: organizationId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/members/${this.configuration.encodeParam({name: "userId", value: userId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
+        return this.httpClient.request<any>('delete', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -301,7 +307,8 @@ export class MembersService {
             }
         }
 
-        return this.httpClient.delete<any>(`${this.configuration.basePath}/v1/products/${encodeURIComponent(String(productId))}/members/${encodeURIComponent(String(userId))}`,
+        let localVarPath = `/v1/products/${this.configuration.encodeParam({name: "productId", value: productId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/members/${this.configuration.encodeParam({name: "userId", value: userId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
+        return this.httpClient.request<any>('delete', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -367,7 +374,8 @@ export class MembersService {
             }
         }
 
-        return this.httpClient.get<Array<UserModel>>(`${this.configuration.basePath}/v1/organizations/${encodeURIComponent(String(organizationId))}/members`,
+        let localVarPath = `/v1/organizations/${this.configuration.encodeParam({name: "organizationId", value: organizationId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/members`;
+        return this.httpClient.request<Array<UserModel>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -433,7 +441,8 @@ export class MembersService {
             }
         }
 
-        return this.httpClient.get<Array<MemberModel>>(`${this.configuration.basePath}/v1/products/${encodeURIComponent(String(productId))}/members`,
+        let localVarPath = `/v1/products/${this.configuration.encodeParam({name: "productId", value: productId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/members`;
+        return this.httpClient.request<Array<MemberModel>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -512,10 +521,11 @@ export class MembersService {
             }
         }
 
-        return this.httpClient.post<any>(`${this.configuration.basePath}/v1/products/${encodeURIComponent(String(productId))}/members/invite`,
-            inviteMembersRequest,
+        let localVarPath = `/v1/products/${this.configuration.encodeParam({name: "productId", value: productId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/members/invite`;
+        return this.httpClient.request<any>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                body: inviteMembersRequest,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,

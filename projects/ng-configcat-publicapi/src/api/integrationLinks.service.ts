@@ -49,11 +49,15 @@ export class IntegrationLinksService {
     public configuration = new Configuration();
     public encoder: HttpParameterCodec;
 
-    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
+    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string|string[], @Optional() configuration: Configuration) {
         if (configuration) {
             this.configuration = configuration;
         }
         if (typeof this.configuration.basePath !== 'string') {
+            if (Array.isArray(basePath) && basePath.length > 0) {
+                basePath = basePath[0];
+            }
+
             if (typeof basePath !== 'string') {
                 basePath = this.basePath;
             }
@@ -177,10 +181,11 @@ export class IntegrationLinksService {
             }
         }
 
-        return this.httpClient.post<IntegrationLinkModel>(`${this.configuration.basePath}/v1/environments/${encodeURIComponent(String(environmentId))}/settings/${encodeURIComponent(String(settingId))}/integrationLinks/${encodeURIComponent(String(integrationLinkType))}/${encodeURIComponent(String(key))}`,
-            addOrUpdateIntegrationLinkModel,
+        let localVarPath = `/v1/environments/${this.configuration.encodeParam({name: "environmentId", value: environmentId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/settings/${this.configuration.encodeParam({name: "settingId", value: settingId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}/integrationLinks/${this.configuration.encodeParam({name: "integrationLinkType", value: integrationLinkType, in: "path", style: "simple", explode: false, dataType: "IntegrationLinkType", dataFormat: undefined})}/${this.configuration.encodeParam({name: "key", value: key, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
+        return this.httpClient.request<IntegrationLinkModel>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                body: addOrUpdateIntegrationLinkModel,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
@@ -256,7 +261,8 @@ export class IntegrationLinksService {
             }
         }
 
-        return this.httpClient.delete<DeleteIntegrationLinkModel>(`${this.configuration.basePath}/v1/environments/${encodeURIComponent(String(environmentId))}/settings/${encodeURIComponent(String(settingId))}/integrationLinks/${encodeURIComponent(String(integrationLinkType))}/${encodeURIComponent(String(key))}`,
+        let localVarPath = `/v1/environments/${this.configuration.encodeParam({name: "environmentId", value: environmentId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/settings/${this.configuration.encodeParam({name: "settingId", value: settingId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}/integrationLinks/${this.configuration.encodeParam({name: "integrationLinkType", value: integrationLinkType, in: "path", style: "simple", explode: false, dataType: "IntegrationLinkType", dataFormat: undefined})}/${this.configuration.encodeParam({name: "key", value: key, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
+        return this.httpClient.request<DeleteIntegrationLinkModel>('delete', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -326,7 +332,8 @@ export class IntegrationLinksService {
             }
         }
 
-        return this.httpClient.get<IntegrationLinkDetailsModel>(`${this.configuration.basePath}/v1/integrationLink/${encodeURIComponent(String(integrationLinkType))}/${encodeURIComponent(String(key))}/details`,
+        let localVarPath = `/v1/integrationLink/${this.configuration.encodeParam({name: "integrationLinkType", value: integrationLinkType, in: "path", style: "simple", explode: false, dataType: "IntegrationLinkType", dataFormat: undefined})}/${this.configuration.encodeParam({name: "key", value: key, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/details`;
+        return this.httpClient.request<IntegrationLinkDetailsModel>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -410,10 +417,11 @@ export class IntegrationLinksService {
             }
         }
 
-        return this.httpClient.post<IntegrationLinkModel>(`${this.configuration.basePath}/v1/jira/environments/${encodeURIComponent(String(environmentId))}/settings/${encodeURIComponent(String(settingId))}/integrationLinks/${encodeURIComponent(String(key))}`,
-            addOrUpdateJiraIntegrationLinkModel,
+        let localVarPath = `/v1/jira/environments/${this.configuration.encodeParam({name: "environmentId", value: environmentId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/settings/${this.configuration.encodeParam({name: "settingId", value: settingId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}/integrationLinks/${this.configuration.encodeParam({name: "key", value: key, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
+        return this.httpClient.request<IntegrationLinkModel>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                body: addOrUpdateJiraIntegrationLinkModel,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
@@ -481,10 +489,11 @@ export class IntegrationLinksService {
             }
         }
 
-        return this.httpClient.post<any>(`${this.configuration.basePath}/v1/jira/Connect`,
-            connectRequest,
+        let localVarPath = `/v1/jira/Connect`;
+        return this.httpClient.request<any>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                body: connectRequest,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,

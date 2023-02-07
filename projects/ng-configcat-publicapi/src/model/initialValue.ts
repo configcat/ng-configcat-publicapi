@@ -9,15 +9,16 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { JsonNode } from './jsonNode';
-import { JsonPointer } from './jsonPointer';
-import { OperationType } from './operationType';
 
 
-export interface PatchOperation { 
-    op?: OperationType;
-    from?: JsonPointer;
-    path?: JsonPointer;
-    value?: JsonNode;
+export interface InitialValue { 
+    /**
+     * The ID of the Environment where the initial value should be set.
+     */
+    environmentId?: string;
+    /**
+     * The initial value in the given Environment. It must respect the setting type.
+     */
+    value?: any | null;
 }
 

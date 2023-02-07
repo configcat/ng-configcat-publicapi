@@ -3,6 +3,7 @@ import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
 import { AuditLogsService } from './api/auditLogs.service';
+import { CodeReferencesService } from './api/codeReferences.service';
 import { ConfigsService } from './api/configs.service';
 import { EnvironmentsService } from './api/environments.service';
 import { FeatureFlagSettingValuesService } from './api/featureFlagSettingValues.service';

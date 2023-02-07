@@ -43,11 +43,15 @@ export class PermissionGroupsService {
     public configuration = new Configuration();
     public encoder: HttpParameterCodec;
 
-    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
+    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string|string[], @Optional() configuration: Configuration) {
         if (configuration) {
             this.configuration = configuration;
         }
         if (typeof this.configuration.basePath !== 'string') {
+            if (Array.isArray(basePath) && basePath.length > 0) {
+                basePath = basePath[0];
+            }
+
             if (typeof basePath !== 'string') {
                 basePath = this.basePath;
             }
@@ -162,10 +166,11 @@ export class PermissionGroupsService {
             }
         }
 
-        return this.httpClient.post<PermissionGroupModel>(`${this.configuration.basePath}/v1/products/${encodeURIComponent(String(productId))}/permissions`,
-            createPermissionGroupRequest,
+        let localVarPath = `/v1/products/${this.configuration.encodeParam({name: "productId", value: productId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/permissions`;
+        return this.httpClient.request<PermissionGroupModel>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                body: createPermissionGroupRequest,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
@@ -227,7 +232,8 @@ export class PermissionGroupsService {
             }
         }
 
-        return this.httpClient.delete<any>(`${this.configuration.basePath}/v1/permissions/${encodeURIComponent(String(permissionGroupId))}`,
+        let localVarPath = `/v1/permissions/${this.configuration.encodeParam({name: "permissionGroupId", value: permissionGroupId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}`;
+        return this.httpClient.request<any>('delete', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -293,7 +299,8 @@ export class PermissionGroupsService {
             }
         }
 
-        return this.httpClient.get<PermissionGroupModel>(`${this.configuration.basePath}/v1/permissions/${encodeURIComponent(String(permissionGroupId))}`,
+        let localVarPath = `/v1/permissions/${this.configuration.encodeParam({name: "permissionGroupId", value: permissionGroupId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}`;
+        return this.httpClient.request<PermissionGroupModel>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -359,7 +366,8 @@ export class PermissionGroupsService {
             }
         }
 
-        return this.httpClient.get<Array<PermissionGroupModel>>(`${this.configuration.basePath}/v1/products/${encodeURIComponent(String(productId))}/permissions`,
+        let localVarPath = `/v1/products/${this.configuration.encodeParam({name: "productId", value: productId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/permissions`;
+        return this.httpClient.request<Array<PermissionGroupModel>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -440,10 +448,11 @@ export class PermissionGroupsService {
             }
         }
 
-        return this.httpClient.put<PermissionGroupModel>(`${this.configuration.basePath}/v1/permissions/${encodeURIComponent(String(permissionGroupId))}`,
-            updatePermissionGroupRequest,
+        let localVarPath = `/v1/permissions/${this.configuration.encodeParam({name: "permissionGroupId", value: permissionGroupId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}`;
+        return this.httpClient.request<PermissionGroupModel>('put', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                body: updatePermissionGroupRequest,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,

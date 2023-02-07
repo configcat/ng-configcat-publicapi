@@ -9,15 +9,17 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { JsonNode } from './jsonNode';
-import { JsonPointer } from './jsonPointer';
-import { OperationType } from './operationType';
+import { ReferenceLines } from './referenceLines';
 
 
-export interface PatchOperation { 
-    op?: OperationType;
-    from?: JsonPointer;
-    path?: JsonPointer;
-    value?: JsonNode;
+export interface FlagReference { 
+    /**
+     * The identifier of the Feature Flag or Setting the code reference belongs to.
+     */
+    settingId: number;
+    /**
+     * The actual references to the given Feature Flag or Setting.
+     */
+    references: Array<ReferenceLines>;
 }
 

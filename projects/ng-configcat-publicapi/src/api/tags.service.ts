@@ -47,11 +47,15 @@ export class TagsService {
     public configuration = new Configuration();
     public encoder: HttpParameterCodec;
 
-    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
+    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string|string[], @Optional() configuration: Configuration) {
         if (configuration) {
             this.configuration = configuration;
         }
         if (typeof this.configuration.basePath !== 'string') {
+            if (Array.isArray(basePath) && basePath.length > 0) {
+                basePath = basePath[0];
+            }
+
             if (typeof basePath !== 'string') {
                 basePath = this.basePath;
             }
@@ -166,10 +170,11 @@ export class TagsService {
             }
         }
 
-        return this.httpClient.post<TagModel>(`${this.configuration.basePath}/v1/products/${encodeURIComponent(String(productId))}/tags`,
-            createTagModel,
+        let localVarPath = `/v1/products/${this.configuration.encodeParam({name: "productId", value: productId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/tags`;
+        return this.httpClient.request<TagModel>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                body: createTagModel,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
@@ -231,7 +236,8 @@ export class TagsService {
             }
         }
 
-        return this.httpClient.delete<any>(`${this.configuration.basePath}/v1/tags/${encodeURIComponent(String(tagId))}`,
+        let localVarPath = `/v1/tags/${this.configuration.encodeParam({name: "tagId", value: tagId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}`;
+        return this.httpClient.request<any>('delete', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -297,7 +303,8 @@ export class TagsService {
             }
         }
 
-        return this.httpClient.get<Array<SettingModel>>(`${this.configuration.basePath}/v1/tags/${encodeURIComponent(String(tagId))}/settings`,
+        let localVarPath = `/v1/tags/${this.configuration.encodeParam({name: "tagId", value: tagId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}/settings`;
+        return this.httpClient.request<Array<SettingModel>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -363,7 +370,8 @@ export class TagsService {
             }
         }
 
-        return this.httpClient.get<TagModel>(`${this.configuration.basePath}/v1/tags/${encodeURIComponent(String(tagId))}`,
+        let localVarPath = `/v1/tags/${this.configuration.encodeParam({name: "tagId", value: tagId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}`;
+        return this.httpClient.request<TagModel>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -429,7 +437,8 @@ export class TagsService {
             }
         }
 
-        return this.httpClient.get<Array<TagModel>>(`${this.configuration.basePath}/v1/products/${encodeURIComponent(String(productId))}/tags`,
+        let localVarPath = `/v1/products/${this.configuration.encodeParam({name: "productId", value: productId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/tags`;
+        return this.httpClient.request<Array<TagModel>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -510,10 +519,11 @@ export class TagsService {
             }
         }
 
-        return this.httpClient.put<TagModel>(`${this.configuration.basePath}/v1/tags/${encodeURIComponent(String(tagId))}`,
-            updateTagModel,
+        let localVarPath = `/v1/tags/${this.configuration.encodeParam({name: "tagId", value: tagId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}`;
+        return this.httpClient.request<TagModel>('put', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                body: updateTagModel,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,

@@ -47,11 +47,15 @@ export class SegmentsService {
     public configuration = new Configuration();
     public encoder: HttpParameterCodec;
 
-    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
+    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string|string[], @Optional() configuration: Configuration) {
         if (configuration) {
             this.configuration = configuration;
         }
         if (typeof this.configuration.basePath !== 'string') {
+            if (Array.isArray(basePath) && basePath.length > 0) {
+                basePath = basePath[0];
+            }
+
             if (typeof basePath !== 'string') {
                 basePath = this.basePath;
             }
@@ -166,10 +170,11 @@ export class SegmentsService {
             }
         }
 
-        return this.httpClient.post<SegmentModel>(`${this.configuration.basePath}/v1/products/${encodeURIComponent(String(productId))}/segments`,
-            createSegmentModel,
+        let localVarPath = `/v1/products/${this.configuration.encodeParam({name: "productId", value: productId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/segments`;
+        return this.httpClient.request<SegmentModel>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                body: createSegmentModel,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
@@ -231,7 +236,8 @@ export class SegmentsService {
             }
         }
 
-        return this.httpClient.delete<any>(`${this.configuration.basePath}/v1/segments/${encodeURIComponent(String(segmentId))}`,
+        let localVarPath = `/v1/segments/${this.configuration.encodeParam({name: "segmentId", value: segmentId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
+        return this.httpClient.request<any>('delete', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -297,7 +303,8 @@ export class SegmentsService {
             }
         }
 
-        return this.httpClient.get<SegmentModel>(`${this.configuration.basePath}/v1/segments/${encodeURIComponent(String(segmentId))}`,
+        let localVarPath = `/v1/segments/${this.configuration.encodeParam({name: "segmentId", value: segmentId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
+        return this.httpClient.request<SegmentModel>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -363,7 +370,8 @@ export class SegmentsService {
             }
         }
 
-        return this.httpClient.get<Array<SegmentListModel>>(`${this.configuration.basePath}/v1/products/${encodeURIComponent(String(productId))}/segments`,
+        let localVarPath = `/v1/products/${this.configuration.encodeParam({name: "productId", value: productId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/segments`;
+        return this.httpClient.request<Array<SegmentListModel>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -444,10 +452,11 @@ export class SegmentsService {
             }
         }
 
-        return this.httpClient.put<SegmentModel>(`${this.configuration.basePath}/v1/segments/${encodeURIComponent(String(segmentId))}`,
-            updateSegmentModel,
+        let localVarPath = `/v1/segments/${this.configuration.encodeParam({name: "segmentId", value: segmentId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
+        return this.httpClient.request<SegmentModel>('put', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                body: updateSegmentModel,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
