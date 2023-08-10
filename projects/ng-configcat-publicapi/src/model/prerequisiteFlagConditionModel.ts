@@ -10,22 +10,21 @@
  * Do not edit the class manually.
  */
 import { ValueModel } from './valueModel';
-import { TargetingRuleModel } from './targetingRuleModel';
+import { PrerequisiteComparator } from './prerequisiteComparator';
 
 
-export interface UpdateEvaluationFormulaWithIdDto { 
-    defaultValue: ValueModel;
+/**
+ * Describes a condition that is based on a prerequisite flag.
+ */
+export interface PrerequisiteFlagConditionModel { 
     /**
-     * The targeting rules of the Feature Flag or Setting.
+     * The prerequisite flag\'s identifier.
      */
-    targetingRules?: Array<TargetingRuleModel> | null;
-    /**
-     * The user attribute used for percentage evaluation. If not set, it defaults to the `Identifier` user object attribute.
-     */
-    percentageEvaluationAttribute?: string | null;
-    /**
-     * The identifier of the feature flag or setting.
-     */
-    settingId?: number;
+    prerequisiteSettingId: number;
+    comparator: PrerequisiteComparator;
+    prerequisiteComparisonValue: ValueModel;
 }
+export namespace PrerequisiteFlagConditionModel {
+}
+
 

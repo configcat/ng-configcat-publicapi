@@ -9,19 +9,15 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ValueModel } from './valueModel';
-import { TargetingRuleModel } from './targetingRuleModel';
 
 
-export interface UpdateEvaluationFormulaDto { 
-    defaultValue: ValueModel;
-    /**
-     * The targeting rules of the Feature Flag or Setting.
-     */
-    targetingRules?: Array<TargetingRuleModel> | null;
-    /**
-     * The user attribute used for percentage evaluation. If not set, it defaults to the `Identifier` user object attribute.
-     */
-    percentageEvaluationAttribute?: string | null;
-}
+/**
+ * The comparison operator used during the evaluation process.
+ */
+export type PrerequisiteComparator = 'equals' | 'doesNotEqual';
+
+export const PrerequisiteComparator = {
+    Equals: 'equals' as PrerequisiteComparator,
+    DoesNotEqual: 'doesNotEqual' as PrerequisiteComparator
+};
 

@@ -9,13 +9,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { UpdateEvaluationFormulaWithIdDto } from './updateEvaluationFormulaWithIdDto';
+import { UpdateEvaluationFormulaWithIdModel } from './updateEvaluationFormulaWithIdModel';
 
 
-export interface UpdateEvaluationFormulasDto { 
+export interface UpdateEvaluationFormulasModel { 
     /**
      * Evaluation descriptors of each updated Feature Flag and Setting.
      */
-    updateFormulas?: Array<UpdateEvaluationFormulaWithIdDto> | null;
+    updateFormulas?: Array<UpdateEvaluationFormulaWithIdModel> | null;
 }
 

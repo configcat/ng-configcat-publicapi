@@ -25,7 +25,7 @@ import { SettingFormulaModel } from '../model/settingFormulaModel';
 // @ts-ignore
 import { SettingFormulaModelHaljson } from '../model/settingFormulaModelHaljson';
 // @ts-ignore
-import { UpdateEvaluationFormulaDto } from '../model/updateEvaluationFormulaDto';
+import { UpdateEvaluationFormulaModel } from '../model/updateEvaluationFormulaModel';
 
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -172,21 +172,21 @@ export class FeatureFlagSettingValuesUsingSDKKeyV2Service {
      * Replace value
      * This endpoint replaces the value and the Targeting Rules of a Feature Flag or Setting in a specified Environment identified by the &lt;a target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot; href&#x3D;\&quot;https://app.configcat.com/sdkkey\&quot;&gt;SDK key&lt;/a&gt; passed in the &#x60;X-CONFIGCAT-SDKKEY&#x60; header.  Only the &#x60;defaultValue&#x60;, &#x60;targetingRules&#x60;, and &#x60;percentageEvaluationAttribute&#x60; fields are modifiable by this endpoint.  **Important:** As this endpoint is doing a complete replace, it\&#39;s important to set every other field that you don\&#39;t want to change to its original state. Not listing one means that it will reset.  For example: We have the following resource of a Feature Flag. &#x60;&#x60;&#x60; {  \&quot;defaultValue\&quot;: {         \&quot;boolValue\&quot;: false,     },  \&quot;targetingRules\&quot;: [         {             \&quot;conditions\&quot;: [                 {                     \&quot;userCondition\&quot;: {                         \&quot;comparisonAttribute\&quot;: \&quot;Email\&quot;,                         \&quot;comparator\&quot;: \&quot;sensitiveTextEquals\&quot;,                         \&quot;comparisonValue\&quot;: {                             \&quot;stringValue\&quot;: \&quot;test@example.com\&quot;,                         }                     },                 }             ],             \&quot;percentageOptions\&quot;: [],             \&quot;value\&quot;: {                 \&quot;boolValue\&quot;: true,             }         }     ], } &#x60;&#x60;&#x60; If we send a replace request body as below: &#x60;&#x60;&#x60; {  \&quot;defaultValue\&quot;: {         \&quot;boolValue\&quot;: true,     }, } &#x60;&#x60;&#x60; Then besides that the default served value is set to &#x60;true&#x60;, all the Targeting Rules are deleted. So we get a response like this: &#x60;&#x60;&#x60; {     \&quot;defaultValue\&quot;: {         \&quot;boolValue\&quot;: true,     },     \&quot;targetingRules\&quot;: [], } &#x60;&#x60;&#x60;
      * @param settingKeyOrId The key or id of the Setting.
-     * @param updateEvaluationFormulaDto 
+     * @param updateEvaluationFormulaModel 
      * @param reason The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
      * @param xCONFIGCATSDKKEY The ConfigCat SDK Key. (https://app.configcat.com/sdkkey)
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public replaceSettingValueBySdkkeyV2(settingKeyOrId: string, updateEvaluationFormulaDto: UpdateEvaluationFormulaDto, reason?: string, xCONFIGCATSDKKEY?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<SettingFormulaModel>;
-    public replaceSettingValueBySdkkeyV2(settingKeyOrId: string, updateEvaluationFormulaDto: UpdateEvaluationFormulaDto, reason?: string, xCONFIGCATSDKKEY?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<SettingFormulaModel>>;
-    public replaceSettingValueBySdkkeyV2(settingKeyOrId: string, updateEvaluationFormulaDto: UpdateEvaluationFormulaDto, reason?: string, xCONFIGCATSDKKEY?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<SettingFormulaModel>>;
-    public replaceSettingValueBySdkkeyV2(settingKeyOrId: string, updateEvaluationFormulaDto: UpdateEvaluationFormulaDto, reason?: string, xCONFIGCATSDKKEY?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
+    public replaceSettingValueBySdkkeyV2(settingKeyOrId: string, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, xCONFIGCATSDKKEY?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<SettingFormulaModel>;
+    public replaceSettingValueBySdkkeyV2(settingKeyOrId: string, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, xCONFIGCATSDKKEY?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<SettingFormulaModel>>;
+    public replaceSettingValueBySdkkeyV2(settingKeyOrId: string, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, xCONFIGCATSDKKEY?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<SettingFormulaModel>>;
+    public replaceSettingValueBySdkkeyV2(settingKeyOrId: string, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, xCONFIGCATSDKKEY?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
         if (settingKeyOrId === null || settingKeyOrId === undefined) {
             throw new Error('Required parameter settingKeyOrId was null or undefined when calling replaceSettingValueBySdkkeyV2.');
         }
-        if (updateEvaluationFormulaDto === null || updateEvaluationFormulaDto === undefined) {
-            throw new Error('Required parameter updateEvaluationFormulaDto was null or undefined when calling replaceSettingValueBySdkkeyV2.');
+        if (updateEvaluationFormulaModel === null || updateEvaluationFormulaModel === undefined) {
+            throw new Error('Required parameter updateEvaluationFormulaModel was null or undefined when calling replaceSettingValueBySdkkeyV2.');
         }
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
@@ -252,7 +252,7 @@ export class FeatureFlagSettingValuesUsingSDKKeyV2Service {
         return this.httpClient.request<SettingFormulaModel>('put', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                body: updateEvaluationFormulaDto,
+                body: updateEvaluationFormulaModel,
                 params: localVarQueryParameters,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,

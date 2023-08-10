@@ -29,9 +29,9 @@ import { SettingFormulaModel } from '../model/settingFormulaModel';
 // @ts-ignore
 import { SettingFormulaModelHaljson } from '../model/settingFormulaModelHaljson';
 // @ts-ignore
-import { UpdateEvaluationFormulaDto } from '../model/updateEvaluationFormulaDto';
+import { UpdateEvaluationFormulaModel } from '../model/updateEvaluationFormulaModel';
 // @ts-ignore
-import { UpdateEvaluationFormulasDto } from '../model/updateEvaluationFormulasDto';
+import { UpdateEvaluationFormulasModel } from '../model/updateEvaluationFormulasModel';
 
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -250,23 +250,23 @@ export class FeatureFlagSettingValuesV2Service {
      * This endpoint batch updates the Feature Flags and Settings of a Config identified by the &#x60;configId&#x60; parameter in a specified Environment identified by the &#x60;environmentId&#x60; parameter.  Only those Feature Flags and Settings are updated which are part of the request, all the others are left untouched.  **Important:** As this endpoint is doing a complete replace on those Feature Flags and Settings, which are set in the request.  It\&#39;s important to set every other field that you don\&#39;t want to change in its original state. Not listing a field means that it will reset.  For example: We have the following resource of a Feature Flag. &#x60;&#x60;&#x60; {     \&quot;settingValues\&quot;: [   {    \&quot;defaultValue\&quot;: {                 \&quot;boolValue\&quot;: false,             },             \&quot;targetingRules\&quot;: [                 {                     \&quot;conditions\&quot;: [                         {                             \&quot;userCondition\&quot;: {                                 \&quot;comparisonAttribute\&quot;: \&quot;Email\&quot;,                                 \&quot;comparator\&quot;: \&quot;sensitiveTextEquals\&quot;,                                 \&quot;comparisonValue\&quot;: {                                     \&quot;stringValue\&quot;: \&quot;test@example.com\&quot;,                                 }                             },                         }                     ],                     \&quot;percentageOptions\&quot;: [],                     \&quot;value\&quot;: {                         \&quot;boolValue\&quot;: true,                     }                 }             ],    \&quot;settingId\&quot;: 1   }  ] } &#x60;&#x60;&#x60; If we send a batch replace request body as below: &#x60;&#x60;&#x60; {   \&quot;settingValues\&quot;: [   {    \&quot;defaultValue\&quot;: {                 \&quot;boolValue\&quot;: false,             },    \&quot;settingId\&quot;: 1   }  ] } &#x60;&#x60;&#x60; Then besides that the default value is set to &#x60;true&#x60;, all Targeting Rules of the related Feature Flag are deleted. So we get a response like this: &#x60;&#x60;&#x60; {  \&quot;settingValues\&quot;: [   {    \&quot;defaultValue\&quot;: {                 \&quot;boolValue\&quot;: false,             },             \&quot;targetingRules\&quot;: [],    \&quot;setting\&quot;:     {     \&quot;settingId\&quot;: 1    }   }  ] } &#x60;&#x60;&#x60;
      * @param configId The identifier of the Config.
      * @param environmentId The identifier of the Environment.
-     * @param updateEvaluationFormulasDto 
+     * @param updateEvaluationFormulasModel 
      * @param reason The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasDto: UpdateEvaluationFormulasDto, reason?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<ConfigSettingFormulasModel>;
-    public postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasDto: UpdateEvaluationFormulasDto, reason?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<ConfigSettingFormulasModel>>;
-    public postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasDto: UpdateEvaluationFormulasDto, reason?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<ConfigSettingFormulasModel>>;
-    public postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasDto: UpdateEvaluationFormulasDto, reason?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
+    public postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<ConfigSettingFormulasModel>;
+    public postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<ConfigSettingFormulasModel>>;
+    public postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<ConfigSettingFormulasModel>>;
+    public postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
         if (configId === null || configId === undefined) {
             throw new Error('Required parameter configId was null or undefined when calling postSettingValuesV2.');
         }
         if (environmentId === null || environmentId === undefined) {
             throw new Error('Required parameter environmentId was null or undefined when calling postSettingValuesV2.');
         }
-        if (updateEvaluationFormulasDto === null || updateEvaluationFormulasDto === undefined) {
-            throw new Error('Required parameter updateEvaluationFormulasDto was null or undefined when calling postSettingValuesV2.');
+        if (updateEvaluationFormulasModel === null || updateEvaluationFormulasModel === undefined) {
+            throw new Error('Required parameter updateEvaluationFormulasModel was null or undefined when calling postSettingValuesV2.');
         }
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
@@ -329,7 +329,7 @@ export class FeatureFlagSettingValuesV2Service {
         return this.httpClient.request<ConfigSettingFormulasModel>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                body: updateEvaluationFormulasDto,
+                body: updateEvaluationFormulasModel,
                 params: localVarQueryParameters,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -345,23 +345,23 @@ export class FeatureFlagSettingValuesV2Service {
      * This endpoint replaces the value and the Targeting Rules of a Feature Flag or Setting in a specified Environment identified by the &lt;a target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot; href&#x3D;\&quot;https://app.configcat.com/sdkkey\&quot;&gt;SDK key&lt;/a&gt; passed in the &#x60;X-CONFIGCAT-SDKKEY&#x60; header.  Only the &#x60;defaultValue&#x60;, &#x60;targetingRules&#x60;, and &#x60;percentageEvaluationAttribute&#x60; fields are modifiable by this endpoint.  **Important:** As this endpoint is doing a complete replace, it\&#39;s important to set every other field that you don\&#39;t want to change to its original state. Not listing one means that it will reset.  For example: We have the following resource of a Feature Flag. &#x60;&#x60;&#x60; {  \&quot;defaultValue\&quot;: {         \&quot;boolValue\&quot;: false,     },  \&quot;targetingRules\&quot;: [         {             \&quot;conditions\&quot;: [                 {                     \&quot;userCondition\&quot;: {                         \&quot;comparisonAttribute\&quot;: \&quot;Email\&quot;,                         \&quot;comparator\&quot;: \&quot;sensitiveTextEquals\&quot;,                         \&quot;comparisonValue\&quot;: {                             \&quot;stringValue\&quot;: \&quot;test@example.com\&quot;,                         }                     },                 }             ],             \&quot;percentageOptions\&quot;: [],             \&quot;value\&quot;: {                 \&quot;boolValue\&quot;: true,             }         }     ], } &#x60;&#x60;&#x60; If we send a replace request body as below: &#x60;&#x60;&#x60; {  \&quot;defaultValue\&quot;: {         \&quot;boolValue\&quot;: true,     }, } &#x60;&#x60;&#x60; Then besides that the default served value is set to &#x60;true&#x60;, all the Targeting Rules are deleted. So we get a response like this: &#x60;&#x60;&#x60; {     \&quot;defaultValue\&quot;: {         \&quot;boolValue\&quot;: true,     },     \&quot;targetingRules\&quot;: [], } &#x60;&#x60;&#x60;
      * @param environmentId The identifier of the Environment.
      * @param settingId The id of the Setting.
-     * @param updateEvaluationFormulaDto 
+     * @param updateEvaluationFormulaModel 
      * @param reason The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaDto: UpdateEvaluationFormulaDto, reason?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<SettingFormulaModel>;
-    public replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaDto: UpdateEvaluationFormulaDto, reason?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<SettingFormulaModel>>;
-    public replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaDto: UpdateEvaluationFormulaDto, reason?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<SettingFormulaModel>>;
-    public replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaDto: UpdateEvaluationFormulaDto, reason?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
+    public replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<SettingFormulaModel>;
+    public replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<SettingFormulaModel>>;
+    public replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<SettingFormulaModel>>;
+    public replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
         if (environmentId === null || environmentId === undefined) {
             throw new Error('Required parameter environmentId was null or undefined when calling replaceSettingValueV2.');
         }
         if (settingId === null || settingId === undefined) {
             throw new Error('Required parameter settingId was null or undefined when calling replaceSettingValueV2.');
         }
-        if (updateEvaluationFormulaDto === null || updateEvaluationFormulaDto === undefined) {
-            throw new Error('Required parameter updateEvaluationFormulaDto was null or undefined when calling replaceSettingValueV2.');
+        if (updateEvaluationFormulaModel === null || updateEvaluationFormulaModel === undefined) {
+            throw new Error('Required parameter updateEvaluationFormulaModel was null or undefined when calling replaceSettingValueV2.');
         }
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
@@ -424,7 +424,7 @@ export class FeatureFlagSettingValuesV2Service {
         return this.httpClient.request<SettingFormulaModel>('put', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                body: updateEvaluationFormulaDto,
+                body: updateEvaluationFormulaModel,
                 params: localVarQueryParameters,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,

@@ -9,22 +9,23 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { DependencyComparator } from './dependencyComparator';
 import { ValueModel } from './valueModel';
+import { TargetingRuleModel } from './targetingRuleModel';
 
 
-/**
- * Describes a condition that is based on a prerequisite flag.
- */
-export interface DependentFlagConditionModel { 
+export interface UpdateEvaluationFormulaWithIdModel { 
+    defaultValue: ValueModel;
     /**
-     * The prerequisite flag\'s identifier.
+     * The targeting rules of the Feature Flag or Setting.
      */
-    dependencySettingId: number;
-    comparator: DependencyComparator;
-    dependencyComparisonValue: ValueModel;
+    targetingRules?: Array<TargetingRuleModel> | null;
+    /**
+     * The user attribute used for percentage evaluation. If not set, it defaults to the `Identifier` user object attribute.
+     */
+    percentageEvaluationAttribute?: string | null;
+    /**
+     * The identifier of the feature flag or setting.
+     */
+    settingId?: number;
 }
-export namespace DependentFlagConditionModel {
-}
-
 

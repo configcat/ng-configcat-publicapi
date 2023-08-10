@@ -11,12 +11,12 @@
  */
 import { SegmentConditionModel } from './segmentConditionModel';
 import { UserConditionModel } from './userConditionModel';
-import { DependentFlagConditionModel } from './dependentFlagConditionModel';
+import { PrerequisiteFlagConditionModel } from './prerequisiteFlagConditionModel';
 
 
 export interface ConditionModel { 
     userCondition?: UserConditionModel;
     segmentCondition?: SegmentConditionModel;
-    dependentFlagCondition?: DependentFlagConditionModel;
+    prerequisiteFlagCondition?: PrerequisiteFlagConditionModel;
 }
 
