@@ -51,4 +51,7 @@ export interface SettingModel {
      */
     tags?: Array<TagModel> | null;
 }
+export namespace SettingModel {
+}
+
 

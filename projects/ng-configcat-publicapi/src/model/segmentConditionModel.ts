@@ -22,4 +22,7 @@ export interface SegmentConditionModel {
     segmentId: string;
     comparator: SegmentComparator;
 }
+export namespace SegmentConditionModel {
+}
+
 

@@ -37,4 +37,7 @@ export interface ConfigModel {
     migratedConfigId?: string | null;
     evaluationVersion?: EvaluationVersion;
 }
+export namespace ConfigModel {
+}
+
 

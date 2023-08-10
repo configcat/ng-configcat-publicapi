@@ -61,4 +61,7 @@ export interface SegmentModel {
      */
     comparisonValue?: string | null;
 }
+export namespace SegmentModel {
+}
+
 

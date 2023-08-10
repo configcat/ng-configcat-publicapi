@@ -106,4 +106,7 @@ export interface CreatePermissionGroupRequest {
      */
     environmentAccesses?: Array<CreateOrUpdateEnvironmentAccessModel> | null;
 }
+export namespace CreatePermissionGroupRequest {
+}
+
 

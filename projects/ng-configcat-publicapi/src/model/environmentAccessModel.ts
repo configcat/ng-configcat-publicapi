@@ -39,4 +39,7 @@ export interface EnvironmentAccessModel {
     reasonRequired?: boolean;
     environmentAccessType?: EnvironmentAccessType;
 }
+export namespace EnvironmentAccessModel {
+}
+
 

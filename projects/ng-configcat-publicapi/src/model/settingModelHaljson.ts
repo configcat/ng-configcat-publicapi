@@ -47,4 +47,7 @@ export interface SettingModelHaljson {
     _embedded?: SettingModelHaljsonEmbedded;
     _links?: ConfigSettingFormulasModelHaljsonEmbeddedEnvironmentLinks;
 }
+export namespace SettingModelHaljson {
+}
+
 

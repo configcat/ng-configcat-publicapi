@@ -17,4 +17,7 @@ export interface CreateConfigRequest {
     description?: string | null;
     evaluationVersion?: EvaluationVersion;
 }
+export namespace CreateConfigRequest {
+}
+
 

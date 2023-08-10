@@ -36,4 +36,7 @@ export interface CreateSettingInitialValues {
      */
     initialValues?: Array<InitialValue> | null;
 }
+export namespace CreateSettingInitialValues {
+}
+
 

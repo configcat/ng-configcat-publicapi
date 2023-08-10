@@ -36,4 +36,7 @@ export interface ConfigSettingFormulasModelHaljsonEmbeddedConfig {
     evaluationVersion?: EvaluationVersion;
     _links?: ConfigModelHaljsonLinks;
 }
+export namespace ConfigSettingFormulasModelHaljsonEmbeddedConfig {
+}
+
 

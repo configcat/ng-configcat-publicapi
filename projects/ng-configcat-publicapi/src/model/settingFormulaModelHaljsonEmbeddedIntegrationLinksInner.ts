@@ -18,4 +18,7 @@ export interface SettingFormulaModelHaljsonEmbeddedIntegrationLinksInner {
     integrationLinkType?: IntegrationLinkType;
     url?: string | null;
 }
+export namespace SettingFormulaModelHaljsonEmbeddedIntegrationLinksInner {
+}
+
 

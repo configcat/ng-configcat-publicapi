@@ -24,4 +24,7 @@ export interface DependentFlagConditionModel {
     comparator: DependencyComparator;
     dependencyComparisonValue: ValueModel;
 }
+export namespace DependentFlagConditionModel {
+}
+
 

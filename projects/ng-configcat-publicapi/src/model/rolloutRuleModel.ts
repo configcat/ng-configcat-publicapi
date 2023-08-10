@@ -33,4 +33,7 @@ export interface RolloutRuleModel {
      */
     segmentId?: string | null;
 }
+export namespace RolloutRuleModel {
+}
+
 

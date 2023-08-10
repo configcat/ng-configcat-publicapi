@@ -31,4 +31,7 @@ export interface CreateSegmentModel {
      */
     comparisonValue: string;
 }
+export namespace CreateSegmentModel {
+}
+
 

@@ -51,4 +51,7 @@ export interface SettingDataModel {
     creatorFullName?: string | null;
     isWatching?: boolean;
 }
+export namespace SettingDataModel {
+}
+
 

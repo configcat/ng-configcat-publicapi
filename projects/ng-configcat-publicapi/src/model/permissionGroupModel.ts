@@ -112,4 +112,7 @@ export interface PermissionGroupModel {
     environmentAccesses?: Array<EnvironmentAccessModel> | null;
     product?: ProductModel;
 }
+export namespace PermissionGroupModel {
+}
+
 

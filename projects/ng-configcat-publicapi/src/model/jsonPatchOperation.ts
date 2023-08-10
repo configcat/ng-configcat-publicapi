@@ -27,4 +27,7 @@ export interface JsonPatchOperation {
      */
     value?: any | null;
 }
+export namespace JsonPatchOperation {
+}
+
 

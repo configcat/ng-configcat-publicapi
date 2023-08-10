@@ -24,4 +24,7 @@ export interface UserConditionModel {
     comparator: UserComparator;
     comparisonValue: ComparisonValueModel;
 }
+export namespace UserConditionModel {
+}
+
 

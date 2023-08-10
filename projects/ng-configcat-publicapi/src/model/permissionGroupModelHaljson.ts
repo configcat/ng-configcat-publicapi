@@ -114,4 +114,7 @@ export interface PermissionGroupModelHaljson {
     _embedded?: ConfigModelHaljsonEmbedded;
     _links?: ConfigSettingFormulasModelHaljsonEmbeddedEnvironmentLinks;
 }
+export namespace PermissionGroupModelHaljson {
+}
+
 

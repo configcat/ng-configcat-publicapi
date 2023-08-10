@@ -63,4 +63,7 @@ export interface SegmentModelHaljson {
     comparisonValue?: string | null;
     _links?: ConfigSettingFormulasModelHaljsonEmbeddedEnvironmentLinks;
 }
+export namespace SegmentModelHaljson {
+}
+
 

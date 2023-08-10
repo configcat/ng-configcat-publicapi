@@ -19,4 +19,7 @@ export interface CreateOrUpdateEnvironmentAccessModel {
     environmentId?: string;
     environmentAccessType?: EnvironmentAccessType;
 }
+export namespace CreateOrUpdateEnvironmentAccessModel {
+}
+
 

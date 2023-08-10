@@ -19,4 +19,7 @@ export interface UpdateSegmentModel {
     comparator?: RolloutRuleComparator;
     comparisonValue?: string | null;
 }
+export namespace UpdateSegmentModel {
+}
+
 

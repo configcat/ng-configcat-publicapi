@@ -36,4 +36,7 @@ export interface ConfigModelHaljson {
     evaluationVersion?: EvaluationVersion;
     _links?: ConfigModelHaljsonLinks;
 }
+export namespace ConfigModelHaljson {
+}
+
 

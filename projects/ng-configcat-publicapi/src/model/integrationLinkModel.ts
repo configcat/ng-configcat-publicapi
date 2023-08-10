@@ -18,4 +18,7 @@ export interface IntegrationLinkModel {
     integrationLinkType?: IntegrationLinkType;
     url?: string | null;
 }
+export namespace IntegrationLinkModel {
+}
+
 

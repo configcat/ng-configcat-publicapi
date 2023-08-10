@@ -24,4 +24,7 @@ export interface AuditLogItemModel {
     actionTarget?: string | null;
     details?: string | null;
 }
+export namespace AuditLogItemModel {
+}
+
 

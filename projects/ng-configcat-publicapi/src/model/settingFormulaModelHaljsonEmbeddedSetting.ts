@@ -51,4 +51,7 @@ export interface SettingFormulaModelHaljsonEmbeddedSetting {
     creatorFullName?: string | null;
     isWatching?: boolean;
 }
+export namespace SettingFormulaModelHaljsonEmbeddedSetting {
+}
+
 
