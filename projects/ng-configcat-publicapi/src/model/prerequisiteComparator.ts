@@ -9,14 +9,15 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { SegmentConditionModel } from './segmentConditionModel';
-import { UserConditionModel } from './userConditionModel';
-import { PrerequisiteFlagConditionModel } from './prerequisiteFlagConditionModel';
 
 
-export interface ConditionModel { 
-    userCondition?: UserConditionModel;
-    segmentCondition?: SegmentConditionModel;
-    prerequisiteFlagCondition?: PrerequisiteFlagConditionModel;
-}
+/**
+ * The comparison operator used during the evaluation process.
+ */
+export type PrerequisiteComparator = 'equals' | 'doesNotEqual';
+
+export const PrerequisiteComparator = {
+    Equals: 'equals' as PrerequisiteComparator,
+    DoesNotEqual: 'doesNotEqual' as PrerequisiteComparator
+};
 

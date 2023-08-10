@@ -9,14 +9,22 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { SegmentConditionModel } from './segmentConditionModel';
-import { UserConditionModel } from './userConditionModel';
-import { PrerequisiteFlagConditionModel } from './prerequisiteFlagConditionModel';
+import { ValueModel } from './valueModel';
+import { PrerequisiteComparator } from './prerequisiteComparator';
 
 
-export interface ConditionModel { 
-    userCondition?: UserConditionModel;
-    segmentCondition?: SegmentConditionModel;
-    prerequisiteFlagCondition?: PrerequisiteFlagConditionModel;
+/**
+ * Describes a condition that is based on a prerequisite flag.
+ */
+export interface PrerequisiteFlagConditionModel { 
+    /**
+     * The prerequisite flag\'s identifier.
+     */
+    prerequisiteSettingId: number;
+    comparator: PrerequisiteComparator;
+    prerequisiteComparisonValue: ValueModel;
 }
+export namespace PrerequisiteFlagConditionModel {
+}
+
 

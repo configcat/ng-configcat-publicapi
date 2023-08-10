@@ -66,8 +66,6 @@ model/createSettingInitialValues.ts
 model/createTagModel.ts
 model/deleteIntegrationLinkModel.ts
 model/deleteRepositoryReportsRequest.ts
-model/dependencyComparator.ts
-model/dependentFlagConditionModel.ts
 model/environmentAccessModel.ts
 model/environmentAccessType.ts
 model/environmentModel.ts
@@ -90,6 +88,8 @@ model/organizationModelHaljson.ts
 model/percentageOptionModel.ts
 model/permissionGroupModel.ts
 model/permissionGroupModelHaljson.ts
+model/prerequisiteComparator.ts
+model/prerequisiteFlagConditionModel.ts
 model/productModel.ts
 model/productModelHaljson.ts
 model/referenceLine.ts
@@ -124,9 +124,9 @@ model/tagModelHaljson.ts
 model/targetingRuleModel.ts
 model/updateConfigRequest.ts
 model/updateEnvironmentModel.ts
-model/updateEvaluationFormulaDto.ts
-model/updateEvaluationFormulaWithIdDto.ts
-model/updateEvaluationFormulasDto.ts
+model/updateEvaluationFormulaModel.ts
+model/updateEvaluationFormulaWithIdModel.ts
+model/updateEvaluationFormulasModel.ts
 model/updatePermissionGroupRequest.ts
 model/updateProductRequest.ts
 model/updateSegmentModel.ts

@@ -9,14 +9,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { SegmentConditionModel } from './segmentConditionModel';
-import { UserConditionModel } from './userConditionModel';
-import { PrerequisiteFlagConditionModel } from './prerequisiteFlagConditionModel';
+import { UpdateEvaluationFormulaWithIdModel } from './updateEvaluationFormulaWithIdModel';
 
 
-export interface ConditionModel { 
-    userCondition?: UserConditionModel;
-    segmentCondition?: SegmentConditionModel;
-    prerequisiteFlagCondition?: PrerequisiteFlagConditionModel;
+export interface UpdateEvaluationFormulasModel { 
+    /**
+     * Evaluation descriptors of each updated Feature Flag and Setting.
+     */
+    updateFormulas?: Array<UpdateEvaluationFormulaWithIdModel> | null;
 }
 
