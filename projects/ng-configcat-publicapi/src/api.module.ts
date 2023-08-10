@@ -8,6 +8,8 @@ import { ConfigsService } from './api/configs.service';
 import { EnvironmentsService } from './api/environments.service';
 import { FeatureFlagSettingValuesService } from './api/featureFlagSettingValues.service';
 import { FeatureFlagSettingValuesUsingSDKKeyService } from './api/featureFlagSettingValuesUsingSDKKey.service';
+import { FeatureFlagSettingValuesUsingSDKKeyV2Service } from './api/featureFlagSettingValuesUsingSDKKeyV2.service';
+import { FeatureFlagSettingValuesV2Service } from './api/featureFlagSettingValuesV2.service';
 import { FeatureFlagsSettingsService } from './api/featureFlagsSettings.service';
 import { IntegrationLinksService } from './api/integrationLinks.service';
 import { MeService } from './api/me.service';
