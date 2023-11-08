@@ -15,6 +15,7 @@ import { RolloutRuleModel } from './rolloutRuleModel';
 import { SettingTagModel } from './settingTagModel';
 import { EnvironmentModel } from './environmentModel';
 import { RolloutPercentageItemModel } from './rolloutPercentageItemModel';
+import { FeatureFlagLimitations } from './featureFlagLimitations';
 import { SettingDataModel } from './settingDataModel';
 
 
@@ -54,6 +55,7 @@ export interface SettingValueModel {
     settingTags?: Array<SettingTagModel> | null;
     config?: ConfigModel;
     environment?: EnvironmentModel;
+    featureFlagLimitations?: FeatureFlagLimitations;
     readOnly?: boolean;
 }
 

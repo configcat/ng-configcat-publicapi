@@ -9,14 +9,19 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ValueModel } from './valueModel';
 
 
-export interface PercentageOptionModel { 
+/**
+ * Describes the Member\'s Product.
+ */
+export interface OrganizationProductModel { 
     /**
-     * A number between 0 and 100 that represents a randomly allocated fraction of the users.
+     * Identifier of the Member\'s Product.
      */
-    percentage: number;
-    value: ValueModel;
+    productId?: string;
+    /**
+     * Name of the Member\'s Product.
+     */
+    name?: string | null;
 }
 

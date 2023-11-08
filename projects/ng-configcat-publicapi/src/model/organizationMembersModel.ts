@@ -9,14 +9,18 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ValueModel } from './valueModel';
+import { OrganizationMemberModel } from './organizationMemberModel';
+import { OrganizationAdminModel } from './organizationAdminModel';
 
 
-export interface PercentageOptionModel { 
+export interface OrganizationMembersModel { 
     /**
-     * A number between 0 and 100 that represents a randomly allocated fraction of the users.
+     * List of Organization Admins.
      */
-    percentage: number;
-    value: ValueModel;
+    admins?: Array<OrganizationAdminModel> | null;
+    /**
+     * List of Organization Members.
+     */
+    members?: Array<OrganizationMemberModel> | null;
 }
 

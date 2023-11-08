@@ -14,6 +14,7 @@ import { IntegrationLinkModel } from './integrationLinkModel';
 import { ValueModel } from './valueModel';
 import { SettingTagModel } from './settingTagModel';
 import { EnvironmentModel } from './environmentModel';
+import { FeatureFlagLimitations } from './featureFlagLimitations';
 import { TargetingRuleModel } from './targetingRuleModel';
 import { SettingDataModel } from './settingDataModel';
 
@@ -50,8 +51,13 @@ export interface SettingFormulaModel {
      * The tags attached to the Feature Flag or Setting.
      */
     settingTags?: Array<SettingTagModel> | null;
+    /**
+     * List of Feature Flag and Setting IDs where the actual Feature Flag or Setting is prerequisite.
+     */
+    settingIdsWherePrerequisite?: Array<number> | null;
     config?: ConfigModel;
     environment?: EnvironmentModel;
     readOnly?: boolean;
+    featureFlagLimitations?: FeatureFlagLimitations;
 }
 

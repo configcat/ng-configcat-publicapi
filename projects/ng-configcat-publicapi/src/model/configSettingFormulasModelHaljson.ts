@@ -11,6 +11,7 @@
  */
 import { ConfigSettingFormulasModelHaljsonEmbedded } from './configSettingFormulasModelHaljsonEmbedded';
 import { ConfigSettingFormulaModel } from './configSettingFormulaModel';
+import { FeatureFlagLimitations } from './featureFlagLimitations';
 import { ConfigSettingFormulasModelHaljsonEmbeddedEnvironmentLinks } from './configSettingFormulasModelHaljsonEmbeddedEnvironmentLinks';
 
 
@@ -21,6 +22,7 @@ export interface ConfigSettingFormulasModelHaljson {
      * Evaluation descriptors of each updated Feature Flag and Setting.
      */
     settingFormulas?: Array<ConfigSettingFormulaModel> | null;
+    featureFlagLimitations?: FeatureFlagLimitations;
     _links?: ConfigSettingFormulasModelHaljsonEmbeddedEnvironmentLinks;
 }
 

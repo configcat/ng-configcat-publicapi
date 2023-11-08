@@ -12,6 +12,7 @@
 import { ConfigModel } from './configModel';
 import { ConfigSettingValueModel } from './configSettingValueModel';
 import { EnvironmentModel } from './environmentModel';
+import { FeatureFlagLimitations } from './featureFlagLimitations';
 
 
 export interface ConfigSettingValuesModel { 
@@ -19,5 +20,6 @@ export interface ConfigSettingValuesModel {
     environment?: EnvironmentModel;
     readOnly?: boolean;
     settingValues?: Array<ConfigSettingValueModel> | null;
+    featureFlagLimitations?: FeatureFlagLimitations;
 }
 

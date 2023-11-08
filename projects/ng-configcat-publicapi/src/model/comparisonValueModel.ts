@@ -13,7 +13,7 @@ import { ComparisonValueListModel } from './comparisonValueListModel';
 
 
 /**
- * The value to compare with the given user attribute\'s value.
+ * The value that the user object\'s attribute is compared to.
  */
 export interface ComparisonValueModel { 
     /**

@@ -9,14 +9,27 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ValueModel } from './valueModel';
 
 
-export interface PercentageOptionModel { 
+/**
+ * Describes an Organization Admin.
+ */
+export interface OrganizationAdminModel { 
     /**
-     * A number between 0 and 100 that represents a randomly allocated fraction of the users.
+     * Identifier of the Organization Admin.
      */
-    percentage: number;
-    value: ValueModel;
+    userId?: string | null;
+    /**
+     * Name of the Organization Admin.
+     */
+    fullName?: string | null;
+    /**
+     * Email of the OrganizationAdmin.
+     */
+    email?: string | null;
+    /**
+     * Determines whether 2FA is enabled for the Organization Admin.
+     */
+    twoFactorEnabled?: boolean;
 }
 

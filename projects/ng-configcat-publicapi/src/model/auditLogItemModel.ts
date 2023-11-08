@@ -16,6 +16,8 @@ export interface AuditLogItemModel {
     auditLogId?: number;
     auditLogDateTime?: string;
     auditLogTypeEnum?: AuditLogType;
+    changeSetId?: string | null;
+    truncated?: boolean;
     auditLogType?: string | null;
     userEmail?: string | null;
     userName?: string | null;

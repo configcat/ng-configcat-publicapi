@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 import { ValueModel } from './valueModel';
+import { FeatureFlagLimitations } from './featureFlagLimitations';
 import { SettingFormulaModelHaljsonEmbedded } from './settingFormulaModelHaljsonEmbedded';
 import { TargetingRuleModel } from './targetingRuleModel';
 import { ConfigSettingFormulasModelHaljsonEmbeddedEnvironmentLinks } from './configSettingFormulasModelHaljsonEmbeddedEnvironmentLinks';
@@ -39,7 +40,12 @@ export interface SettingFormulaModelHaljson {
      */
     lastUpdaterUserFullName?: string | null;
     _embedded?: SettingFormulaModelHaljsonEmbedded;
+    /**
+     * List of Feature Flag and Setting IDs where the actual Feature Flag or Setting is prerequisite.
+     */
+    settingIdsWherePrerequisite?: Array<number> | null;
     readOnly?: boolean;
+    featureFlagLimitations?: FeatureFlagLimitations;
     _links?: ConfigSettingFormulasModelHaljsonEmbeddedEnvironmentLinks;
 }
 
