@@ -11,6 +11,7 @@
  */
 import { RolloutRuleModel } from './rolloutRuleModel';
 import { RolloutPercentageItemModel } from './rolloutPercentageItemModel';
+import { FeatureFlagLimitations } from './featureFlagLimitations';
 import { SettingFormulaModelHaljsonEmbedded } from './settingFormulaModelHaljsonEmbedded';
 import { ConfigSettingFormulasModelHaljsonEmbeddedEnvironmentLinks } from './configSettingFormulasModelHaljsonEmbeddedEnvironmentLinks';
 
@@ -41,6 +42,7 @@ export interface SettingValueModelHaljson {
      */
     lastUpdaterUserFullName?: string | null;
     _embedded?: SettingFormulaModelHaljsonEmbedded;
+    featureFlagLimitations?: FeatureFlagLimitations;
     readOnly?: boolean;
     _links?: ConfigSettingFormulasModelHaljsonEmbeddedEnvironmentLinks;
 }

@@ -71,6 +71,7 @@ model/environmentAccessType.ts
 model/environmentModel.ts
 model/environmentModelHaljson.ts
 model/evaluationVersion.ts
+model/featureFlagLimitations.ts
 model/flagReference.ts
 model/initialValue.ts
 model/integrationLinkDetail.ts
@@ -83,8 +84,14 @@ model/meModel.ts
 model/memberModel.ts
 model/models.ts
 model/operationType.ts
+model/organizationAdminModel.ts
+model/organizationMemberModel.ts
+model/organizationMembersModel.ts
 model/organizationModel.ts
 model/organizationModelHaljson.ts
+model/organizationPermissionGroupModel.ts
+model/organizationPermissionModel.ts
+model/organizationProductModel.ts
 model/percentageOptionModel.ts
 model/permissionGroupModel.ts
 model/permissionGroupModelHaljson.ts

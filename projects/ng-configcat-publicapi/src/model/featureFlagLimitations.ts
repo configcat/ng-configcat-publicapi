@@ -9,14 +9,39 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ValueModel } from './valueModel';
 
 
-export interface PercentageOptionModel { 
+/**
+ * Subscription limitations regarding Feature flag or Setting values and targeting.
+ */
+export interface FeatureFlagLimitations { 
     /**
-     * A number between 0 and 100 that represents a randomly allocated fraction of the users.
+     * Maximum number of percentage options a Feature Flag or Setting can have within a targeting rule.
      */
-    percentage: number;
-    value: ValueModel;
+    readonly maxPercentageOptionCount?: number;
+    /**
+     * Maximum number of targeting rules a Feature Flag or Setting can have.
+     */
+    readonly maxTargetingRuleCount?: number;
+    /**
+     * Maximum length of a text comparison value.
+     */
+    readonly maxComparisonValueLength?: number;
+    /**
+     * Maximum item count of a list comparison value.
+     */
+    readonly maxComparisonValueListLength?: number;
+    /**
+     * Maximum length of a list comparison value\'s item.
+     */
+    readonly maxComparisonValueListItemLength?: number;
+    /**
+     * Maximum length of a text Setting\'s value.
+     */
+    readonly maxStringFlagValueLength?: number;
+    /**
+     * Maximum number of `AND` conditions a Feature Flag or Setting can have within a targeting rule.
+     */
+    readonly maxConditionPerTargetingRuleCount?: number;
 }
 

@@ -12,6 +12,7 @@
 import { ConfigModel } from './configModel';
 import { ConfigSettingFormulaModel } from './configSettingFormulaModel';
 import { EnvironmentModel } from './environmentModel';
+import { FeatureFlagLimitations } from './featureFlagLimitations';
 
 
 export interface ConfigSettingFormulasModel { 
@@ -22,5 +23,6 @@ export interface ConfigSettingFormulasModel {
      * Evaluation descriptors of each updated Feature Flag and Setting.
      */
     settingFormulas?: Array<ConfigSettingFormulaModel> | null;
+    featureFlagLimitations?: FeatureFlagLimitations;
 }
 

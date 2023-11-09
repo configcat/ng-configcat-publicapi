@@ -48,5 +48,9 @@ export interface ConfigSettingFormulaModel {
      * The tags attached to the Feature Flag or Setting.
      */
     settingTags?: Array<SettingTagModel> | null;
+    /**
+     * List of Feature Flag and Setting IDs where the actual Feature Flag or Setting is prerequisite.
+     */
+    settingIdsWherePrerequisite?: Array<number> | null;
 }
 

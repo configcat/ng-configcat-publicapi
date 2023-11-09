@@ -12,7 +12,7 @@
 
 
 /**
- * The comparison operator used during the evaluation process.
+ * Prerequisite flag comparison operator used during the evaluation process.
  */
 export type PrerequisiteComparator = 'equals' | 'doesNotEqual';
 

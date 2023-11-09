@@ -18,7 +18,7 @@ import { ComparisonValueModel } from './comparisonValueModel';
  */
 export interface UserConditionModel { 
     /**
-     * The user\'s attribute the evaluation process must take into account.
+     * The User Object attribute that the condition is based on. Can be \"User ID\", \"Email\", \"Country\" or any custom attribute.
      */
     comparisonAttribute: string;
     comparator: UserComparator;

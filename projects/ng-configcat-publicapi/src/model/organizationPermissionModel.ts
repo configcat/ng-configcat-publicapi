@@ -9,14 +9,15 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ValueModel } from './valueModel';
+import { OrganizationPermissionGroupModel } from './organizationPermissionGroupModel';
+import { OrganizationProductModel } from './organizationProductModel';
 
 
-export interface PercentageOptionModel { 
-    /**
-     * A number between 0 and 100 that represents a randomly allocated fraction of the users.
-     */
-    percentage: number;
-    value: ValueModel;
+/**
+ * Describes the Member\'s permission.
+ */
+export interface OrganizationPermissionModel { 
+    product?: OrganizationProductModel;
+    permissionGroup?: OrganizationPermissionGroupModel;
 }
 
