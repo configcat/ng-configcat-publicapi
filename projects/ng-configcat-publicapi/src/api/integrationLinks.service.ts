@@ -1,6 +1,6 @@
 /**
  * ConfigCat Public Management API
- * **Base API URL**: https://test-api.configcat.com  If you prefer the swagger documentation, you can find it here: [Swagger UI](https://test-api.configcat.com/swagger).  The purpose of this API is to access the ConfigCat platform programmatically.  You can **Create**, **Read**, **Update** and **Delete** any entities like **Feature Flags, Configs, Environments** or **Products** within ConfigCat.   The API is based on HTTP REST, uses resource-oriented URLs, status codes and supports JSON  and JSON+HAL format. Do not use this API for accessing and evaluating feature flag values. Use the [SDKs instead](https://configcat.com/docs/sdk-reference/overview).   # OpenAPI Specification  The complete specification is publicly available in the following formats:  - [OpenAPI v3](https://test-api.configcat.com/docs/v1/swagger.json) - [Swagger v2](https://test-api.configcat.com/docs/v1/swagger.v2.json)  You can use it to generate client libraries in various languages with [OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator) or [Swagger Codegen](https://swagger.io/tools/swagger-codegen/) to interact with this API.  # Authentication This API uses the [Basic HTTP Authentication Scheme](https://en.wikipedia.org/wiki/Basic_access_authentication).   <!-- ReDoc-Inject: <security-definitions> -->  # Throttling and rate limits All the rate limited API calls are returning information about the current rate limit period in the following HTTP headers:  | Header | Description | | :- | :- | | X-Rate-Limit-Remaining | The maximum number of requests remaining in the current rate limit period. | | X-Rate-Limit-Reset     | The time when the current rate limit period resets.        |  When the rate limit is exceeded by a request, the API returns with a `HTTP 429 - Too many requests` status along with a `Retry-After` HTTP header. 
+ * The purpose of this API is to access the ConfigCat platform programmatically. You can **Create**, **Read**, **Update** and **Delete** any entities like **Feature Flags, Configs, Environments** or **Products** within ConfigCat.  **Base API URL**: https://test-api.configcat.com  If you prefer the swagger documentation, you can find it here: [Swagger UI](https://test-api.configcat.com/swagger).  The API is based on HTTP REST, uses resource-oriented URLs, status codes and supports JSON  format. Do not use this API for accessing and evaluating feature flag values. Use the [SDKs instead](https://configcat.com/docs/sdk-reference/overview).   # OpenAPI Specification  The complete specification is publicly available in the following formats:  - [OpenAPI v3](https://test-api.configcat.com/docs/v1/swagger.json) - [Swagger v2](https://test-api.configcat.com/docs/v1/swagger.v2.json)  You can use it to generate client libraries in various languages with [OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator) or [Swagger Codegen](https://swagger.io/tools/swagger-codegen/) to interact with this API.  # Authentication This API uses the [Basic HTTP Authentication Scheme](https://en.wikipedia.org/wiki/Basic_access_authentication).   <!-- ReDoc-Inject: <security-definitions> -->  # Throttling and rate limits All the rate limited API calls are returning information about the current rate limit period in the following HTTP headers:  | Header | Description | | :- | :- | | X-Rate-Limit-Remaining | The maximum number of requests remaining in the current rate limit period. | | X-Rate-Limit-Reset     | The time when the current rate limit period resets.        |  When the rate limit is exceeded by a request, the API returns with a `HTTP 429 - Too many requests` status along with a `Retry-After` HTTP header. 
  *
  * The version of the OpenAPI document: v1
  * Contact: support@configcat.com
@@ -87,7 +87,7 @@ export class IntegrationLinksService {
                 (value as any[]).forEach( elem => httpParams = this.addToHttpParamsRecursive(httpParams, elem, key));
             } else if (value instanceof Date) {
                 if (key != null) {
-                    httpParams = httpParams.append(key, (value as Date).toISOString().substr(0, 10));
+                    httpParams = httpParams.append(key, (value as Date).toISOString().substring(0, 10));
                 } else {
                    throw Error("key may not be null if value is Date");
                 }
@@ -114,10 +114,10 @@ export class IntegrationLinksService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<IntegrationLinkModel>;
-    public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<IntegrationLinkModel>>;
-    public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<IntegrationLinkModel>>;
-    public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
+    public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<IntegrationLinkModel>;
+    public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<IntegrationLinkModel>>;
+    public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<IntegrationLinkModel>>;
+    public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (environmentId === null || environmentId === undefined) {
             throw new Error('Required parameter environmentId was null or undefined when calling addOrUpdateIntegrationLink.');
         }
@@ -144,8 +144,7 @@ export class IntegrationLinksService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/json',
-                'application/hal+json'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -156,6 +155,11 @@ export class IntegrationLinksService {
         let localVarHttpContext: HttpContext | undefined = options && options.context;
         if (localVarHttpContext === undefined) {
             localVarHttpContext = new HttpContext();
+        }
+
+        let localVarTransferCache: boolean | undefined = options && options.transferCache;
+        if (localVarTransferCache === undefined) {
+            localVarTransferCache = true;
         }
 
 
@@ -190,6 +194,7 @@ export class IntegrationLinksService {
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
                 observe: observe,
+                transferCache: localVarTransferCache,
                 reportProgress: reportProgress
             }
         );
@@ -205,10 +210,10 @@ export class IntegrationLinksService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<DeleteIntegrationLinkModel>;
-    public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<DeleteIntegrationLinkModel>>;
-    public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<DeleteIntegrationLinkModel>>;
-    public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
+    public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<DeleteIntegrationLinkModel>;
+    public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<DeleteIntegrationLinkModel>>;
+    public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<DeleteIntegrationLinkModel>>;
+    public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (environmentId === null || environmentId === undefined) {
             throw new Error('Required parameter environmentId was null or undefined when calling deleteIntegrationLink.');
         }
@@ -235,8 +240,7 @@ export class IntegrationLinksService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/json',
-                'application/hal+json'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -247,6 +251,11 @@ export class IntegrationLinksService {
         let localVarHttpContext: HttpContext | undefined = options && options.context;
         if (localVarHttpContext === undefined) {
             localVarHttpContext = new HttpContext();
+        }
+
+        let localVarTransferCache: boolean | undefined = options && options.transferCache;
+        if (localVarTransferCache === undefined) {
+            localVarTransferCache = true;
         }
 
 
@@ -269,6 +278,7 @@ export class IntegrationLinksService {
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
                 observe: observe,
+                transferCache: localVarTransferCache,
                 reportProgress: reportProgress
             }
         );
@@ -282,10 +292,10 @@ export class IntegrationLinksService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<IntegrationLinkDetailsModel>;
-    public getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<IntegrationLinkDetailsModel>>;
-    public getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<IntegrationLinkDetailsModel>>;
-    public getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
+    public getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<IntegrationLinkDetailsModel>;
+    public getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<IntegrationLinkDetailsModel>>;
+    public getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<IntegrationLinkDetailsModel>>;
+    public getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (integrationLinkType === null || integrationLinkType === undefined) {
             throw new Error('Required parameter integrationLinkType was null or undefined when calling getIntegrationLinkDetails.');
         }
@@ -306,8 +316,7 @@ export class IntegrationLinksService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/json',
-                'application/hal+json'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -318,6 +327,11 @@ export class IntegrationLinksService {
         let localVarHttpContext: HttpContext | undefined = options && options.context;
         if (localVarHttpContext === undefined) {
             localVarHttpContext = new HttpContext();
+        }
+
+        let localVarTransferCache: boolean | undefined = options && options.transferCache;
+        if (localVarTransferCache === undefined) {
+            localVarTransferCache = true;
         }
 
 
@@ -340,6 +354,7 @@ export class IntegrationLinksService {
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
                 observe: observe,
+                transferCache: localVarTransferCache,
                 reportProgress: reportProgress
             }
         );
@@ -353,10 +368,10 @@ export class IntegrationLinksService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public jiraAddOrUpdateIntegrationLink(environmentId: string, settingId: number, key: string, addOrUpdateJiraIntegrationLinkModel?: AddOrUpdateJiraIntegrationLinkModel, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<IntegrationLinkModel>;
-    public jiraAddOrUpdateIntegrationLink(environmentId: string, settingId: number, key: string, addOrUpdateJiraIntegrationLinkModel?: AddOrUpdateJiraIntegrationLinkModel, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<IntegrationLinkModel>>;
-    public jiraAddOrUpdateIntegrationLink(environmentId: string, settingId: number, key: string, addOrUpdateJiraIntegrationLinkModel?: AddOrUpdateJiraIntegrationLinkModel, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<IntegrationLinkModel>>;
-    public jiraAddOrUpdateIntegrationLink(environmentId: string, settingId: number, key: string, addOrUpdateJiraIntegrationLinkModel?: AddOrUpdateJiraIntegrationLinkModel, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
+    public jiraAddOrUpdateIntegrationLink(environmentId: string, settingId: number, key: string, addOrUpdateJiraIntegrationLinkModel?: AddOrUpdateJiraIntegrationLinkModel, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<IntegrationLinkModel>;
+    public jiraAddOrUpdateIntegrationLink(environmentId: string, settingId: number, key: string, addOrUpdateJiraIntegrationLinkModel?: AddOrUpdateJiraIntegrationLinkModel, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<IntegrationLinkModel>>;
+    public jiraAddOrUpdateIntegrationLink(environmentId: string, settingId: number, key: string, addOrUpdateJiraIntegrationLinkModel?: AddOrUpdateJiraIntegrationLinkModel, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<IntegrationLinkModel>>;
+    public jiraAddOrUpdateIntegrationLink(environmentId: string, settingId: number, key: string, addOrUpdateJiraIntegrationLinkModel?: AddOrUpdateJiraIntegrationLinkModel, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (environmentId === null || environmentId === undefined) {
             throw new Error('Required parameter environmentId was null or undefined when calling jiraAddOrUpdateIntegrationLink.');
         }
@@ -380,8 +395,7 @@ export class IntegrationLinksService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/json',
-                'application/hal+json'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -392,6 +406,11 @@ export class IntegrationLinksService {
         let localVarHttpContext: HttpContext | undefined = options && options.context;
         if (localVarHttpContext === undefined) {
             localVarHttpContext = new HttpContext();
+        }
+
+        let localVarTransferCache: boolean | undefined = options && options.transferCache;
+        if (localVarTransferCache === undefined) {
+            localVarTransferCache = true;
         }
 
 
@@ -426,6 +445,7 @@ export class IntegrationLinksService {
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
                 observe: observe,
+                transferCache: localVarTransferCache,
                 reportProgress: reportProgress
             }
         );
@@ -436,10 +456,10 @@ export class IntegrationLinksService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public v1JiraConnectPost(connectRequest?: ConnectRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
-    public v1JiraConnectPost(connectRequest?: ConnectRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
-    public v1JiraConnectPost(connectRequest?: ConnectRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
-    public v1JiraConnectPost(connectRequest?: ConnectRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
+    public jiraConnect(connectRequest?: ConnectRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<any>;
+    public jiraConnect(connectRequest?: ConnectRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<any>>;
+    public jiraConnect(connectRequest?: ConnectRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<any>>;
+    public jiraConnect(connectRequest?: ConnectRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<any> {
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -466,6 +486,11 @@ export class IntegrationLinksService {
             localVarHttpContext = new HttpContext();
         }
 
+        let localVarTransferCache: boolean | undefined = options && options.transferCache;
+        if (localVarTransferCache === undefined) {
+            localVarTransferCache = true;
+        }
+
 
         // to determine the Content-Type header
         const consumes: string[] = [
@@ -489,7 +514,7 @@ export class IntegrationLinksService {
             }
         }
 
-        let localVarPath = `/v1/jira/Connect`;
+        let localVarPath = `/v1/jira/connect`;
         return this.httpClient.request<any>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
@@ -498,6 +523,7 @@ export class IntegrationLinksService {
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
                 observe: observe,
+                transferCache: localVarTransferCache,
                 reportProgress: reportProgress
             }
         );

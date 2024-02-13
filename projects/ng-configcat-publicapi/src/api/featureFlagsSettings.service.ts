@@ -1,6 +1,6 @@
 /**
  * ConfigCat Public Management API
- * **Base API URL**: https://test-api.configcat.com  If you prefer the swagger documentation, you can find it here: [Swagger UI](https://test-api.configcat.com/swagger).  The purpose of this API is to access the ConfigCat platform programmatically.  You can **Create**, **Read**, **Update** and **Delete** any entities like **Feature Flags, Configs, Environments** or **Products** within ConfigCat.   The API is based on HTTP REST, uses resource-oriented URLs, status codes and supports JSON  and JSON+HAL format. Do not use this API for accessing and evaluating feature flag values. Use the [SDKs instead](https://configcat.com/docs/sdk-reference/overview).   # OpenAPI Specification  The complete specification is publicly available in the following formats:  - [OpenAPI v3](https://test-api.configcat.com/docs/v1/swagger.json) - [Swagger v2](https://test-api.configcat.com/docs/v1/swagger.v2.json)  You can use it to generate client libraries in various languages with [OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator) or [Swagger Codegen](https://swagger.io/tools/swagger-codegen/) to interact with this API.  # Authentication This API uses the [Basic HTTP Authentication Scheme](https://en.wikipedia.org/wiki/Basic_access_authentication).   <!-- ReDoc-Inject: <security-definitions> -->  # Throttling and rate limits All the rate limited API calls are returning information about the current rate limit period in the following HTTP headers:  | Header | Description | | :- | :- | | X-Rate-Limit-Remaining | The maximum number of requests remaining in the current rate limit period. | | X-Rate-Limit-Reset     | The time when the current rate limit period resets.        |  When the rate limit is exceeded by a request, the API returns with a `HTTP 429 - Too many requests` status along with a `Retry-After` HTTP header. 
+ * The purpose of this API is to access the ConfigCat platform programmatically. You can **Create**, **Read**, **Update** and **Delete** any entities like **Feature Flags, Configs, Environments** or **Products** within ConfigCat.  **Base API URL**: https://test-api.configcat.com  If you prefer the swagger documentation, you can find it here: [Swagger UI](https://test-api.configcat.com/swagger).  The API is based on HTTP REST, uses resource-oriented URLs, status codes and supports JSON  format. Do not use this API for accessing and evaluating feature flag values. Use the [SDKs instead](https://configcat.com/docs/sdk-reference/overview).   # OpenAPI Specification  The complete specification is publicly available in the following formats:  - [OpenAPI v3](https://test-api.configcat.com/docs/v1/swagger.json) - [Swagger v2](https://test-api.configcat.com/docs/v1/swagger.v2.json)  You can use it to generate client libraries in various languages with [OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator) or [Swagger Codegen](https://swagger.io/tools/swagger-codegen/) to interact with this API.  # Authentication This API uses the [Basic HTTP Authentication Scheme](https://en.wikipedia.org/wiki/Basic_access_authentication).   <!-- ReDoc-Inject: <security-definitions> -->  # Throttling and rate limits All the rate limited API calls are returning information about the current rate limit period in the following HTTP headers:  | Header | Description | | :- | :- | | X-Rate-Limit-Remaining | The maximum number of requests remaining in the current rate limit period. | | X-Rate-Limit-Reset     | The time when the current rate limit period resets.        |  When the rate limit is exceeded by a request, the API returns with a `HTTP 429 - Too many requests` status along with a `Retry-After` HTTP header. 
  *
  * The version of the OpenAPI document: v1
  * Contact: support@configcat.com
@@ -24,8 +24,6 @@ import { CreateSettingInitialValues } from '../model/createSettingInitialValues'
 import { JsonPatchOperation } from '../model/jsonPatchOperation';
 // @ts-ignore
 import { SettingModel } from '../model/settingModel';
-// @ts-ignore
-import { SettingModelHaljson } from '../model/settingModelHaljson';
 
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -81,7 +79,7 @@ export class FeatureFlagsSettingsService {
                 (value as any[]).forEach( elem => httpParams = this.addToHttpParamsRecursive(httpParams, elem, key));
             } else if (value instanceof Date) {
                 if (key != null) {
-                    httpParams = httpParams.append(key, (value as Date).toISOString().substr(0, 10));
+                    httpParams = httpParams.append(key, (value as Date).toISOString().substring(0, 10));
                 } else {
                    throw Error("key may not be null if value is Date");
                 }
@@ -105,10 +103,10 @@ export class FeatureFlagsSettingsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createSetting(configId: string, createSettingInitialValues: CreateSettingInitialValues, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<SettingModel>;
-    public createSetting(configId: string, createSettingInitialValues: CreateSettingInitialValues, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<SettingModel>>;
-    public createSetting(configId: string, createSettingInitialValues: CreateSettingInitialValues, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<SettingModel>>;
-    public createSetting(configId: string, createSettingInitialValues: CreateSettingInitialValues, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
+    public createSetting(configId: string, createSettingInitialValues: CreateSettingInitialValues, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<SettingModel>;
+    public createSetting(configId: string, createSettingInitialValues: CreateSettingInitialValues, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<SettingModel>>;
+    public createSetting(configId: string, createSettingInitialValues: CreateSettingInitialValues, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<SettingModel>>;
+    public createSetting(configId: string, createSettingInitialValues: CreateSettingInitialValues, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (configId === null || configId === undefined) {
             throw new Error('Required parameter configId was null or undefined when calling createSetting.');
         }
@@ -129,8 +127,7 @@ export class FeatureFlagsSettingsService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/json',
-                'application/hal+json'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -141,6 +138,11 @@ export class FeatureFlagsSettingsService {
         let localVarHttpContext: HttpContext | undefined = options && options.context;
         if (localVarHttpContext === undefined) {
             localVarHttpContext = new HttpContext();
+        }
+
+        let localVarTransferCache: boolean | undefined = options && options.transferCache;
+        if (localVarTransferCache === undefined) {
+            localVarTransferCache = true;
         }
 
 
@@ -175,6 +177,7 @@ export class FeatureFlagsSettingsService {
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
                 observe: observe,
+                transferCache: localVarTransferCache,
                 reportProgress: reportProgress
             }
         );
@@ -187,10 +190,10 @@ export class FeatureFlagsSettingsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteSetting(settingId: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
-    public deleteSetting(settingId: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
-    public deleteSetting(settingId: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
-    public deleteSetting(settingId: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
+    public deleteSetting(settingId: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<any>;
+    public deleteSetting(settingId: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<any>>;
+    public deleteSetting(settingId: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<any>>;
+    public deleteSetting(settingId: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (settingId === null || settingId === undefined) {
             throw new Error('Required parameter settingId was null or undefined when calling deleteSetting.');
         }
@@ -220,6 +223,11 @@ export class FeatureFlagsSettingsService {
             localVarHttpContext = new HttpContext();
         }
 
+        let localVarTransferCache: boolean | undefined = options && options.transferCache;
+        if (localVarTransferCache === undefined) {
+            localVarTransferCache = true;
+        }
+
 
         let responseType_: 'text' | 'json' | 'blob' = 'json';
         if (localVarHttpHeaderAcceptSelected) {
@@ -240,6 +248,7 @@ export class FeatureFlagsSettingsService {
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
                 observe: observe,
+                transferCache: localVarTransferCache,
                 reportProgress: reportProgress
             }
         );
@@ -252,10 +261,10 @@ export class FeatureFlagsSettingsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getSetting(settingId: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<SettingModel>;
-    public getSetting(settingId: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<SettingModel>>;
-    public getSetting(settingId: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<SettingModel>>;
-    public getSetting(settingId: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
+    public getSetting(settingId: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<SettingModel>;
+    public getSetting(settingId: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<SettingModel>>;
+    public getSetting(settingId: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<SettingModel>>;
+    public getSetting(settingId: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (settingId === null || settingId === undefined) {
             throw new Error('Required parameter settingId was null or undefined when calling getSetting.');
         }
@@ -273,8 +282,7 @@ export class FeatureFlagsSettingsService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/json',
-                'application/hal+json'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -285,6 +293,11 @@ export class FeatureFlagsSettingsService {
         let localVarHttpContext: HttpContext | undefined = options && options.context;
         if (localVarHttpContext === undefined) {
             localVarHttpContext = new HttpContext();
+        }
+
+        let localVarTransferCache: boolean | undefined = options && options.transferCache;
+        if (localVarTransferCache === undefined) {
+            localVarTransferCache = true;
         }
 
 
@@ -307,6 +320,7 @@ export class FeatureFlagsSettingsService {
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
                 observe: observe,
+                transferCache: localVarTransferCache,
                 reportProgress: reportProgress
             }
         );
@@ -319,10 +333,10 @@ export class FeatureFlagsSettingsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getSettings(configId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<Array<SettingModel>>;
-    public getSettings(configId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<Array<SettingModel>>>;
-    public getSettings(configId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<Array<SettingModel>>>;
-    public getSettings(configId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
+    public getSettings(configId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<SettingModel>>;
+    public getSettings(configId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<SettingModel>>>;
+    public getSettings(configId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Array<SettingModel>>>;
+    public getSettings(configId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (configId === null || configId === undefined) {
             throw new Error('Required parameter configId was null or undefined when calling getSettings.');
         }
@@ -340,8 +354,7 @@ export class FeatureFlagsSettingsService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/json',
-                'application/hal+json'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -352,6 +365,11 @@ export class FeatureFlagsSettingsService {
         let localVarHttpContext: HttpContext | undefined = options && options.context;
         if (localVarHttpContext === undefined) {
             localVarHttpContext = new HttpContext();
+        }
+
+        let localVarTransferCache: boolean | undefined = options && options.transferCache;
+        if (localVarTransferCache === undefined) {
+            localVarTransferCache = true;
         }
 
 
@@ -374,6 +392,7 @@ export class FeatureFlagsSettingsService {
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
                 observe: observe,
+                transferCache: localVarTransferCache,
                 reportProgress: reportProgress
             }
         );
@@ -381,16 +400,16 @@ export class FeatureFlagsSettingsService {
 
     /**
      * Update Flag
-     * This endpoint updates the metadata of a Feature Flag or Setting  with a collection of [JSON Patch](http://jsonpatch.com) operations in a specified Config.  Only the &#x60;name&#x60;, &#x60;hint&#x60; and &#x60;tags&#x60; attributes are modifiable by this endpoint. The &#x60;tags&#x60; attribute is a simple collection of the [tag IDs](#operation/get-tags) attached to the given setting.  The advantage of using JSON Patch is that you can describe individual update operations on a resource without touching attributes that you don\&#39;t want to change.  For example: We have the following resource. &#x60;&#x60;&#x60; {  \&quot;settingId\&quot;: 5345,  \&quot;key\&quot;: \&quot;myGrandFeature\&quot;,  \&quot;name\&quot;: \&quot;Tihs is a naem with soem typos.\&quot;,  \&quot;hint\&quot;: \&quot;This flag controls my grandioso feature.\&quot;,  \&quot;settingType\&quot;: \&quot;boolean\&quot;,  \&quot;tags\&quot;: [   {    \&quot;tagId\&quot;: 0,    \&quot;name\&quot;: \&quot;sample tag\&quot;,    \&quot;color\&quot;: \&quot;whale\&quot;   }  ] } &#x60;&#x60;&#x60; If we send an update request body as below (it changes the name and adds the already existing tag with the id 2): &#x60;&#x60;&#x60; [  {   \&quot;op\&quot;: \&quot;replace\&quot;,   \&quot;path\&quot;: \&quot;/name\&quot;,   \&quot;value\&quot;: \&quot;This is the name without typos.\&quot;  },  {   \&quot;op\&quot;: \&quot;add\&quot;,   \&quot;path\&quot;: \&quot;/tags/-\&quot;,   \&quot;value\&quot;: 2  } ] &#x60;&#x60;&#x60; Only the &#x60;name&#x60; and &#x60;tags&#x60; are going to be updated and all the other attributes are remaining unchanged. So we get a response like this: &#x60;&#x60;&#x60; {  \&quot;settingId\&quot;: 5345,  \&quot;key\&quot;: \&quot;myGrandFeature\&quot;,  \&quot;name\&quot;: \&quot;This is the name without typos.\&quot;,  \&quot;hint\&quot;: \&quot;This flag controls my grandioso feature.\&quot;,  \&quot;settingType\&quot;: \&quot;boolean\&quot;,  \&quot;tags\&quot;: [   {    \&quot;tagId\&quot;: 0,    \&quot;name\&quot;: \&quot;sample tag\&quot;,    \&quot;color\&quot;: \&quot;whale\&quot;   },   {    \&quot;tagId\&quot;: 2,    \&quot;name\&quot;: \&quot;another tag\&quot;,    \&quot;color\&quot;: \&quot;koala\&quot;   }  ] } &#x60;&#x60;&#x60;
+     * This endpoint updates the metadata of a Feature Flag or Setting  with a collection of [JSON Patch](https://jsonpatch.com) operations in a specified Config.  Only the &#x60;name&#x60;, &#x60;hint&#x60; and &#x60;tags&#x60; attributes are modifiable by this endpoint. The &#x60;tags&#x60; attribute is a simple collection of the [tag IDs](#operation/get-tags) attached to the given setting.  The advantage of using JSON Patch is that you can describe individual update operations on a resource without touching attributes that you don\&#39;t want to change.  For example: We have the following resource. &#x60;&#x60;&#x60; {  \&quot;settingId\&quot;: 5345,  \&quot;key\&quot;: \&quot;myGrandFeature\&quot;,  \&quot;name\&quot;: \&quot;Tihs is a naem with soem typos.\&quot;,  \&quot;hint\&quot;: \&quot;This flag controls my grandioso feature.\&quot;,  \&quot;settingType\&quot;: \&quot;boolean\&quot;,  \&quot;tags\&quot;: [   {    \&quot;tagId\&quot;: 0,    \&quot;name\&quot;: \&quot;sample tag\&quot;,    \&quot;color\&quot;: \&quot;whale\&quot;   }  ] } &#x60;&#x60;&#x60; If we send an update request body as below (it changes the name and adds the already existing tag with the id 2): &#x60;&#x60;&#x60; [  {   \&quot;op\&quot;: \&quot;replace\&quot;,   \&quot;path\&quot;: \&quot;/name\&quot;,   \&quot;value\&quot;: \&quot;This is the name without typos.\&quot;  },  {   \&quot;op\&quot;: \&quot;add\&quot;,   \&quot;path\&quot;: \&quot;/tags/-\&quot;,   \&quot;value\&quot;: 2  } ] &#x60;&#x60;&#x60; Only the &#x60;name&#x60; and &#x60;tags&#x60; are going to be updated and all the other attributes are remaining unchanged. So we get a response like this: &#x60;&#x60;&#x60; {  \&quot;settingId\&quot;: 5345,  \&quot;key\&quot;: \&quot;myGrandFeature\&quot;,  \&quot;name\&quot;: \&quot;This is the name without typos.\&quot;,  \&quot;hint\&quot;: \&quot;This flag controls my grandioso feature.\&quot;,  \&quot;settingType\&quot;: \&quot;boolean\&quot;,  \&quot;tags\&quot;: [   {    \&quot;tagId\&quot;: 0,    \&quot;name\&quot;: \&quot;sample tag\&quot;,    \&quot;color\&quot;: \&quot;whale\&quot;   },   {    \&quot;tagId\&quot;: 2,    \&quot;name\&quot;: \&quot;another tag\&quot;,    \&quot;color\&quot;: \&quot;koala\&quot;   }  ] } &#x60;&#x60;&#x60;
      * @param settingId The identifier of the Setting.
      * @param jsonPatchOperation 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public updateSetting(settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<SettingModel>;
-    public updateSetting(settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<SettingModel>>;
-    public updateSetting(settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<SettingModel>>;
-    public updateSetting(settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
+    public updateSetting(settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<SettingModel>;
+    public updateSetting(settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<SettingModel>>;
+    public updateSetting(settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<SettingModel>>;
+    public updateSetting(settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (settingId === null || settingId === undefined) {
             throw new Error('Required parameter settingId was null or undefined when calling updateSetting.');
         }
@@ -411,8 +430,7 @@ export class FeatureFlagsSettingsService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/json',
-                'application/hal+json'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -423,6 +441,11 @@ export class FeatureFlagsSettingsService {
         let localVarHttpContext: HttpContext | undefined = options && options.context;
         if (localVarHttpContext === undefined) {
             localVarHttpContext = new HttpContext();
+        }
+
+        let localVarTransferCache: boolean | undefined = options && options.transferCache;
+        if (localVarTransferCache === undefined) {
+            localVarTransferCache = true;
         }
 
 
@@ -457,6 +480,7 @@ export class FeatureFlagsSettingsService {
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
                 observe: observe,
+                transferCache: localVarTransferCache,
                 reportProgress: reportProgress
             }
         );
