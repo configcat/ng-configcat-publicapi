@@ -1,6 +1,6 @@
 /**
  * ConfigCat Public Management API
- * **Base API URL**: https://test-api.configcat.com  If you prefer the swagger documentation, you can find it here: [Swagger UI](https://test-api.configcat.com/swagger).  The purpose of this API is to access the ConfigCat platform programmatically.  You can **Create**, **Read**, **Update** and **Delete** any entities like **Feature Flags, Configs, Environments** or **Products** within ConfigCat.   The API is based on HTTP REST, uses resource-oriented URLs, status codes and supports JSON  and JSON+HAL format. Do not use this API for accessing and evaluating feature flag values. Use the [SDKs instead](https://configcat.com/docs/sdk-reference/overview).   # OpenAPI Specification  The complete specification is publicly available in the following formats:  - [OpenAPI v3](https://test-api.configcat.com/docs/v1/swagger.json) - [Swagger v2](https://test-api.configcat.com/docs/v1/swagger.v2.json)  You can use it to generate client libraries in various languages with [OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator) or [Swagger Codegen](https://swagger.io/tools/swagger-codegen/) to interact with this API.  # Authentication This API uses the [Basic HTTP Authentication Scheme](https://en.wikipedia.org/wiki/Basic_access_authentication).   <!-- ReDoc-Inject: <security-definitions> -->  # Throttling and rate limits All the rate limited API calls are returning information about the current rate limit period in the following HTTP headers:  | Header | Description | | :- | :- | | X-Rate-Limit-Remaining | The maximum number of requests remaining in the current rate limit period. | | X-Rate-Limit-Reset     | The time when the current rate limit period resets.        |  When the rate limit is exceeded by a request, the API returns with a `HTTP 429 - Too many requests` status along with a `Retry-After` HTTP header. 
+ * The purpose of this API is to access the ConfigCat platform programmatically. You can **Create**, **Read**, **Update** and **Delete** any entities like **Feature Flags, Configs, Environments** or **Products** within ConfigCat.  **Base API URL**: https://test-api.configcat.com  If you prefer the swagger documentation, you can find it here: [Swagger UI](https://test-api.configcat.com/swagger).  The API is based on HTTP REST, uses resource-oriented URLs, status codes and supports JSON  format. Do not use this API for accessing and evaluating feature flag values. Use the [SDKs instead](https://configcat.com/docs/sdk-reference/overview).   # OpenAPI Specification  The complete specification is publicly available in the following formats:  - [OpenAPI v3](https://test-api.configcat.com/docs/v1/swagger.json) - [Swagger v2](https://test-api.configcat.com/docs/v1/swagger.v2.json)  You can use it to generate client libraries in various languages with [OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator) or [Swagger Codegen](https://swagger.io/tools/swagger-codegen/) to interact with this API.  # Authentication This API uses the [Basic HTTP Authentication Scheme](https://en.wikipedia.org/wiki/Basic_access_authentication).   <!-- ReDoc-Inject: <security-definitions> -->  # Throttling and rate limits All the rate limited API calls are returning information about the current rate limit period in the following HTTP headers:  | Header | Description | | :- | :- | | X-Rate-Limit-Remaining | The maximum number of requests remaining in the current rate limit period. | | X-Rate-Limit-Reset     | The time when the current rate limit period resets.        |  When the rate limit is exceeded by a request, the API returns with a `HTTP 429 - Too many requests` status along with a `Retry-After` HTTP header. 
  *
  * The version of the OpenAPI document: v1
  * Contact: support@configcat.com
@@ -21,13 +21,9 @@ import { Observable }                                        from 'rxjs';
 // @ts-ignore
 import { ConfigSettingFormulasModel } from '../model/configSettingFormulasModel';
 // @ts-ignore
-import { ConfigSettingFormulasModelHaljson } from '../model/configSettingFormulasModelHaljson';
-// @ts-ignore
 import { JsonPatchOperation } from '../model/jsonPatchOperation';
 // @ts-ignore
 import { SettingFormulaModel } from '../model/settingFormulaModel';
-// @ts-ignore
-import { SettingFormulaModelHaljson } from '../model/settingFormulaModelHaljson';
 // @ts-ignore
 import { UpdateEvaluationFormulaModel } from '../model/updateEvaluationFormulaModel';
 // @ts-ignore
@@ -87,7 +83,7 @@ export class FeatureFlagSettingValuesV2Service {
                 (value as any[]).forEach( elem => httpParams = this.addToHttpParamsRecursive(httpParams, elem, key));
             } else if (value instanceof Date) {
                 if (key != null) {
-                    httpParams = httpParams.append(key, (value as Date).toISOString().substr(0, 10));
+                    httpParams = httpParams.append(key, (value as Date).toISOString().substring(0, 10));
                 } else {
                    throw Error("key may not be null if value is Date");
                 }
@@ -111,10 +107,10 @@ export class FeatureFlagSettingValuesV2Service {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getSettingValueV2(environmentId: string, settingId: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<SettingFormulaModel>;
-    public getSettingValueV2(environmentId: string, settingId: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<SettingFormulaModel>>;
-    public getSettingValueV2(environmentId: string, settingId: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<SettingFormulaModel>>;
-    public getSettingValueV2(environmentId: string, settingId: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
+    public getSettingValueV2(environmentId: string, settingId: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<SettingFormulaModel>;
+    public getSettingValueV2(environmentId: string, settingId: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<SettingFormulaModel>>;
+    public getSettingValueV2(environmentId: string, settingId: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<SettingFormulaModel>>;
+    public getSettingValueV2(environmentId: string, settingId: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (environmentId === null || environmentId === undefined) {
             throw new Error('Required parameter environmentId was null or undefined when calling getSettingValueV2.');
         }
@@ -135,8 +131,7 @@ export class FeatureFlagSettingValuesV2Service {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/json',
-                'application/hal+json'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -147,6 +142,11 @@ export class FeatureFlagSettingValuesV2Service {
         let localVarHttpContext: HttpContext | undefined = options && options.context;
         if (localVarHttpContext === undefined) {
             localVarHttpContext = new HttpContext();
+        }
+
+        let localVarTransferCache: boolean | undefined = options && options.transferCache;
+        if (localVarTransferCache === undefined) {
+            localVarTransferCache = true;
         }
 
 
@@ -169,6 +169,7 @@ export class FeatureFlagSettingValuesV2Service {
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
                 observe: observe,
+                transferCache: localVarTransferCache,
                 reportProgress: reportProgress
             }
         );
@@ -182,10 +183,10 @@ export class FeatureFlagSettingValuesV2Service {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getSettingValuesV2(configId: string, environmentId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<ConfigSettingFormulasModel>;
-    public getSettingValuesV2(configId: string, environmentId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<ConfigSettingFormulasModel>>;
-    public getSettingValuesV2(configId: string, environmentId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<ConfigSettingFormulasModel>>;
-    public getSettingValuesV2(configId: string, environmentId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
+    public getSettingValuesV2(configId: string, environmentId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<ConfigSettingFormulasModel>;
+    public getSettingValuesV2(configId: string, environmentId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ConfigSettingFormulasModel>>;
+    public getSettingValuesV2(configId: string, environmentId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<ConfigSettingFormulasModel>>;
+    public getSettingValuesV2(configId: string, environmentId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (configId === null || configId === undefined) {
             throw new Error('Required parameter configId was null or undefined when calling getSettingValuesV2.');
         }
@@ -206,8 +207,7 @@ export class FeatureFlagSettingValuesV2Service {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/json',
-                'application/hal+json'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -218,6 +218,11 @@ export class FeatureFlagSettingValuesV2Service {
         let localVarHttpContext: HttpContext | undefined = options && options.context;
         if (localVarHttpContext === undefined) {
             localVarHttpContext = new HttpContext();
+        }
+
+        let localVarTransferCache: boolean | undefined = options && options.transferCache;
+        if (localVarTransferCache === undefined) {
+            localVarTransferCache = true;
         }
 
 
@@ -240,6 +245,7 @@ export class FeatureFlagSettingValuesV2Service {
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
                 observe: observe,
+                transferCache: localVarTransferCache,
                 reportProgress: reportProgress
             }
         );
@@ -247,7 +253,7 @@ export class FeatureFlagSettingValuesV2Service {
 
     /**
      * Post values
-     * This endpoint batch updates the Feature Flags and Settings of a Config identified by the &#x60;configId&#x60; parameter in a specified Environment identified by the &#x60;environmentId&#x60; parameter.  Only those Feature Flags and Settings are updated which are part of the request, all the others are left untouched.  **Important:** As this endpoint is doing a complete replace on those Feature Flags and Settings, which are set in the request.  It\&#39;s important to set every other field that you don\&#39;t want to change in its original state. Not listing a field means that it will reset.  For example: We have the following resource of a Feature Flag. &#x60;&#x60;&#x60; {     \&quot;settingValues\&quot;: [   {    \&quot;defaultValue\&quot;: {                 \&quot;boolValue\&quot;: false,             },             \&quot;targetingRules\&quot;: [                 {                     \&quot;conditions\&quot;: [                         {                             \&quot;userCondition\&quot;: {                                 \&quot;comparisonAttribute\&quot;: \&quot;Email\&quot;,                                 \&quot;comparator\&quot;: \&quot;sensitiveTextEquals\&quot;,                                 \&quot;comparisonValue\&quot;: {                                     \&quot;stringValue\&quot;: \&quot;test@example.com\&quot;,                                 }                             },                         }                     ],                     \&quot;percentageOptions\&quot;: [],                     \&quot;value\&quot;: {                         \&quot;boolValue\&quot;: true,                     }                 }             ],    \&quot;settingId\&quot;: 1   }  ] } &#x60;&#x60;&#x60; If we send a batch replace request body as below: &#x60;&#x60;&#x60; {   \&quot;settingValues\&quot;: [   {    \&quot;defaultValue\&quot;: {                 \&quot;boolValue\&quot;: false,             },    \&quot;settingId\&quot;: 1   }  ] } &#x60;&#x60;&#x60; Then besides that the default value is set to &#x60;true&#x60;, all Targeting Rules of the related Feature Flag are deleted. So we get a response like this: &#x60;&#x60;&#x60; {  \&quot;settingValues\&quot;: [   {    \&quot;defaultValue\&quot;: {                 \&quot;boolValue\&quot;: false,             },             \&quot;targetingRules\&quot;: [],    \&quot;setting\&quot;:     {     \&quot;settingId\&quot;: 1    }   }  ] } &#x60;&#x60;&#x60;
+     * This endpoint batch updates the Feature Flags and Settings of a Config identified by the &#x60;configId&#x60; parameter in a specified Environment identified by the &#x60;environmentId&#x60; parameter.  Only those Feature Flags and Settings are updated which are part of the request, all the others are left untouched.  **Important:** As this endpoint is doing a complete replace on those Feature Flags and Settings, which are set in the request.  It\&#39;s important to set every other field that you don\&#39;t want to change in its original state. Not listing a field means that it will reset.  For example: We have the following resource of a Feature Flag. &#x60;&#x60;&#x60;json {   \&quot;settingValues\&quot;: [     {       \&quot;defaultValue\&quot;: {         \&quot;boolValue\&quot;: false       },       \&quot;targetingRules\&quot;: [         {           \&quot;conditions\&quot;: [             {               \&quot;userCondition\&quot;: {                 \&quot;comparisonAttribute\&quot;: \&quot;Email\&quot;,                 \&quot;comparator\&quot;: \&quot;sensitiveTextEquals\&quot;,                 \&quot;comparisonValue\&quot;: {                   \&quot;stringValue\&quot;: \&quot;test@example.com\&quot;                 }               }             }           ],           \&quot;percentageOptions\&quot;: [],           \&quot;value\&quot;: {             \&quot;boolValue\&quot;: true           }         }       ],       \&quot;settingId\&quot;: 1     }   ] } &#x60;&#x60;&#x60; If we send a batch replace request body as below: &#x60;&#x60;&#x60;json {    \&quot;settingValues\&quot;: [     {       \&quot;defaultValue\&quot;: {         \&quot;boolValue\&quot;: false       },       \&quot;settingId\&quot;: 1     }   ] } &#x60;&#x60;&#x60; Then besides that the default value is set to &#x60;true&#x60;, all Targeting Rules of the related Feature Flag are deleted. So we get a response like this: &#x60;&#x60;&#x60;json {   \&quot;settingValues\&quot;: [     {       \&quot;defaultValue\&quot;: {         \&quot;boolValue\&quot;: false       },       \&quot;targetingRules\&quot;: [],       \&quot;setting\&quot;:        {         \&quot;settingId\&quot;: 1       }     }   ] } &#x60;&#x60;&#x60;
      * @param configId The identifier of the Config.
      * @param environmentId The identifier of the Environment.
      * @param updateEvaluationFormulasModel 
@@ -255,10 +261,10 @@ export class FeatureFlagSettingValuesV2Service {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<ConfigSettingFormulasModel>;
-    public postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<ConfigSettingFormulasModel>>;
-    public postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<ConfigSettingFormulasModel>>;
-    public postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
+    public postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<ConfigSettingFormulasModel>;
+    public postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ConfigSettingFormulasModel>>;
+    public postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<ConfigSettingFormulasModel>>;
+    public postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (configId === null || configId === undefined) {
             throw new Error('Required parameter configId was null or undefined when calling postSettingValuesV2.');
         }
@@ -288,8 +294,7 @@ export class FeatureFlagSettingValuesV2Service {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/json',
-                'application/hal+json'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -300,6 +305,11 @@ export class FeatureFlagSettingValuesV2Service {
         let localVarHttpContext: HttpContext | undefined = options && options.context;
         if (localVarHttpContext === undefined) {
             localVarHttpContext = new HttpContext();
+        }
+
+        let localVarTransferCache: boolean | undefined = options && options.transferCache;
+        if (localVarTransferCache === undefined) {
+            localVarTransferCache = true;
         }
 
 
@@ -335,6 +345,7 @@ export class FeatureFlagSettingValuesV2Service {
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
                 observe: observe,
+                transferCache: localVarTransferCache,
                 reportProgress: reportProgress
             }
         );
@@ -342,7 +353,7 @@ export class FeatureFlagSettingValuesV2Service {
 
     /**
      * Replace value
-     * This endpoint replaces the value and the Targeting Rules of a Feature Flag or Setting in a specified Environment identified by the &lt;a target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot; href&#x3D;\&quot;https://app.configcat.com/sdkkey\&quot;&gt;SDK key&lt;/a&gt; passed in the &#x60;X-CONFIGCAT-SDKKEY&#x60; header.  Only the &#x60;defaultValue&#x60;, &#x60;targetingRules&#x60;, and &#x60;percentageEvaluationAttribute&#x60; fields are modifiable by this endpoint.  **Important:** As this endpoint is doing a complete replace, it\&#39;s important to set every other field that you don\&#39;t want to change to its original state. Not listing one means that it will reset.  For example: We have the following resource of a Feature Flag. &#x60;&#x60;&#x60; {  \&quot;defaultValue\&quot;: {         \&quot;boolValue\&quot;: false,     },  \&quot;targetingRules\&quot;: [         {             \&quot;conditions\&quot;: [                 {                     \&quot;userCondition\&quot;: {                         \&quot;comparisonAttribute\&quot;: \&quot;Email\&quot;,                         \&quot;comparator\&quot;: \&quot;sensitiveTextEquals\&quot;,                         \&quot;comparisonValue\&quot;: {                             \&quot;stringValue\&quot;: \&quot;test@example.com\&quot;,                         }                     },                 }             ],             \&quot;percentageOptions\&quot;: [],             \&quot;value\&quot;: {                 \&quot;boolValue\&quot;: true,             }         }     ], } &#x60;&#x60;&#x60; If we send a replace request body as below: &#x60;&#x60;&#x60; {  \&quot;defaultValue\&quot;: {         \&quot;boolValue\&quot;: true,     }, } &#x60;&#x60;&#x60; Then besides that the default served value is set to &#x60;true&#x60;, all the Targeting Rules are deleted. So we get a response like this: &#x60;&#x60;&#x60; {     \&quot;defaultValue\&quot;: {         \&quot;boolValue\&quot;: true,     },     \&quot;targetingRules\&quot;: [], } &#x60;&#x60;&#x60;
+     * This endpoint replaces the value and the Targeting Rules of a Feature Flag or Setting in a specified Environment identified by the &lt;a target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot; href&#x3D;\&quot;https://app.configcat.com/sdkkey\&quot;&gt;SDK key&lt;/a&gt; passed in the &#x60;X-CONFIGCAT-SDKKEY&#x60; header.  Only the &#x60;defaultValue&#x60;, &#x60;targetingRules&#x60;, and &#x60;percentageEvaluationAttribute&#x60; fields are modifiable by this endpoint.  **Important:** As this endpoint is doing a complete replace, it\&#39;s important to set every other field that you don\&#39;t want to change to its original state. Not listing one means that it will reset.  For example: We have the following resource of a Feature Flag. &#x60;&#x60;&#x60;json {   \&quot;defaultValue\&quot;: {     \&quot;boolValue\&quot;: false   },   \&quot;targetingRules\&quot;: [     {       \&quot;conditions\&quot;: [         {           \&quot;userCondition\&quot;: {             \&quot;comparisonAttribute\&quot;: \&quot;Email\&quot;,             \&quot;comparator\&quot;: \&quot;sensitiveTextEquals\&quot;,             \&quot;comparisonValue\&quot;: {               \&quot;stringValue\&quot;: \&quot;test@example.com\&quot;             }           }         }       ],       \&quot;percentageOptions\&quot;: [],       \&quot;value\&quot;: {         \&quot;boolValue\&quot;: true       }     }   ] } &#x60;&#x60;&#x60; If we send a replace request body as below: &#x60;&#x60;&#x60;json {   \&quot;defaultValue\&quot;: {     \&quot;boolValue\&quot;: true   } } &#x60;&#x60;&#x60; Then besides that the default served value is set to &#x60;true&#x60;, all the Targeting Rules are deleted. So we get a response like this: &#x60;&#x60;&#x60;json {   \&quot;defaultValue\&quot;: {     \&quot;boolValue\&quot;: true   },   \&quot;targetingRules\&quot;: [] } &#x60;&#x60;&#x60;
      * @param environmentId The identifier of the Environment.
      * @param settingId The id of the Setting.
      * @param updateEvaluationFormulaModel 
@@ -350,10 +361,10 @@ export class FeatureFlagSettingValuesV2Service {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<SettingFormulaModel>;
-    public replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<SettingFormulaModel>>;
-    public replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<SettingFormulaModel>>;
-    public replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
+    public replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<SettingFormulaModel>;
+    public replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<SettingFormulaModel>>;
+    public replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<SettingFormulaModel>>;
+    public replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (environmentId === null || environmentId === undefined) {
             throw new Error('Required parameter environmentId was null or undefined when calling replaceSettingValueV2.');
         }
@@ -383,8 +394,7 @@ export class FeatureFlagSettingValuesV2Service {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/json',
-                'application/hal+json'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -395,6 +405,11 @@ export class FeatureFlagSettingValuesV2Service {
         let localVarHttpContext: HttpContext | undefined = options && options.context;
         if (localVarHttpContext === undefined) {
             localVarHttpContext = new HttpContext();
+        }
+
+        let localVarTransferCache: boolean | undefined = options && options.transferCache;
+        if (localVarTransferCache === undefined) {
+            localVarTransferCache = true;
         }
 
 
@@ -430,6 +445,7 @@ export class FeatureFlagSettingValuesV2Service {
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
                 observe: observe,
+                transferCache: localVarTransferCache,
                 reportProgress: reportProgress
             }
         );
@@ -437,7 +453,7 @@ export class FeatureFlagSettingValuesV2Service {
 
     /**
      * Update value
-     * This endpoint updates the value of a Feature Flag or Setting with a collection of [JSON Patch](http://jsonpatch.com) operations in a specified Environment.  Only the &#x60;defaultValue&#x60;, &#x60;targetingRules&#x60;, and &#x60;percentageEvaluationAttribute&#x60; fields are modifiable by this endpoint.  The advantage of using JSON Patch is that you can describe individual update operations on a resource without touching attributes that you don\&#39;t want to change. It supports collection reordering, so it also can be used for reordering the targeting rules of a Feature Flag or Setting.  For example: We have the following resource of a Feature Flag. &#x60;&#x60;&#x60; {  \&quot;defaultValue\&quot;: {         \&quot;boolValue\&quot;: false,     },  \&quot;targetingRules\&quot;: [         {             \&quot;conditions\&quot;: [                 {                     \&quot;userCondition\&quot;: {                         \&quot;comparisonAttribute\&quot;: \&quot;Email\&quot;,                         \&quot;comparator\&quot;: \&quot;sensitiveTextEquals\&quot;,                         \&quot;comparisonValue\&quot;: {                             \&quot;stringValue\&quot;: \&quot;test@example.com\&quot;,                         }                     },                 }             ],             \&quot;percentageOptions\&quot;: [],             \&quot;value\&quot;: {                 \&quot;boolValue\&quot;: true,             }         }     ], } &#x60;&#x60;&#x60; If we send an update request body as below: &#x60;&#x60;&#x60; [  {   \&quot;op\&quot;: \&quot;replace\&quot;,   \&quot;path\&quot;: \&quot;/targetingRules/0/value/boolValue\&quot;,   \&quot;value\&quot;: true  } ] &#x60;&#x60;&#x60; Only the first Targeting Rule\&#39;s &#x60;value&#x60; is going to be set to &#x60;false&#x60; and all the other fields are remaining unchanged.  So we get a response like this: &#x60;&#x60;&#x60; {  \&quot;defaultValue\&quot;: {         \&quot;boolValue\&quot;: false,     },  \&quot;targetingRules\&quot;: [         {             \&quot;conditions\&quot;: [                 {                     \&quot;userCondition\&quot;: {                         \&quot;comparisonAttribute\&quot;: \&quot;Email\&quot;,                         \&quot;comparator\&quot;: \&quot;sensitiveTextEquals\&quot;,                         \&quot;comparisonValue\&quot;: {                             \&quot;stringValue\&quot;: \&quot;test@example.com\&quot;,                         }                     },                 }             ],             \&quot;percentageOptions\&quot;: [],             \&quot;value\&quot;: {                 \&quot;boolValue\&quot;: false,             }         }     ], } &#x60;&#x60;&#x60;
+     * This endpoint updates the value of a Feature Flag or Setting with a collection of [JSON Patch](https://jsonpatch.com) operations in a specified Environment.  Only the &#x60;defaultValue&#x60;, &#x60;targetingRules&#x60;, and &#x60;percentageEvaluationAttribute&#x60; fields are modifiable by this endpoint.  The advantage of using JSON Patch is that you can describe individual update operations on a resource without touching attributes that you don\&#39;t want to change. It supports collection reordering, so it also can be used for reordering the targeting rules of a Feature Flag or Setting.  For example: We have the following resource of a Feature Flag. &#x60;&#x60;&#x60;json {   \&quot;defaultValue\&quot;: {     \&quot;boolValue\&quot;: false   },   \&quot;targetingRules\&quot;: [     {       \&quot;conditions\&quot;: [         {           \&quot;userCondition\&quot;: {             \&quot;comparisonAttribute\&quot;: \&quot;Email\&quot;,             \&quot;comparator\&quot;: \&quot;sensitiveTextEquals\&quot;,             \&quot;comparisonValue\&quot;: {               \&quot;stringValue\&quot;: \&quot;test@example.com\&quot;             }           }         }       ],       \&quot;percentageOptions\&quot;: [],       \&quot;value\&quot;: {         \&quot;boolValue\&quot;: true       }     }   ] } &#x60;&#x60;&#x60; If we send an update request body as below: &#x60;&#x60;&#x60;json [   {     \&quot;op\&quot;: \&quot;replace\&quot;,     \&quot;path\&quot;: \&quot;/targetingRules/0/value/boolValue\&quot;,     \&quot;value\&quot;: true   } ] &#x60;&#x60;&#x60; Only the first Targeting Rule\&#39;s &#x60;value&#x60; is going to be set to &#x60;false&#x60; and all the other fields are remaining unchanged.  So we get a response like this: &#x60;&#x60;&#x60;json {   \&quot;defaultValue\&quot;: {     \&quot;boolValue\&quot;: false   },   \&quot;targetingRules\&quot;: [     {       \&quot;conditions\&quot;: [         {           \&quot;userCondition\&quot;: {             \&quot;comparisonAttribute\&quot;: \&quot;Email\&quot;,             \&quot;comparator\&quot;: \&quot;sensitiveTextEquals\&quot;,             \&quot;comparisonValue\&quot;: {               \&quot;stringValue\&quot;: \&quot;test@example.com\&quot;             }           }         }       ],       \&quot;percentageOptions\&quot;: [],       \&quot;value\&quot;: {         \&quot;boolValue\&quot;: false       }     }   ] } &#x60;&#x60;&#x60;
      * @param environmentId The identifier of the Environment.
      * @param settingId The id of the Setting.
      * @param jsonPatchOperation 
@@ -445,10 +461,10 @@ export class FeatureFlagSettingValuesV2Service {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public updateSettingValueV2(environmentId: string, settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<SettingFormulaModel>;
-    public updateSettingValueV2(environmentId: string, settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpResponse<SettingFormulaModel>>;
-    public updateSettingValueV2(environmentId: string, settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<HttpEvent<SettingFormulaModel>>;
-    public updateSettingValueV2(environmentId: string, settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/hal+json', context?: HttpContext}): Observable<any> {
+    public updateSettingValueV2(environmentId: string, settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<SettingFormulaModel>;
+    public updateSettingValueV2(environmentId: string, settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<SettingFormulaModel>>;
+    public updateSettingValueV2(environmentId: string, settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<SettingFormulaModel>>;
+    public updateSettingValueV2(environmentId: string, settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (environmentId === null || environmentId === undefined) {
             throw new Error('Required parameter environmentId was null or undefined when calling updateSettingValueV2.');
         }
@@ -478,8 +494,7 @@ export class FeatureFlagSettingValuesV2Service {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/json',
-                'application/hal+json'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -490,6 +505,11 @@ export class FeatureFlagSettingValuesV2Service {
         let localVarHttpContext: HttpContext | undefined = options && options.context;
         if (localVarHttpContext === undefined) {
             localVarHttpContext = new HttpContext();
+        }
+
+        let localVarTransferCache: boolean | undefined = options && options.transferCache;
+        if (localVarTransferCache === undefined) {
+            localVarTransferCache = true;
         }
 
 
@@ -525,6 +545,7 @@ export class FeatureFlagSettingValuesV2Service {
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
                 observe: observe,
+                transferCache: localVarTransferCache,
                 reportProgress: reportProgress
             }
         );
