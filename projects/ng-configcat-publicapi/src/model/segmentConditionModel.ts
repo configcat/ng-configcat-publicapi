@@ -9,7 +9,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { SegmentComparator } from './segmentComparator';
 
 
 /**
@@ -20,9 +19,17 @@ export interface SegmentConditionModel {
      * The segment\'s identifier.
      */
     segmentId: string;
-    comparator: SegmentComparator;
+    /**
+     * The segment comparison operator used during the evaluation process.
+     */
+    comparator: SegmentConditionModel.ComparatorEnum;
 }
 export namespace SegmentConditionModel {
+    export type ComparatorEnum = 'isIn' | 'isNotIn';
+    export const ComparatorEnum = {
+        IsIn: 'isIn' as ComparatorEnum,
+        IsNotIn: 'isNotIn' as ComparatorEnum
+    };
 }
 
 

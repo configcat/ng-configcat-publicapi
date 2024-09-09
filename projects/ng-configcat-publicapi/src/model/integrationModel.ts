@@ -9,7 +9,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { IntegrationType } from './integrationType';
 import { ProductModel } from './productModel';
 
 
@@ -26,7 +25,10 @@ export interface IntegrationModel {
      * Name of the Integration.
      */
     name?: string | null;
-    integrationType?: IntegrationType;
+    /**
+     * Type of the Integration.
+     */
+    integrationType?: IntegrationModel.IntegrationTypeEnum;
     /**
      * Parameters of the Integration.
      */
@@ -41,6 +43,15 @@ export interface IntegrationModel {
     configIds?: Array<string> | null;
 }
 export namespace IntegrationModel {
+    export type IntegrationTypeEnum = 'dataDog' | 'slack' | 'amplitude' | 'mixPanel' | 'segment' | 'pubNub';
+    export const IntegrationTypeEnum = {
+        DataDog: 'dataDog' as IntegrationTypeEnum,
+        Slack: 'slack' as IntegrationTypeEnum,
+        Amplitude: 'amplitude' as IntegrationTypeEnum,
+        MixPanel: 'mixPanel' as IntegrationTypeEnum,
+        Segment: 'segment' as IntegrationTypeEnum,
+        PubNub: 'pubNub' as IntegrationTypeEnum
+    };
 }
 
 

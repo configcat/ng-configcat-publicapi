@@ -9,17 +9,37 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { RolloutRuleComparator } from './rolloutRuleComparator';
 
 
 export interface UpdateSegmentModel { 
     name?: string | null;
     description?: string | null;
     comparisonAttribute?: string | null;
-    comparator?: RolloutRuleComparator;
+    comparator?: UpdateSegmentModel.ComparatorEnum | null;
     comparisonValue?: string | null;
 }
 export namespace UpdateSegmentModel {
+    export type ComparatorEnum = 'isOneOf' | 'isNotOneOf' | 'contains' | 'doesNotContain' | 'semVerIsOneOf' | 'semVerIsNotOneOf' | 'semVerLess' | 'semVerLessOrEquals' | 'semVerGreater' | 'semVerGreaterOrEquals' | 'numberEquals' | 'numberDoesNotEqual' | 'numberLess' | 'numberLessOrEquals' | 'numberGreater' | 'numberGreaterOrEquals' | 'sensitiveIsOneOf' | 'sensitiveIsNotOneOf';
+    export const ComparatorEnum = {
+        IsOneOf: 'isOneOf' as ComparatorEnum,
+        IsNotOneOf: 'isNotOneOf' as ComparatorEnum,
+        Contains: 'contains' as ComparatorEnum,
+        DoesNotContain: 'doesNotContain' as ComparatorEnum,
+        SemVerIsOneOf: 'semVerIsOneOf' as ComparatorEnum,
+        SemVerIsNotOneOf: 'semVerIsNotOneOf' as ComparatorEnum,
+        SemVerLess: 'semVerLess' as ComparatorEnum,
+        SemVerLessOrEquals: 'semVerLessOrEquals' as ComparatorEnum,
+        SemVerGreater: 'semVerGreater' as ComparatorEnum,
+        SemVerGreaterOrEquals: 'semVerGreaterOrEquals' as ComparatorEnum,
+        NumberEquals: 'numberEquals' as ComparatorEnum,
+        NumberDoesNotEqual: 'numberDoesNotEqual' as ComparatorEnum,
+        NumberLess: 'numberLess' as ComparatorEnum,
+        NumberLessOrEquals: 'numberLessOrEquals' as ComparatorEnum,
+        NumberGreater: 'numberGreater' as ComparatorEnum,
+        NumberGreaterOrEquals: 'numberGreaterOrEquals' as ComparatorEnum,
+        SensitiveIsOneOf: 'sensitiveIsOneOf' as ComparatorEnum,
+        SensitiveIsNotOneOf: 'sensitiveIsNotOneOf' as ComparatorEnum
+    };
 }
 
 

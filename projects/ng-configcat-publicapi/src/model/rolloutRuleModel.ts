@@ -9,8 +9,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { RolloutRuleComparator } from './rolloutRuleComparator';
-import { SegmentComparator } from './segmentComparator';
 
 
 export interface RolloutRuleModel { 
@@ -18,7 +16,7 @@ export interface RolloutRuleModel {
      * The user attribute to compare.
      */
     comparisonAttribute?: string | null;
-    comparator?: RolloutRuleComparator;
+    comparator?: RolloutRuleModel.ComparatorEnum | null;
     /**
      * The value to compare against.
      */
@@ -27,13 +25,42 @@ export interface RolloutRuleModel {
      * The value to serve when the comparison matches. It must respect the setting type.
      */
     value?: any | null;
-    segmentComparator?: SegmentComparator;
+    /**
+     * The segment comparison operator.
+     */
+    segmentComparator?: RolloutRuleModel.SegmentComparatorEnum | null;
     /**
      * The segment to compare against.
      */
     segmentId?: string | null;
 }
 export namespace RolloutRuleModel {
+    export type ComparatorEnum = 'isOneOf' | 'isNotOneOf' | 'contains' | 'doesNotContain' | 'semVerIsOneOf' | 'semVerIsNotOneOf' | 'semVerLess' | 'semVerLessOrEquals' | 'semVerGreater' | 'semVerGreaterOrEquals' | 'numberEquals' | 'numberDoesNotEqual' | 'numberLess' | 'numberLessOrEquals' | 'numberGreater' | 'numberGreaterOrEquals' | 'sensitiveIsOneOf' | 'sensitiveIsNotOneOf';
+    export const ComparatorEnum = {
+        IsOneOf: 'isOneOf' as ComparatorEnum,
+        IsNotOneOf: 'isNotOneOf' as ComparatorEnum,
+        Contains: 'contains' as ComparatorEnum,
+        DoesNotContain: 'doesNotContain' as ComparatorEnum,
+        SemVerIsOneOf: 'semVerIsOneOf' as ComparatorEnum,
+        SemVerIsNotOneOf: 'semVerIsNotOneOf' as ComparatorEnum,
+        SemVerLess: 'semVerLess' as ComparatorEnum,
+        SemVerLessOrEquals: 'semVerLessOrEquals' as ComparatorEnum,
+        SemVerGreater: 'semVerGreater' as ComparatorEnum,
+        SemVerGreaterOrEquals: 'semVerGreaterOrEquals' as ComparatorEnum,
+        NumberEquals: 'numberEquals' as ComparatorEnum,
+        NumberDoesNotEqual: 'numberDoesNotEqual' as ComparatorEnum,
+        NumberLess: 'numberLess' as ComparatorEnum,
+        NumberLessOrEquals: 'numberLessOrEquals' as ComparatorEnum,
+        NumberGreater: 'numberGreater' as ComparatorEnum,
+        NumberGreaterOrEquals: 'numberGreaterOrEquals' as ComparatorEnum,
+        SensitiveIsOneOf: 'sensitiveIsOneOf' as ComparatorEnum,
+        SensitiveIsNotOneOf: 'sensitiveIsNotOneOf' as ComparatorEnum
+    };
+    export type SegmentComparatorEnum = 'isIn' | 'isNotIn';
+    export const SegmentComparatorEnum = {
+        IsIn: 'isIn' as SegmentComparatorEnum,
+        IsNotIn: 'isNotIn' as SegmentComparatorEnum
+    };
 }
 
 

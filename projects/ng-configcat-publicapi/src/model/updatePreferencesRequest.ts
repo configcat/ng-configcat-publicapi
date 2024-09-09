@@ -9,7 +9,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { KeyGenerationMode } from './keyGenerationMode';
 import { UpdateReasonRequiredEnvironmentModel } from './updateReasonRequiredEnvironmentModel';
 
 
@@ -18,7 +17,10 @@ export interface UpdatePreferencesRequest {
      * Indicates that a mandatory note is required for saving and publishing.
      */
     reasonRequired?: boolean | null;
-    keyGenerationMode?: KeyGenerationMode;
+    /**
+     * Determines the Feature Flag key generation mode.
+     */
+    keyGenerationMode?: UpdatePreferencesRequest.KeyGenerationModeEnum | null;
     /**
      * Indicates whether a variation ID\'s must be shown on the ConfigCat Dashboard.
      */
@@ -33,6 +35,14 @@ export interface UpdatePreferencesRequest {
     reasonRequiredEnvironments?: Array<UpdateReasonRequiredEnvironmentModel> | null;
 }
 export namespace UpdatePreferencesRequest {
+    export type KeyGenerationModeEnum = 'camelCase' | 'lowerCase' | 'upperCase' | 'pascalCase' | 'kebabCase';
+    export const KeyGenerationModeEnum = {
+        CamelCase: 'camelCase' as KeyGenerationModeEnum,
+        LowerCase: 'lowerCase' as KeyGenerationModeEnum,
+        UpperCase: 'upperCase' as KeyGenerationModeEnum,
+        PascalCase: 'pascalCase' as KeyGenerationModeEnum,
+        KebabCase: 'kebabCase' as KeyGenerationModeEnum
+    };
 }
 
 

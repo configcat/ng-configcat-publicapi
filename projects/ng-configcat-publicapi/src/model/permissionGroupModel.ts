@@ -9,9 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { EnvironmentAccessType } from './environmentAccessType';
 import { EnvironmentAccessModel } from './environmentAccessModel';
-import { AccessType } from './accessType';
 import { ProductModel } from './productModel';
 
 
@@ -104,8 +102,14 @@ export interface PermissionGroupModel {
      * Group members has access to product statistics.
      */
     canViewProductStatistics?: boolean;
-    accessType?: AccessType;
-    newEnvironmentAccessType?: EnvironmentAccessType;
+    /**
+     * Represent the Feature Management permission.
+     */
+    accessType?: PermissionGroupModel.AccessTypeEnum;
+    /**
+     * Represent the environment specific Feature Management permission.
+     */
+    newEnvironmentAccessType?: PermissionGroupModel.NewEnvironmentAccessTypeEnum;
     /**
      * List of environment specific permissions.
      */
@@ -113,6 +117,18 @@ export interface PermissionGroupModel {
     product?: ProductModel;
 }
 export namespace PermissionGroupModel {
+    export type AccessTypeEnum = 'readOnly' | 'full' | 'custom';
+    export const AccessTypeEnum = {
+        ReadOnly: 'readOnly' as AccessTypeEnum,
+        Full: 'full' as AccessTypeEnum,
+        Custom: 'custom' as AccessTypeEnum
+    };
+    export type NewEnvironmentAccessTypeEnum = 'full' | 'readOnly' | 'none';
+    export const NewEnvironmentAccessTypeEnum = {
+        Full: 'full' as NewEnvironmentAccessTypeEnum,
+        ReadOnly: 'readOnly' as NewEnvironmentAccessTypeEnum,
+        None: 'none' as NewEnvironmentAccessTypeEnum
+    };
 }
 
 

@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 import { WebhookConfig } from './webhookConfig';
-import { WebHookHttpMethod } from './webHookHttpMethod';
 import { WebhookEnvironment } from './webhookEnvironment';
 import { WebhookHeaderModel } from './webhookHeaderModel';
 
@@ -24,7 +23,10 @@ export interface WebhookModel {
      * The URL of the Webhook.
      */
     url?: string | null;
-    httpMethod?: WebHookHttpMethod;
+    /**
+     * The HTTP method.
+     */
+    httpMethod?: WebhookModel.HttpMethodEnum;
     /**
      * The HTTP body content.
      */
@@ -37,6 +39,11 @@ export interface WebhookModel {
     environment?: WebhookEnvironment;
 }
 export namespace WebhookModel {
+    export type HttpMethodEnum = 'get' | 'post';
+    export const HttpMethodEnum = {
+        Get: 'get' as HttpMethodEnum,
+        Post: 'post' as HttpMethodEnum
+    };
 }
 
 

@@ -9,9 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { EnvironmentAccessType } from './environmentAccessType';
 import { CreateOrUpdateEnvironmentAccessModel } from './createOrUpdateEnvironmentAccessModel';
-import { AccessType } from './accessType';
 
 
 export interface UpdatePermissionGroupRequest { 
@@ -99,14 +97,26 @@ export interface UpdatePermissionGroupRequest {
      * Group members has access to product statistics.
      */
     canViewProductStatistics?: boolean | null;
-    accessType?: AccessType;
-    newEnvironmentAccessType?: EnvironmentAccessType;
+    accessType?: UpdatePermissionGroupRequest.AccessTypeEnum | null;
+    newEnvironmentAccessType?: UpdatePermissionGroupRequest.NewEnvironmentAccessTypeEnum | null;
     /**
      * List of environment specific permissions.
      */
     environmentAccesses?: Array<CreateOrUpdateEnvironmentAccessModel> | null;
 }
 export namespace UpdatePermissionGroupRequest {
+    export type AccessTypeEnum = 'readOnly' | 'full' | 'custom';
+    export const AccessTypeEnum = {
+        ReadOnly: 'readOnly' as AccessTypeEnum,
+        Full: 'full' as AccessTypeEnum,
+        Custom: 'custom' as AccessTypeEnum
+    };
+    export type NewEnvironmentAccessTypeEnum = 'full' | 'readOnly' | 'none';
+    export const NewEnvironmentAccessTypeEnum = {
+        Full: 'full' as NewEnvironmentAccessTypeEnum,
+        ReadOnly: 'readOnly' as NewEnvironmentAccessTypeEnum,
+        None: 'none' as NewEnvironmentAccessTypeEnum
+    };
 }
 
 

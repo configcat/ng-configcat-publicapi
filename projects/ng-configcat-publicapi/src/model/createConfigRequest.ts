@@ -9,7 +9,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { EvaluationVersion } from './evaluationVersion';
 
 
 export interface CreateConfigRequest { 
@@ -25,9 +24,17 @@ export interface CreateConfigRequest {
      * The order of the Config represented on the ConfigCat Dashboard.  Determined from an ascending sequence of integers.
      */
     order?: number | null;
-    evaluationVersion?: EvaluationVersion;
+    /**
+     * Determines the evaluation version of a Config.  Using `v2` enables the new features of Config V2 (https://configcat.com/docs/advanced/config-v2).
+     */
+    evaluationVersion?: CreateConfigRequest.EvaluationVersionEnum;
 }
 export namespace CreateConfigRequest {
+    export type EvaluationVersionEnum = 'v1' | 'v2';
+    export const EvaluationVersionEnum = {
+        V1: 'v1' as EvaluationVersionEnum,
+        V2: 'v2' as EvaluationVersionEnum
+    };
 }
 
 

@@ -9,16 +9,21 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { IntegrationLinkType } from './integrationLinkType';
 
 
 export interface IntegrationLinkModel { 
     key?: string | null;
     description?: string | null;
-    integrationLinkType?: IntegrationLinkType;
+    integrationLinkType?: IntegrationLinkModel.IntegrationLinkTypeEnum;
     url?: string | null;
 }
 export namespace IntegrationLinkModel {
+    export type IntegrationLinkTypeEnum = 'trello' | 'jira' | 'monday';
+    export const IntegrationLinkTypeEnum = {
+        Trello: 'trello' as IntegrationLinkTypeEnum,
+        Jira: 'jira' as IntegrationLinkTypeEnum,
+        Monday: 'monday' as IntegrationLinkTypeEnum
+    };
 }
 
 

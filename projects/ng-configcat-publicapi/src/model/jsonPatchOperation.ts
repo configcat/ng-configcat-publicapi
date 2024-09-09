@@ -9,11 +9,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { OperationType } from './operationType';
 
 
 export interface JsonPatchOperation { 
-    op: OperationType;
+    /**
+     * The JSON Patch operation. (https://jsonpatch.com)
+     */
+    op: JsonPatchOperation.OpEnum;
     /**
      * The source path.
      */
@@ -28,6 +30,16 @@ export interface JsonPatchOperation {
     value?: any | null;
 }
 export namespace JsonPatchOperation {
+    export type OpEnum = 'unknown' | 'add' | 'remove' | 'replace' | 'move' | 'copy' | 'test';
+    export const OpEnum = {
+        Unknown: 'unknown' as OpEnum,
+        Add: 'add' as OpEnum,
+        Remove: 'remove' as OpEnum,
+        Replace: 'replace' as OpEnum,
+        Move: 'move' as OpEnum,
+        Copy: 'copy' as OpEnum,
+        Test: 'test' as OpEnum
+    };
 }
 
 

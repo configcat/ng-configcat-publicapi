@@ -9,7 +9,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { WebHookHttpMethod } from './webHookHttpMethod';
 import { WebhookHeaderModel } from './webhookHeaderModel';
 
 
@@ -22,13 +21,21 @@ export interface WebHookRequest {
      * The HTTP body content.
      */
     content?: string | null;
-    httpMethod?: WebHookHttpMethod;
+    /**
+     * The HTTP method of the remote endpoint.
+     */
+    httpMethod?: WebHookRequest.HttpMethodEnum;
     /**
      * List of HTTP headers.
      */
     webHookHeaders?: Array<WebhookHeaderModel> | null;
 }
 export namespace WebHookRequest {
+    export type HttpMethodEnum = 'get' | 'post';
+    export const HttpMethodEnum = {
+        Get: 'get' as HttpMethodEnum,
+        Post: 'post' as HttpMethodEnum
+    };
 }
 
 

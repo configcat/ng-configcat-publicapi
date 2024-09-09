@@ -9,7 +9,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { SettingType } from './settingType';
 
 
 /**
@@ -32,7 +31,10 @@ export interface SettingDataModel {
      * Description of the Feature Flag or Setting.
      */
     hint?: string | null;
-    settingType?: SettingType;
+    /**
+     * The type of the Feature Flag or Setting.
+     */
+    settingType?: SettingDataModel.SettingTypeEnum;
     /**
      * The order of the Feature Flag or Setting represented on the ConfigCat Dashboard.
      */
@@ -52,6 +54,13 @@ export interface SettingDataModel {
     isWatching?: boolean;
 }
 export namespace SettingDataModel {
+    export type SettingTypeEnum = 'boolean' | 'string' | 'int' | 'double';
+    export const SettingTypeEnum = {
+        Boolean: 'boolean' as SettingTypeEnum,
+        String: 'string' as SettingTypeEnum,
+        Int: 'int' as SettingTypeEnum,
+        Double: 'double' as SettingTypeEnum
+    };
 }
 
 
