@@ -9,6 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { RolloutRuleComparator } from './rolloutRuleComparator';
 import { ProductModel } from './productModel';
 
 
@@ -54,37 +55,13 @@ export interface SegmentModel {
      * The user\'s attribute the evaluation process must take into account.
      */
     comparisonAttribute?: string | null;
-    /**
-     * The comparison operator the evaluation process must use when it compares the given user attribute\'s value with the comparison value.
-     */
-    comparator?: SegmentModel.ComparatorEnum;
+    comparator?: RolloutRuleComparator;
     /**
      * The value to compare with the given user attribute\'s value.
      */
     comparisonValue?: string | null;
 }
 export namespace SegmentModel {
-    export type ComparatorEnum = 'isOneOf' | 'isNotOneOf' | 'contains' | 'doesNotContain' | 'semVerIsOneOf' | 'semVerIsNotOneOf' | 'semVerLess' | 'semVerLessOrEquals' | 'semVerGreater' | 'semVerGreaterOrEquals' | 'numberEquals' | 'numberDoesNotEqual' | 'numberLess' | 'numberLessOrEquals' | 'numberGreater' | 'numberGreaterOrEquals' | 'sensitiveIsOneOf' | 'sensitiveIsNotOneOf';
-    export const ComparatorEnum = {
-        IsOneOf: 'isOneOf' as ComparatorEnum,
-        IsNotOneOf: 'isNotOneOf' as ComparatorEnum,
-        Contains: 'contains' as ComparatorEnum,
-        DoesNotContain: 'doesNotContain' as ComparatorEnum,
-        SemVerIsOneOf: 'semVerIsOneOf' as ComparatorEnum,
-        SemVerIsNotOneOf: 'semVerIsNotOneOf' as ComparatorEnum,
-        SemVerLess: 'semVerLess' as ComparatorEnum,
-        SemVerLessOrEquals: 'semVerLessOrEquals' as ComparatorEnum,
-        SemVerGreater: 'semVerGreater' as ComparatorEnum,
-        SemVerGreaterOrEquals: 'semVerGreaterOrEquals' as ComparatorEnum,
-        NumberEquals: 'numberEquals' as ComparatorEnum,
-        NumberDoesNotEqual: 'numberDoesNotEqual' as ComparatorEnum,
-        NumberLess: 'numberLess' as ComparatorEnum,
-        NumberLessOrEquals: 'numberLessOrEquals' as ComparatorEnum,
-        NumberGreater: 'numberGreater' as ComparatorEnum,
-        NumberGreaterOrEquals: 'numberGreaterOrEquals' as ComparatorEnum,
-        SensitiveIsOneOf: 'sensitiveIsOneOf' as ComparatorEnum,
-        SensitiveIsNotOneOf: 'sensitiveIsNotOneOf' as ComparatorEnum
-    };
 }
 
 

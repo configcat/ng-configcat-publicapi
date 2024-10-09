@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 import { ReasonRequiredEnvironmentModel } from './reasonRequiredEnvironmentModel';
+import { KeyGenerationMode } from './keyGenerationMode';
 
 
 export interface PreferencesModel { 
@@ -17,10 +18,7 @@ export interface PreferencesModel {
      * Indicates that a mandatory note required for saving and publishing.
      */
     reasonRequired?: boolean;
-    /**
-     * Determines the Feature Flag key generation mode.
-     */
-    keyGenerationMode?: PreferencesModel.KeyGenerationModeEnum;
+    keyGenerationMode?: KeyGenerationMode;
     /**
      * Indicates whether a variation ID\'s must be shown on the ConfigCat Dashboard.
      */
@@ -35,14 +33,6 @@ export interface PreferencesModel {
     mandatorySettingHint?: boolean;
 }
 export namespace PreferencesModel {
-    export type KeyGenerationModeEnum = 'camelCase' | 'lowerCase' | 'upperCase' | 'pascalCase' | 'kebabCase';
-    export const KeyGenerationModeEnum = {
-        CamelCase: 'camelCase' as KeyGenerationModeEnum,
-        LowerCase: 'lowerCase' as KeyGenerationModeEnum,
-        UpperCase: 'upperCase' as KeyGenerationModeEnum,
-        PascalCase: 'pascalCase' as KeyGenerationModeEnum,
-        KebabCase: 'kebabCase' as KeyGenerationModeEnum
-    };
 }
 
 

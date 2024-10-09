@@ -9,6 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { EvaluationVersion } from './evaluationVersion';
 import { ProductModel } from './productModel';
 
 
@@ -34,17 +35,9 @@ export interface ConfigModel {
      */
     order?: number;
     migratedConfigId?: string | null;
-    /**
-     * Determines the evaluation version of a Config.  Using `v2` enables the new features of Config V2 (https://configcat.com/docs/advanced/config-v2).
-     */
-    evaluationVersion?: ConfigModel.EvaluationVersionEnum;
+    evaluationVersion?: EvaluationVersion;
 }
 export namespace ConfigModel {
-    export type EvaluationVersionEnum = 'v1' | 'v2';
-    export const EvaluationVersionEnum = {
-        V1: 'v1' as EvaluationVersionEnum,
-        V2: 'v2' as EvaluationVersionEnum
-    };
 }
 
 

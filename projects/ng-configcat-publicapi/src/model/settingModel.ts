@@ -9,6 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { SettingType } from './settingType';
 import { TagModel } from './tagModel';
 
 
@@ -36,10 +37,7 @@ export interface SettingModel {
      * The order of the Feature Flag or Setting represented on the ConfigCat Dashboard.
      */
     order?: number;
-    /**
-     * The type of the Feature Flag or Setting.
-     */
-    settingType?: SettingModel.SettingTypeEnum;
+    settingType?: SettingType;
     /**
      * Identifier of the Feature Flag\'s Config.
      */
@@ -54,13 +52,6 @@ export interface SettingModel {
     tags?: Array<TagModel> | null;
 }
 export namespace SettingModel {
-    export type SettingTypeEnum = 'boolean' | 'string' | 'int' | 'double';
-    export const SettingTypeEnum = {
-        Boolean: 'boolean' as SettingTypeEnum,
-        String: 'string' as SettingTypeEnum,
-        Int: 'int' as SettingTypeEnum,
-        Double: 'double' as SettingTypeEnum
-    };
 }
 
 

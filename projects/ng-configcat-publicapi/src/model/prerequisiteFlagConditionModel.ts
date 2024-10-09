@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 import { ValueModel } from './valueModel';
+import { PrerequisiteComparator } from './prerequisiteComparator';
 
 
 /**
@@ -20,18 +21,10 @@ export interface PrerequisiteFlagConditionModel {
      * The prerequisite flag\'s identifier.
      */
     prerequisiteSettingId: number;
-    /**
-     * Prerequisite flag comparison operator used during the evaluation process.
-     */
-    comparator: PrerequisiteFlagConditionModel.ComparatorEnum;
+    comparator: PrerequisiteComparator;
     prerequisiteComparisonValue: ValueModel;
 }
 export namespace PrerequisiteFlagConditionModel {
-    export type ComparatorEnum = 'equals' | 'doesNotEqual';
-    export const ComparatorEnum = {
-        Equals: 'equals' as ComparatorEnum,
-        DoesNotEqual: 'doesNotEqual' as ComparatorEnum
-    };
 }
 
 

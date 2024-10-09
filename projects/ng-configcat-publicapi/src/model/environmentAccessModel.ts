@@ -9,6 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { EnvironmentAccessType } from './environmentAccessType';
 
 
 export interface EnvironmentAccessModel { 
@@ -36,18 +37,9 @@ export interface EnvironmentAccessModel {
      * Determines whether a mandatory reason must be given every time when the Feature Flags or Settings in the given Environment are saved.
      */
     reasonRequired?: boolean;
-    /**
-     * Represent the environment specific Feature Management permission.
-     */
-    environmentAccessType?: EnvironmentAccessModel.EnvironmentAccessTypeEnum;
+    environmentAccessType?: EnvironmentAccessType;
 }
 export namespace EnvironmentAccessModel {
-    export type EnvironmentAccessTypeEnum = 'full' | 'readOnly' | 'none';
-    export const EnvironmentAccessTypeEnum = {
-        Full: 'full' as EnvironmentAccessTypeEnum,
-        ReadOnly: 'readOnly' as EnvironmentAccessTypeEnum,
-        None: 'none' as EnvironmentAccessTypeEnum
-    };
 }
 
 

@@ -9,6 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { UserComparator } from './userComparator';
 import { ComparisonValueModel } from './comparisonValueModel';
 
 
@@ -20,52 +21,10 @@ export interface UserConditionModel {
      * The User Object attribute that the condition is based on. Can be \"User ID\", \"Email\", \"Country\" or any custom attribute.
      */
     comparisonAttribute: string;
-    /**
-     * The comparison operator which defines the relation between the comparison attribute and the comparison value.
-     */
-    comparator: UserConditionModel.ComparatorEnum;
+    comparator: UserComparator;
     comparisonValue: ComparisonValueModel;
 }
 export namespace UserConditionModel {
-    export type ComparatorEnum = 'isOneOf' | 'isNotOneOf' | 'containsAnyOf' | 'doesNotContainAnyOf' | 'semVerIsOneOf' | 'semVerIsNotOneOf' | 'semVerLess' | 'semVerLessOrEquals' | 'semVerGreater' | 'semVerGreaterOrEquals' | 'numberEquals' | 'numberDoesNotEqual' | 'numberLess' | 'numberLessOrEquals' | 'numberGreater' | 'numberGreaterOrEquals' | 'sensitiveIsOneOf' | 'sensitiveIsNotOneOf' | 'dateTimeBefore' | 'dateTimeAfter' | 'sensitiveTextEquals' | 'sensitiveTextDoesNotEqual' | 'sensitiveTextStartsWithAnyOf' | 'sensitiveTextNotStartsWithAnyOf' | 'sensitiveTextEndsWithAnyOf' | 'sensitiveTextNotEndsWithAnyOf' | 'sensitiveArrayContainsAnyOf' | 'sensitiveArrayDoesNotContainAnyOf' | 'textEquals' | 'textDoesNotEqual' | 'textStartsWithAnyOf' | 'textNotStartsWithAnyOf' | 'textEndsWithAnyOf' | 'textNotEndsWithAnyOf' | 'arrayContainsAnyOf' | 'arrayDoesNotContainAnyOf';
-    export const ComparatorEnum = {
-        IsOneOf: 'isOneOf' as ComparatorEnum,
-        IsNotOneOf: 'isNotOneOf' as ComparatorEnum,
-        ContainsAnyOf: 'containsAnyOf' as ComparatorEnum,
-        DoesNotContainAnyOf: 'doesNotContainAnyOf' as ComparatorEnum,
-        SemVerIsOneOf: 'semVerIsOneOf' as ComparatorEnum,
-        SemVerIsNotOneOf: 'semVerIsNotOneOf' as ComparatorEnum,
-        SemVerLess: 'semVerLess' as ComparatorEnum,
-        SemVerLessOrEquals: 'semVerLessOrEquals' as ComparatorEnum,
-        SemVerGreater: 'semVerGreater' as ComparatorEnum,
-        SemVerGreaterOrEquals: 'semVerGreaterOrEquals' as ComparatorEnum,
-        NumberEquals: 'numberEquals' as ComparatorEnum,
-        NumberDoesNotEqual: 'numberDoesNotEqual' as ComparatorEnum,
-        NumberLess: 'numberLess' as ComparatorEnum,
-        NumberLessOrEquals: 'numberLessOrEquals' as ComparatorEnum,
-        NumberGreater: 'numberGreater' as ComparatorEnum,
-        NumberGreaterOrEquals: 'numberGreaterOrEquals' as ComparatorEnum,
-        SensitiveIsOneOf: 'sensitiveIsOneOf' as ComparatorEnum,
-        SensitiveIsNotOneOf: 'sensitiveIsNotOneOf' as ComparatorEnum,
-        DateTimeBefore: 'dateTimeBefore' as ComparatorEnum,
-        DateTimeAfter: 'dateTimeAfter' as ComparatorEnum,
-        SensitiveTextEquals: 'sensitiveTextEquals' as ComparatorEnum,
-        SensitiveTextDoesNotEqual: 'sensitiveTextDoesNotEqual' as ComparatorEnum,
-        SensitiveTextStartsWithAnyOf: 'sensitiveTextStartsWithAnyOf' as ComparatorEnum,
-        SensitiveTextNotStartsWithAnyOf: 'sensitiveTextNotStartsWithAnyOf' as ComparatorEnum,
-        SensitiveTextEndsWithAnyOf: 'sensitiveTextEndsWithAnyOf' as ComparatorEnum,
-        SensitiveTextNotEndsWithAnyOf: 'sensitiveTextNotEndsWithAnyOf' as ComparatorEnum,
-        SensitiveArrayContainsAnyOf: 'sensitiveArrayContainsAnyOf' as ComparatorEnum,
-        SensitiveArrayDoesNotContainAnyOf: 'sensitiveArrayDoesNotContainAnyOf' as ComparatorEnum,
-        TextEquals: 'textEquals' as ComparatorEnum,
-        TextDoesNotEqual: 'textDoesNotEqual' as ComparatorEnum,
-        TextStartsWithAnyOf: 'textStartsWithAnyOf' as ComparatorEnum,
-        TextNotStartsWithAnyOf: 'textNotStartsWithAnyOf' as ComparatorEnum,
-        TextEndsWithAnyOf: 'textEndsWithAnyOf' as ComparatorEnum,
-        TextNotEndsWithAnyOf: 'textNotEndsWithAnyOf' as ComparatorEnum,
-        ArrayContainsAnyOf: 'arrayContainsAnyOf' as ComparatorEnum,
-        ArrayDoesNotContainAnyOf: 'arrayDoesNotContainAnyOf' as ComparatorEnum
-    };
 }
 
 

@@ -9,7 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { EnvironmentAccessType } from './environmentAccessType';
 import { EnvironmentAccessModel } from './environmentAccessModel';
+import { AccessType } from './accessType';
 import { ProductModel } from './productModel';
 
 
@@ -103,13 +105,11 @@ export interface PermissionGroupModel {
      */
     canViewProductStatistics?: boolean;
     /**
-     * Represent the Feature Management permission.
+     * Group members can disable two-factor authentication for other members.
      */
-    accessType?: PermissionGroupModel.AccessTypeEnum;
-    /**
-     * Represent the environment specific Feature Management permission.
-     */
-    newEnvironmentAccessType?: PermissionGroupModel.NewEnvironmentAccessTypeEnum;
+    canDisable2FA?: boolean;
+    accessType?: AccessType;
+    newEnvironmentAccessType?: EnvironmentAccessType;
     /**
      * List of environment specific permissions.
      */
@@ -117,18 +117,6 @@ export interface PermissionGroupModel {
     product?: ProductModel;
 }
 export namespace PermissionGroupModel {
-    export type AccessTypeEnum = 'readOnly' | 'full' | 'custom';
-    export const AccessTypeEnum = {
-        ReadOnly: 'readOnly' as AccessTypeEnum,
-        Full: 'full' as AccessTypeEnum,
-        Custom: 'custom' as AccessTypeEnum
-    };
-    export type NewEnvironmentAccessTypeEnum = 'full' | 'readOnly' | 'none';
-    export const NewEnvironmentAccessTypeEnum = {
-        Full: 'full' as NewEnvironmentAccessTypeEnum,
-        ReadOnly: 'readOnly' as NewEnvironmentAccessTypeEnum,
-        None: 'none' as NewEnvironmentAccessTypeEnum
-    };
 }
 
 

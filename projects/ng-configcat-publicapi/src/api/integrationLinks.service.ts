@@ -12,7 +12,9 @@
 /* tslint:disable:no-unused-variable member-ordering */
 
 import { Inject, Injectable, Optional }                      from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams, HttpResponse, HttpEvent, HttpParameterCodec, HttpContext }       from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams,
+         HttpResponse, HttpEvent, HttpParameterCodec, HttpContext 
+        }       from '@angular/common/http';
 import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
@@ -28,6 +30,8 @@ import { DeleteIntegrationLinkModel } from '../model/deleteIntegrationLinkModel'
 import { IntegrationLinkDetailsModel } from '../model/integrationLinkDetailsModel';
 // @ts-ignore
 import { IntegrationLinkModel } from '../model/integrationLinkModel';
+// @ts-ignore
+import { IntegrationLinkType } from '../model/integrationLinkType';
 
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -110,10 +114,10 @@ export class IntegrationLinksService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: 'trello' | 'jira' | 'monday', key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<IntegrationLinkModel>;
-    public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: 'trello' | 'jira' | 'monday', key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<IntegrationLinkModel>>;
-    public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: 'trello' | 'jira' | 'monday', key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<IntegrationLinkModel>>;
-    public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: 'trello' | 'jira' | 'monday', key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<IntegrationLinkModel>;
+    public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<IntegrationLinkModel>>;
+    public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<IntegrationLinkModel>>;
+    public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (environmentId === null || environmentId === undefined) {
             throw new Error('Required parameter environmentId was null or undefined when calling addOrUpdateIntegrationLink.');
         }
@@ -181,7 +185,7 @@ export class IntegrationLinksService {
             }
         }
 
-        let localVarPath = `/v1/environments/${this.configuration.encodeParam({name: "environmentId", value: environmentId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/settings/${this.configuration.encodeParam({name: "settingId", value: settingId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}/integrationLinks/${this.configuration.encodeParam({name: "integrationLinkType", value: integrationLinkType, in: "path", style: "simple", explode: false, dataType: "'trello' | 'jira' | 'monday'", dataFormat: undefined})}/${this.configuration.encodeParam({name: "key", value: key, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
+        let localVarPath = `/v1/environments/${this.configuration.encodeParam({name: "environmentId", value: environmentId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/settings/${this.configuration.encodeParam({name: "settingId", value: settingId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}/integrationLinks/${this.configuration.encodeParam({name: "integrationLinkType", value: integrationLinkType, in: "path", style: "simple", explode: false, dataType: "IntegrationLinkType", dataFormat: undefined})}/${this.configuration.encodeParam({name: "key", value: key, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
         return this.httpClient.request<IntegrationLinkModel>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
@@ -206,10 +210,10 @@ export class IntegrationLinksService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: 'trello' | 'jira' | 'monday', key: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<DeleteIntegrationLinkModel>;
-    public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: 'trello' | 'jira' | 'monday', key: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<DeleteIntegrationLinkModel>>;
-    public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: 'trello' | 'jira' | 'monday', key: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<DeleteIntegrationLinkModel>>;
-    public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: 'trello' | 'jira' | 'monday', key: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<DeleteIntegrationLinkModel>;
+    public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<DeleteIntegrationLinkModel>>;
+    public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<DeleteIntegrationLinkModel>>;
+    public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (environmentId === null || environmentId === undefined) {
             throw new Error('Required parameter environmentId was null or undefined when calling deleteIntegrationLink.');
         }
@@ -266,7 +270,7 @@ export class IntegrationLinksService {
             }
         }
 
-        let localVarPath = `/v1/environments/${this.configuration.encodeParam({name: "environmentId", value: environmentId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/settings/${this.configuration.encodeParam({name: "settingId", value: settingId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}/integrationLinks/${this.configuration.encodeParam({name: "integrationLinkType", value: integrationLinkType, in: "path", style: "simple", explode: false, dataType: "'trello' | 'jira' | 'monday'", dataFormat: undefined})}/${this.configuration.encodeParam({name: "key", value: key, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
+        let localVarPath = `/v1/environments/${this.configuration.encodeParam({name: "environmentId", value: environmentId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/settings/${this.configuration.encodeParam({name: "settingId", value: settingId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}/integrationLinks/${this.configuration.encodeParam({name: "integrationLinkType", value: integrationLinkType, in: "path", style: "simple", explode: false, dataType: "IntegrationLinkType", dataFormat: undefined})}/${this.configuration.encodeParam({name: "key", value: key, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
         return this.httpClient.request<DeleteIntegrationLinkModel>('delete', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
@@ -288,10 +292,10 @@ export class IntegrationLinksService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getIntegrationLinkDetails(integrationLinkType: 'trello' | 'jira' | 'monday', key: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<IntegrationLinkDetailsModel>;
-    public getIntegrationLinkDetails(integrationLinkType: 'trello' | 'jira' | 'monday', key: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<IntegrationLinkDetailsModel>>;
-    public getIntegrationLinkDetails(integrationLinkType: 'trello' | 'jira' | 'monday', key: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<IntegrationLinkDetailsModel>>;
-    public getIntegrationLinkDetails(integrationLinkType: 'trello' | 'jira' | 'monday', key: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<IntegrationLinkDetailsModel>;
+    public getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<IntegrationLinkDetailsModel>>;
+    public getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<IntegrationLinkDetailsModel>>;
+    public getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (integrationLinkType === null || integrationLinkType === undefined) {
             throw new Error('Required parameter integrationLinkType was null or undefined when calling getIntegrationLinkDetails.');
         }
@@ -342,7 +346,7 @@ export class IntegrationLinksService {
             }
         }
 
-        let localVarPath = `/v1/integrationLink/${this.configuration.encodeParam({name: "integrationLinkType", value: integrationLinkType, in: "path", style: "simple", explode: false, dataType: "'trello' | 'jira' | 'monday'", dataFormat: undefined})}/${this.configuration.encodeParam({name: "key", value: key, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/details`;
+        let localVarPath = `/v1/integrationLink/${this.configuration.encodeParam({name: "integrationLinkType", value: integrationLinkType, in: "path", style: "simple", explode: false, dataType: "IntegrationLinkType", dataFormat: undefined})}/${this.configuration.encodeParam({name: "key", value: key, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/details`;
         return this.httpClient.request<IntegrationLinkDetailsModel>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,

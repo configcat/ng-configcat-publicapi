@@ -9,6 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { EnvironmentAccessType } from './environmentAccessType';
 
 
 export interface CreateOrUpdateEnvironmentAccessModel { 
@@ -16,18 +17,9 @@ export interface CreateOrUpdateEnvironmentAccessModel {
      * Identifier of the Environment.
      */
     environmentId?: string;
-    /**
-     * Represent the environment specific Feature Management permission.
-     */
-    environmentAccessType?: CreateOrUpdateEnvironmentAccessModel.EnvironmentAccessTypeEnum;
+    environmentAccessType?: EnvironmentAccessType;
 }
 export namespace CreateOrUpdateEnvironmentAccessModel {
-    export type EnvironmentAccessTypeEnum = 'full' | 'readOnly' | 'none';
-    export const EnvironmentAccessTypeEnum = {
-        Full: 'full' as EnvironmentAccessTypeEnum,
-        ReadOnly: 'readOnly' as EnvironmentAccessTypeEnum,
-        None: 'none' as EnvironmentAccessTypeEnum
-    };
 }
 
 

@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 import { InitialValue } from './initialValue';
+import { SettingType } from './settingType';
 
 
 export interface CreateSettingInitialValues { 
@@ -33,23 +34,13 @@ export interface CreateSettingInitialValues {
      * The name of the Feature Flag or Setting.
      */
     name: string;
-    /**
-     * The type of the Feature Flag or Setting.
-     */
-    settingType: CreateSettingInitialValues.SettingTypeEnum;
+    settingType: SettingType;
     /**
      * Optional, initial value of the Feature Flag or Setting in the given Environments.
      */
     initialValues?: Array<InitialValue> | null;
 }
 export namespace CreateSettingInitialValues {
-    export type SettingTypeEnum = 'boolean' | 'string' | 'int' | 'double';
-    export const SettingTypeEnum = {
-        Boolean: 'boolean' as SettingTypeEnum,
-        String: 'string' as SettingTypeEnum,
-        Int: 'int' as SettingTypeEnum,
-        Double: 'double' as SettingTypeEnum
-    };
 }
 
 
