@@ -15,7 +15,7 @@ export interface UpdateTagModel {
      */
     name?: string | null;
     /**
-     * Color of the Tag.
+     * Color of the Tag. Possible values: `panther`, `whale`, `salmon`, `lizard`, `canary`, `koala`, or any HTML color code.
      */
     color?: string | null;
 }

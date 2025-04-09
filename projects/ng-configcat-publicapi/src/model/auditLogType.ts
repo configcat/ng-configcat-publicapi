@@ -9,7 +9,7 @@
  */
 
 
-export type AuditLogType = 'productCreated' | 'productChanged' | 'productOwnershipTransferred' | 'productDeleted' | 'productsReordered' | 'teamMemberInvited' | 'teamMemberInvitationRevoked' | 'teamMemberJoined' | 'teamMemberPermissionGroupChanged' | 'teamMemberRemoved' | 'teamMemberLeft' | 'teamMemberInvitationChanged' | 'teamMemberInvitationResent' | 'teamMemberInvitationRejected' | 'configCreated' | 'configChanged' | 'configDeleted' | 'configsReordered' | 'environmentCreated' | 'environmentChanged' | 'environmentDeleted' | 'environmentsReordered' | 'settingCreated' | 'settingChanged' | 'settingDeleted' | 'settingsReordered' | 'settingValueChanged' | 'webHookCreated' | 'webHookChanged' | 'webHookDeleted' | 'permissionGroupCreated' | 'permissionGroupChanged' | 'permissionGroupDeleted' | 'permissionGroupDefault' | 'apiKeyAdded' | 'apiKeyRemoved' | 'integrationAdded' | 'integrationChanged' | 'integrationRemoved' | 'apiKeyConnected' | 'integrationLinkAdded' | 'integrationLinkRemoved' | 'organizationAdded' | 'organizationRemoved' | 'organizationChanged' | 'organizationSubscriptionTypeChanged' | 'organizationAdminChanged' | 'organizationAdminLeft' | 'twoFactorDisabledForMember' | 'tagAdded' | 'tagChanged' | 'tagRemoved' | 'settingTagAdded' | 'settingTagRemoved' | 'publicApiAccessTokenAdded' | 'publicApiAccessTokenRemoved' | 'domainAdded' | 'domainVerified' | 'domainRemoved' | 'domainSamlConfigured' | 'domainSamlDeleted' | 'autoProvisioningConfigurationChanged' | 'samlIdpConfigurationAdded' | 'samlIdpConfigurationRemoved' | 'samlIdpConfigurationUpdated' | 'organizationMemberJoined' | 'organizationMemberProductJoinRequested' | 'organizationMemberProductJoinRequestRejected' | 'organizationMemberProductJoinRequestApproved' | 'organizationMemberRemoved' | 'codeReferencesUploaded' | 'codeReferenceDeleted' | 'codeReferenceStaleBranchDeleted' | 'segmentCreated' | 'segmentChanged' | 'segmentDeleted' | 'webhookSigningKeyDeleted' | 'webhookSigningKeyCreated';
+export type AuditLogType = 'productCreated' | 'productChanged' | 'productOwnershipTransferred' | 'productDeleted' | 'productsReordered' | 'teamMemberInvited' | 'teamMemberInvitationRevoked' | 'teamMemberJoined' | 'teamMemberPermissionGroupChanged' | 'teamMemberRemoved' | 'teamMemberLeft' | 'teamMemberInvitationChanged' | 'teamMemberInvitationResent' | 'teamMemberInvitationRejected' | 'configCreated' | 'configChanged' | 'configDeleted' | 'configsReordered' | 'environmentCreated' | 'environmentChanged' | 'environmentDeleted' | 'environmentsReordered' | 'settingCreated' | 'settingChanged' | 'settingDeleted' | 'settingsReordered' | 'settingValueChanged' | 'webHookCreated' | 'webHookChanged' | 'webHookDeleted' | 'permissionGroupCreated' | 'permissionGroupChanged' | 'permissionGroupDeleted' | 'permissionGroupDefault' | 'apiKeyAdded' | 'apiKeyRemoved' | 'integrationAdded' | 'integrationChanged' | 'integrationRemoved' | 'apiKeyConnected' | 'integrationLinkAdded' | 'integrationLinkRemoved' | 'organizationAdded' | 'organizationRemoved' | 'organizationChanged' | 'organizationSubscriptionTypeChanged' | 'organizationAdminChanged' | 'organizationAdminLeft' | 'twoFactorDisabledForMember' | 'tagAdded' | 'tagChanged' | 'tagRemoved' | 'settingTagAdded' | 'settingTagRemoved' | 'publicApiAccessTokenAdded' | 'publicApiAccessTokenRemoved' | 'domainAdded' | 'domainVerified' | 'domainRemoved' | 'domainSamlConfigured' | 'domainSamlDeleted' | 'autoProvisioningConfigurationChanged' | 'samlIdpConfigurationAdded' | 'samlIdpConfigurationRemoved' | 'samlIdpConfigurationUpdated' | 'autoProvisioningEnabledChanged' | 'organizationMemberJoined' | 'organizationMemberProductJoinRequested' | 'organizationMemberProductJoinRequestRejected' | 'organizationMemberProductJoinRequestApproved' | 'organizationMemberRemoved' | 'codeReferencesUploaded' | 'codeReferenceDeleted' | 'codeReferenceStaleBranchDeleted' | 'segmentCreated' | 'segmentChanged' | 'segmentDeleted' | 'webhookSigningKeyDeleted' | 'webhookSigningKeyCreated' | 'userProvisioningConfigurationChanged' | 'syncGroupProvisioningRuleChanged' | 'syncGroupsReordered' | 'syncUserProvisioningEnabled' | 'syncUserProvisioningDisabled' | 'userEmailChanged' | 'userFullNameChanged' | 'userDisabled' | 'awsConnected' | 'awsDisconnected' | 'userEnabled';
 
 export const AuditLogType = {
     ProductCreated: 'productCreated' as AuditLogType,
@@ -77,6 +77,7 @@ export const AuditLogType = {
     SamlIdpConfigurationAdded: 'samlIdpConfigurationAdded' as AuditLogType,
     SamlIdpConfigurationRemoved: 'samlIdpConfigurationRemoved' as AuditLogType,
     SamlIdpConfigurationUpdated: 'samlIdpConfigurationUpdated' as AuditLogType,
+    AutoProvisioningEnabledChanged: 'autoProvisioningEnabledChanged' as AuditLogType,
     OrganizationMemberJoined: 'organizationMemberJoined' as AuditLogType,
     OrganizationMemberProductJoinRequested: 'organizationMemberProductJoinRequested' as AuditLogType,
     OrganizationMemberProductJoinRequestRejected: 'organizationMemberProductJoinRequestRejected' as AuditLogType,
@@ -89,6 +90,17 @@ export const AuditLogType = {
     SegmentChanged: 'segmentChanged' as AuditLogType,
     SegmentDeleted: 'segmentDeleted' as AuditLogType,
     WebhookSigningKeyDeleted: 'webhookSigningKeyDeleted' as AuditLogType,
-    WebhookSigningKeyCreated: 'webhookSigningKeyCreated' as AuditLogType
+    WebhookSigningKeyCreated: 'webhookSigningKeyCreated' as AuditLogType,
+    UserProvisioningConfigurationChanged: 'userProvisioningConfigurationChanged' as AuditLogType,
+    SyncGroupProvisioningRuleChanged: 'syncGroupProvisioningRuleChanged' as AuditLogType,
+    SyncGroupsReordered: 'syncGroupsReordered' as AuditLogType,
+    SyncUserProvisioningEnabled: 'syncUserProvisioningEnabled' as AuditLogType,
+    SyncUserProvisioningDisabled: 'syncUserProvisioningDisabled' as AuditLogType,
+    UserEmailChanged: 'userEmailChanged' as AuditLogType,
+    UserFullNameChanged: 'userFullNameChanged' as AuditLogType,
+    UserDisabled: 'userDisabled' as AuditLogType,
+    AwsConnected: 'awsConnected' as AuditLogType,
+    AwsDisconnected: 'awsDisconnected' as AuditLogType,
+    UserEnabled: 'userEnabled' as AuditLogType
 };
 

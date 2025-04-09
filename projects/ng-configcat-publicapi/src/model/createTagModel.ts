@@ -15,7 +15,7 @@ export interface CreateTagModel {
      */
     name: string;
     /**
-     * Color of the Tag.
+     * Color of the Tag. Possible values: `panther`, `whale`, `salmon`, `lizard`, `canary`, `koala`, or any HTML color code.
      */
     color?: string | null;
 }

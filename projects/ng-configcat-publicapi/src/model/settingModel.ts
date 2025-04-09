@@ -45,6 +45,10 @@ export interface SettingModel {
      */
     configName?: string | null;
     /**
+     * The creation time of the Feature Flag or Setting.
+     */
+    createdAt?: string | null;
+    /**
      * The tags attached to the Feature Flag or Setting.
      */
     tags?: Array<TagModel> | null;

@@ -96,7 +96,7 @@ export class AuditLogsService {
 
     /**
      * List Audit log items for Product
-     * This endpoint returns the list of Audit log items for a given Product  and the result can be optionally filtered by Config and/or Environment.
+     * This endpoint returns the list of Audit log items for a given Product  and the result can be optionally filtered by Config and/or Environment.  If neither &#x60;fromUtcDateTime&#x60; nor &#x60;toUtcDateTime&#x60; is set, the audit logs for the **last 7 days** will be returned.  The distance between &#x60;fromUtcDateTime&#x60; and &#x60;toUtcDateTime&#x60; cannot exceed **30 days**.
      * @param productId The identifier of the Product.
      * @param configId The identifier of the Config.
      * @param environmentId The identifier of the Environment.
@@ -268,7 +268,7 @@ export class AuditLogsService {
 
     /**
      * List Audit log items for Organization
-     * This endpoint returns the list of Audit log items for a given Organization  and the result can be optionally filtered by Product and/or Config and/or Environment.
+     * This endpoint returns the list of Audit log items for a given Organization  and the result can be optionally filtered by Product and/or Config and/or Environment.  If neither &#x60;fromUtcDateTime&#x60; nor &#x60;toUtcDateTime&#x60; is set, the audit logs for the **last 7 days** will be returned.  The distance between &#x60;fromUtcDateTime&#x60; and &#x60;toUtcDateTime&#x60; cannot exceed **30 days**.
      * @param organizationId The identifier of the Organization.
      * @param productId The identifier of the Product.
      * @param configId The identifier of the Config.
