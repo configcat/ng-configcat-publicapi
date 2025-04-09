@@ -15,9 +15,13 @@
 export type SettingType = 'boolean' | 'string' | 'int' | 'double';
 
 export const SettingType = {
+
     Boolean: 'boolean' as SettingType,
+
     String: 'string' as SettingType,
+
     Int: 'int' as SettingType,
+
     Double: 'double' as SettingType
 };
 

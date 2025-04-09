@@ -15,7 +15,9 @@
 export type PrerequisiteComparator = 'equals' | 'doesNotEqual';
 
 export const PrerequisiteComparator = {
+
     Equals: 'equals' as PrerequisiteComparator,
+
     DoesNotEqual: 'doesNotEqual' as PrerequisiteComparator
 };
 

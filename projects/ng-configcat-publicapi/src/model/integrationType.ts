@@ -12,11 +12,17 @@
 export type IntegrationType = 'dataDog' | 'slack' | 'amplitude' | 'mixPanel' | 'segment' | 'pubNub';
 
 export const IntegrationType = {
+
     DataDog: 'dataDog' as IntegrationType,
+
     Slack: 'slack' as IntegrationType,
+
     Amplitude: 'amplitude' as IntegrationType,
+
     MixPanel: 'mixPanel' as IntegrationType,
+
     Segment: 'segment' as IntegrationType,
+
     PubNub: 'pubNub' as IntegrationType
 };
 
