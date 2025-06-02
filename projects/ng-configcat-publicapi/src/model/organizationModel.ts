@@ -16,10 +16,10 @@ export interface OrganizationModel {
     /**
      * Identifier of the Organization.
      */
-    organizationId?: string;
+    organizationId: string;
     /**
      * Name of the Organization.
      */
-    name?: string | null;
+    name: string;
 }
 

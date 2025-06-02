@@ -21,7 +21,7 @@ export interface CreateSettingInitialValues {
      */
     tags?: Array<number> | null;
     /**
-     * The order of the Setting represented on the ConfigCat Dashboard.  Determined from an ascending sequence of integers.
+     * The order of the Setting represented on the ConfigCat Dashboard. Determined from an ascending sequence of integers.
      */
     order?: number | null;
     /**
@@ -34,9 +34,13 @@ export interface CreateSettingInitialValues {
     name: string;
     settingType: SettingType;
     /**
-     * Optional, initial value of the Feature Flag or Setting in the given Environments.
+     * Optional, initial value of the Feature Flag or Setting in the given Environments. Only one of the SettingIdToInitFrom or the InitialValues properties can be set.
      */
     initialValues?: Array<InitialValue> | null;
+    /**
+     * Optional, the SettingId to initialize the values and tags of the Feature Flag or Setting from. Only can be set if you have at least ReadOnly access in all the Environments. Only one of the SettingIdToInitFrom or the InitialValues properties can be set.
+     */
+    settingIdToInitFrom?: number | null;
 }
 export namespace CreateSettingInitialValues {
 }

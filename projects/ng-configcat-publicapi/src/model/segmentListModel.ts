@@ -11,46 +11,46 @@ import { ProductModel } from './productModel';
 
 
 export interface SegmentListModel { 
-    product?: ProductModel;
+    product: ProductModel;
     /**
      * Identifier of the Segment.
      */
-    segmentId?: string;
+    segmentId: string;
     /**
      * Name of the Segment.
      */
-    name?: string | null;
+    name: string;
     /**
      * Description of the Segment.
      */
-    description?: string | null;
+    description: string | null;
     /**
      * The email of the user who created the Segment.
      */
-    creatorEmail?: string | null;
+    creatorEmail: string | null;
     /**
      * The name of the user who created the Segment.
      */
-    creatorFullName?: string | null;
+    creatorFullName: string | null;
     /**
      * The date and time when the Segment was created.
      */
-    createdAt?: string;
+    createdAt: string;
     /**
      * The email of the user who last updated the Segment.
      */
-    lastUpdaterEmail?: string | null;
+    lastUpdaterEmail: string | null;
     /**
      * The name of the user who last updated the Segment.
      */
-    lastUpdaterFullName?: string | null;
+    lastUpdaterFullName: string | null;
     /**
      * The date and time when the Segment was last updated.
      */
-    updatedAt?: string;
+    updatedAt: string;
     /**
      * Determines how many Feature Flags and Settings are using the Segment.
      */
-    usage?: number;
+    usage: number;
 }
 

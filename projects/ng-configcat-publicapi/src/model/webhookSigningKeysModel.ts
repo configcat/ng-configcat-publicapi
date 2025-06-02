@@ -13,10 +13,10 @@ export interface WebhookSigningKeysModel {
     /**
      * The first signing key.
      */
-    key1?: string | null;
+    key1: string | null;
     /**
      * The second signing key.
      */
-    key2?: string | null;
+    key2: string | null;
 }
 

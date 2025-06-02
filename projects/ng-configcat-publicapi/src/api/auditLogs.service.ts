@@ -21,7 +21,7 @@ import { AuditLogItemModel } from '../model/auditLogItemModel';
 // @ts-ignore
 import { AuditLogType } from '../model/auditLogType';
 // @ts-ignore
-import { SettingModel } from '../model/settingModel';
+import { DeletedSettingModel } from '../model/deletedSettingModel';
 
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -121,9 +121,9 @@ export class AuditLogsService extends BaseService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getDeletedSettings(configId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<SettingModel>>;
-    public getDeletedSettings(configId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<SettingModel>>>;
-    public getDeletedSettings(configId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Array<SettingModel>>>;
+    public getDeletedSettings(configId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<DeletedSettingModel>>;
+    public getDeletedSettings(configId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<DeletedSettingModel>>>;
+    public getDeletedSettings(configId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Array<DeletedSettingModel>>>;
     public getDeletedSettings(configId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (configId === null || configId === undefined) {
             throw new Error('Required parameter configId was null or undefined when calling getDeletedSettings.');
@@ -158,7 +158,7 @@ export class AuditLogsService extends BaseService {
         }
 
         let localVarPath = `/v1/configs/${this.configuration.encodeParam({name: "configId", value: configId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/deleted-settings`;
-        return this.httpClient.request<Array<SettingModel>>('get', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<Array<DeletedSettingModel>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,

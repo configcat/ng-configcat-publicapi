@@ -18,40 +18,40 @@ export interface SettingModel {
     /**
      * Identifier of the Feature Flag or Setting.
      */
-    settingId?: number;
+    settingId: number;
     /**
      * Key of the Feature Flag or Setting.
      */
-    key?: string | null;
+    key: string;
     /**
      * Name of the Feature Flag or Setting.
      */
-    name?: string | null;
+    name: string;
     /**
      * Description of the Feature Flag or Setting.
      */
-    hint?: string | null;
+    hint: string | null;
     /**
      * The order of the Feature Flag or Setting represented on the ConfigCat Dashboard.
      */
-    order?: number;
-    settingType?: SettingType;
+    order: number;
+    settingType: SettingType;
     /**
      * Identifier of the Feature Flag\'s Config.
      */
-    configId?: string;
+    configId: string;
     /**
      * Name of the Feature Flag\'s Config.
      */
-    configName?: string | null;
+    configName: string;
     /**
      * The creation time of the Feature Flag or Setting.
      */
-    createdAt?: string | null;
+    createdAt: string | null;
     /**
      * The tags attached to the Feature Flag or Setting.
      */
-    tags?: Array<TagModel> | null;
+    tags: Array<TagModel>;
 }
 export namespace SettingModel {
 }

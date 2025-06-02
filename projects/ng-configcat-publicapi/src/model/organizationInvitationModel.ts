@@ -13,34 +13,34 @@ export interface OrganizationInvitationModel {
     /**
      * The identifier of the Invitation.
      */
-    invitationId?: string;
+    invitationId: string;
     /**
      * The invited user\'s email address.
      */
-    email?: string | null;
+    email: string | null;
     /**
      * The identifier of the Product the user was invited to.
      */
-    productId?: string;
+    productId: string;
     /**
      * The name of the Product the user was invited to.
      */
-    productName?: string | null;
+    productName: string | null;
     /**
      * The identifier of the Permission Group the user was invited to.
      */
-    permissionGroupId?: number;
+    permissionGroupId: number;
     /**
      * Creation time of the Invitation.
      */
-    createdAt?: string;
+    createdAt: string;
     /**
      * Determines whether the Invitation is expired.
      */
-    expired?: boolean;
+    expired: boolean;
     /**
      * Expiration time of the Invitation.
      */
-    expires?: string;
+    expires: string;
 }
 

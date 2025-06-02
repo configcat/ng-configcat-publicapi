@@ -14,11 +14,11 @@ import { SettingDataModel } from './settingDataModel';
 
 
 export interface IntegrationLinkDetail { 
-    product?: ProductModel;
-    config?: ConfigModel;
-    environment?: EnvironmentModel;
-    setting?: SettingDataModel;
-    readOnly?: boolean;
-    status?: string | null;
+    product: ProductModel;
+    config: ConfigModel;
+    environment: EnvironmentModel;
+    setting: SettingDataModel;
+    readOnly: boolean;
+    status: string;
 }
 

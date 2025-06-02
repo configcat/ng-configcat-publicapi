@@ -11,18 +11,18 @@ import { AuditLogType } from './auditLogType';
 
 
 export interface AuditLogItemModel { 
-    auditLogId?: number;
-    auditLogDateTime?: string;
-    auditLogTypeEnum?: AuditLogType;
-    changeSetId?: string | null;
-    truncated?: boolean;
-    auditLogType?: string | null;
-    userEmail?: string | null;
-    userName?: string | null;
-    where?: string | null;
-    why?: string | null;
-    actionTarget?: string | null;
-    details?: string | null;
+    auditLogId: number;
+    auditLogDateTime: string;
+    auditLogTypeEnum: AuditLogType;
+    changeSetId: string | null;
+    truncated: boolean;
+    auditLogType: string | null;
+    userEmail: string | null;
+    userName: string | null;
+    where: string | null;
+    why: string | null;
+    actionTarget: string | null;
+    details: string | null;
 }
 export namespace AuditLogItemModel {
 }

@@ -14,6 +14,6 @@ export interface UpdateEvaluationFormulasModel {
     /**
      * Evaluation descriptors of each updated Feature Flag and Setting.
      */
-    updateFormulas?: Array<UpdateEvaluationFormulaWithIdModel> | null;
+    updateFormulas?: Array<UpdateEvaluationFormulaWithIdModel>;
 }
 

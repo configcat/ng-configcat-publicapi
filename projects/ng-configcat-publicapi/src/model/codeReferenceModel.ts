@@ -7,41 +7,41 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ReferenceLines } from './referenceLines';
+import { ReferenceLinesModel } from './referenceLinesModel';
 
 
 export interface CodeReferenceModel { 
     /**
      * The source control branch on where the scan was performed. (Source of the branch selector on the ConfigCat Dashboard)
      */
-    branch?: string | null;
+    branch: string | null;
     /**
      * The actual references to the given Feature Flag or Setting.
      */
-    references?: Array<ReferenceLines> | null;
+    references: Array<ReferenceLinesModel> | null;
     /**
      * The related commit\'s URL.
      */
-    commitUrl?: string | null;
+    commitUrl: string | null;
     /**
      * The related commit\'s hash.
      */
-    commitHash?: string | null;
+    commitHash: string | null;
     /**
      * The date and time when the reference report was uploaded.
      */
-    syncedAt?: string;
+    syncedAt: string;
     /**
      * The source control repository that contains the scanned code.
      */
-    repository?: string | null;
+    repository: string | null;
     /**
      * The identifier of the reference report.
      */
-    codeReferenceId?: string;
+    codeReferenceId: string;
     /**
      * The code reference scanning tool\'s name.
      */
-    uploader?: string | null;
+    uploader: string | null;
 }
 

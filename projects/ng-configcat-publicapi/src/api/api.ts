@@ -38,4 +38,6 @@ export * from './tags.service';
 import { TagsService } from './tags.service';
 export * from './webhooks.service';
 import { WebhooksService } from './webhooks.service';
-export const APIS = [AuditLogsService, CodeReferencesService, ConfigsService, EnvironmentsService, FeatureFlagSettingValuesService, FeatureFlagSettingValuesUsingSDKKeyService, FeatureFlagSettingValuesUsingSDKKeyV2Service, FeatureFlagSettingValuesV2Service, FeatureFlagsSettingsService, IntegrationLinksService, IntegrationsService, MeService, MembersService, OrganizationsService, PermissionGroupsService, ProductsService, SDKKeysService, SegmentsService, TagsService, WebhooksService];
+export * from './zombieStaleFlags.service';
+import { ZombieStaleFlagsService } from './zombieStaleFlags.service';
+export const APIS = [AuditLogsService, CodeReferencesService, ConfigsService, EnvironmentsService, FeatureFlagSettingValuesService, FeatureFlagSettingValuesUsingSDKKeyService, FeatureFlagSettingValuesUsingSDKKeyV2Service, FeatureFlagSettingValuesV2Service, FeatureFlagsSettingsService, IntegrationLinksService, IntegrationsService, MeService, MembersService, OrganizationsService, PermissionGroupsService, ProductsService, SDKKeysService, SegmentsService, TagsService, WebhooksService, ZombieStaleFlagsService];

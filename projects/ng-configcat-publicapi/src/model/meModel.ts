@@ -10,7 +10,7 @@
 
 
 export interface MeModel { 
-    readonly email?: string | null;
-    readonly fullName?: string | null;
+    readonly email: string;
+    readonly fullName: string;
 }
 

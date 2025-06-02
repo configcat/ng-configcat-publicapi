@@ -15,25 +15,25 @@ import { ProductModel } from './productModel';
  * Details of the Config.
  */
 export interface ConfigModel { 
-    product?: ProductModel;
+    product: ProductModel;
     /**
      * Identifier of the Config.
      */
-    configId?: string;
+    configId: string;
     /**
      * Name of the Config.
      */
-    name?: string | null;
+    name: string;
     /**
      * Description of the Config.
      */
-    description?: string | null;
+    description: string | null;
     /**
      * The order of the Config represented on the ConfigCat Dashboard.
      */
-    order?: number;
-    migratedConfigId?: string | null;
-    evaluationVersion?: EvaluationVersion;
+    order: number;
+    migratedConfigId: string | null;
+    evaluationVersion: EvaluationVersion;
 }
 export namespace ConfigModel {
 }

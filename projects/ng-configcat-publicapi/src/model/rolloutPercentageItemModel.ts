@@ -7,6 +7,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { SettingValueType } from './settingValueType';
 
 
 export interface RolloutPercentageItemModel { 
@@ -15,8 +16,8 @@ export interface RolloutPercentageItemModel {
      */
     percentage: number;
     /**
-     * The value to serve when the user falls in the percentage rule. It must respect the setting type.
+     * The value to serve when the user falls in the percentage rule. It must respect the setting type. In some generated clients for strictly typed languages you may use double/float properties to handle integer values.
      */
-    value?: any | null;
+    value: SettingValueType;
 }
 

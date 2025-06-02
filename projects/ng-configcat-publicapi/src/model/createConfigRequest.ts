@@ -20,7 +20,7 @@ export interface CreateConfigRequest {
      */
     description?: string | null;
     /**
-     * The order of the Config represented on the ConfigCat Dashboard.  Determined from an ascending sequence of integers.
+     * The order of the Config represented on the ConfigCat Dashboard. Determined from an ascending sequence of integers.
      */
     order?: number | null;
     evaluationVersion?: EvaluationVersion;

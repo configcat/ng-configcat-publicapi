@@ -38,10 +38,10 @@ export interface CodeReferenceRequest {
     /**
      * The currently active branches of the repository. Each previously uploaded report that belongs to a non-reported active branch is being deleted.
      */
-    activeBranches?: Array<string> | null;
+    activeBranches?: Array<string>;
     /**
      * The actual code reference collection.
      */
-    flagReferences?: Array<FlagReference> | null;
+    flagReferences?: Array<FlagReference>;
 }
 

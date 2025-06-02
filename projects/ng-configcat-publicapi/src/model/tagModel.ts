@@ -11,18 +11,18 @@ import { ProductModel } from './productModel';
 
 
 export interface TagModel { 
-    product?: ProductModel;
+    product: ProductModel;
     /**
      * Identifier of the Tag.
      */
-    tagId?: number;
+    tagId: number;
     /**
      * Name of the Tag.
      */
-    name?: string | null;
+    name: string;
     /**
      * The configured color of the Tag.
      */
-    color?: string | null;
+    color: string | null;
 }
 

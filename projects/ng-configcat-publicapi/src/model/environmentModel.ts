@@ -14,30 +14,30 @@ import { ProductModel } from './productModel';
  * Details of the Environment.
  */
 export interface EnvironmentModel { 
-    product?: ProductModel;
+    product: ProductModel;
     /**
      * Identifier of the Environment.
      */
-    environmentId?: string;
+    environmentId: string;
     /**
      * Name of the Environment.
      */
-    name?: string | null;
+    name: string;
     /**
      * The configured color of the Environment.
      */
-    color?: string | null;
+    color: string | null;
     /**
      * Description of the Environment.
      */
-    description?: string | null;
+    description: string | null;
     /**
      * The order of the Environment represented on the ConfigCat Dashboard.
      */
-    order?: number;
+    order: number;
     /**
      * Determines whether a mandatory reason must be given every time when the Feature Flags or Settings in the given Environment are saved.
      */
-    reasonRequired?: boolean;
+    reasonRequired: boolean;
 }
 

@@ -7,6 +7,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { SettingValueType } from './settingValueType';
 
 
 export interface InitialValue { 
@@ -15,8 +16,8 @@ export interface InitialValue {
      */
     environmentId?: string;
     /**
-     * The initial value in the given Environment. It must respect the setting type.
+     * The initial value in the given Environment. It must respect the setting type. In some generated clients for strictly typed languages you may use double/float properties to handle integer values.
      */
-    value?: any | null;
+    value: SettingValueType;
 }
 

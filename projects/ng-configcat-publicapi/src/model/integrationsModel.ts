@@ -14,6 +14,6 @@ export interface IntegrationsModel {
     /**
      * The Integrations of the Product.
      */
-    integrations?: Array<IntegrationModel> | null;
+    integrations: Array<IntegrationModel> | null;
 }
 

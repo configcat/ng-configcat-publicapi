@@ -18,44 +18,44 @@ import { SettingDataModel } from './settingDataModel';
 
 
 export interface SettingFormulaModel { 
-    lastVersionId?: string;
-    defaultValue?: ValueModel;
+    lastVersionId: string;
+    defaultValue: ValueModel;
     /**
      * The targeting rules of the Feature Flag or Setting.
      */
-    targetingRules?: Array<TargetingRuleModel> | null;
-    setting?: SettingDataModel;
+    targetingRules: Array<TargetingRuleModel>;
+    setting: SettingDataModel;
     /**
      * The last updated date and time when the Feature Flag or Setting.
      */
-    updatedAt?: string | null;
+    updatedAt: string | null;
     /**
      * The user attribute used for percentage evaluation. If not set, it defaults to the `Identifier` user object attribute.
      */
-    percentageEvaluationAttribute?: string | null;
+    percentageEvaluationAttribute: string | null;
     /**
      * The email of the user who last updated the Feature Flag or Setting.
      */
-    lastUpdaterUserEmail?: string | null;
+    lastUpdaterUserEmail: string | null;
     /**
      * The name of the user who last updated the Feature Flag or Setting.
      */
-    lastUpdaterUserFullName?: string | null;
+    lastUpdaterUserFullName: string | null;
     /**
      * The integration links attached to the Feature Flag or Setting.
      */
-    integrationLinks?: Array<IntegrationLinkModel> | null;
+    integrationLinks: Array<IntegrationLinkModel>;
     /**
      * The tags attached to the Feature Flag or Setting.
      */
-    settingTags?: Array<SettingTagModel> | null;
+    settingTags: Array<SettingTagModel>;
     /**
      * List of Feature Flag and Setting IDs where the actual Feature Flag or Setting is prerequisite.
      */
-    settingIdsWherePrerequisite?: Array<number> | null;
-    config?: ConfigModel;
-    environment?: EnvironmentModel;
-    readOnly?: boolean;
-    featureFlagLimitations?: FeatureFlagLimitations;
+    settingIdsWherePrerequisite: Array<number>;
+    config: ConfigModel;
+    environment: EnvironmentModel;
+    readOnly: boolean;
+    featureFlagLimitations: FeatureFlagLimitations;
 }
 

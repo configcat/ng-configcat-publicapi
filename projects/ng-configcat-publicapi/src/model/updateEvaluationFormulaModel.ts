@@ -7,16 +7,16 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ValueModel } from './valueModel';
-import { TargetingRuleModel } from './targetingRuleModel';
+import { UpdateTargetingRuleModel } from './updateTargetingRuleModel';
+import { UpdateValueModel } from './updateValueModel';
 
 
 export interface UpdateEvaluationFormulaModel { 
-    defaultValue: ValueModel;
+    defaultValue: UpdateValueModel;
     /**
      * The targeting rules of the Feature Flag or Setting.
      */
-    targetingRules?: Array<TargetingRuleModel> | null;
+    targetingRules?: Array<UpdateTargetingRuleModel> | null;
     /**
      * The user attribute used for percentage evaluation. If not set, it defaults to the `Identifier` user object attribute.
      */

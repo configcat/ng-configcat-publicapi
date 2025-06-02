@@ -14,6 +14,6 @@ export interface UpdateSettingValuesWithIdModel {
     /**
      * The values to update.
      */
-    settingValues?: Array<UpdateSettingValueWithSettingIdModel> | null;
+    settingValues?: Array<UpdateSettingValueWithSettingIdModel>;
 }
 

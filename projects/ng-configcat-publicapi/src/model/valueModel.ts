@@ -16,18 +16,18 @@ export interface ValueModel {
     /**
      * The served value in case of a boolean Feature Flag.
      */
-    boolValue?: boolean | null;
+    boolValue: boolean | null;
     /**
      * The served value in case of a text Setting.
      */
-    stringValue?: string | null;
+    stringValue: string | null;
     /**
      * The served value in case of a whole number Setting.
      */
-    intValue?: number | null;
+    intValue: number | null;
     /**
      * The served value in case of a decimal number Setting.
      */
-    doubleValue?: number | null;
+    doubleValue: number | null;
 }
 

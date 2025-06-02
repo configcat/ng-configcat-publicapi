@@ -14,7 +14,7 @@ export interface UpdateSegmentModel {
     name?: string | null;
     description?: string | null;
     comparisonAttribute?: string | null;
-    comparator?: RolloutRuleComparator;
+    comparator?: RolloutRuleComparator | null;
     comparisonValue?: string | null;
 }
 export namespace UpdateSegmentModel {
