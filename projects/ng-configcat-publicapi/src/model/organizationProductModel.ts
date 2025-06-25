@@ -16,10 +16,10 @@ export interface OrganizationProductModel {
     /**
      * Identifier of the Member\'s Product.
      */
-    productId?: string;
+    productId: string;
     /**
      * Name of the Member\'s Product.
      */
-    name?: string | null;
+    name: string;
 }
 

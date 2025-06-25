@@ -7,22 +7,23 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { RolloutRuleModel } from './rolloutRuleModel';
-import { RolloutPercentageItemModel } from './rolloutPercentageItemModel';
+import { UpdateRolloutRuleModel } from './updateRolloutRuleModel';
+import { SettingValueType } from './settingValueType';
+import { UpdateRolloutPercentageItemModel } from './updateRolloutPercentageItemModel';
 
 
 export interface UpdateSettingValueModel { 
     /**
      * The targeting rule collection.
      */
-    rolloutRules?: Array<RolloutRuleModel> | null;
+    rolloutRules?: Array<UpdateRolloutRuleModel>;
     /**
      * The percentage rule collection.
      */
-    rolloutPercentageItems?: Array<RolloutPercentageItemModel> | null;
+    rolloutPercentageItems?: Array<UpdateRolloutPercentageItemModel>;
     /**
-     * The value to serve. It must respect the setting type.
+     * The value to serve. It must respect the setting type. In some generated clients for strictly typed languages you may use double/float properties to handle integer values.
      */
-    value?: any | null;
+    value: SettingValueType;
 }
 

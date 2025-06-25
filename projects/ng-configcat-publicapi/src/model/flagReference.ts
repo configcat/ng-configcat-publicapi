@@ -7,7 +7,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ReferenceLines } from './referenceLines';
+import { ReferenceLinesRequest } from './referenceLinesRequest';
 
 
 export interface FlagReference { 
@@ -18,6 +18,6 @@ export interface FlagReference {
     /**
      * The actual references to the given Feature Flag or Setting.
      */
-    references: Array<ReferenceLines>;
+    references: Array<ReferenceLinesRequest>;
 }
 

@@ -14,10 +14,10 @@ import { FeatureFlagLimitations } from './featureFlagLimitations';
 
 
 export interface ConfigSettingValuesModel { 
-    config?: ConfigModel;
-    environment?: EnvironmentModel;
-    readOnly?: boolean;
-    settingValues?: Array<ConfigSettingValueModel> | null;
-    featureFlagLimitations?: FeatureFlagLimitations;
+    config: ConfigModel;
+    environment: EnvironmentModel;
+    readOnly: boolean;
+    settingValues: Array<ConfigSettingValueModel>;
+    featureFlagLimitations: FeatureFlagLimitations;
 }
 

@@ -101,8 +101,8 @@ export interface UpdatePermissionGroupRequest {
      * Group members can disable two-factor authentication for other members.
      */
     canDisable2FA?: boolean | null;
-    accessType?: AccessType;
-    newEnvironmentAccessType?: EnvironmentAccessType;
+    accessType?: AccessType | null;
+    newEnvironmentAccessType?: EnvironmentAccessType | null;
     /**
      * List of environment specific permissions.
      */

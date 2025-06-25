@@ -15,8 +15,11 @@
 export type EnvironmentAccessType = 'full' | 'readOnly' | 'none';
 
 export const EnvironmentAccessType = {
+
     Full: 'full' as EnvironmentAccessType,
+
     ReadOnly: 'readOnly' as EnvironmentAccessType,
+
     None: 'none' as EnvironmentAccessType
 };
 

@@ -11,7 +11,7 @@ import { IntegrationLinkDetail } from './integrationLinkDetail';
 
 
 export interface IntegrationLinkDetailsModel { 
-    readonly details?: Array<IntegrationLinkDetail> | null;
-    allIntegrationLinkCount?: number;
+    readonly details: Array<IntegrationLinkDetail> | null;
+    allIntegrationLinkCount: number;
 }
 

@@ -17,37 +17,37 @@ export interface SettingDataModel {
     /**
      * Identifier of the Feature Flag or Setting.
      */
-    settingId?: number;
+    settingId: number;
     /**
      * Key of the Feature Flag or Setting.
      */
-    key?: string | null;
+    key: string;
     /**
      * Name of the Feature Flag or Setting.
      */
-    name?: string | null;
+    name: string;
     /**
      * Description of the Feature Flag or Setting.
      */
-    hint?: string | null;
-    settingType?: SettingType;
+    hint: string | null;
+    settingType: SettingType;
     /**
      * The order of the Feature Flag or Setting represented on the ConfigCat Dashboard.
      */
-    order?: number;
+    order: number;
     /**
      * The creation time of the Feature Flag or Setting.
      */
-    createdAt?: string | null;
+    createdAt: string | null;
     /**
      * The user\'s email address who created the Feature Flag or Setting.
      */
-    creatorEmail?: string | null;
+    creatorEmail: string | null;
     /**
      * The user\'s name who created the Feature Flag or Setting.
      */
-    creatorFullName?: string | null;
-    isWatching?: boolean;
+    creatorFullName: string | null;
+    isWatching: boolean;
 }
 export namespace SettingDataModel {
 }

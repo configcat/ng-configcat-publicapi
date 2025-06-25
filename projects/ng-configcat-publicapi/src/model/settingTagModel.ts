@@ -10,9 +10,9 @@
 
 
 export interface SettingTagModel { 
-    settingTagId?: number;
-    tagId?: number;
-    name?: string | null;
-    color?: string | null;
+    settingTagId: number;
+    tagId: number;
+    name: string;
+    color: string | null;
 }
 

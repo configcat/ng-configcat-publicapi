@@ -14,13 +14,13 @@ import { PercentageOptionModel } from './percentageOptionModel';
 
 export interface TargetingRuleModel { 
     /**
-     * The list of conditions that are combined with logical AND operators.  It can be one of the following:  - User condition  - Segment condition  - Prerequisite flag condition
+     * The list of conditions that are combined with logical AND operators. It can be one of the following: - User condition - Segment condition - Prerequisite flag condition
      */
-    conditions?: Array<ConditionModel> | null;
+    conditions: Array<ConditionModel>;
     /**
      * The percentage options from where the evaluation process will choose a value based on the flag\'s percentage evaluation attribute.
      */
-    percentageOptions?: Array<PercentageOptionModel> | null;
-    value?: ValueModel;
+    percentageOptions: Array<PercentageOptionModel>;
+    value: ValueModel | null;
 }
 

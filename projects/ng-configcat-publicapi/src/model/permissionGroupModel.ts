@@ -17,102 +17,102 @@ export interface PermissionGroupModel {
     /**
      * Identifier of the Permission Group.
      */
-    permissionGroupId?: number;
+    permissionGroupId: number;
     /**
      * Name of the Permission Group.
      */
-    name?: string | null;
+    name: string;
     /**
      * Group members can manage team members.
      */
-    canManageMembers?: boolean;
+    canManageMembers: boolean;
     /**
      * Group members can create/update Configs.
      */
-    canCreateOrUpdateConfig?: boolean;
+    canCreateOrUpdateConfig: boolean;
     /**
      * Group members can delete Configs.
      */
-    canDeleteConfig?: boolean;
+    canDeleteConfig: boolean;
     /**
      * Group members can create/update Environments.
      */
-    canCreateOrUpdateEnvironment?: boolean;
+    canCreateOrUpdateEnvironment: boolean;
     /**
      * Group members can delete Environments.
      */
-    canDeleteEnvironment?: boolean;
+    canDeleteEnvironment: boolean;
     /**
      * Group members can create/update Feature Flags and Settings.
      */
-    canCreateOrUpdateSetting?: boolean;
+    canCreateOrUpdateSetting: boolean;
     /**
      * Group members can attach/detach Tags to Feature Flags and Settings.
      */
-    canTagSetting?: boolean;
+    canTagSetting: boolean;
     /**
      * Group members can delete Feature Flags and Settings.
      */
-    canDeleteSetting?: boolean;
+    canDeleteSetting: boolean;
     /**
      * Group members can create/update Tags.
      */
-    canCreateOrUpdateTag?: boolean;
+    canCreateOrUpdateTag: boolean;
     /**
      * Group members can delete Tags.
      */
-    canDeleteTag?: boolean;
+    canDeleteTag: boolean;
     /**
      * Group members can create/update/delete Webhooks.
      */
-    canManageWebhook?: boolean;
+    canManageWebhook: boolean;
     /**
      * Group members can use the export/import feature.
      */
-    canUseExportImport?: boolean;
+    canUseExportImport: boolean;
     /**
      * Group members can update Product preferences.
      */
-    canManageProductPreferences?: boolean;
+    canManageProductPreferences: boolean;
     /**
      * Group members can add and configure integrations.
      */
-    canManageIntegrations?: boolean;
+    canManageIntegrations: boolean;
     /**
      * Group members has access to SDK keys.
      */
-    canViewSdkKey?: boolean;
+    canViewSdkKey: boolean;
     /**
      * Group members can rotate SDK keys.
      */
-    canRotateSdkKey?: boolean;
+    canRotateSdkKey: boolean;
     /**
      * Group members can create/update Segments.
      */
-    canCreateOrUpdateSegments?: boolean;
+    canCreateOrUpdateSegments: boolean;
     /**
      * Group members can delete Segments.
      */
-    canDeleteSegments?: boolean;
+    canDeleteSegments: boolean;
     /**
      * Group members has access to audit logs.
      */
-    canViewProductAuditLog?: boolean;
+    canViewProductAuditLog: boolean;
     /**
      * Group members has access to product statistics.
      */
-    canViewProductStatistics?: boolean;
+    canViewProductStatistics: boolean;
     /**
      * Group members can disable two-factor authentication for other members.
      */
-    canDisable2FA?: boolean;
-    accessType?: AccessType;
-    newEnvironmentAccessType?: EnvironmentAccessType;
+    canDisable2FA: boolean;
+    accessType: AccessType;
+    newEnvironmentAccessType: EnvironmentAccessType;
     /**
      * List of environment specific permissions.
      */
-    environmentAccesses?: Array<EnvironmentAccessModel> | null;
-    product?: ProductModel;
+    environmentAccesses: Array<EnvironmentAccessModel>;
+    product: ProductModel;
 }
 export namespace PermissionGroupModel {
 }

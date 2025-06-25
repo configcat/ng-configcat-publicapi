@@ -1,34 +1,35 @@
-## @
+# @
 
 The purpose of this API is to access the ConfigCat platform programmatically. You can **Create**, **Read**, **Update** and **Delete** any entities like **Feature Flags, Configs, Environments** or **Products** within ConfigCat.  **Base API URL**: https://api.configcat.com  If you prefer the swagger documentation, you can find it here: [Swagger UI](https://api.configcat.com/swagger).  The API is based on HTTP REST, uses resource-oriented URLs, status codes and supports JSON  format.   **Important:** Do not use this API for accessing and evaluating feature flag values. Use the [SDKs](https://configcat.com/docs/sdk-reference/overview) or the [ConfigCat Proxy](https://configcat.com/docs/advanced/proxy/proxy-overview/) instead.  # OpenAPI Specification  The complete specification is publicly available in the following formats:  - [OpenAPI v3](https://api.configcat.com/docs/v1/swagger.json) - [Swagger v2](https://api.configcat.com/docs/v1/swagger.v2.json)  You can use it to generate client libraries in various languages with [OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator) or [Swagger Codegen](https://swagger.io/tools/swagger-codegen/) to interact with this API.  # Authentication This API uses the [Basic HTTP Authentication Scheme](https://en.wikipedia.org/wiki/Basic_access_authentication).   <!-- ReDoc-Inject: <security-definitions> -->  # Throttling and rate limits All the rate limited API calls are returning information about the current rate limit period in the following HTTP headers:  | Header | Description | | :- | :- | | X-Rate-Limit-Remaining | The maximum number of requests remaining in the current rate limit period. | | X-Rate-Limit-Reset     | The time when the current rate limit period resets.        |  When the rate limit is exceeded by a request, the API returns with a `HTTP 429 - Too many requests` status along with a `Retry-After` HTTP header. 
 
 The version of the OpenAPI document: v1
 
-### Building
+## Building
 
 To install the required dependencies and to build the typescript sources run:
-```
+
+```console
 npm install
 npm run build
 ```
 
-### publishing
+## Publishing
 
-First build the package then run ```npm publish dist``` (don't forget to specify the `dist` folder!)
+First build the package then run `npm publish dist` (don't forget to specify the `dist` folder!)
 
-### consuming
+## Consuming
 
 Navigate to the folder of your consuming project and run one of next commands.
 
 _published:_
 
-```
+```console
 npm install @ --save
 ```
 
 _without publishing (not recommended):_
 
-```
+```console
 npm install PATH_TO_GENERATED_PACKAGE/dist.tgz --save
 ```
 
@@ -37,26 +38,26 @@ _It's important to take the tgz file, otherwise you'll get trouble with links on
 _using `npm link`:_
 
 In PATH_TO_GENERATED_PACKAGE/dist:
-```
+
+```console
 npm link
 ```
 
 In your project:
-```
+
+```console
 npm link 
 ```
 
 __Note for Windows users:__ The Angular CLI has troubles to use linked npm packages.
-Please refer to this issue https://github.com/angular/angular-cli/issues/8284 for a solution / workaround.
+Please refer to this issue <https://github.com/angular/angular-cli/issues/8284> for a solution / workaround.
 Published packages are not effected by this issue.
 
-
-#### General usage
+### General usage
 
 In your Angular project:
 
-
-```
+```typescript
 // without configuring providers
 import { ApiModule } from '';
 import { HttpClientModule } from '@angular/common/http';
@@ -75,7 +76,7 @@ import { HttpClientModule } from '@angular/common/http';
 export class AppModule {}
 ```
 
-```
+```typescript
 // configuring providers
 import { ApiModule, Configuration, ConfigurationParameters } from '';
 
@@ -95,7 +96,7 @@ export function apiConfigFactory (): Configuration {
 export class AppModule {}
 ```
 
-```
+```typescript
 // configuring providers with an authentication service that manages your access tokens
 import { ApiModule, Configuration } from '';
 
@@ -120,7 +121,7 @@ import { ApiModule, Configuration } from '';
 export class AppModule {}
 ```
 
-```
+```typescript
 import { DefaultApi } from '';
 
 export class AppComponent {
@@ -131,11 +132,13 @@ export class AppComponent {
 Note: The ApiModule is restricted to being instantiated once app wide.
 This is to ensure that all services are treated as singletons.
 
-#### Using multiple OpenAPI files / APIs / ApiModules
+### Using multiple OpenAPI files / APIs / ApiModules
+
 In order to use multiple `ApiModules` generated from different OpenAPI files,
 you can create an alias name when importing the modules
 in order to avoid naming conflicts:
-```
+
+```typescript
 import { ApiModule } from 'my-api-path';
 import { ApiModule as OtherApiModule } from 'my-other-api-path';
 import { HttpClientModule } from '@angular/common/http';
@@ -154,20 +157,21 @@ export class AppModule {
 }
 ```
 
-
 ### Set service base path
+
 If different than the generated base path, during app bootstrap, you can provide the base path to your service.
 
-```
+```typescript
 import { BASE_PATH } from '';
 
 bootstrap(AppComponent, [
     { provide: BASE_PATH, useValue: 'https://your-web-service.com' },
 ]);
 ```
+
 or
 
-```
+```typescript
 import { BASE_PATH } from '';
 
 @NgModule({
@@ -179,11 +183,11 @@ import { BASE_PATH } from '';
 export class AppModule {}
 ```
 
+### Using @angular/cli
 
-#### Using @angular/cli
 First extend your `src/environments/*.ts` files by adding the corresponding base path:
 
-```
+```typescript
 export const environment = {
   production: false,
   API_BASE_PATH: 'http://127.0.0.1:8080'
@@ -191,7 +195,8 @@ export const environment = {
 ```
 
 In the src/app/app.module.ts:
-```
+
+```typescript
 import { BASE_PATH } from '';
 import { environment } from '../environments/environment';
 
@@ -219,6 +224,7 @@ pass an arrow-function or method-reference to the `encodeParam` property of the 
 (see [General Usage](#general-usage) above).
 
 Example value for use in your Configuration-Provider:
+
 ```typescript
 new Configuration({
     encodeParam: (param: Param) => myFancyParamEncoder(param),

@@ -15,10 +15,15 @@
 export type KeyGenerationMode = 'camelCase' | 'lowerCase' | 'upperCase' | 'pascalCase' | 'kebabCase';
 
 export const KeyGenerationMode = {
+
     CamelCase: 'camelCase' as KeyGenerationMode,
+
     LowerCase: 'lowerCase' as KeyGenerationMode,
+
     UpperCase: 'upperCase' as KeyGenerationMode,
+
     PascalCase: 'pascalCase' as KeyGenerationMode,
+
     KebabCase: 'kebabCase' as KeyGenerationMode
 };
 

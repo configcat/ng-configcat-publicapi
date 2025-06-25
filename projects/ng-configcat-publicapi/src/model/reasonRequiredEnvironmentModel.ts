@@ -13,14 +13,14 @@ export interface ReasonRequiredEnvironmentModel {
     /**
      * Identifier of the Environment.
      */
-    environmentId?: string;
+    environmentId: string;
     /**
      * Indicates that a mandatory note is required in this Environment for saving and publishing.
      */
-    reasonRequired?: boolean;
+    reasonRequired: boolean;
     /**
      * Name of the Environment.
      */
-    environmentName?: string | null;
+    environmentName: string | null;
 }
 

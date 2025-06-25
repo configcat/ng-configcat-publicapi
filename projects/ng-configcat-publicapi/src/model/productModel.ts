@@ -14,26 +14,26 @@ import { OrganizationModel } from './organizationModel';
  * Details of the Product.
  */
 export interface ProductModel { 
-    organization?: OrganizationModel;
+    organization: OrganizationModel;
     /**
      * Identifier of the Product.
      */
-    productId?: string;
+    productId: string;
     /**
      * Name of the Product.
      */
-    name?: string | null;
+    name: string;
     /**
      * Description of the Product.
      */
-    description?: string | null;
+    description: string | null;
     /**
-     * The order of the Product represented on the ConfigCat Dashboard.  Determined from an ascending sequence of integers.
+     * The order of the Product represented on the ConfigCat Dashboard. Determined from an ascending sequence of integers.
      */
-    order?: number;
+    order: number;
     /**
      * Determines whether a mandatory reason must be given every time when the Feature Flags or Settings within a Product are saved.
      */
-    reasonRequired?: boolean;
+    reasonRequired: boolean;
 }
 

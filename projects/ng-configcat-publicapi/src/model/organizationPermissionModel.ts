@@ -15,7 +15,7 @@ import { OrganizationProductModel } from './organizationProductModel';
  * Describes the Member\'s permission.
  */
 export interface OrganizationPermissionModel { 
-    product?: OrganizationProductModel;
-    permissionGroup?: OrganizationPermissionGroupModel;
+    product: OrganizationProductModel;
+    permissionGroup: OrganizationPermissionGroupModel;
 }
 

@@ -13,22 +13,22 @@ export interface MemberModel {
     /**
      * Identifier of the Member.
      */
-    userId?: string | null;
+    userId: string | null;
     /**
      * Identifier of the Product where the Member has access.
      */
-    productId?: string;
+    productId: string;
     /**
      * Identifier of the Member\'s Permission Group.
      */
-    permissionGroupId?: number;
+    permissionGroupId: number;
     /**
      * Name of the Member.
      */
-    fullName?: string | null;
+    fullName: string | null;
     /**
      * Email of the Member.
      */
-    email?: string | null;
+    email: string | null;
 }
 

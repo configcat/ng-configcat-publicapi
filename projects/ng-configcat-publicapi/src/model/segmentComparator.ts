@@ -15,7 +15,9 @@
 export type SegmentComparator = 'isIn' | 'isNotIn';
 
 export const SegmentComparator = {
+
     IsIn: 'isIn' as SegmentComparator,
+
     IsNotIn: 'isNotIn' as SegmentComparator
 };
 

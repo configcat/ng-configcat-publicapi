@@ -14,13 +14,13 @@ import { FeatureFlagLimitations } from './featureFlagLimitations';
 
 
 export interface ConfigSettingFormulasModel { 
-    config?: ConfigModel;
-    environment?: EnvironmentModel;
-    readOnly?: boolean;
+    config: ConfigModel;
+    environment: EnvironmentModel;
+    readOnly: boolean;
     /**
      * Evaluation descriptors of each updated Feature Flag and Setting.
      */
-    settingFormulas?: Array<ConfigSettingFormulaModel> | null;
-    featureFlagLimitations?: FeatureFlagLimitations;
+    settingFormulas: Array<ConfigSettingFormulaModel>;
+    featureFlagLimitations: FeatureFlagLimitations;
 }
 

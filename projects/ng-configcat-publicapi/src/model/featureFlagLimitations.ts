@@ -16,30 +16,30 @@ export interface FeatureFlagLimitations {
     /**
      * Maximum number of percentage options a Feature Flag or Setting can have within a targeting rule.
      */
-    maxPercentageOptionCount?: number;
+    maxPercentageOptionCount: number;
     /**
      * Maximum number of targeting rules a Feature Flag or Setting can have.
      */
-    maxTargetingRuleCount?: number;
+    maxTargetingRuleCount: number;
     /**
      * Maximum length of a text comparison value.
      */
-    maxComparisonValueLength?: number;
+    maxComparisonValueLength: number;
     /**
      * Maximum item count of a list comparison value.
      */
-    maxComparisonValueListLength?: number;
+    maxComparisonValueListLength: number;
     /**
      * Maximum length of a list comparison value\'s item.
      */
-    maxComparisonValueListItemLength?: number;
+    maxComparisonValueListItemLength: number;
     /**
      * Maximum length of a text Setting\'s value.
      */
-    maxStringFlagValueLength?: number;
+    maxStringFlagValueLength: number;
     /**
      * Maximum number of `AND` conditions a Feature Flag or Setting can have within a targeting rule.
      */
-    maxConditionPerTargetingRuleCount?: number;
+    maxConditionPerTargetingRuleCount: number;
 }
 

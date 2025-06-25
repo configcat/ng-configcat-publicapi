@@ -13,10 +13,10 @@ export interface SdkKeysModel {
     /**
      * The primary SDK key.
      */
-    primary?: string | null;
+    primary: string;
     /**
      * The secondary SDK key.
      */
-    secondary?: string | null;
+    secondary: string | null;
 }
 

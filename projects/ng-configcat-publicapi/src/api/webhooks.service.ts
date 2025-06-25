@@ -19,81 +19,26 @@ import { Observable }                                        from 'rxjs';
 // @ts-ignore
 import { JsonPatchOperation } from '../model/jsonPatchOperation';
 // @ts-ignore
-import { WebHookRequest } from '../model/webHookRequest';
+import { WebHookRequestModel } from '../model/webHookRequestModel';
 // @ts-ignore
-import { WebhookModel } from '../model/webhookModel';
+import { WebhookResponseModel } from '../model/webhookResponseModel';
 // @ts-ignore
 import { WebhookSigningKeysModel } from '../model/webhookSigningKeysModel';
 
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
+import { BaseService } from '../api.base.service';
 
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class WebhooksService {
+export class WebhooksService extends BaseService {
 
-    protected basePath = 'https://api.configcat.com';
-    public defaultHeaders = new HttpHeaders();
-    public configuration = new Configuration();
-    public encoder: HttpParameterCodec;
-
-    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string|string[], @Optional() configuration: Configuration) {
-        if (configuration) {
-            this.configuration = configuration;
-        }
-        if (typeof this.configuration.basePath !== 'string') {
-            const firstBasePath = Array.isArray(basePath) ? basePath[0] : undefined;
-            if (firstBasePath != undefined) {
-                basePath = firstBasePath;
-            }
-
-            if (typeof basePath !== 'string') {
-                basePath = this.basePath;
-            }
-            this.configuration.basePath = basePath;
-        }
-        this.encoder = this.configuration.encoder || new CustomHttpParameterCodec();
-    }
-
-
-    // @ts-ignore
-    private addToHttpParams(httpParams: HttpParams, value: any, key?: string): HttpParams {
-        if (typeof value === "object" && value instanceof Date === false) {
-            httpParams = this.addToHttpParamsRecursive(httpParams, value);
-        } else {
-            httpParams = this.addToHttpParamsRecursive(httpParams, value, key);
-        }
-        return httpParams;
-    }
-
-    private addToHttpParamsRecursive(httpParams: HttpParams, value?: any, key?: string): HttpParams {
-        if (value == null) {
-            return httpParams;
-        }
-
-        if (typeof value === "object") {
-            if (Array.isArray(value)) {
-                (value as any[]).forEach( elem => httpParams = this.addToHttpParamsRecursive(httpParams, elem, key));
-            } else if (value instanceof Date) {
-                if (key != null) {
-                    httpParams = httpParams.append(key, (value as Date).toISOString().substring(0, 10));
-                } else {
-                   throw Error("key may not be null if value is Date");
-                }
-            } else {
-                Object.keys(value).forEach( k => httpParams = this.addToHttpParamsRecursive(
-                    httpParams, value[k], key != null ? `${key}.${k}` : k));
-            }
-        } else if (key != null) {
-            httpParams = httpParams.append(key, value);
-        } else {
-            throw Error("key may not be null if value is not object or array");
-        }
-        return httpParams;
+    constructor(protected httpClient: HttpClient, @Optional() @Inject(BASE_PATH) basePath: string|string[], @Optional() configuration?: Configuration) {
+        super(basePath, configuration);
     }
 
     /**
@@ -101,54 +46,39 @@ export class WebhooksService {
      * This endpoint creates a new Webhook in a specified Product identified by the &#x60;productId&#x60; parameter, which can be obtained from the [List Products](#operation/get-products) endpoint.
      * @param configId The identifier of the Config.
      * @param environmentId The identifier of the Environment.
-     * @param webHookRequest 
+     * @param webHookRequestModel 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createWebhook(configId: string, environmentId: string, webHookRequest: WebHookRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<WebhookModel>;
-    public createWebhook(configId: string, environmentId: string, webHookRequest: WebHookRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<WebhookModel>>;
-    public createWebhook(configId: string, environmentId: string, webHookRequest: WebHookRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<WebhookModel>>;
-    public createWebhook(configId: string, environmentId: string, webHookRequest: WebHookRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public createWebhook(configId: string, environmentId: string, webHookRequestModel: WebHookRequestModel, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<WebhookResponseModel>;
+    public createWebhook(configId: string, environmentId: string, webHookRequestModel: WebHookRequestModel, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<WebhookResponseModel>>;
+    public createWebhook(configId: string, environmentId: string, webHookRequestModel: WebHookRequestModel, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<WebhookResponseModel>>;
+    public createWebhook(configId: string, environmentId: string, webHookRequestModel: WebHookRequestModel, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (configId === null || configId === undefined) {
             throw new Error('Required parameter configId was null or undefined when calling createWebhook.');
         }
         if (environmentId === null || environmentId === undefined) {
             throw new Error('Required parameter environmentId was null or undefined when calling createWebhook.');
         }
-        if (webHookRequest === null || webHookRequest === undefined) {
-            throw new Error('Required parameter webHookRequest was null or undefined when calling createWebhook.');
+        if (webHookRequestModel === null || webHookRequestModel === undefined) {
+            throw new Error('Required parameter webHookRequestModel was null or undefined when calling createWebhook.');
         }
 
         let localVarHeaders = this.defaultHeaders;
 
-        let localVarCredential: string | undefined;
         // authentication (Basic) required
-        localVarCredential = this.configuration.lookupCredential('Basic');
-        if (localVarCredential) {
-            localVarHeaders = localVarHeaders.set('Authorization', 'Basic ' + localVarCredential);
-        }
+        localVarHeaders = this.configuration.addCredentialToHeaders('Basic', 'Authorization', localVarHeaders, 'Basic ');
 
-        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (localVarHttpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json'
-            ];
-            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
+        const localVarHttpHeaderAcceptSelected: string | undefined = options?.httpHeaderAccept ?? this.configuration.selectHeaderAccept([
+            'application/json'
+        ]);
         if (localVarHttpHeaderAcceptSelected !== undefined) {
             localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
         }
 
-        let localVarHttpContext: HttpContext | undefined = options && options.context;
-        if (localVarHttpContext === undefined) {
-            localVarHttpContext = new HttpContext();
-        }
+        const localVarHttpContext: HttpContext = options?.context ?? new HttpContext();
 
-        let localVarTransferCache: boolean | undefined = options && options.transferCache;
-        if (localVarTransferCache === undefined) {
-            localVarTransferCache = true;
-        }
+        const localVarTransferCache: boolean = options?.transferCache ?? true;
 
 
         // to determine the Content-Type header
@@ -174,10 +104,10 @@ export class WebhooksService {
         }
 
         let localVarPath = `/v1/configs/${this.configuration.encodeParam({name: "configId", value: configId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/environments/${this.configuration.encodeParam({name: "environmentId", value: environmentId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/webhooks`;
-        return this.httpClient.request<WebhookModel>('post', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<WebhookResponseModel>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                body: webHookRequest,
+                body: webHookRequestModel,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
@@ -205,33 +135,18 @@ export class WebhooksService {
 
         let localVarHeaders = this.defaultHeaders;
 
-        let localVarCredential: string | undefined;
         // authentication (Basic) required
-        localVarCredential = this.configuration.lookupCredential('Basic');
-        if (localVarCredential) {
-            localVarHeaders = localVarHeaders.set('Authorization', 'Basic ' + localVarCredential);
-        }
+        localVarHeaders = this.configuration.addCredentialToHeaders('Basic', 'Authorization', localVarHeaders, 'Basic ');
 
-        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (localVarHttpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-            ];
-            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
+        const localVarHttpHeaderAcceptSelected: string | undefined = options?.httpHeaderAccept ?? this.configuration.selectHeaderAccept([
+        ]);
         if (localVarHttpHeaderAcceptSelected !== undefined) {
             localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
         }
 
-        let localVarHttpContext: HttpContext | undefined = options && options.context;
-        if (localVarHttpContext === undefined) {
-            localVarHttpContext = new HttpContext();
-        }
+        const localVarHttpContext: HttpContext = options?.context ?? new HttpContext();
 
-        let localVarTransferCache: boolean | undefined = options && options.transferCache;
-        if (localVarTransferCache === undefined) {
-            localVarTransferCache = true;
-        }
+        const localVarTransferCache: boolean = options?.transferCache ?? true;
 
 
         let responseType_: 'text' | 'json' | 'blob' = 'json';
@@ -266,9 +181,9 @@ export class WebhooksService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getWebhook(webhookId: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<WebhookModel>;
-    public getWebhook(webhookId: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<WebhookModel>>;
-    public getWebhook(webhookId: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<WebhookModel>>;
+    public getWebhook(webhookId: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<WebhookResponseModel>;
+    public getWebhook(webhookId: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<WebhookResponseModel>>;
+    public getWebhook(webhookId: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<WebhookResponseModel>>;
     public getWebhook(webhookId: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (webhookId === null || webhookId === undefined) {
             throw new Error('Required parameter webhookId was null or undefined when calling getWebhook.');
@@ -276,34 +191,19 @@ export class WebhooksService {
 
         let localVarHeaders = this.defaultHeaders;
 
-        let localVarCredential: string | undefined;
         // authentication (Basic) required
-        localVarCredential = this.configuration.lookupCredential('Basic');
-        if (localVarCredential) {
-            localVarHeaders = localVarHeaders.set('Authorization', 'Basic ' + localVarCredential);
-        }
+        localVarHeaders = this.configuration.addCredentialToHeaders('Basic', 'Authorization', localVarHeaders, 'Basic ');
 
-        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (localVarHttpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json'
-            ];
-            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
+        const localVarHttpHeaderAcceptSelected: string | undefined = options?.httpHeaderAccept ?? this.configuration.selectHeaderAccept([
+            'application/json'
+        ]);
         if (localVarHttpHeaderAcceptSelected !== undefined) {
             localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
         }
 
-        let localVarHttpContext: HttpContext | undefined = options && options.context;
-        if (localVarHttpContext === undefined) {
-            localVarHttpContext = new HttpContext();
-        }
+        const localVarHttpContext: HttpContext = options?.context ?? new HttpContext();
 
-        let localVarTransferCache: boolean | undefined = options && options.transferCache;
-        if (localVarTransferCache === undefined) {
-            localVarTransferCache = true;
-        }
+        const localVarTransferCache: boolean = options?.transferCache ?? true;
 
 
         let responseType_: 'text' | 'json' | 'blob' = 'json';
@@ -318,7 +218,7 @@ export class WebhooksService {
         }
 
         let localVarPath = `/v1/webhooks/${this.configuration.encodeParam({name: "webhookId", value: webhookId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}`;
-        return this.httpClient.request<WebhookModel>('get', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<WebhookResponseModel>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -348,34 +248,19 @@ export class WebhooksService {
 
         let localVarHeaders = this.defaultHeaders;
 
-        let localVarCredential: string | undefined;
         // authentication (Basic) required
-        localVarCredential = this.configuration.lookupCredential('Basic');
-        if (localVarCredential) {
-            localVarHeaders = localVarHeaders.set('Authorization', 'Basic ' + localVarCredential);
-        }
+        localVarHeaders = this.configuration.addCredentialToHeaders('Basic', 'Authorization', localVarHeaders, 'Basic ');
 
-        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (localVarHttpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json'
-            ];
-            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
+        const localVarHttpHeaderAcceptSelected: string | undefined = options?.httpHeaderAccept ?? this.configuration.selectHeaderAccept([
+            'application/json'
+        ]);
         if (localVarHttpHeaderAcceptSelected !== undefined) {
             localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
         }
 
-        let localVarHttpContext: HttpContext | undefined = options && options.context;
-        if (localVarHttpContext === undefined) {
-            localVarHttpContext = new HttpContext();
-        }
+        const localVarHttpContext: HttpContext = options?.context ?? new HttpContext();
 
-        let localVarTransferCache: boolean | undefined = options && options.transferCache;
-        if (localVarTransferCache === undefined) {
-            localVarTransferCache = true;
-        }
+        const localVarTransferCache: boolean = options?.transferCache ?? true;
 
 
         let responseType_: 'text' | 'json' | 'blob' = 'json';
@@ -410,9 +295,9 @@ export class WebhooksService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getWebhooks(productId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<WebhookModel>>;
-    public getWebhooks(productId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<WebhookModel>>>;
-    public getWebhooks(productId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Array<WebhookModel>>>;
+    public getWebhooks(productId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<WebhookResponseModel>>;
+    public getWebhooks(productId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<WebhookResponseModel>>>;
+    public getWebhooks(productId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Array<WebhookResponseModel>>>;
     public getWebhooks(productId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (productId === null || productId === undefined) {
             throw new Error('Required parameter productId was null or undefined when calling getWebhooks.');
@@ -420,34 +305,19 @@ export class WebhooksService {
 
         let localVarHeaders = this.defaultHeaders;
 
-        let localVarCredential: string | undefined;
         // authentication (Basic) required
-        localVarCredential = this.configuration.lookupCredential('Basic');
-        if (localVarCredential) {
-            localVarHeaders = localVarHeaders.set('Authorization', 'Basic ' + localVarCredential);
-        }
+        localVarHeaders = this.configuration.addCredentialToHeaders('Basic', 'Authorization', localVarHeaders, 'Basic ');
 
-        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (localVarHttpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json'
-            ];
-            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
+        const localVarHttpHeaderAcceptSelected: string | undefined = options?.httpHeaderAccept ?? this.configuration.selectHeaderAccept([
+            'application/json'
+        ]);
         if (localVarHttpHeaderAcceptSelected !== undefined) {
             localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
         }
 
-        let localVarHttpContext: HttpContext | undefined = options && options.context;
-        if (localVarHttpContext === undefined) {
-            localVarHttpContext = new HttpContext();
-        }
+        const localVarHttpContext: HttpContext = options?.context ?? new HttpContext();
 
-        let localVarTransferCache: boolean | undefined = options && options.transferCache;
-        if (localVarTransferCache === undefined) {
-            localVarTransferCache = true;
-        }
+        const localVarTransferCache: boolean = options?.transferCache ?? true;
 
 
         let responseType_: 'text' | 'json' | 'blob' = 'json';
@@ -462,7 +332,7 @@ export class WebhooksService {
         }
 
         let localVarPath = `/v1/products/${this.configuration.encodeParam({name: "productId", value: productId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/webhooks`;
-        return this.httpClient.request<Array<WebhookModel>>('get', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<Array<WebhookResponseModel>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -479,51 +349,36 @@ export class WebhooksService {
      * Replace Webhook
      * This endpoint replaces the whole value of a Webhook identified by the &#x60;webhookId&#x60; parameter.  **Important:** As this endpoint is doing a complete replace, it\&#39;s important to set every other attribute that you don\&#39;t want to change in its original state. Not listing one means it will reset.
      * @param webhookId The identifier of the Webhook.
-     * @param webHookRequest 
+     * @param webHookRequestModel 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public replaceWebhook(webhookId: number, webHookRequest: WebHookRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<WebhookModel>;
-    public replaceWebhook(webhookId: number, webHookRequest: WebHookRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<WebhookModel>>;
-    public replaceWebhook(webhookId: number, webHookRequest: WebHookRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<WebhookModel>>;
-    public replaceWebhook(webhookId: number, webHookRequest: WebHookRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public replaceWebhook(webhookId: number, webHookRequestModel: WebHookRequestModel, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<WebhookResponseModel>;
+    public replaceWebhook(webhookId: number, webHookRequestModel: WebHookRequestModel, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<WebhookResponseModel>>;
+    public replaceWebhook(webhookId: number, webHookRequestModel: WebHookRequestModel, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<WebhookResponseModel>>;
+    public replaceWebhook(webhookId: number, webHookRequestModel: WebHookRequestModel, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (webhookId === null || webhookId === undefined) {
             throw new Error('Required parameter webhookId was null or undefined when calling replaceWebhook.');
         }
-        if (webHookRequest === null || webHookRequest === undefined) {
-            throw new Error('Required parameter webHookRequest was null or undefined when calling replaceWebhook.');
+        if (webHookRequestModel === null || webHookRequestModel === undefined) {
+            throw new Error('Required parameter webHookRequestModel was null or undefined when calling replaceWebhook.');
         }
 
         let localVarHeaders = this.defaultHeaders;
 
-        let localVarCredential: string | undefined;
         // authentication (Basic) required
-        localVarCredential = this.configuration.lookupCredential('Basic');
-        if (localVarCredential) {
-            localVarHeaders = localVarHeaders.set('Authorization', 'Basic ' + localVarCredential);
-        }
+        localVarHeaders = this.configuration.addCredentialToHeaders('Basic', 'Authorization', localVarHeaders, 'Basic ');
 
-        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (localVarHttpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json'
-            ];
-            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
+        const localVarHttpHeaderAcceptSelected: string | undefined = options?.httpHeaderAccept ?? this.configuration.selectHeaderAccept([
+            'application/json'
+        ]);
         if (localVarHttpHeaderAcceptSelected !== undefined) {
             localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
         }
 
-        let localVarHttpContext: HttpContext | undefined = options && options.context;
-        if (localVarHttpContext === undefined) {
-            localVarHttpContext = new HttpContext();
-        }
+        const localVarHttpContext: HttpContext = options?.context ?? new HttpContext();
 
-        let localVarTransferCache: boolean | undefined = options && options.transferCache;
-        if (localVarTransferCache === undefined) {
-            localVarTransferCache = true;
-        }
+        const localVarTransferCache: boolean = options?.transferCache ?? true;
 
 
         // to determine the Content-Type header
@@ -549,10 +404,10 @@ export class WebhooksService {
         }
 
         let localVarPath = `/v1/webhooks/${this.configuration.encodeParam({name: "webhookId", value: webhookId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}`;
-        return this.httpClient.request<WebhookModel>('put', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<WebhookResponseModel>('put', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                body: webHookRequest,
+                body: webHookRequestModel,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
@@ -571,9 +426,9 @@ export class WebhooksService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public updateWebhook(webhookId: number, jsonPatchOperation: Array<JsonPatchOperation>, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<WebhookModel>;
-    public updateWebhook(webhookId: number, jsonPatchOperation: Array<JsonPatchOperation>, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<WebhookModel>>;
-    public updateWebhook(webhookId: number, jsonPatchOperation: Array<JsonPatchOperation>, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<WebhookModel>>;
+    public updateWebhook(webhookId: number, jsonPatchOperation: Array<JsonPatchOperation>, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<WebhookResponseModel>;
+    public updateWebhook(webhookId: number, jsonPatchOperation: Array<JsonPatchOperation>, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<WebhookResponseModel>>;
+    public updateWebhook(webhookId: number, jsonPatchOperation: Array<JsonPatchOperation>, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<WebhookResponseModel>>;
     public updateWebhook(webhookId: number, jsonPatchOperation: Array<JsonPatchOperation>, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (webhookId === null || webhookId === undefined) {
             throw new Error('Required parameter webhookId was null or undefined when calling updateWebhook.');
@@ -584,34 +439,19 @@ export class WebhooksService {
 
         let localVarHeaders = this.defaultHeaders;
 
-        let localVarCredential: string | undefined;
         // authentication (Basic) required
-        localVarCredential = this.configuration.lookupCredential('Basic');
-        if (localVarCredential) {
-            localVarHeaders = localVarHeaders.set('Authorization', 'Basic ' + localVarCredential);
-        }
+        localVarHeaders = this.configuration.addCredentialToHeaders('Basic', 'Authorization', localVarHeaders, 'Basic ');
 
-        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (localVarHttpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json'
-            ];
-            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
+        const localVarHttpHeaderAcceptSelected: string | undefined = options?.httpHeaderAccept ?? this.configuration.selectHeaderAccept([
+            'application/json'
+        ]);
         if (localVarHttpHeaderAcceptSelected !== undefined) {
             localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
         }
 
-        let localVarHttpContext: HttpContext | undefined = options && options.context;
-        if (localVarHttpContext === undefined) {
-            localVarHttpContext = new HttpContext();
-        }
+        const localVarHttpContext: HttpContext = options?.context ?? new HttpContext();
 
-        let localVarTransferCache: boolean | undefined = options && options.transferCache;
-        if (localVarTransferCache === undefined) {
-            localVarTransferCache = true;
-        }
+        const localVarTransferCache: boolean = options?.transferCache ?? true;
 
 
         // to determine the Content-Type header
@@ -637,7 +477,7 @@ export class WebhooksService {
         }
 
         let localVarPath = `/v1/webhooks/${this.configuration.encodeParam({name: "webhookId", value: webhookId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}`;
-        return this.httpClient.request<WebhookModel>('patch', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<WebhookResponseModel>('patch', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 body: jsonPatchOperation,

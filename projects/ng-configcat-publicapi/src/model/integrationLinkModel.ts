@@ -11,10 +11,10 @@ import { IntegrationLinkType } from './integrationLinkType';
 
 
 export interface IntegrationLinkModel { 
-    key?: string | null;
-    description?: string | null;
-    integrationLinkType?: IntegrationLinkType;
-    url?: string | null;
+    key: string | null;
+    description: string | null;
+    integrationLinkType: IntegrationLinkType;
+    url: string | null;
 }
 export namespace IntegrationLinkModel {
 }

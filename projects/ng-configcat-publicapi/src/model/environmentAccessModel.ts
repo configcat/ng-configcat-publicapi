@@ -14,28 +14,28 @@ export interface EnvironmentAccessModel {
     /**
      * Identifier of the Environment.
      */
-    environmentId?: string;
+    environmentId: string;
     /**
      * Name of the Environment.
      */
-    name?: string | null;
+    name: string | null;
     /**
      * Color of the Environment.
      */
-    color?: string | null;
+    color: string | null;
     /**
      * Description of the Environment.
      */
-    description?: string | null;
+    description: string | null;
     /**
      * The order of the Environment represented on the ConfigCat Dashboard.
      */
-    order?: number;
+    order: number;
     /**
      * Determines whether a mandatory reason must be given every time when the Feature Flags or Settings in the given Environment are saved.
      */
-    reasonRequired?: boolean;
-    environmentAccessType?: EnvironmentAccessType;
+    reasonRequired: boolean;
+    environmentAccessType: EnvironmentAccessType;
 }
 export namespace EnvironmentAccessModel {
 }

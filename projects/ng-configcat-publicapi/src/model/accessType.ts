@@ -15,8 +15,11 @@
 export type AccessType = 'readOnly' | 'full' | 'custom';
 
 export const AccessType = {
+
     ReadOnly: 'readOnly' as AccessType,
+
     Full: 'full' as AccessType,
+
     Custom: 'custom' as AccessType
 };
 

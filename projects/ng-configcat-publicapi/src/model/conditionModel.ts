@@ -13,8 +13,8 @@ import { PrerequisiteFlagConditionModel } from './prerequisiteFlagConditionModel
 
 
 export interface ConditionModel { 
-    userCondition?: UserConditionModel;
-    segmentCondition?: SegmentConditionModel;
-    prerequisiteFlagCondition?: PrerequisiteFlagConditionModel;
+    userCondition: UserConditionModel | null;
+    segmentCondition: SegmentConditionModel | null;
+    prerequisiteFlagCondition: PrerequisiteFlagConditionModel | null;
 }
 

@@ -16,10 +16,10 @@ export interface WebhookEnvironment {
     /**
      * The Environment\'s name.
      */
-    name?: string | null;
+    name: string;
     /**
      * The Environment\'s identifier.
      */
-    environmentId?: string;
+    environmentId: string;
 }
 

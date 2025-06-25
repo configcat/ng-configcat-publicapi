@@ -13,22 +13,22 @@ export interface InvitationModel {
     /**
      * The identifier of the Invitation.
      */
-    invitationId?: string;
+    invitationId: string;
     /**
      * The invited user\'s email address.
      */
-    email?: string | null;
+    email: string | null;
     /**
      * The identifier of the Permission Group the user was invited to.
      */
-    permissionGroupId?: number;
+    permissionGroupId: number;
     /**
      * Creation time of the Invitation.
      */
-    createdAt?: string;
+    createdAt: string;
     /**
      * Determines whether the Invitation is expired.
      */
-    expired?: boolean;
+    expired: boolean;
 }
 

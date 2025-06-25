@@ -13,18 +13,18 @@ export interface UserModel {
     /**
      * Identifier of the Member.
      */
-    userId?: string | null;
+    userId: string | null;
     /**
      * Name of the Member.
      */
-    fullName?: string | null;
+    fullName: string | null;
     /**
      * Email of the Member.
      */
-    email?: string | null;
+    email: string | null;
     /**
      * Determines whether 2FA is enabled for the Member.
      */
-    twoFactorEnabled?: boolean;
+    twoFactorEnabled: boolean;
 }
 

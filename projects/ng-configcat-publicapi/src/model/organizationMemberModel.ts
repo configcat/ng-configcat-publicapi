@@ -17,22 +17,22 @@ export interface OrganizationMemberModel {
     /**
      * Identifier of the Organization Admin.
      */
-    userId?: string | null;
+    userId: string;
     /**
      * Name of the Organization Admin.
      */
-    fullName?: string | null;
+    fullName: string;
     /**
      * Email of the OrganizationAdmin.
      */
-    email?: string | null;
+    email: string;
     /**
      * Determines whether 2FA is enabled for the Organization Admin.
      */
-    twoFactorEnabled?: boolean;
+    twoFactorEnabled: boolean;
     /**
      * The permissions of the Member.
      */
-    permissions?: Array<OrganizationPermissionModel> | null;
+    permissions: Array<OrganizationPermissionModel>;
 }
 

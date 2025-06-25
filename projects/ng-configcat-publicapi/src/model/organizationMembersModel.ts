@@ -15,14 +15,14 @@ export interface OrganizationMembersModel {
     /**
      * List of Organization Admins.
      */
-    admins?: Array<OrganizationAdminModel> | null;
+    admins: Array<OrganizationAdminModel>;
     /**
      * List of Billing Managers.
      */
-    billingManagers?: Array<OrganizationAdminModel> | null;
+    billingManagers: Array<OrganizationAdminModel>;
     /**
      * List of Organization Members.
      */
-    members?: Array<OrganizationMemberModel> | null;
+    members: Array<OrganizationMemberModel>;
 }
 

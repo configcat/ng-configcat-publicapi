@@ -16,10 +16,10 @@ export interface WebhookConfig {
     /**
      * The Config\'s name.
      */
-    name?: string | null;
+    name: string;
     /**
      * The Config\'s identifier.
      */
-    configId?: string;
+    configId: string;
 }
 

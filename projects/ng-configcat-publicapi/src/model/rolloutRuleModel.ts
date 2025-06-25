@@ -8,6 +8,7 @@
  * Do not edit the class manually.
  */
 import { RolloutRuleComparator } from './rolloutRuleComparator';
+import { SettingValueType } from './settingValueType';
 import { SegmentComparator } from './segmentComparator';
 
 
@@ -15,21 +16,21 @@ export interface RolloutRuleModel {
     /**
      * The user attribute to compare.
      */
-    comparisonAttribute?: string | null;
-    comparator?: RolloutRuleComparator;
+    comparisonAttribute: string | null;
+    comparator: RolloutRuleComparator | null;
     /**
      * The value to compare against.
      */
-    comparisonValue?: string | null;
+    comparisonValue: string | null;
     /**
-     * The value to serve when the comparison matches. It must respect the setting type.
+     * The value to serve when the comparison matches. It must respect the setting type. In some generated clients for strictly typed languages you may use double/float properties to handle integer values.
      */
-    value?: any | null;
-    segmentComparator?: SegmentComparator;
+    value: SettingValueType;
+    segmentComparator: SegmentComparator | null;
     /**
      * The segment to compare against.
      */
-    segmentId?: string | null;
+    segmentId: string | null;
 }
 export namespace RolloutRuleModel {
 }

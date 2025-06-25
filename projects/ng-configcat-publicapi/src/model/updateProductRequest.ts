@@ -19,7 +19,7 @@ export interface UpdateProductRequest {
      */
     description?: string | null;
     /**
-     * The order of the Product represented on the ConfigCat Dashboard.  Determined from an ascending sequence of integers.
+     * The order of the Product represented on the ConfigCat Dashboard. Determined from an ascending sequence of integers.
      */
     order?: number | null;
 }

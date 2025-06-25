@@ -15,20 +15,20 @@ export interface PreferencesModel {
     /**
      * Indicates that a mandatory note required for saving and publishing.
      */
-    reasonRequired?: boolean;
-    keyGenerationMode?: KeyGenerationMode;
+    reasonRequired: boolean;
+    keyGenerationMode: KeyGenerationMode;
     /**
      * Indicates whether a variation ID\'s must be shown on the ConfigCat Dashboard.
      */
-    showVariationId?: boolean;
+    showVariationId: boolean;
     /**
      * List of Environments where mandatory note must be set before saving and publishing.
      */
-    reasonRequiredEnvironments?: Array<ReasonRequiredEnvironmentModel> | null;
+    reasonRequiredEnvironments: Array<ReasonRequiredEnvironmentModel> | null;
     /**
      * Indicates whether Feature flags and Settings must have a hint.
      */
-    mandatorySettingHint?: boolean;
+    mandatorySettingHint: boolean;
 }
 export namespace PreferencesModel {
 }

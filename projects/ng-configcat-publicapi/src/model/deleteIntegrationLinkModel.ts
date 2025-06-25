@@ -10,6 +10,6 @@
 
 
 export interface DeleteIntegrationLinkModel { 
-    hasRemainingIntegrationLink?: boolean;
+    hasRemainingIntegrationLink: boolean;
 }
 

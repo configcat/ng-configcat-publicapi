@@ -16,7 +16,7 @@ export interface UpdatePreferencesRequest {
      * Indicates that a mandatory note is required for saving and publishing.
      */
     reasonRequired?: boolean | null;
-    keyGenerationMode?: KeyGenerationMode;
+    keyGenerationMode?: KeyGenerationMode | null;
     /**
      * Indicates whether a variation ID\'s must be shown on the ConfigCat Dashboard.
      */

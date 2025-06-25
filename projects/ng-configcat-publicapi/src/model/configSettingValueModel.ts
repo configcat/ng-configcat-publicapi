@@ -11,42 +11,43 @@ import { IntegrationLinkModel } from './integrationLinkModel';
 import { RolloutRuleModel } from './rolloutRuleModel';
 import { SettingTagModel } from './settingTagModel';
 import { RolloutPercentageItemModel } from './rolloutPercentageItemModel';
+import { SettingValueType } from './settingValueType';
 import { SettingDataModel } from './settingDataModel';
 
 
 export interface ConfigSettingValueModel { 
-    /**
-     * The targeting rule collection.
-     */
-    rolloutRules?: Array<RolloutRuleModel> | null;
-    /**
-     * The percentage rule collection.
-     */
-    rolloutPercentageItems?: Array<RolloutPercentageItemModel> | null;
-    /**
-     * The value to serve. It must respect the setting type.
-     */
-    value?: any | null;
-    setting?: SettingDataModel;
+    setting: SettingDataModel;
     /**
      * The last updated date and time when the Feature Flag or Setting.
      */
-    updatedAt?: string | null;
+    updatedAt: string | null;
     /**
      * The email of the user who last updated the Feature Flag or Setting.
      */
-    lastUpdaterUserEmail?: string | null;
+    lastUpdaterUserEmail: string | null;
     /**
      * The name of the user who last updated the Feature Flag or Setting.
      */
-    lastUpdaterUserFullName?: string | null;
+    lastUpdaterUserFullName: string | null;
     /**
      * The integration links attached to the Feature Flag or Setting.
      */
-    integrationLinks?: Array<IntegrationLinkModel> | null;
+    integrationLinks: Array<IntegrationLinkModel>;
     /**
      * The tags attached to the Feature Flag or Setting.
      */
-    settingTags?: Array<SettingTagModel> | null;
+    settingTags: Array<SettingTagModel>;
+    /**
+     * The targeting rule collection.
+     */
+    rolloutRules: Array<RolloutRuleModel>;
+    /**
+     * The percentage rule collection.
+     */
+    rolloutPercentageItems: Array<RolloutPercentageItemModel>;
+    /**
+     * The value to serve. It must respect the setting type. In some generated clients for strictly typed languages you may use double/float properties to handle integer values.
+     */
+    value: SettingValueType;
 }
 

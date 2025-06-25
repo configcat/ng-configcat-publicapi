@@ -16,10 +16,10 @@ export interface OrganizationPermissionGroupModel {
     /**
      * Identifier of the Member\'s Permission Group.
      */
-    permissionGroupId?: number;
+    permissionGroupId: number;
     /**
      * Name of the Member\'s Permission Group.
      */
-    name?: string | null;
+    name: string;
 }
 
