@@ -17,6 +17,6 @@ export interface ComparisonValueListModel {
     /**
      * An optional hint for the comparison value.
      */
-    hint?: string | null;
+    hint: string | null;
 }
 
