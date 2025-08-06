@@ -17,14 +17,14 @@ export interface ComparisonValueModel {
     /**
      * The string representation of the comparison value.
      */
-    stringValue?: string | null;
+    stringValue: string | null;
     /**
      * The number representation of the comparison value.
      */
-    doubleValue?: number | null;
+    doubleValue: number | null;
     /**
      * The list representation of the comparison value.
      */
-    listValue?: Array<ComparisonValueListModel> | null;
+    listValue: Array<ComparisonValueListModel> | null;
 }
 
