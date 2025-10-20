@@ -1,6 +1,6 @@
 {
   "name": "ng-configcat-publicapi",
-  "version": "5.0.3",
+  "version": "5.0.4",
   "peerDependencies": {
     "@angular/common": "^20.3.3",
     "@angular/core": "^20.3.3"
