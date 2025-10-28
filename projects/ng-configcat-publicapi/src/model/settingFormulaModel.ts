@@ -10,11 +10,11 @@
 import { ConfigModel } from './configModel';
 import { IntegrationLinkModel } from './integrationLinkModel';
 import { ValueModel } from './valueModel';
+import { SettingDataV2Model } from './settingDataV2Model';
 import { SettingTagModel } from './settingTagModel';
 import { EnvironmentModel } from './environmentModel';
 import { FeatureFlagLimitations } from './featureFlagLimitations';
 import { TargetingRuleModel } from './targetingRuleModel';
-import { SettingDataModel } from './settingDataModel';
 
 
 export interface SettingFormulaModel { 
@@ -24,7 +24,7 @@ export interface SettingFormulaModel {
      * The targeting rules of the Feature Flag or Setting.
      */
     targetingRules: Array<TargetingRuleModel>;
-    setting: SettingDataModel;
+    setting: SettingDataV2Model;
     /**
      * The last updated date and time when the Feature Flag or Setting.
      */

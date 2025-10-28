@@ -16,7 +16,7 @@ export interface InitialValue {
      */
     environmentId?: string;
     /**
-     * The initial value in the given Environment. It must respect the setting type. In some generated clients for strictly typed languages you may use double/float properties to handle integer values.
+     * The initial value in the given Environment. It must respect the setting type. In some generated clients for strictly typed languages, you may use double/float properties to handle integer values. In case of a Feature Flag with predefined variations, the value must match one of the predefined variations\' value.
      */
     value: SettingValueType;
 }

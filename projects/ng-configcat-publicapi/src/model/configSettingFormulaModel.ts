@@ -9,9 +9,9 @@
  */
 import { IntegrationLinkModel } from './integrationLinkModel';
 import { ValueModel } from './valueModel';
+import { SettingDataV2Model } from './settingDataV2Model';
 import { SettingTagModel } from './settingTagModel';
 import { TargetingRuleModel } from './targetingRuleModel';
-import { SettingDataModel } from './settingDataModel';
 
 
 export interface ConfigSettingFormulaModel { 
@@ -21,7 +21,7 @@ export interface ConfigSettingFormulaModel {
      * The targeting rules of the Feature Flag or Setting.
      */
     targetingRules: Array<TargetingRuleModel>;
-    setting: SettingDataModel;
+    setting: SettingDataV2Model;
     /**
      * The last updated date and time when the Feature Flag or Setting.
      */

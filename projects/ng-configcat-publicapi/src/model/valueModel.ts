@@ -29,5 +29,9 @@ export interface ValueModel {
      * The served value in case of a decimal number Setting.
      */
     doubleValue: number | null;
+    /**
+     * The served Variation\'s identifier.
+     */
+    predefinedVariationId: string | null;
 }
 

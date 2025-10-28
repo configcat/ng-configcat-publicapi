@@ -7,11 +7,16 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { CreatePredefinedVariationModel } from './createPredefinedVariationModel';
 import { InitialValue } from './initialValue';
 import { SettingType } from './settingType';
 
 
 export interface CreateSettingInitialValues { 
+    /**
+     * The name of the Feature Flag or Setting.
+     */
+    name: string;
     /**
      * A short description for the setting, shown on the Dashboard UI.
      */
@@ -28,11 +33,11 @@ export interface CreateSettingInitialValues {
      * The key of the Feature Flag or Setting.
      */
     key: string;
-    /**
-     * The name of the Feature Flag or Setting.
-     */
-    name: string;
     settingType: SettingType;
+    /**
+     * The Feature Flag or Setting\'s Variations.
+     */
+    predefinedVariations?: Array<CreatePredefinedVariationModel> | null;
     /**
      * Optional, initial value of the Feature Flag or Setting in the given Environments. Only one of the SettingIdToInitFrom or the InitialValues properties can be set.
      */

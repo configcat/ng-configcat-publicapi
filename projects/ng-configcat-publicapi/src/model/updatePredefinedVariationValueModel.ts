@@ -10,9 +10,9 @@
 
 
 /**
- * Represents the value of a Feature Flag or Setting.
+ * Represents the value of a Feature Flag or Predefined Variation.
  */
-export interface UpdateValueModel { 
+export interface UpdatePredefinedVariationValueModel { 
     /**
      * The served value in case of a boolean Feature Flag.
      */
@@ -29,9 +29,5 @@ export interface UpdateValueModel {
      * The served value in case of a decimal number Setting.
      */
     doubleValue?: number | null;
-    /**
-     * The served Variation\'s identifier.
-     */
-    predefinedVariationId?: string | null;
 }
 
