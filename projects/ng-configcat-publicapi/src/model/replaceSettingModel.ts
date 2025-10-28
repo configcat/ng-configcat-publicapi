@@ -11,6 +11,10 @@
 
 export interface ReplaceSettingModel { 
     /**
+     * The name of the Feature Flag or Setting.
+     */
+    name: string;
+    /**
      * A short description for the setting, shown on the Dashboard UI.
      */
     hint?: string | null;
@@ -22,9 +26,5 @@ export interface ReplaceSettingModel {
      * The order of the Setting represented on the ConfigCat Dashboard. Determined from an ascending sequence of integers.
      */
     order?: number | null;
-    /**
-     * The name of the Feature Flag or Setting.
-     */
-    name?: string | null;
 }
 

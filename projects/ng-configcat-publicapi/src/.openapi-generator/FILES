@@ -49,6 +49,8 @@ model/createEnvironmentModel.ts
 model/createIntegrationModel.ts
 model/createOrUpdateEnvironmentAccessModel.ts
 model/createPermissionGroupRequest.ts
+model/createPredefinedVariationModel.ts
+model/createPredefinedVariationValueModel.ts
 model/createProductRequest.ts
 model/createSegmentModel.ts
 model/createSettingInitialValues.ts
@@ -89,6 +91,8 @@ model/organizationPermissionModel.ts
 model/organizationProductModel.ts
 model/percentageOptionModel.ts
 model/permissionGroupModel.ts
+model/predefinedVariationModel.ts
+model/predefinedVariationValueModel.ts
 model/preferencesModel.ts
 model/prerequisiteComparator.ts
 model/prerequisiteFlagConditionModel.ts
@@ -108,6 +112,7 @@ model/segmentConditionModel.ts
 model/segmentListModel.ts
 model/segmentModel.ts
 model/settingDataModel.ts
+model/settingDataV2Model.ts
 model/settingFormulaModel.ts
 model/settingModel.ts
 model/settingTagModel.ts
@@ -135,6 +140,9 @@ model/updateEvaluationFormulasModel.ts
 model/updateMemberPermissionsRequest.ts
 model/updatePercentageOptionModel.ts
 model/updatePermissionGroupRequest.ts
+model/updatePredefinedVariationModel.ts
+model/updatePredefinedVariationValueModel.ts
+model/updatePredefinedVariationsRequest.ts
 model/updatePreferencesRequest.ts
 model/updatePrerequisiteFlagConditionModel.ts
 model/updateProductRequest.ts

@@ -8,14 +8,13 @@
  * Do not edit the class manually.
  */
 import { SettingType } from './settingType';
-import { TagModel } from './tagModel';
 import { PredefinedVariationModel } from './predefinedVariationModel';
 
 
 /**
  * Metadata of a Feature Flag or Setting.
  */
-export interface SettingModel { 
+export interface SettingDataV2Model { 
     /**
      * Identifier of the Feature Flag or Setting.
      */
@@ -32,33 +31,30 @@ export interface SettingModel {
      * Description of the Feature Flag or Setting.
      */
     hint: string | null;
+    settingType: SettingType;
     /**
      * The order of the Feature Flag or Setting represented on the ConfigCat Dashboard.
      */
     order: number;
-    settingType: SettingType;
-    /**
-     * Identifier of the Feature Flag\'s Config.
-     */
-    configId: string;
-    /**
-     * Name of the Feature Flag\'s Config.
-     */
-    configName: string;
     /**
      * The creation time of the Feature Flag or Setting.
      */
     createdAt: string | null;
     /**
-     * The tags attached to the Feature Flag or Setting.
+     * The user\'s email address who created the Feature Flag or Setting.
      */
-    tags: Array<TagModel>;
+    creatorEmail: string | null;
     /**
-     * The Feature Flag or Setting\'s Variations.
+     * The user\'s name who created the Feature Flag or Setting.
+     */
+    creatorFullName: string | null;
+    /**
+     * A collection of Variations for a Feature Flag or Setting.
      */
     predefinedVariations: Array<PredefinedVariationModel>;
+    isWatching: boolean;
 }
-export namespace SettingModel {
+export namespace SettingDataV2Model {
 }
 
 
