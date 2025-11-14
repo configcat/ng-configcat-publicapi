@@ -19,6 +19,7 @@ api/members.service.ts
 api/organizations.service.ts
 api/permissionGroups.service.ts
 api/products.service.ts
+api/proxyProfiles.service.ts
 api/sDKKeys.service.ts
 api/segments.service.ts
 api/tags.service.ts
@@ -44,10 +45,14 @@ model/configSettingFormulasModel.ts
 model/configSettingValueModel.ts
 model/configSettingValuesModel.ts
 model/connectRequest.ts
+model/connectionPreferences.ts
 model/createConfigRequest.ts
 model/createEnvironmentModel.ts
 model/createIntegrationModel.ts
+model/createOrUpdateConnectionPreferences.ts
 model/createOrUpdateEnvironmentAccessModel.ts
+model/createOrUpdateProxyProfileRequest.ts
+model/createOrUpdateWebhookNotification.ts
 model/createPermissionGroupRequest.ts
 model/createPredefinedVariationModel.ts
 model/createPredefinedVariationValueModel.ts
@@ -93,10 +98,19 @@ model/percentageOptionModel.ts
 model/permissionGroupModel.ts
 model/predefinedVariationModel.ts
 model/predefinedVariationValueModel.ts
+model/predefinedVariationsModel.ts
 model/preferencesModel.ts
 model/prerequisiteComparator.ts
 model/prerequisiteFlagConditionModel.ts
 model/productModel.ts
+model/proxyProfileListModel.ts
+model/proxyProfileModel.ts
+model/proxyProfileSdkKeyItem.ts
+model/proxyProfileSdkKeyRequestItem.ts
+model/proxyProfileSdkKeysListModel.ts
+model/proxyProfileSdkKeysRequest.ts
+model/proxyProfileSecretModel.ts
+model/proxyProfileSelectionRule.ts
 model/reasonRequiredEnvironmentModel.ts
 model/referenceLineModel.ts
 model/referenceLineRequest.ts
@@ -111,6 +125,7 @@ model/segmentComparator.ts
 model/segmentConditionModel.ts
 model/segmentListModel.ts
 model/segmentModel.ts
+model/selectionRuleKind.ts
 model/settingDataModel.ts
 model/settingDataV2Model.ts
 model/settingFormulaModel.ts
@@ -146,6 +161,7 @@ model/updatePredefinedVariationsRequest.ts
 model/updatePreferencesRequest.ts
 model/updatePrerequisiteFlagConditionModel.ts
 model/updateProductRequest.ts
+model/updateProxyProfileSelectionRule.ts
 model/updateReasonRequiredEnvironmentModel.ts
 model/updateRolloutPercentageItemModel.ts
 model/updateRolloutRuleModel.ts
@@ -168,6 +184,7 @@ model/webhookConfig.ts
 model/webhookEnvironment.ts
 model/webhookHeaderModel.ts
 model/webhookHeaderResponseModel.ts
+model/webhookNotification.ts
 model/webhookResponseModel.ts
 model/webhookSigningKeysModel.ts
 param.ts
