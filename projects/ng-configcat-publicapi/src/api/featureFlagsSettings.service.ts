@@ -23,6 +23,8 @@ import { JsonPatchOperation } from '../model/jsonPatchOperation';
 // @ts-ignore
 import { PredefinedVariationsModel } from '../model/predefinedVariationsModel';
 // @ts-ignore
+import { PredefinedVariationsWithUsagesModel } from '../model/predefinedVariationsWithUsagesModel';
+// @ts-ignore
 import { ReplaceSettingModel } from '../model/replaceSettingModel';
 // @ts-ignore
 import { SettingModel } from '../model/settingModel';
@@ -162,6 +164,63 @@ export class FeatureFlagsSettingsService extends BaseService {
 
         let localVarPath = `/v1/settings/${this.configuration.encodeParam({name: "settingId", value: settingId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}`;
         return this.httpClient.request<any>('delete', `${this.configuration.basePath}${localVarPath}`,
+            {
+                context: localVarHttpContext,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                transferCache: localVarTransferCache,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Get predefined variations (Beta)
+     * This endpoint returns the predefined variations along with their usages in the Environments for a Feature Flag or Setting identified by the &#x60;settingId&#x60; parameter.  **Beta feature:** The feature is currently in closed beta state and cannot be used.
+     * @param settingId The identifier of the Setting.
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getPredefinedVariations(settingId: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<PredefinedVariationsWithUsagesModel>;
+    public getPredefinedVariations(settingId: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<PredefinedVariationsWithUsagesModel>>;
+    public getPredefinedVariations(settingId: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<PredefinedVariationsWithUsagesModel>>;
+    public getPredefinedVariations(settingId: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+        if (settingId === null || settingId === undefined) {
+            throw new Error('Required parameter settingId was null or undefined when calling getPredefinedVariations.');
+        }
+
+        let localVarHeaders = this.defaultHeaders;
+
+        // authentication (Basic) required
+        localVarHeaders = this.configuration.addCredentialToHeaders('Basic', 'Authorization', localVarHeaders, 'Basic ');
+
+        const localVarHttpHeaderAcceptSelected: string | undefined = options?.httpHeaderAccept ?? this.configuration.selectHeaderAccept([
+            'application/json'
+        ]);
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        const localVarHttpContext: HttpContext = options?.context ?? new HttpContext();
+
+        const localVarTransferCache: boolean = options?.transferCache ?? true;
+
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        let localVarPath = `/v1/settings/${this.configuration.encodeParam({name: "settingId", value: settingId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}/predefined-variations`;
+        return this.httpClient.request<PredefinedVariationsWithUsagesModel>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
