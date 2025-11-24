@@ -56,6 +56,7 @@ export * from './modifyIntegrationRequest';
 export * from './operationType';
 export * from './organizationAdminModel';
 export * from './organizationInvitationModel';
+export * from './organizationLimitations';
 export * from './organizationMemberModel';
 export * from './organizationMembersModel';
 export * from './organizationModel';

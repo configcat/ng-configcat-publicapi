@@ -88,6 +88,7 @@ model/modifyIntegrationRequest.ts
 model/operationType.ts
 model/organizationAdminModel.ts
 model/organizationInvitationModel.ts
+model/organizationLimitations.ts
 model/organizationMemberModel.ts
 model/organizationMembersModel.ts
 model/organizationModel.ts
