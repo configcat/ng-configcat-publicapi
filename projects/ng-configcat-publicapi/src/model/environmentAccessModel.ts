@@ -18,7 +18,7 @@ export interface EnvironmentAccessModel {
     /**
      * Name of the Environment.
      */
-    name: string | null;
+    name: string;
     /**
      * Color of the Environment.
      */

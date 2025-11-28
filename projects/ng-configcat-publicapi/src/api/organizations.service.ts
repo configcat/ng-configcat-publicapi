@@ -17,6 +17,8 @@ import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 // @ts-ignore
+import { OrganizationLimitations } from '../model/organizationLimitations';
+// @ts-ignore
 import { OrganizationModel } from '../model/organizationModel';
 
 // @ts-ignore
@@ -33,6 +35,63 @@ export class OrganizationsService extends BaseService {
 
     constructor(protected httpClient: HttpClient, @Optional() @Inject(BASE_PATH) basePath: string|string[], @Optional() configuration?: Configuration) {
         super(basePath, configuration);
+    }
+
+    /**
+     * Get Organization limitations
+     * This endpoint returns the limitations of an Organization identified by the &#x60;organizationId&#x60;.
+     * @param organizationId The identifier of the Organization.
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getOrganizationLimitations(organizationId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<OrganizationLimitations>;
+    public getOrganizationLimitations(organizationId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<OrganizationLimitations>>;
+    public getOrganizationLimitations(organizationId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<OrganizationLimitations>>;
+    public getOrganizationLimitations(organizationId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+        if (organizationId === null || organizationId === undefined) {
+            throw new Error('Required parameter organizationId was null or undefined when calling getOrganizationLimitations.');
+        }
+
+        let localVarHeaders = this.defaultHeaders;
+
+        // authentication (Basic) required
+        localVarHeaders = this.configuration.addCredentialToHeaders('Basic', 'Authorization', localVarHeaders, 'Basic ');
+
+        const localVarHttpHeaderAcceptSelected: string | undefined = options?.httpHeaderAccept ?? this.configuration.selectHeaderAccept([
+            'application/json'
+        ]);
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        const localVarHttpContext: HttpContext = options?.context ?? new HttpContext();
+
+        const localVarTransferCache: boolean = options?.transferCache ?? true;
+
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        let localVarPath = `/v1/organizations/${this.configuration.encodeParam({name: "organizationId", value: organizationId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/organization-limitations`;
+        return this.httpClient.request<OrganizationLimitations>('get', `${this.configuration.basePath}${localVarPath}`,
+            {
+                context: localVarHttpContext,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                transferCache: localVarTransferCache,
+                reportProgress: reportProgress
+            }
+        );
     }
 
     /**
