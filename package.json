@@ -24,6 +24,6 @@
     "@angular/compiler-cli": "^20.3.15",
     "@types/node": "^20.11.25",
     "ng-packagr": "^20.0.1",
-    "typescript": "~5.8.3"
+    "typescript": "~5.9.3"
   }
 }
