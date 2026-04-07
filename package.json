@@ -22,7 +22,7 @@
     "@angular/build": "^21.1.2",
     "@angular/cli": "^21.1.2",
     "@angular/compiler-cli": "^21.2.7",
-    "@types/node": "^20.11.25",
+    "@types/node": "^22.15.30",
     "ng-packagr": "^21.0.1",
     "typescript": "~5.9.3"
   }
