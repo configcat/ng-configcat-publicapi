@@ -7,13 +7,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { IntegrationModel } from './integrationModel';
+import { AuditLogItemModel } from './auditLogItemModel';
+import { PagingResponseInfo } from './pagingResponseInfo';
 
 
-export interface IntegrationsModel { 
-    /**
-     * The Integrations of the Product.
-     */
-    integrations: Array<IntegrationModel>;
+export interface AuditLogItemModelPagedList { 
+    paging: PagingResponseInfo | null;
+    data: Array<AuditLogItemModel> | null;
 }
 

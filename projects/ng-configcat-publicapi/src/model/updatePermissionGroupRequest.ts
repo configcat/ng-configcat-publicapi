@@ -7,8 +7,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { ApprovalPermissionType } from './approvalPermissionType';
 import { EnvironmentAccessType } from './environmentAccessType';
 import { CreateOrUpdateEnvironmentAccessModel } from './createOrUpdateEnvironmentAccessModel';
+import { EnvironmentApprovalPermissionType } from './environmentApprovalPermissionType';
+import { CreateOrUpdateEnvironmentApprovalPermissionModel } from './createOrUpdateEnvironmentApprovalPermissionModel';
 import { AccessType } from './accessType';
 
 
@@ -107,6 +110,12 @@ export interface UpdatePermissionGroupRequest {
      * List of environment specific permissions.
      */
     environmentAccesses?: Array<CreateOrUpdateEnvironmentAccessModel> | null;
+    approvalPermissionType?: ApprovalPermissionType | null;
+    newEnvironmentApprovalPermissionType?: EnvironmentApprovalPermissionType | null;
+    /**
+     * List of environment specific change request approval permissions.
+     */
+    environmentApprovalPermissions?: Array<CreateOrUpdateEnvironmentApprovalPermissionModel> | null;
 }
 export namespace UpdatePermissionGroupRequest {
 }

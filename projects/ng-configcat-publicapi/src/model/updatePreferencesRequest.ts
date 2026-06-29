@@ -7,6 +7,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { UpdateApproveRequiredEnvironmentModel } from './updateApproveRequiredEnvironmentModel';
 import { KeyGenerationMode } from './keyGenerationMode';
 import { UpdateReasonRequiredEnvironmentModel } from './updateReasonRequiredEnvironmentModel';
 
@@ -29,6 +30,14 @@ export interface UpdatePreferencesRequest {
      * List of Environments where mandatory note must be set before saving and publishing.
      */
     reasonRequiredEnvironments?: Array<UpdateReasonRequiredEnvironmentModel> | null;
+    /**
+     * Indicates that a mandatory approval is required before changes are applied.
+     */
+    approveRequired?: boolean | null;
+    /**
+     * List of Environments where mandatory approval must be given before changes are applied.
+     */
+    approveRequiredEnvironments?: Array<UpdateApproveRequiredEnvironmentModel> | null;
 }
 export namespace UpdatePreferencesRequest {
 }

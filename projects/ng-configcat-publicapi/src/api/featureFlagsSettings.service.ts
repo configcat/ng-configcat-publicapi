@@ -177,8 +177,8 @@ export class FeatureFlagsSettingsService extends BaseService {
     }
 
     /**
-     * Get predefined variations (Beta)
-     * This endpoint returns the predefined variations along with their usages in the Environments for a Feature Flag or Setting identified by the &#x60;settingId&#x60; parameter.  **Beta feature:** The feature is currently in closed beta state and cannot be used.
+     * Get predefined variations
+     * This endpoint returns the predefined variations along with their usages in the Environments for a Feature Flag or Setting identified by the &#x60;settingId&#x60; parameter.
      * @param settingId The identifier of the Setting.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -421,8 +421,8 @@ export class FeatureFlagsSettingsService extends BaseService {
     }
 
     /**
-     * Update predefined variations (Beta)
-     * This endpoint updates the predefined variations for a Feature Flag or Setting identified by the &#x60;settingId&#x60; parameter.  **Important:** You can only update a predefined variation\&#39;s value if it is not used anywhere in your feature flags.  **Beta feature:** The feature is currently in closed beta state and cannot be used.
+     * Update predefined variations
+     * This endpoint updates the predefined variations for a Feature Flag or Setting identified by the &#x60;settingId&#x60; parameter.  **Important:** You can only update a predefined variation\&#39;s value if it is not used anywhere in your feature flags.
      * @param settingId The identifier of the Setting.
      * @param updatePredefinedVariationsRequest 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.

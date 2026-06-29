@@ -11,20 +11,20 @@ import { UpdatePredefinedVariationValueModel } from './updatePredefinedVariation
 
 
 /**
- * A Feature Flag or Predefined Variation.
+ * A Predefined Variation.
  */
 export interface UpdatePredefinedVariationModel { 
     value: UpdatePredefinedVariationValueModel;
     /**
-     * The name of the Feature Flag or Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
+     * The name of the Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
      */
     name?: string | null;
     /**
-     * The name of the Feature Flag or Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
+     * The name of the Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
      */
     hint?: string | null;
     /**
-     * The Feature Flag or Predefined Variation\'s identifier to update. Omit the value if you want to add a new predefined variation.
+     * The Predefined Variation\'s identifier to update. Omit the value if you want to add a new predefined variation.
      */
     predefinedVariationId?: string | null;
 }

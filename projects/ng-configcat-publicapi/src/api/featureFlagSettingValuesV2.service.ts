@@ -172,13 +172,14 @@ export class FeatureFlagSettingValuesV2Service extends BaseService {
      * @param environmentId The identifier of the Environment.
      * @param updateEvaluationFormulasModel 
      * @param reason The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
+     * @param bypassApproval Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<ConfigSettingFormulasModel>;
-    public postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ConfigSettingFormulasModel>>;
-    public postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<ConfigSettingFormulasModel>>;
-    public postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, bypassApproval?: boolean, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<ConfigSettingFormulasModel>;
+    public postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, bypassApproval?: boolean, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ConfigSettingFormulasModel>>;
+    public postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, bypassApproval?: boolean, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<ConfigSettingFormulasModel>>;
+    public postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, bypassApproval?: boolean, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (configId === null || configId === undefined) {
             throw new Error('Required parameter configId was null or undefined when calling postSettingValuesV2.');
         }
@@ -192,6 +193,8 @@ export class FeatureFlagSettingValuesV2Service extends BaseService {
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
           <any>reason, 'reason');
+        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+          <any>bypassApproval, 'bypassApproval');
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -255,13 +258,14 @@ export class FeatureFlagSettingValuesV2Service extends BaseService {
      * @param settingId The id of the Setting.
      * @param updateEvaluationFormulaModel 
      * @param reason The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
+     * @param bypassApproval Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<SettingFormulaModel>;
-    public replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<SettingFormulaModel>>;
-    public replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<SettingFormulaModel>>;
-    public replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, bypassApproval?: boolean, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<SettingFormulaModel>;
+    public replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, bypassApproval?: boolean, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<SettingFormulaModel>>;
+    public replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, bypassApproval?: boolean, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<SettingFormulaModel>>;
+    public replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, bypassApproval?: boolean, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (environmentId === null || environmentId === undefined) {
             throw new Error('Required parameter environmentId was null or undefined when calling replaceSettingValueV2.');
         }
@@ -275,6 +279,8 @@ export class FeatureFlagSettingValuesV2Service extends BaseService {
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
           <any>reason, 'reason');
+        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+          <any>bypassApproval, 'bypassApproval');
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -338,13 +344,14 @@ export class FeatureFlagSettingValuesV2Service extends BaseService {
      * @param settingId The id of the Setting.
      * @param jsonPatchOperation 
      * @param reason The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
+     * @param bypassApproval Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public updateSettingValueV2(environmentId: string, settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<SettingFormulaModel>;
-    public updateSettingValueV2(environmentId: string, settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<SettingFormulaModel>>;
-    public updateSettingValueV2(environmentId: string, settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<SettingFormulaModel>>;
-    public updateSettingValueV2(environmentId: string, settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public updateSettingValueV2(environmentId: string, settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, bypassApproval?: boolean, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<SettingFormulaModel>;
+    public updateSettingValueV2(environmentId: string, settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, bypassApproval?: boolean, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<SettingFormulaModel>>;
+    public updateSettingValueV2(environmentId: string, settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, bypassApproval?: boolean, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<SettingFormulaModel>>;
+    public updateSettingValueV2(environmentId: string, settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, bypassApproval?: boolean, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (environmentId === null || environmentId === undefined) {
             throw new Error('Required parameter environmentId was null or undefined when calling updateSettingValueV2.');
         }
@@ -358,6 +365,8 @@ export class FeatureFlagSettingValuesV2Service extends BaseService {
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
           <any>reason, 'reason');
+        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+          <any>bypassApproval, 'bypassApproval');
 
         let localVarHeaders = this.defaultHeaders;
 

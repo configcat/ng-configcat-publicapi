@@ -7,14 +7,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ProductModel } from './productModel';
+import { EnvironmentAccessType } from './environmentAccessType';
 
 
-/**
- * Details of the Environment.
- */
-export interface EnvironmentModel { 
-    product: ProductModel;
+export interface PermissionGroupEnvironmentAccessModel { 
     /**
      * Identifier of the Environment.
      */
@@ -24,7 +20,7 @@ export interface EnvironmentModel {
      */
     name: string;
     /**
-     * The configured color of the Environment.
+     * Color of the Environment.
      */
     color: string | null;
     /**
@@ -43,5 +39,9 @@ export interface EnvironmentModel {
      * Determines whether changes must be approved before they are applied in the given Environment.
      */
     approveRequired: boolean;
+    environmentAccessType: EnvironmentAccessType;
 }
+export namespace PermissionGroupEnvironmentAccessModel {
+}
+
 

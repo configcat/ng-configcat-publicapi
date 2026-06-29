@@ -35,5 +35,9 @@ export interface ProductModel {
      * Determines whether a mandatory reason must be given every time when the Feature Flags or Settings within a Product are saved.
      */
     reasonRequired: boolean;
+    /**
+     * Determines whether changes must be approved before they are applied within a Product.
+     */
+    approveRequired: boolean;
 }
 

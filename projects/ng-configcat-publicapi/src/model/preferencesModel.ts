@@ -9,6 +9,7 @@
  */
 import { ReasonRequiredEnvironmentModel } from './reasonRequiredEnvironmentModel';
 import { KeyGenerationMode } from './keyGenerationMode';
+import { ApproveRequiredEnvironmentModel } from './approveRequiredEnvironmentModel';
 
 
 export interface PreferencesModel { 
@@ -29,6 +30,14 @@ export interface PreferencesModel {
      * Indicates whether Feature flags and Settings must have a hint.
      */
     mandatorySettingHint: boolean;
+    /**
+     * Indicates that a mandatory approval is required for saving and publishing.
+     */
+    approveRequired: boolean;
+    /**
+     * List of Environments where mandatory approval must be given before changes are applied.
+     */
+    approveRequiredEnvironments: Array<ApproveRequiredEnvironmentModel> | null;
 }
 export namespace PreferencesModel {
 }

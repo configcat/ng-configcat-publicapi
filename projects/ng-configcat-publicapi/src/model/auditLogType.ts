@@ -9,7 +9,7 @@
  */
 
 
-export type AuditLogType = 'productCreated' | 'productChanged' | 'productOwnershipTransferred' | 'productDeleted' | 'productsReordered' | 'teamMemberInvited' | 'teamMemberInvitationRevoked' | 'teamMemberJoined' | 'teamMemberPermissionGroupChanged' | 'teamMemberRemoved' | 'teamMemberLeft' | 'teamMemberInvitationChanged' | 'teamMemberInvitationResent' | 'teamMemberInvitationRejected' | 'configCreated' | 'configChanged' | 'configDeleted' | 'configsReordered' | 'environmentCreated' | 'environmentChanged' | 'environmentDeleted' | 'environmentsReordered' | 'settingCreated' | 'settingChanged' | 'settingDeleted' | 'settingsReordered' | 'predefinedVariationsChanged' | 'settingConvertedToPredefinedVariations' | 'settingConvertedToFreeFormValues' | 'settingValueChanged' | 'webHookCreated' | 'webHookChanged' | 'webHookDeleted' | 'permissionGroupCreated' | 'permissionGroupChanged' | 'permissionGroupDeleted' | 'permissionGroupDefault' | 'apiKeyAdded' | 'apiKeyRemoved' | 'integrationAdded' | 'integrationChanged' | 'integrationRemoved' | 'apiKeyConnected' | 'integrationLinkAdded' | 'integrationLinkRemoved' | 'organizationAdded' | 'organizationRemoved' | 'organizationChanged' | 'organizationSubscriptionTypeChanged' | 'organizationAdminChanged' | 'organizationAdminLeft' | 'twoFactorDisabledForMember' | 'tagAdded' | 'tagChanged' | 'tagRemoved' | 'settingTagAdded' | 'settingTagRemoved' | 'publicApiAccessTokenAdded' | 'publicApiAccessTokenRemoved' | 'domainAdded' | 'domainVerified' | 'domainRemoved' | 'domainSamlConfigured' | 'domainSamlDeleted' | 'autoProvisioningConfigurationChanged' | 'samlIdpConfigurationAdded' | 'samlIdpConfigurationRemoved' | 'samlIdpConfigurationUpdated' | 'autoProvisioningEnabledChanged' | 'organizationMemberJoined' | 'organizationMemberProductJoinRequested' | 'organizationMemberProductJoinRequestRejected' | 'organizationMemberProductJoinRequestApproved' | 'organizationMemberRemoved' | 'codeReferencesUploaded' | 'codeReferenceDeleted' | 'codeReferenceStaleBranchDeleted' | 'segmentCreated' | 'segmentChanged' | 'segmentDeleted' | 'webhookSigningKeyDeleted' | 'webhookSigningKeyCreated' | 'userProvisioningConfigurationChanged' | 'syncGroupProvisioningRuleChanged' | 'syncGroupsReordered' | 'syncUserProvisioningEnabled' | 'syncUserProvisioningDisabled' | 'userEmailChanged' | 'userFullNameChanged' | 'userDisabled' | 'awsConnected' | 'awsDisconnected' | 'userEnabled' | 'syncUserDeleted' | 'syncGroupDeleted' | 'proxyConfigurationCreated' | 'proxyConfigurationChanged' | 'proxyConfigurationDeleted' | 'proxyConfigurationSecretRegenerated' | 'proxyNotificationSettingsUpdated' | 'proxyNotificationSettingsDeleted' | 'proxyNotificationSigningKeyAdded' | 'proxyNotificationSigningKeyDeleted';
+export type AuditLogType = 'productCreated' | 'productChanged' | 'productDeleted' | 'productsReordered' | 'productPreferencesUpdated' | 'teamMemberInvited' | 'teamMemberInvitationRevoked' | 'teamMemberJoined' | 'teamMemberPermissionGroupChanged' | 'teamMemberRemoved' | 'teamMemberLeft' | 'teamMemberInvitationChanged' | 'teamMemberInvitationResent' | 'teamMemberInvitationRejected' | 'teamMemberAddedToProduct' | 'configCreated' | 'configChanged' | 'configDeleted' | 'configsReordered' | 'environmentCreated' | 'environmentChanged' | 'environmentDeleted' | 'environmentsReordered' | 'settingCreated' | 'settingChanged' | 'settingDeleted' | 'settingsReordered' | 'predefinedVariationsChanged' | 'settingConvertedToPredefinedVariations' | 'settingConvertedToFreeFormValues' | 'settingValueChanged' | 'webHookCreated' | 'webHookChanged' | 'webHookDeleted' | 'permissionGroupCreated' | 'permissionGroupChanged' | 'permissionGroupDeleted' | 'permissionGroupDefault' | 'apiKeyAdded' | 'apiKeyRemoved' | 'integrationAdded' | 'integrationChanged' | 'integrationRemoved' | 'apiKeyConnected' | 'integrationLinkAdded' | 'integrationLinkRemoved' | 'organizationAdded' | 'organizationChanged' | 'organizationSubscriptionTypeChanged' | 'organizationAdminChanged' | 'organizationAdminLeft' | 'twoFactorDisabledForMember' | 'tagAdded' | 'tagChanged' | 'tagRemoved' | 'settingTagAdded' | 'settingTagRemoved' | 'publicApiAccessTokenAdded' | 'publicApiAccessTokenRemoved' | 'domainAdded' | 'domainVerified' | 'domainRemoved' | 'autoProvisioningConfigurationChanged' | 'samlIdpConfigurationAdded' | 'samlIdpConfigurationRemoved' | 'samlIdpConfigurationUpdated' | 'autoProvisioningEnabledChanged' | 'organizationMemberJoined' | 'organizationMemberProductJoinRequested' | 'organizationMemberProductJoinRequestRejected' | 'organizationMemberProductJoinRequestApproved' | 'organizationMemberRemoved' | 'codeReferencesUploaded' | 'codeReferenceDeleted' | 'codeReferenceStaleBranchDeleted' | 'segmentCreated' | 'segmentChanged' | 'segmentDeleted' | 'webhookSigningKeyDeleted' | 'webhookSigningKeyCreated' | 'userProvisioningConfigurationChanged' | 'syncGroupProvisioningRuleChanged' | 'syncGroupsReordered' | 'syncUserProvisioningEnabled' | 'syncUserProvisioningDisabled' | 'userEmailChanged' | 'userFullNameChanged' | 'userDisabled' | 'awsConnected' | 'awsDisconnected' | 'userEnabled' | 'syncUserDeleted' | 'syncGroupDeleted' | 'proxyConfigurationCreated' | 'proxyConfigurationChanged' | 'proxyConfigurationDeleted' | 'proxyConfigurationSecretRegenerated' | 'proxyNotificationSettingsUpdated' | 'proxyNotificationSettingsDeleted' | 'proxyNotificationSigningKeyAdded' | 'proxyNotificationSigningKeyDeleted' | 'changeRequestCreated' | 'changeRequestUpdated' | 'changeRequestSettingValuesUpdated' | 'changeRequestSettingValueRebased' | 'changeRequestApproved' | 'changeRequestApprovalDismissed' | 'changeRequestApplied' | 'changeRequestAppliedOnSchedule' | 'changeRequestClosed' | 'changeRequestNeedsAttention' | 'changeRequestCommentAdded' | 'changeRequestCommentEdited' | 'changeRequestCommentDeleted' | 'changeRequestSettingDeleted' | 'changeRequestNeedsAttentionFixed';
 
 export const AuditLogType = {
 
@@ -17,11 +17,11 @@ export const AuditLogType = {
 
     ProductChanged: 'productChanged' as AuditLogType,
 
-    ProductOwnershipTransferred: 'productOwnershipTransferred' as AuditLogType,
-
     ProductDeleted: 'productDeleted' as AuditLogType,
 
     ProductsReordered: 'productsReordered' as AuditLogType,
+
+    ProductPreferencesUpdated: 'productPreferencesUpdated' as AuditLogType,
 
     TeamMemberInvited: 'teamMemberInvited' as AuditLogType,
 
@@ -40,6 +40,8 @@ export const AuditLogType = {
     TeamMemberInvitationResent: 'teamMemberInvitationResent' as AuditLogType,
 
     TeamMemberInvitationRejected: 'teamMemberInvitationRejected' as AuditLogType,
+
+    TeamMemberAddedToProduct: 'teamMemberAddedToProduct' as AuditLogType,
 
     ConfigCreated: 'configCreated' as AuditLogType,
 
@@ -105,8 +107,6 @@ export const AuditLogType = {
 
     OrganizationAdded: 'organizationAdded' as AuditLogType,
 
-    OrganizationRemoved: 'organizationRemoved' as AuditLogType,
-
     OrganizationChanged: 'organizationChanged' as AuditLogType,
 
     OrganizationSubscriptionTypeChanged: 'organizationSubscriptionTypeChanged' as AuditLogType,
@@ -136,10 +136,6 @@ export const AuditLogType = {
     DomainVerified: 'domainVerified' as AuditLogType,
 
     DomainRemoved: 'domainRemoved' as AuditLogType,
-
-    DomainSamlConfigured: 'domainSamlConfigured' as AuditLogType,
-
-    DomainSamlDeleted: 'domainSamlDeleted' as AuditLogType,
 
     AutoProvisioningConfigurationChanged: 'autoProvisioningConfigurationChanged' as AuditLogType,
 
@@ -217,6 +213,36 @@ export const AuditLogType = {
 
     ProxyNotificationSigningKeyAdded: 'proxyNotificationSigningKeyAdded' as AuditLogType,
 
-    ProxyNotificationSigningKeyDeleted: 'proxyNotificationSigningKeyDeleted' as AuditLogType
+    ProxyNotificationSigningKeyDeleted: 'proxyNotificationSigningKeyDeleted' as AuditLogType,
+
+    ChangeRequestCreated: 'changeRequestCreated' as AuditLogType,
+
+    ChangeRequestUpdated: 'changeRequestUpdated' as AuditLogType,
+
+    ChangeRequestSettingValuesUpdated: 'changeRequestSettingValuesUpdated' as AuditLogType,
+
+    ChangeRequestSettingValueRebased: 'changeRequestSettingValueRebased' as AuditLogType,
+
+    ChangeRequestApproved: 'changeRequestApproved' as AuditLogType,
+
+    ChangeRequestApprovalDismissed: 'changeRequestApprovalDismissed' as AuditLogType,
+
+    ChangeRequestApplied: 'changeRequestApplied' as AuditLogType,
+
+    ChangeRequestAppliedOnSchedule: 'changeRequestAppliedOnSchedule' as AuditLogType,
+
+    ChangeRequestClosed: 'changeRequestClosed' as AuditLogType,
+
+    ChangeRequestNeedsAttention: 'changeRequestNeedsAttention' as AuditLogType,
+
+    ChangeRequestCommentAdded: 'changeRequestCommentAdded' as AuditLogType,
+
+    ChangeRequestCommentEdited: 'changeRequestCommentEdited' as AuditLogType,
+
+    ChangeRequestCommentDeleted: 'changeRequestCommentDeleted' as AuditLogType,
+
+    ChangeRequestSettingDeleted: 'changeRequestSettingDeleted' as AuditLogType,
+
+    ChangeRequestNeedsAttentionFixed: 'changeRequestNeedsAttentionFixed' as AuditLogType
 };
 

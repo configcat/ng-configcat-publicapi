@@ -37,6 +37,7 @@ export interface SettingModel {
      */
     order: number;
     settingType: SettingType;
+    isJson: boolean;
     /**
      * Identifier of the Feature Flag\'s Config.
      */

@@ -106,14 +106,15 @@ export class FeatureFlagSettingValuesUsingSDKKeyV2Service extends BaseService {
      * @param settingKeyOrId The key or id of the Setting.
      * @param updateEvaluationFormulaModel 
      * @param reason The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
+     * @param bypassApproval Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission.
      * @param xCONFIGCATSDKKEY The ConfigCat SDK Key. (https://app.configcat.com/sdkkey)
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public replaceSettingValueBySdkkeyV2(settingKeyOrId: string, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, xCONFIGCATSDKKEY?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<SettingFormulaModel>;
-    public replaceSettingValueBySdkkeyV2(settingKeyOrId: string, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, xCONFIGCATSDKKEY?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<SettingFormulaModel>>;
-    public replaceSettingValueBySdkkeyV2(settingKeyOrId: string, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, xCONFIGCATSDKKEY?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<SettingFormulaModel>>;
-    public replaceSettingValueBySdkkeyV2(settingKeyOrId: string, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, xCONFIGCATSDKKEY?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public replaceSettingValueBySdkkeyV2(settingKeyOrId: string, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, bypassApproval?: boolean, xCONFIGCATSDKKEY?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<SettingFormulaModel>;
+    public replaceSettingValueBySdkkeyV2(settingKeyOrId: string, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, bypassApproval?: boolean, xCONFIGCATSDKKEY?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<SettingFormulaModel>>;
+    public replaceSettingValueBySdkkeyV2(settingKeyOrId: string, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, bypassApproval?: boolean, xCONFIGCATSDKKEY?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<SettingFormulaModel>>;
+    public replaceSettingValueBySdkkeyV2(settingKeyOrId: string, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, bypassApproval?: boolean, xCONFIGCATSDKKEY?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (settingKeyOrId === null || settingKeyOrId === undefined) {
             throw new Error('Required parameter settingKeyOrId was null or undefined when calling replaceSettingValueBySdkkeyV2.');
         }
@@ -124,6 +125,8 @@ export class FeatureFlagSettingValuesUsingSDKKeyV2Service extends BaseService {
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
           <any>reason, 'reason');
+        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+          <any>bypassApproval, 'bypassApproval');
 
         let localVarHeaders = this.defaultHeaders;
         if (xCONFIGCATSDKKEY !== undefined && xCONFIGCATSDKKEY !== null) {
@@ -189,14 +192,15 @@ export class FeatureFlagSettingValuesUsingSDKKeyV2Service extends BaseService {
      * @param settingKeyOrId The key or id of the Setting.
      * @param jsonPatchOperation 
      * @param reason The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
+     * @param bypassApproval Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission.
      * @param xCONFIGCATSDKKEY The ConfigCat SDK Key. (https://app.configcat.com/sdkkey)
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public updateSettingValueBySdkkeyV2(settingKeyOrId: string, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, xCONFIGCATSDKKEY?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<SettingFormulaModel>;
-    public updateSettingValueBySdkkeyV2(settingKeyOrId: string, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, xCONFIGCATSDKKEY?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<SettingFormulaModel>>;
-    public updateSettingValueBySdkkeyV2(settingKeyOrId: string, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, xCONFIGCATSDKKEY?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<SettingFormulaModel>>;
-    public updateSettingValueBySdkkeyV2(settingKeyOrId: string, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, xCONFIGCATSDKKEY?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public updateSettingValueBySdkkeyV2(settingKeyOrId: string, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, bypassApproval?: boolean, xCONFIGCATSDKKEY?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<SettingFormulaModel>;
+    public updateSettingValueBySdkkeyV2(settingKeyOrId: string, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, bypassApproval?: boolean, xCONFIGCATSDKKEY?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<SettingFormulaModel>>;
+    public updateSettingValueBySdkkeyV2(settingKeyOrId: string, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, bypassApproval?: boolean, xCONFIGCATSDKKEY?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<SettingFormulaModel>>;
+    public updateSettingValueBySdkkeyV2(settingKeyOrId: string, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, bypassApproval?: boolean, xCONFIGCATSDKKEY?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (settingKeyOrId === null || settingKeyOrId === undefined) {
             throw new Error('Required parameter settingKeyOrId was null or undefined when calling updateSettingValueBySdkkeyV2.');
         }
@@ -207,6 +211,8 @@ export class FeatureFlagSettingValuesUsingSDKKeyV2Service extends BaseService {
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
           <any>reason, 'reason');
+        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+          <any>bypassApproval, 'bypassApproval');
 
         let localVarHeaders = this.defaultHeaders;
         if (xCONFIGCATSDKKEY !== undefined && xCONFIGCATSDKKEY !== null) {

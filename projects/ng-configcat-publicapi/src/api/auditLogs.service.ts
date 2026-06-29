@@ -19,6 +19,8 @@ import { Observable }                                        from 'rxjs';
 // @ts-ignore
 import { AuditLogItemModel } from '../model/auditLogItemModel';
 // @ts-ignore
+import { AuditLogItemModelPagedList } from '../model/auditLogItemModelPagedList';
+// @ts-ignore
 import { AuditLogType } from '../model/auditLogType';
 // @ts-ignore
 import { DeletedSettingModel } from '../model/deletedSettingModel';
@@ -41,7 +43,7 @@ export class AuditLogsService extends BaseService {
 
     /**
      * List Audit log items for Product
-     * This endpoint returns the list of Audit log items for a given Product  and the result can be optionally filtered by Config and/or Environment.  If neither &#x60;fromUtcDateTime&#x60; nor &#x60;toUtcDateTime&#x60; is set, the audit logs for the **last 7 days** will be returned.  The distance between &#x60;fromUtcDateTime&#x60; and &#x60;toUtcDateTime&#x60; cannot exceed **30 days**.
+     * This endpoint returns the list of Audit log items for a given Product and the result can be optionally filtered by Config and/or Environment.  If neither &#x60;fromUtcDateTime&#x60; nor &#x60;toUtcDateTime&#x60; is set, the audit logs for the **last 7 days** will be returned.  The distance between &#x60;fromUtcDateTime&#x60; and &#x60;toUtcDateTime&#x60; cannot exceed **30 days**.  **Important:** This endpoint is deprecated. Use the **List Audit log items for Product (V2)** endpoint instead. In the future, this endpoint will be redirected to the V2 version with default pagination parameters.
      * @param productId The identifier of the Product.
      * @param configId The identifier of the Config.
      * @param environmentId The identifier of the Environment.
@@ -50,6 +52,7 @@ export class AuditLogsService extends BaseService {
      * @param toUtcDateTime Filter Audit logs by ending UTC date.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @deprecated
      */
     public getAuditlogs(productId: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType, fromUtcDateTime?: string, toUtcDateTime?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<AuditLogItemModel>>;
     public getAuditlogs(productId: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType, fromUtcDateTime?: string, toUtcDateTime?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<AuditLogItemModel>>>;
@@ -101,6 +104,87 @@ export class AuditLogsService extends BaseService {
 
         let localVarPath = `/v1/products/${this.configuration.encodeParam({name: "productId", value: productId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/auditlogs`;
         return this.httpClient.request<Array<AuditLogItemModel>>('get', `${this.configuration.basePath}${localVarPath}`,
+            {
+                context: localVarHttpContext,
+                params: localVarQueryParameters,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                transferCache: localVarTransferCache,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * List Audit log items for Product (V2)
+     * This endpoint returns the list of Audit log items for a given Product and the result can be optionally filtered by Config and/or Environment.
+     * @param productId The identifier of the Product.
+     * @param configId The identifier of the Config.
+     * @param environmentId The identifier of the Environment.
+     * @param auditLogType Filter Audit logs by Audit log type.
+     * @param fromUtcDateTime Filter Audit logs by starting UTC date.
+     * @param toUtcDateTime Filter Audit logs by ending UTC date.
+     * @param pageNumber Page number (min: 1).
+     * @param pageSize Page size (min: 1, max: 100).
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getAuditlogsV2(productId: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType, fromUtcDateTime?: string, toUtcDateTime?: string, pageNumber?: number, pageSize?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<AuditLogItemModelPagedList>;
+    public getAuditlogsV2(productId: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType, fromUtcDateTime?: string, toUtcDateTime?: string, pageNumber?: number, pageSize?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<AuditLogItemModelPagedList>>;
+    public getAuditlogsV2(productId: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType, fromUtcDateTime?: string, toUtcDateTime?: string, pageNumber?: number, pageSize?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<AuditLogItemModelPagedList>>;
+    public getAuditlogsV2(productId: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType, fromUtcDateTime?: string, toUtcDateTime?: string, pageNumber?: number, pageSize?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+        if (productId === null || productId === undefined) {
+            throw new Error('Required parameter productId was null or undefined when calling getAuditlogsV2.');
+        }
+
+        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
+        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+          <any>configId, 'configId');
+        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+          <any>environmentId, 'environmentId');
+        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+          <any>auditLogType, 'auditLogType');
+        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+          <any>fromUtcDateTime, 'fromUtcDateTime');
+        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+          <any>toUtcDateTime, 'toUtcDateTime');
+        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+          <any>pageNumber, 'pageNumber');
+        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+          <any>pageSize, 'pageSize');
+
+        let localVarHeaders = this.defaultHeaders;
+
+        // authentication (Basic) required
+        localVarHeaders = this.configuration.addCredentialToHeaders('Basic', 'Authorization', localVarHeaders, 'Basic ');
+
+        const localVarHttpHeaderAcceptSelected: string | undefined = options?.httpHeaderAccept ?? this.configuration.selectHeaderAccept([
+            'application/json'
+        ]);
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        const localVarHttpContext: HttpContext = options?.context ?? new HttpContext();
+
+        const localVarTransferCache: boolean = options?.transferCache ?? true;
+
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        let localVarPath = `/v2/products/${this.configuration.encodeParam({name: "productId", value: productId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/auditlogs`;
+        return this.httpClient.request<AuditLogItemModelPagedList>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,
@@ -173,7 +257,7 @@ export class AuditLogsService extends BaseService {
 
     /**
      * List Audit log items for Organization
-     * This endpoint returns the list of Audit log items for a given Organization  and the result can be optionally filtered by Product and/or Config and/or Environment.  If neither &#x60;fromUtcDateTime&#x60; nor &#x60;toUtcDateTime&#x60; is set, the audit logs for the **last 7 days** will be returned.  The distance between &#x60;fromUtcDateTime&#x60; and &#x60;toUtcDateTime&#x60; cannot exceed **30 days**.
+     * This endpoint returns the list of Audit log items for a given Organization and the result can be optionally filtered by Product and/or Config and/or Environment.  If neither &#x60;fromUtcDateTime&#x60; nor &#x60;toUtcDateTime&#x60; is set, the audit logs for the **last 7 days** will be returned.  The distance between &#x60;fromUtcDateTime&#x60; and &#x60;toUtcDateTime&#x60; cannot exceed **30 days**.  **Important:** This endpoint is deprecated. Use the **List Audit log items for Organization (V2)** endpoint instead. In the future, this endpoint will be redirected to the V2 version with default pagination parameters.
      * @param organizationId The identifier of the Organization.
      * @param productId The identifier of the Product.
      * @param configId The identifier of the Config.
@@ -183,6 +267,7 @@ export class AuditLogsService extends BaseService {
      * @param toUtcDateTime Filter Audit logs by ending UTC date.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @deprecated
      */
     public getOrganizationAuditlogs(organizationId: string, productId?: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType, fromUtcDateTime?: string, toUtcDateTime?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<AuditLogItemModel>>;
     public getOrganizationAuditlogs(organizationId: string, productId?: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType, fromUtcDateTime?: string, toUtcDateTime?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<AuditLogItemModel>>>;
@@ -236,6 +321,90 @@ export class AuditLogsService extends BaseService {
 
         let localVarPath = `/v1/organizations/${this.configuration.encodeParam({name: "organizationId", value: organizationId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/auditlogs`;
         return this.httpClient.request<Array<AuditLogItemModel>>('get', `${this.configuration.basePath}${localVarPath}`,
+            {
+                context: localVarHttpContext,
+                params: localVarQueryParameters,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                transferCache: localVarTransferCache,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * List Audit log items for Organization (V2)
+     * This endpoint returns the list of Audit log items for a given Organization and the result can be optionally filtered by Product and/or Config and/or Environment.
+     * @param organizationId The identifier of the Organization.
+     * @param productId The identifier of the Product.
+     * @param configId The identifier of the Config.
+     * @param environmentId The identifier of the Environment.
+     * @param auditLogType Filter Audit logs by Audit log type.
+     * @param fromUtcDateTime Filter Audit logs by starting UTC date.
+     * @param toUtcDateTime Filter Audit logs by ending UTC date.
+     * @param pageNumber Page number (min: 1).
+     * @param pageSize Page size (min: 1, max: 100).
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getOrganizationAuditlogsV2(organizationId: string, productId?: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType, fromUtcDateTime?: string, toUtcDateTime?: string, pageNumber?: number, pageSize?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<AuditLogItemModelPagedList>;
+    public getOrganizationAuditlogsV2(organizationId: string, productId?: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType, fromUtcDateTime?: string, toUtcDateTime?: string, pageNumber?: number, pageSize?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<AuditLogItemModelPagedList>>;
+    public getOrganizationAuditlogsV2(organizationId: string, productId?: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType, fromUtcDateTime?: string, toUtcDateTime?: string, pageNumber?: number, pageSize?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<AuditLogItemModelPagedList>>;
+    public getOrganizationAuditlogsV2(organizationId: string, productId?: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType, fromUtcDateTime?: string, toUtcDateTime?: string, pageNumber?: number, pageSize?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+        if (organizationId === null || organizationId === undefined) {
+            throw new Error('Required parameter organizationId was null or undefined when calling getOrganizationAuditlogsV2.');
+        }
+
+        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
+        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+          <any>productId, 'productId');
+        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+          <any>configId, 'configId');
+        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+          <any>environmentId, 'environmentId');
+        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+          <any>auditLogType, 'auditLogType');
+        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+          <any>fromUtcDateTime, 'fromUtcDateTime');
+        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+          <any>toUtcDateTime, 'toUtcDateTime');
+        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+          <any>pageNumber, 'pageNumber');
+        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+          <any>pageSize, 'pageSize');
+
+        let localVarHeaders = this.defaultHeaders;
+
+        // authentication (Basic) required
+        localVarHeaders = this.configuration.addCredentialToHeaders('Basic', 'Authorization', localVarHeaders, 'Basic ');
+
+        const localVarHttpHeaderAcceptSelected: string | undefined = options?.httpHeaderAccept ?? this.configuration.selectHeaderAccept([
+            'application/json'
+        ]);
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        const localVarHttpContext: HttpContext = options?.context ?? new HttpContext();
+
+        const localVarTransferCache: boolean = options?.transferCache ?? true;
+
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        let localVarPath = `/v2/organizations/${this.configuration.encodeParam({name: "organizationId", value: organizationId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/auditlogs`;
+        return this.httpClient.request<AuditLogItemModelPagedList>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,
