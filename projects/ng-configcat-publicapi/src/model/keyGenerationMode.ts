@@ -12,18 +12,12 @@
 /**
  * Determines the Feature Flag key generation mode.
  */
-export type KeyGenerationMode = 'camelCase' | 'lowerCase' | 'upperCase' | 'pascalCase' | 'kebabCase';
-
 export const KeyGenerationMode = {
-
-    CamelCase: 'camelCase' as KeyGenerationMode,
-
-    LowerCase: 'lowerCase' as KeyGenerationMode,
-
-    UpperCase: 'upperCase' as KeyGenerationMode,
-
-    PascalCase: 'pascalCase' as KeyGenerationMode,
-
-    KebabCase: 'kebabCase' as KeyGenerationMode
-};
+    CamelCase: 'camelCase',
+    LowerCase: 'lowerCase',
+    UpperCase: 'upperCase',
+    PascalCase: 'pascalCase',
+    KebabCase: 'kebabCase'
+} as const;
+export type KeyGenerationMode = typeof KeyGenerationMode[keyof typeof KeyGenerationMode];
 

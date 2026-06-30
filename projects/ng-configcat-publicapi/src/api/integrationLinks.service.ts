@@ -11,10 +11,10 @@
 
 import { Inject, Injectable, Optional }                      from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams,
-         HttpResponse, HttpEvent, HttpParameterCodec, HttpContext 
+         HttpResponse, HttpEvent, HttpContext 
         }       from '@angular/common/http';
-import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
+import { OpenApiHttpParams, QueryParamStyle } from '../query.params';
 
 // @ts-ignore
 import { AddOrUpdateIntegrationLinkModel } from '../model/addOrUpdateIntegrationLinkModel';
@@ -50,6 +50,7 @@ export class IntegrationLinksService extends BaseService {
     /**
      * Add or update Integration link
      * 
+     * @endpoint post /v1/environments/{environmentId}/settings/{settingId}/integrationLinks/{integrationLinkType}/{key}
      * @param environmentId The identifier of the Environment.
      * @param settingId The id of the Setting.
      * @param integrationLinkType The integration link\&#39;s type.
@@ -57,6 +58,7 @@ export class IntegrationLinksService extends BaseService {
      * @param addOrUpdateIntegrationLinkModel 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<IntegrationLinkModel>;
     public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<IntegrationLinkModel>>;
@@ -115,15 +117,16 @@ export class IntegrationLinksService extends BaseService {
         }
 
         let localVarPath = `/v1/environments/${this.configuration.encodeParam({name: "environmentId", value: environmentId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/settings/${this.configuration.encodeParam({name: "settingId", value: settingId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}/integrationLinks/${this.configuration.encodeParam({name: "integrationLinkType", value: integrationLinkType, in: "path", style: "simple", explode: false, dataType: "IntegrationLinkType", dataFormat: undefined})}/${this.configuration.encodeParam({name: "key", value: key, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<IntegrationLinkModel>('post', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<IntegrationLinkModel>('post', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 body: addOrUpdateIntegrationLinkModel,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -132,12 +135,14 @@ export class IntegrationLinksService extends BaseService {
     /**
      * Delete Integration link
      * 
+     * @endpoint delete /v1/environments/{environmentId}/settings/{settingId}/integrationLinks/{integrationLinkType}/{key}
      * @param environmentId The identifier of the Environment.
      * @param settingId The id of the Setting.
      * @param integrationLinkType The integration\&#39;s type.
      * @param key The key of the integration link.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<DeleteIntegrationLinkModel>;
     public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<DeleteIntegrationLinkModel>>;
@@ -185,14 +190,15 @@ export class IntegrationLinksService extends BaseService {
         }
 
         let localVarPath = `/v1/environments/${this.configuration.encodeParam({name: "environmentId", value: environmentId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/settings/${this.configuration.encodeParam({name: "settingId", value: settingId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}/integrationLinks/${this.configuration.encodeParam({name: "integrationLinkType", value: integrationLinkType, in: "path", style: "simple", explode: false, dataType: "IntegrationLinkType", dataFormat: undefined})}/${this.configuration.encodeParam({name: "key", value: key, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<DeleteIntegrationLinkModel>('delete', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<DeleteIntegrationLinkModel>('delete', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -201,10 +207,12 @@ export class IntegrationLinksService extends BaseService {
     /**
      * Get Integration link
      * 
+     * @endpoint get /v1/integrationLink/{integrationLinkType}/{key}/details
      * @param integrationLinkType The integration link\&#39;s type.
      * @param key The key of the integration link.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<IntegrationLinkDetailsModel>;
     public getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<IntegrationLinkDetailsModel>>;
@@ -246,26 +254,29 @@ export class IntegrationLinksService extends BaseService {
         }
 
         let localVarPath = `/v1/integrationLink/${this.configuration.encodeParam({name: "integrationLinkType", value: integrationLinkType, in: "path", style: "simple", explode: false, dataType: "IntegrationLinkType", dataFormat: undefined})}/${this.configuration.encodeParam({name: "key", value: key, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/details`;
-        return this.httpClient.request<IntegrationLinkDetailsModel>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<IntegrationLinkDetailsModel>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
     }
 
     /**
+     * @endpoint post /v1/jira/environments/{environmentId}/settings/{settingId}/integrationLinks/{key}
      * @param environmentId The identifier of the Environment.
      * @param settingId The id of the Setting.
      * @param key The key of the integration link.
      * @param addOrUpdateJiraIntegrationLinkModel 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public jiraAddOrUpdateIntegrationLink(environmentId: string, settingId: number, key: string, addOrUpdateJiraIntegrationLinkModel?: AddOrUpdateJiraIntegrationLinkModel, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<IntegrationLinkModel>;
     public jiraAddOrUpdateIntegrationLink(environmentId: string, settingId: number, key: string, addOrUpdateJiraIntegrationLinkModel?: AddOrUpdateJiraIntegrationLinkModel, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<IntegrationLinkModel>>;
@@ -321,24 +332,27 @@ export class IntegrationLinksService extends BaseService {
         }
 
         let localVarPath = `/v1/jira/environments/${this.configuration.encodeParam({name: "environmentId", value: environmentId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/settings/${this.configuration.encodeParam({name: "settingId", value: settingId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}/integrationLinks/${this.configuration.encodeParam({name: "key", value: key, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<IntegrationLinkModel>('post', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<IntegrationLinkModel>('post', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 body: addOrUpdateJiraIntegrationLinkModel,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
     }
 
     /**
+     * @endpoint post /v1/jira/connect
      * @param connectRequest 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public jiraConnect(connectRequest?: ConnectRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<any>;
     public jiraConnect(connectRequest?: ConnectRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<any>>;
@@ -384,15 +398,16 @@ export class IntegrationLinksService extends BaseService {
         }
 
         let localVarPath = `/v1/jira/connect`;
-        return this.httpClient.request<any>('post', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<any>('post', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 body: connectRequest,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );

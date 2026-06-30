@@ -9,22 +9,14 @@
  */
 
 
-export type OperationType = 'unknown' | 'add' | 'remove' | 'replace' | 'move' | 'copy' | 'test';
-
 export const OperationType = {
-
-    Unknown: 'unknown' as OperationType,
-
-    Add: 'add' as OperationType,
-
-    Remove: 'remove' as OperationType,
-
-    Replace: 'replace' as OperationType,
-
-    Move: 'move' as OperationType,
-
-    Copy: 'copy' as OperationType,
-
-    Test: 'test' as OperationType
-};
+    Unknown: 'unknown',
+    Add: 'add',
+    Remove: 'remove',
+    Replace: 'replace',
+    Move: 'move',
+    Copy: 'copy',
+    Test: 'test'
+} as const;
+export type OperationType = typeof OperationType[keyof typeof OperationType];
 

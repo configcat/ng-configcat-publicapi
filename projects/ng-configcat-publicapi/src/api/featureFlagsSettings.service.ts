@@ -11,10 +11,10 @@
 
 import { Inject, Injectable, Optional }                      from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams,
-         HttpResponse, HttpEvent, HttpParameterCodec, HttpContext 
+         HttpResponse, HttpEvent, HttpContext 
         }       from '@angular/common/http';
-import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
+import { OpenApiHttpParams, QueryParamStyle } from '../query.params';
 
 // @ts-ignore
 import { CreateSettingInitialValues } from '../model/createSettingInitialValues';
@@ -50,10 +50,12 @@ export class FeatureFlagsSettingsService extends BaseService {
     /**
      * Create Flag
      * This endpoint creates a new Feature Flag or Setting in a specified Config identified by the &#x60;configId&#x60; parameter.  **Important:** The &#x60;key&#x60; attribute must be unique within the given Config.
+     * @endpoint post /v1/configs/{configId}/settings
      * @param configId The identifier of the Config.
      * @param createSettingInitialValues 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public createSetting(configId: string, createSettingInitialValues: CreateSettingInitialValues, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<SettingModel>;
     public createSetting(configId: string, createSettingInitialValues: CreateSettingInitialValues, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<SettingModel>>;
@@ -106,15 +108,16 @@ export class FeatureFlagsSettingsService extends BaseService {
         }
 
         let localVarPath = `/v1/configs/${this.configuration.encodeParam({name: "configId", value: configId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/settings`;
-        return this.httpClient.request<SettingModel>('post', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<SettingModel>('post', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 body: createSettingInitialValues,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -123,9 +126,11 @@ export class FeatureFlagsSettingsService extends BaseService {
     /**
      * Delete Flag
      * This endpoint removes a Feature Flag or Setting from a specified Config,  identified by the &#x60;configId&#x60; parameter.
+     * @endpoint delete /v1/settings/{settingId}
      * @param settingId The identifier of the Setting.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public deleteSetting(settingId: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<any>;
     public deleteSetting(settingId: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<any>>;
@@ -163,14 +168,15 @@ export class FeatureFlagsSettingsService extends BaseService {
         }
 
         let localVarPath = `/v1/settings/${this.configuration.encodeParam({name: "settingId", value: settingId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}`;
-        return this.httpClient.request<any>('delete', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<any>('delete', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -179,9 +185,11 @@ export class FeatureFlagsSettingsService extends BaseService {
     /**
      * Get predefined variations
      * This endpoint returns the predefined variations along with their usages in the Environments for a Feature Flag or Setting identified by the &#x60;settingId&#x60; parameter.
+     * @endpoint get /v1/settings/{settingId}/predefined-variations
      * @param settingId The identifier of the Setting.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getPredefinedVariations(settingId: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<PredefinedVariationsWithUsagesModel>;
     public getPredefinedVariations(settingId: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<PredefinedVariationsWithUsagesModel>>;
@@ -220,14 +228,15 @@ export class FeatureFlagsSettingsService extends BaseService {
         }
 
         let localVarPath = `/v1/settings/${this.configuration.encodeParam({name: "settingId", value: settingId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}/predefined-variations`;
-        return this.httpClient.request<PredefinedVariationsWithUsagesModel>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<PredefinedVariationsWithUsagesModel>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -236,9 +245,11 @@ export class FeatureFlagsSettingsService extends BaseService {
     /**
      * Get Flag
      * This endpoint returns the metadata attributes of a Feature Flag or Setting  identified by the &#x60;settingId&#x60; parameter.
+     * @endpoint get /v1/settings/{settingId}
      * @param settingId The identifier of the Setting.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getSetting(settingId: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<SettingModel>;
     public getSetting(settingId: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<SettingModel>>;
@@ -277,14 +288,15 @@ export class FeatureFlagsSettingsService extends BaseService {
         }
 
         let localVarPath = `/v1/settings/${this.configuration.encodeParam({name: "settingId", value: settingId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}`;
-        return this.httpClient.request<SettingModel>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<SettingModel>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -293,9 +305,11 @@ export class FeatureFlagsSettingsService extends BaseService {
     /**
      * List Flags
      * This endpoint returns the list of the Feature Flags and Settings defined in a  specified Config, identified by the &#x60;configId&#x60; parameter.
+     * @endpoint get /v1/configs/{configId}/settings
      * @param configId The identifier of the Config.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getSettings(configId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<SettingModel>>;
     public getSettings(configId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<SettingModel>>>;
@@ -334,14 +348,15 @@ export class FeatureFlagsSettingsService extends BaseService {
         }
 
         let localVarPath = `/v1/configs/${this.configuration.encodeParam({name: "configId", value: configId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/settings`;
-        return this.httpClient.request<Array<SettingModel>>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<Array<SettingModel>>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -350,10 +365,12 @@ export class FeatureFlagsSettingsService extends BaseService {
     /**
      * Replace Flag
      * This endpoint replaces the whole value of a Feature Flag or Setting identified by the &#x60;settingId&#x60; parameter.  **Important:** As this endpoint is doing a complete replace, it\&#39;s important to set every other attribute that you don\&#39;t  want to change in its original state. Not listing one means it will reset.
+     * @endpoint put /v1/settings/{settingId}
      * @param settingId The identifier of the Setting.
      * @param replaceSettingModel 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public replaceSetting(settingId: number, replaceSettingModel: ReplaceSettingModel, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<SettingModel>;
     public replaceSetting(settingId: number, replaceSettingModel: ReplaceSettingModel, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<SettingModel>>;
@@ -406,15 +423,16 @@ export class FeatureFlagsSettingsService extends BaseService {
         }
 
         let localVarPath = `/v1/settings/${this.configuration.encodeParam({name: "settingId", value: settingId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}`;
-        return this.httpClient.request<SettingModel>('put', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<SettingModel>('put', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 body: replaceSettingModel,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -423,10 +441,12 @@ export class FeatureFlagsSettingsService extends BaseService {
     /**
      * Update predefined variations
      * This endpoint updates the predefined variations for a Feature Flag or Setting identified by the &#x60;settingId&#x60; parameter.  **Important:** You can only update a predefined variation\&#39;s value if it is not used anywhere in your feature flags.
+     * @endpoint put /v1/settings/{settingId}/predefined-variations
      * @param settingId The identifier of the Setting.
      * @param updatePredefinedVariationsRequest 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public updatePredefinedVariations(settingId: number, updatePredefinedVariationsRequest: UpdatePredefinedVariationsRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<PredefinedVariationsModel>;
     public updatePredefinedVariations(settingId: number, updatePredefinedVariationsRequest: UpdatePredefinedVariationsRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<PredefinedVariationsModel>>;
@@ -479,15 +499,16 @@ export class FeatureFlagsSettingsService extends BaseService {
         }
 
         let localVarPath = `/v1/settings/${this.configuration.encodeParam({name: "settingId", value: settingId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}/predefined-variations`;
-        return this.httpClient.request<PredefinedVariationsModel>('put', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<PredefinedVariationsModel>('put', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 body: updatePredefinedVariationsRequest,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -496,10 +517,12 @@ export class FeatureFlagsSettingsService extends BaseService {
     /**
      * Update Flag
      * This endpoint updates the metadata of a Feature Flag or Setting  with a collection of [JSON Patch](https://jsonpatch.com) operations in a specified Config.  Only the &#x60;name&#x60;, &#x60;hint&#x60; and &#x60;tags&#x60; attributes are modifiable by this endpoint. The &#x60;tags&#x60; attribute is a simple collection of the [tag IDs](#operation/get-tags) attached to the given setting.  The advantage of using JSON Patch is that you can describe individual update operations on a resource without touching attributes that you don\&#39;t want to change.  For example: We have the following resource. &#x60;&#x60;&#x60;json {   \&quot;settingId\&quot;: 5345,   \&quot;key\&quot;: \&quot;myGrandFeature\&quot;,   \&quot;name\&quot;: \&quot;Tihs is a naem with soem typos.\&quot;,   \&quot;hint\&quot;: \&quot;This flag controls my grandioso feature.\&quot;,   \&quot;settingType\&quot;: \&quot;boolean\&quot;,   \&quot;tags\&quot;: [     {       \&quot;tagId\&quot;: 0,        \&quot;name\&quot;: \&quot;sample tag\&quot;,        \&quot;color\&quot;: \&quot;whale\&quot;     }   ] } &#x60;&#x60;&#x60; If we send an update request body as below (it changes the &#x60;name&#x60; and adds the already existing tag with the id &#x60;2&#x60;): &#x60;&#x60;&#x60;json [   {     \&quot;op\&quot;: \&quot;replace\&quot;,      \&quot;path\&quot;: \&quot;/name\&quot;,      \&quot;value\&quot;: \&quot;This is the name without typos.\&quot;   },    {     \&quot;op\&quot;: \&quot;add\&quot;,      \&quot;path\&quot;: \&quot;/tags/-\&quot;,      \&quot;value\&quot;: 2   } ] &#x60;&#x60;&#x60; Only the &#x60;name&#x60; and &#x60;tags&#x60; are updated and all the other attributes remain unchanged. So we get a response like this: &#x60;&#x60;&#x60;json {   \&quot;settingId\&quot;: 5345,    \&quot;key\&quot;: \&quot;myGrandFeature\&quot;,    \&quot;name\&quot;: \&quot;This is the name without typos.\&quot;,    \&quot;hint\&quot;: \&quot;This flag controls my grandioso feature.\&quot;,    \&quot;settingType\&quot;: \&quot;boolean\&quot;,    \&quot;tags\&quot;: [     {       \&quot;tagId\&quot;: 0,        \&quot;name\&quot;: \&quot;sample tag\&quot;,        \&quot;color\&quot;: \&quot;whale\&quot;     },      {       \&quot;tagId\&quot;: 2,        \&quot;name\&quot;: \&quot;another tag\&quot;,        \&quot;color\&quot;: \&quot;koala\&quot;     }   ] } &#x60;&#x60;&#x60;
+     * @endpoint patch /v1/settings/{settingId}
      * @param settingId The identifier of the Setting.
      * @param jsonPatchOperation 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public updateSetting(settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<SettingModel>;
     public updateSetting(settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<SettingModel>>;
@@ -552,15 +575,16 @@ export class FeatureFlagsSettingsService extends BaseService {
         }
 
         let localVarPath = `/v1/settings/${this.configuration.encodeParam({name: "settingId", value: settingId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}`;
-        return this.httpClient.request<SettingModel>('patch', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<SettingModel>('patch', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 body: jsonPatchOperation,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );

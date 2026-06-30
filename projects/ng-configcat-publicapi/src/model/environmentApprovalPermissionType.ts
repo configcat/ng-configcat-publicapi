@@ -12,14 +12,10 @@
 /**
  * Represents the environment specific change request approval permission.
  */
-export type EnvironmentApprovalPermissionType = 'cannotApprove' | 'canApproveOthers' | 'canBypassApproves';
-
 export const EnvironmentApprovalPermissionType = {
-
-    CannotApprove: 'cannotApprove' as EnvironmentApprovalPermissionType,
-
-    CanApproveOthers: 'canApproveOthers' as EnvironmentApprovalPermissionType,
-
-    CanBypassApproves: 'canBypassApproves' as EnvironmentApprovalPermissionType
-};
+    CannotApprove: 'cannotApprove',
+    CanApproveOthers: 'canApproveOthers',
+    CanBypassApproves: 'canBypassApproves'
+} as const;
+export type EnvironmentApprovalPermissionType = typeof EnvironmentApprovalPermissionType[keyof typeof EnvironmentApprovalPermissionType];
 

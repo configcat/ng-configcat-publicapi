@@ -12,16 +12,11 @@
 /**
  * The type of the Feature Flag or Setting.
  */
-export type SettingType = 'boolean' | 'string' | 'int' | 'double';
-
 export const SettingType = {
-
-    Boolean: 'boolean' as SettingType,
-
-    String: 'string' as SettingType,
-
-    Int: 'int' as SettingType,
-
-    Double: 'double' as SettingType
-};
+    Boolean: 'boolean',
+    String: 'string',
+    Int: 'int',
+    Double: 'double'
+} as const;
+export type SettingType = typeof SettingType[keyof typeof SettingType];
 

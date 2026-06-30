@@ -12,12 +12,9 @@
 /**
  * Prerequisite flag comparison operator used during the evaluation process.
  */
-export type PrerequisiteComparator = 'equals' | 'doesNotEqual';
-
 export const PrerequisiteComparator = {
-
-    Equals: 'equals' as PrerequisiteComparator,
-
-    DoesNotEqual: 'doesNotEqual' as PrerequisiteComparator
-};
+    Equals: 'equals',
+    DoesNotEqual: 'doesNotEqual'
+} as const;
+export type PrerequisiteComparator = typeof PrerequisiteComparator[keyof typeof PrerequisiteComparator];
 

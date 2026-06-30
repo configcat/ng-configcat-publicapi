@@ -12,14 +12,10 @@
 /**
  * Represent the environment specific Feature Management permission.
  */
-export type EnvironmentAccessType = 'full' | 'readOnly' | 'none';
-
 export const EnvironmentAccessType = {
-
-    Full: 'full' as EnvironmentAccessType,
-
-    ReadOnly: 'readOnly' as EnvironmentAccessType,
-
-    None: 'none' as EnvironmentAccessType
-};
+    Full: 'full',
+    ReadOnly: 'readOnly',
+    None: 'none'
+} as const;
+export type EnvironmentAccessType = typeof EnvironmentAccessType[keyof typeof EnvironmentAccessType];
 

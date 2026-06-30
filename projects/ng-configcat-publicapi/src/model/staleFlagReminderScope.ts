@@ -9,12 +9,9 @@
  */
 
 
-export type StaleFlagReminderScope = 'all' | 'watchedByMe';
-
 export const StaleFlagReminderScope = {
-
-    All: 'all' as StaleFlagReminderScope,
-
-    WatchedByMe: 'watchedByMe' as StaleFlagReminderScope
-};
+    All: 'all',
+    WatchedByMe: 'watchedByMe'
+} as const;
+export type StaleFlagReminderScope = typeof StaleFlagReminderScope[keyof typeof StaleFlagReminderScope];
 

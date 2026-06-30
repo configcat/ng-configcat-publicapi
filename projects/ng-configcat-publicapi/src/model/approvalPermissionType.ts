@@ -12,16 +12,11 @@
 /**
  * Represents the permission group level change request approval permission.
  */
-export type ApprovalPermissionType = 'cannotApprove' | 'canApproveOthers' | 'canBypassApproves' | 'custom';
-
 export const ApprovalPermissionType = {
-
-    CannotApprove: 'cannotApprove' as ApprovalPermissionType,
-
-    CanApproveOthers: 'canApproveOthers' as ApprovalPermissionType,
-
-    CanBypassApproves: 'canBypassApproves' as ApprovalPermissionType,
-
-    Custom: 'custom' as ApprovalPermissionType
-};
+    CannotApprove: 'cannotApprove',
+    CanApproveOthers: 'canApproveOthers',
+    CanBypassApproves: 'canBypassApproves',
+    Custom: 'custom'
+} as const;
+export type ApprovalPermissionType = typeof ApprovalPermissionType[keyof typeof ApprovalPermissionType];
 

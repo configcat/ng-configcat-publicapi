@@ -202,4 +202,6 @@ model/webhookNotification.ts
 model/webhookResponseModel.ts
 model/webhookSigningKeysModel.ts
 param.ts
+provide-api.ts
+query.params.ts
 variables.ts

@@ -9,12 +9,9 @@
  */
 
 
-export type WebHookHttpMethod = 'get' | 'post';
-
 export const WebHookHttpMethod = {
-
-    Get: 'get' as WebHookHttpMethod,
-
-    Post: 'post' as WebHookHttpMethod
-};
+    Get: 'get',
+    Post: 'post'
+} as const;
+export type WebHookHttpMethod = typeof WebHookHttpMethod[keyof typeof WebHookHttpMethod];
 
