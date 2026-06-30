@@ -12,7 +12,7 @@ import { UpdatePredefinedVariationModel } from './updatePredefinedVariationModel
 
 export interface UpdatePredefinedVariationsRequest { 
     /**
-     * A collection of Feature Flag or Predefined Variations.
+     * A collection of Predefined Variations.
      */
     predefinedVariations: Array<UpdatePredefinedVariationModel>;
 }

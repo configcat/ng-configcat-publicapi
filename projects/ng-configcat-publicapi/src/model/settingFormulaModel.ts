@@ -53,6 +53,10 @@ export interface SettingFormulaModel {
      * List of Feature Flag and Setting IDs where the actual Feature Flag or Setting is prerequisite.
      */
     settingIdsWherePrerequisite: Array<number>;
+    /**
+     * The number of change requests for the Feature Flag or Setting.
+     */
+    changeRequestCount: number;
     config: ConfigModel;
     environment: EnvironmentModel;
     readOnly: boolean;

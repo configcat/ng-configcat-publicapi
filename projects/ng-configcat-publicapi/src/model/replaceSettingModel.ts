@@ -26,5 +26,9 @@ export interface ReplaceSettingModel {
      * The order of the Setting represented on the ConfigCat Dashboard. Determined from an ascending sequence of integers.
      */
     order?: number | null;
+    /**
+     * Indicates whether this setting should validate string values as JSON values.
+     */
+    isJson?: boolean | null;
 }
 

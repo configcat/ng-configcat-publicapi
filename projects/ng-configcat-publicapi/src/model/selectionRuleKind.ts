@@ -12,12 +12,9 @@
 /**
  * Defines the types of SDK selection rules that can be applied to proxy profiles.
  */
-export type SelectionRuleKind = 'include' | 'exclude';
-
 export const SelectionRuleKind = {
-
-    Include: 'include' as SelectionRuleKind,
-
-    Exclude: 'exclude' as SelectionRuleKind
-};
+    Include: 'include',
+    Exclude: 'exclude'
+} as const;
+export type SelectionRuleKind = typeof SelectionRuleKind[keyof typeof SelectionRuleKind];
 

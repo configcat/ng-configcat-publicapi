@@ -7,8 +7,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { ApprovalPermissionType } from './approvalPermissionType';
 import { EnvironmentAccessType } from './environmentAccessType';
 import { CreateOrUpdateEnvironmentAccessModel } from './createOrUpdateEnvironmentAccessModel';
+import { EnvironmentApprovalPermissionType } from './environmentApprovalPermissionType';
+import { CreateOrUpdateEnvironmentApprovalPermissionModel } from './createOrUpdateEnvironmentApprovalPermissionModel';
 import { AccessType } from './accessType';
 
 
@@ -103,6 +106,12 @@ export interface CreatePermissionGroupRequest {
      * List of environment specific permissions.
      */
     environmentAccesses?: Array<CreateOrUpdateEnvironmentAccessModel> | null;
+    approvalPermissionType?: ApprovalPermissionType;
+    newEnvironmentApprovalPermissionType?: EnvironmentApprovalPermissionType;
+    /**
+     * List of environment specific change request approval permissions.
+     */
+    environmentApprovalPermissions?: Array<CreateOrUpdateEnvironmentApprovalPermissionModel> | null;
     /**
      * Group members can disable two-factor authentication for other members.
      */

@@ -11,10 +11,10 @@
 
 import { Inject, Injectable, Optional }                      from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams,
-         HttpResponse, HttpEvent, HttpParameterCodec, HttpContext 
+         HttpResponse, HttpEvent, HttpContext 
         }       from '@angular/common/http';
-import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
+import { OpenApiHttpParams, QueryParamStyle } from '../query.params';
 
 // @ts-ignore
 import { CreatePermissionGroupRequest } from '../model/createPermissionGroupRequest';
@@ -42,10 +42,12 @@ export class PermissionGroupsService extends BaseService {
     /**
      * Create Permission Group
      * This endpoint creates a new Permission Group in a specified Product  identified by the &#x60;productId&#x60; parameter, which can be obtained from the [List Products](#operation/get-products) endpoint.
+     * @endpoint post /v1/products/{productId}/permissions
      * @param productId The identifier of the Product.
      * @param createPermissionGroupRequest 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public createPermissionGroup(productId: string, createPermissionGroupRequest: CreatePermissionGroupRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<PermissionGroupModel>;
     public createPermissionGroup(productId: string, createPermissionGroupRequest: CreatePermissionGroupRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<PermissionGroupModel>>;
@@ -98,15 +100,16 @@ export class PermissionGroupsService extends BaseService {
         }
 
         let localVarPath = `/v1/products/${this.configuration.encodeParam({name: "productId", value: productId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/permissions`;
-        return this.httpClient.request<PermissionGroupModel>('post', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<PermissionGroupModel>('post', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 body: createPermissionGroupRequest,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -115,9 +118,11 @@ export class PermissionGroupsService extends BaseService {
     /**
      * Delete Permission Group
      * This endpoint removes a Permission Group identified by the &#x60;permissionGroupId&#x60; parameter.
+     * @endpoint delete /v1/permissions/{permissionGroupId}
      * @param permissionGroupId The identifier of the Permission Group.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public deletePermissionGroup(permissionGroupId: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<any>;
     public deletePermissionGroup(permissionGroupId: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<any>>;
@@ -155,14 +160,15 @@ export class PermissionGroupsService extends BaseService {
         }
 
         let localVarPath = `/v1/permissions/${this.configuration.encodeParam({name: "permissionGroupId", value: permissionGroupId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}`;
-        return this.httpClient.request<any>('delete', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<any>('delete', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -171,9 +177,11 @@ export class PermissionGroupsService extends BaseService {
     /**
      * Get Permission Group
      * This endpoint returns the metadata of a Permission Group  identified by the &#x60;permissionGroupId&#x60;.
+     * @endpoint get /v1/permissions/{permissionGroupId}
      * @param permissionGroupId The identifier of the Permission Group.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getPermissionGroup(permissionGroupId: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<PermissionGroupModel>;
     public getPermissionGroup(permissionGroupId: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<PermissionGroupModel>>;
@@ -212,14 +220,15 @@ export class PermissionGroupsService extends BaseService {
         }
 
         let localVarPath = `/v1/permissions/${this.configuration.encodeParam({name: "permissionGroupId", value: permissionGroupId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}`;
-        return this.httpClient.request<PermissionGroupModel>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<PermissionGroupModel>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -228,9 +237,11 @@ export class PermissionGroupsService extends BaseService {
     /**
      * List Permission Groups
      * This endpoint returns the list of the Permission Groups that belongs to the given Product identified by the &#x60;productId&#x60; parameter, which can be obtained from the [List Products](#operation/get-products) endpoint.
+     * @endpoint get /v1/products/{productId}/permissions
      * @param productId The identifier of the Product.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getPermissionGroups(productId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<PermissionGroupModel>>;
     public getPermissionGroups(productId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<PermissionGroupModel>>>;
@@ -269,14 +280,15 @@ export class PermissionGroupsService extends BaseService {
         }
 
         let localVarPath = `/v1/products/${this.configuration.encodeParam({name: "productId", value: productId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/permissions`;
-        return this.httpClient.request<Array<PermissionGroupModel>>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<Array<PermissionGroupModel>>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -285,10 +297,12 @@ export class PermissionGroupsService extends BaseService {
     /**
      * Update Permission Group
      * This endpoint updates a Permission Group identified by the &#x60;permissionGroupId&#x60; parameter.
+     * @endpoint put /v1/permissions/{permissionGroupId}
      * @param permissionGroupId The identifier of the Permission Group.
      * @param updatePermissionGroupRequest 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public updatePermissionGroup(permissionGroupId: number, updatePermissionGroupRequest: UpdatePermissionGroupRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<PermissionGroupModel>;
     public updatePermissionGroup(permissionGroupId: number, updatePermissionGroupRequest: UpdatePermissionGroupRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<PermissionGroupModel>>;
@@ -341,15 +355,16 @@ export class PermissionGroupsService extends BaseService {
         }
 
         let localVarPath = `/v1/permissions/${this.configuration.encodeParam({name: "permissionGroupId", value: permissionGroupId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}`;
-        return this.httpClient.request<PermissionGroupModel>('put', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<PermissionGroupModel>('put', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 body: updatePermissionGroupRequest,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );

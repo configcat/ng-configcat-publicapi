@@ -11,10 +11,10 @@
 
 import { Inject, Injectable, Optional }                      from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams,
-         HttpResponse, HttpEvent, HttpParameterCodec, HttpContext 
+         HttpResponse, HttpEvent, HttpContext 
         }       from '@angular/common/http';
-import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
+import { OpenApiHttpParams, QueryParamStyle } from '../query.params';
 
 // @ts-ignore
 import { CreateEnvironmentModel } from '../model/createEnvironmentModel';
@@ -42,10 +42,12 @@ export class EnvironmentsService extends BaseService {
     /**
      * Create Environment
      * This endpoint creates a new Environment in a specified Product  identified by the &#x60;productId&#x60; parameter, which can be obtained from the [List Products](#operation/get-products) endpoint.
+     * @endpoint post /v1/products/{productId}/environments
      * @param productId The identifier of the Product.
      * @param createEnvironmentModel 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public createEnvironment(productId: string, createEnvironmentModel: CreateEnvironmentModel, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<EnvironmentModel>;
     public createEnvironment(productId: string, createEnvironmentModel: CreateEnvironmentModel, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<EnvironmentModel>>;
@@ -98,15 +100,16 @@ export class EnvironmentsService extends BaseService {
         }
 
         let localVarPath = `/v1/products/${this.configuration.encodeParam({name: "productId", value: productId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/environments`;
-        return this.httpClient.request<EnvironmentModel>('post', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<EnvironmentModel>('post', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 body: createEnvironmentModel,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -115,10 +118,12 @@ export class EnvironmentsService extends BaseService {
     /**
      * Delete Environment
      * This endpoint removes an Environment identified by the &#x60;environmentId&#x60; parameter. If the &#x60;cleanupAuditLogs&#x60; flag is set to true, it also deletes the audit log records related to the environment (except for the &#x60;Created a new environment&#x60; and &#x60;Deleted an environment&#x60; records).
+     * @endpoint delete /v1/environments/{environmentId}
      * @param environmentId The identifier of the Environment.
      * @param cleanupAuditLogs An optional flag which indicates whether the audit log records related to the environment should be deleted or not.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public deleteEnvironment(environmentId: string, cleanupAuditLogs?: boolean, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<any>;
     public deleteEnvironment(environmentId: string, cleanupAuditLogs?: boolean, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<any>>;
@@ -128,9 +133,16 @@ export class EnvironmentsService extends BaseService {
             throw new Error('Required parameter environmentId was null or undefined when calling deleteEnvironment.');
         }
 
-        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
-        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-          <any>cleanupAuditLogs, 'cleanupAuditLogs');
+        let localVarQueryParameters = new OpenApiHttpParams(this.encoder);
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'cleanupAuditLogs',
+            <any>cleanupAuditLogs,
+            QueryParamStyle.Form,
+            true,
+        );
+
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -160,15 +172,16 @@ export class EnvironmentsService extends BaseService {
         }
 
         let localVarPath = `/v1/environments/${this.configuration.encodeParam({name: "environmentId", value: environmentId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
-        return this.httpClient.request<any>('delete', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<any>('delete', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                params: localVarQueryParameters,
+                params: localVarQueryParameters.toHttpParams(),
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -177,9 +190,11 @@ export class EnvironmentsService extends BaseService {
     /**
      * Get Environment
      * This endpoint returns the metadata of an Environment  identified by the &#x60;environmentId&#x60;.
+     * @endpoint get /v1/environments/{environmentId}
      * @param environmentId The identifier of the Environment.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getEnvironment(environmentId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<EnvironmentModel>;
     public getEnvironment(environmentId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<EnvironmentModel>>;
@@ -218,14 +233,15 @@ export class EnvironmentsService extends BaseService {
         }
 
         let localVarPath = `/v1/environments/${this.configuration.encodeParam({name: "environmentId", value: environmentId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
-        return this.httpClient.request<EnvironmentModel>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<EnvironmentModel>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -234,9 +250,11 @@ export class EnvironmentsService extends BaseService {
     /**
      * List Environments
      * This endpoint returns the list of the Environments that belongs to the given Product identified by the &#x60;productId&#x60; parameter, which can be obtained from the [List Products](#operation/get-products) endpoint.
+     * @endpoint get /v1/products/{productId}/environments
      * @param productId The identifier of the Product.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getEnvironments(productId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<EnvironmentModel>>;
     public getEnvironments(productId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<EnvironmentModel>>>;
@@ -275,14 +293,15 @@ export class EnvironmentsService extends BaseService {
         }
 
         let localVarPath = `/v1/products/${this.configuration.encodeParam({name: "productId", value: productId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/environments`;
-        return this.httpClient.request<Array<EnvironmentModel>>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<Array<EnvironmentModel>>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -291,10 +310,12 @@ export class EnvironmentsService extends BaseService {
     /**
      * Update Environment
      * This endpoint updates an Environment identified by the &#x60;environmentId&#x60; parameter.
+     * @endpoint put /v1/environments/{environmentId}
      * @param environmentId The identifier of the Environment.
      * @param updateEnvironmentModel 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public updateEnvironment(environmentId: string, updateEnvironmentModel: UpdateEnvironmentModel, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<EnvironmentModel>;
     public updateEnvironment(environmentId: string, updateEnvironmentModel: UpdateEnvironmentModel, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<EnvironmentModel>>;
@@ -347,15 +368,16 @@ export class EnvironmentsService extends BaseService {
         }
 
         let localVarPath = `/v1/environments/${this.configuration.encodeParam({name: "environmentId", value: environmentId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
-        return this.httpClient.request<EnvironmentModel>('put', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<EnvironmentModel>('put', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 body: updateEnvironmentModel,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );

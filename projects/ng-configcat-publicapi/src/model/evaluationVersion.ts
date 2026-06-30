@@ -12,12 +12,9 @@
 /**
  * Determines the evaluation version of a Config. Using `v2` enables the new features of Config V2 (https://configcat.com/docs/advanced/config-v2).
  */
-export type EvaluationVersion = 'v1' | 'v2';
-
 export const EvaluationVersion = {
-
-    V1: 'v1' as EvaluationVersion,
-
-    V2: 'v2' as EvaluationVersion
-};
+    V1: 'v1',
+    V2: 'v2'
+} as const;
+export type EvaluationVersion = typeof EvaluationVersion[keyof typeof EvaluationVersion];
 

@@ -11,10 +11,10 @@
 
 import { Inject, Injectable, Optional }                      from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams,
-         HttpResponse, HttpEvent, HttpParameterCodec, HttpContext 
+         HttpResponse, HttpEvent, HttpContext 
         }       from '@angular/common/http';
-import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
+import { OpenApiHttpParams, QueryParamStyle } from '../query.params';
 
 // @ts-ignore
 import { CreateOrUpdateProxyProfileRequest } from '../model/createOrUpdateProxyProfileRequest';
@@ -50,10 +50,12 @@ export class ProxyProfilesService extends BaseService {
     /**
      * Create Proxy Profile
      * This endpoint creates a new Proxy Profile in the given Organization identified by the &#x60;organizationId&#x60; parameter, which can be obtained from the [List Organizations](#operation/get-organizations) endpoint.
+     * @endpoint post /v1/organizations/{organizationId}/proxy-profiles
      * @param organizationId The identifier of the Organization.
      * @param createOrUpdateProxyProfileRequest 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public createProxyProfile(organizationId: string, createOrUpdateProxyProfileRequest: CreateOrUpdateProxyProfileRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<ProxyProfileModel>;
     public createProxyProfile(organizationId: string, createOrUpdateProxyProfileRequest: CreateOrUpdateProxyProfileRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ProxyProfileModel>>;
@@ -106,15 +108,16 @@ export class ProxyProfilesService extends BaseService {
         }
 
         let localVarPath = `/v1/organizations/${this.configuration.encodeParam({name: "organizationId", value: organizationId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/proxy-profiles`;
-        return this.httpClient.request<ProxyProfileModel>('post', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<ProxyProfileModel>('post', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 body: createOrUpdateProxyProfileRequest,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -123,9 +126,11 @@ export class ProxyProfilesService extends BaseService {
     /**
      * Delete Proxy Profile
      * This endpoint removes a Proxy Profile identified by the &#x60;proxyProfileId&#x60; parameter.
+     * @endpoint delete /v1/proxy-profiles/{proxyProfileId}
      * @param proxyProfileId The identifier of the Proxy Profile.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public deleteProxyProfile(proxyProfileId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<any>;
     public deleteProxyProfile(proxyProfileId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<any>>;
@@ -163,14 +168,15 @@ export class ProxyProfilesService extends BaseService {
         }
 
         let localVarPath = `/v1/proxy-profiles/${this.configuration.encodeParam({name: "proxyProfileId", value: proxyProfileId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
-        return this.httpClient.request<any>('delete', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<any>('delete', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -179,10 +185,12 @@ export class ProxyProfilesService extends BaseService {
     /**
      * Deselect SDK keys
      * This endpoint removes the given list of Config / Environment pairs\&#39; SDK Keys from a Proxy Profile identified by the &#x60;proxyProfileId&#x60;.
+     * @endpoint post /v1/proxy-profiles/{proxyProfileId}/sdk-keys/deselect
      * @param proxyProfileId The identifier of the Proxy Profile.
      * @param proxyProfileSdkKeysRequest 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public deselectProxyProfileSdkKeys(proxyProfileId: string, proxyProfileSdkKeysRequest: ProxyProfileSdkKeysRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<ProxyProfileSdkKeysListModel>;
     public deselectProxyProfileSdkKeys(proxyProfileId: string, proxyProfileSdkKeysRequest: ProxyProfileSdkKeysRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ProxyProfileSdkKeysListModel>>;
@@ -235,15 +243,16 @@ export class ProxyProfilesService extends BaseService {
         }
 
         let localVarPath = `/v1/proxy-profiles/${this.configuration.encodeParam({name: "proxyProfileId", value: proxyProfileId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/sdk-keys/deselect`;
-        return this.httpClient.request<ProxyProfileSdkKeysListModel>('post', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<ProxyProfileSdkKeysListModel>('post', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 body: proxyProfileSdkKeysRequest,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -252,9 +261,11 @@ export class ProxyProfilesService extends BaseService {
     /**
      * Generate Secret
      * This endpoint (re)generates a secret token for a Proxy Profile identified by the &#x60;proxyProfileId&#x60; parameter.
+     * @endpoint post /v1/proxy-profiles/{proxyProfileId}/secret
      * @param proxyProfileId The identifier of the Proxy Profile.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public generateProxyProfileSecret(proxyProfileId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<ProxyProfileSecretModel>;
     public generateProxyProfileSecret(proxyProfileId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ProxyProfileSecretModel>>;
@@ -293,14 +304,15 @@ export class ProxyProfilesService extends BaseService {
         }
 
         let localVarPath = `/v1/proxy-profiles/${this.configuration.encodeParam({name: "proxyProfileId", value: proxyProfileId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/secret`;
-        return this.httpClient.request<ProxyProfileSecretModel>('post', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<ProxyProfileSecretModel>('post', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -309,9 +321,11 @@ export class ProxyProfilesService extends BaseService {
     /**
      * Get Proxy Profile
      * This endpoint returns a Proxy Profile  identified by the &#x60;proxyProfileId&#x60;.
+     * @endpoint get /v1/proxy-profiles/{proxyProfileId}
      * @param proxyProfileId The identifier of the Proxy Profile.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getProxyProfile(proxyProfileId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<ProxyProfileModel>;
     public getProxyProfile(proxyProfileId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ProxyProfileModel>>;
@@ -350,14 +364,15 @@ export class ProxyProfilesService extends BaseService {
         }
 
         let localVarPath = `/v1/proxy-profiles/${this.configuration.encodeParam({name: "proxyProfileId", value: proxyProfileId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
-        return this.httpClient.request<ProxyProfileModel>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<ProxyProfileModel>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -366,9 +381,11 @@ export class ProxyProfilesService extends BaseService {
     /**
      * Get selected SDK keys
      * This endpoint returns the list of SDK keys selected for a Proxy Profile  identified by the &#x60;proxyProfileId&#x60;.
+     * @endpoint get /v1/proxy-profiles/{proxyProfileId}/sdk-keys
      * @param proxyProfileId The identifier of the Proxy Profile.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getProxyProfileSdkKeys(proxyProfileId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<ProxyProfileSdkKeysListModel>;
     public getProxyProfileSdkKeys(proxyProfileId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ProxyProfileSdkKeysListModel>>;
@@ -407,14 +424,15 @@ export class ProxyProfilesService extends BaseService {
         }
 
         let localVarPath = `/v1/proxy-profiles/${this.configuration.encodeParam({name: "proxyProfileId", value: proxyProfileId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/sdk-keys`;
-        return this.httpClient.request<ProxyProfileSdkKeysListModel>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<ProxyProfileSdkKeysListModel>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -423,9 +441,11 @@ export class ProxyProfilesService extends BaseService {
     /**
      * List Proxy Profiles
      * This endpoint returns the list of Proxy profiles for the given Organization identified by the &#x60;organizationId&#x60; parameter.
+     * @endpoint get /v1/organizations/{organizationId}/proxy-profiles
      * @param organizationId The identifier of the Organization.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getProxyProfiles(organizationId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<ProxyProfileListModel>;
     public getProxyProfiles(organizationId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ProxyProfileListModel>>;
@@ -464,14 +484,15 @@ export class ProxyProfilesService extends BaseService {
         }
 
         let localVarPath = `/v1/organizations/${this.configuration.encodeParam({name: "organizationId", value: organizationId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/proxy-profiles`;
-        return this.httpClient.request<ProxyProfileListModel>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<ProxyProfileListModel>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -480,10 +501,12 @@ export class ProxyProfilesService extends BaseService {
     /**
      * Replace Proxy Profile
      * This endpoint replaces a Proxy Profile identified by the &#x60;proxyProfileId&#x60; parameter.  **Important:** As this endpoint is doing a complete replace, it\&#39;s important to set every other attribute that you don\&#39;t want to change in its original state. Not listing one means it will reset.
+     * @endpoint put /v1/proxy-profiles/{proxyProfileId}
      * @param proxyProfileId The identifier of the Proxy Profile.
      * @param createOrUpdateProxyProfileRequest 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public replaceProxyProfile(proxyProfileId: string, createOrUpdateProxyProfileRequest: CreateOrUpdateProxyProfileRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<ProxyProfileModel>;
     public replaceProxyProfile(proxyProfileId: string, createOrUpdateProxyProfileRequest: CreateOrUpdateProxyProfileRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ProxyProfileModel>>;
@@ -536,15 +559,16 @@ export class ProxyProfilesService extends BaseService {
         }
 
         let localVarPath = `/v1/proxy-profiles/${this.configuration.encodeParam({name: "proxyProfileId", value: proxyProfileId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
-        return this.httpClient.request<ProxyProfileModel>('put', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<ProxyProfileModel>('put', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 body: createOrUpdateProxyProfileRequest,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -553,10 +577,12 @@ export class ProxyProfilesService extends BaseService {
     /**
      * Select SDK keys
      * This endpoint adds the given list of Config / Environment pairs\&#39; SDK Keys to a Proxy Profile  identified by the &#x60;proxyProfileId&#x60;.
+     * @endpoint post /v1/proxy-profiles/{proxyProfileId}/sdk-keys/select
      * @param proxyProfileId The identifier of the Proxy Profile.
      * @param proxyProfileSdkKeysRequest 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public selectProxyProfileSdkKeys(proxyProfileId: string, proxyProfileSdkKeysRequest: ProxyProfileSdkKeysRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<ProxyProfileSdkKeysListModel>;
     public selectProxyProfileSdkKeys(proxyProfileId: string, proxyProfileSdkKeysRequest: ProxyProfileSdkKeysRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ProxyProfileSdkKeysListModel>>;
@@ -609,15 +635,16 @@ export class ProxyProfilesService extends BaseService {
         }
 
         let localVarPath = `/v1/proxy-profiles/${this.configuration.encodeParam({name: "proxyProfileId", value: proxyProfileId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/sdk-keys/select`;
-        return this.httpClient.request<ProxyProfileSdkKeysListModel>('post', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<ProxyProfileSdkKeysListModel>('post', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 body: proxyProfileSdkKeysRequest,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -626,10 +653,12 @@ export class ProxyProfilesService extends BaseService {
     /**
      * Update Proxy Profile
      * This endpoint updates a Proxy Profile identified by the &#x60;proxyProfileId&#x60; parameter with a collection of [JSON Patch](https://jsonpatch.com) operations.  The advantage of using JSON Patch is that you can describe individual update operations on a resource without touching attributes that you don\&#39;t want to change.  For example: We have the following resource. &#x60;&#x60;&#x60;json {   \&quot;proxyProfileId\&quot;: \&quot;4ebe288d-6415-44a8-85c8-7b9f78316a86\&quot;,   \&quot;name\&quot;: \&quot;production\&quot;,   \&quot;description\&quot;: \&quot;profile for production environments\&quot;,   \&quot;lastAccessedAt\&quot;: \&quot;2019-08-24T14:15:22Z\&quot;,   \&quot;connectionPreferences\&quot;: {     \&quot;sdkPollInterval\&quot;: 60,     \&quot;webhookNotification\&quot;: null   },   \&quot;sdkKeySelectionRules\&quot;: [] } &#x60;&#x60;&#x60; If we send an update request body as below (it changes the &#x60;sdkPollInterval&#x60; field and adds a new Proxy Webhook URL): &#x60;&#x60;&#x60;json [   {     \&quot;op\&quot;: \&quot;replace\&quot;,      \&quot;path\&quot;: \&quot;/connectionPreferences/sdkPollInterval\&quot;,      \&quot;value\&quot;: 120   },    {     \&quot;op\&quot;: \&quot;add\&quot;,     \&quot;path\&quot;: \&quot;/connectionPreferences/webhookNotification\&quot;,     \&quot;value\&quot;: {       \&quot;webhookProxyUrl\&quot;: \&quot;https://my-proxy-url.com\&quot;     }   } ] &#x60;&#x60;&#x60; Only the &#x60;sdkPollInterval&#x60; and &#x60;webhookProxyUrl&#x60; are updated and all the other attributes remain unchanged. So we get a response like this: &#x60;&#x60;&#x60;json {   \&quot;proxyProfileId\&quot;: \&quot;4ebe288d-6415-44a8-85c8-7b9f78316a86\&quot;,   \&quot;name\&quot;: \&quot;production\&quot;,   \&quot;description\&quot;: \&quot;profile for production environments\&quot;,   \&quot;lastAccessedAt\&quot;: \&quot;2019-08-24T14:15:22Z\&quot;,   \&quot;connectionPreferences\&quot;: {     \&quot;sdkPollInterval\&quot;: 120,     \&quot;webhookNotification\&quot;: {       \&quot;webhookProxyUrl\&quot;: \&quot;https://my-proxy-url.com\&quot;,       \&quot;signingKey1\&quot;: \&quot;&lt;generated-signing-key&gt;\&quot;,       \&quot;signingKey2\&quot;: null     }   },   \&quot;sdkKeySelectionRules\&quot;: [] } &#x60;&#x60;&#x60;
+     * @endpoint patch /v1/proxy-profiles/{proxyProfileId}
      * @param proxyProfileId The identifier of the Proxy Profile.
      * @param jsonPatchOperation 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public updateProxyProfile(proxyProfileId: string, jsonPatchOperation: Array<JsonPatchOperation>, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<ProxyProfileModel>;
     public updateProxyProfile(proxyProfileId: string, jsonPatchOperation: Array<JsonPatchOperation>, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ProxyProfileModel>>;
@@ -682,15 +711,16 @@ export class ProxyProfilesService extends BaseService {
         }
 
         let localVarPath = `/v1/proxy-profiles/${this.configuration.encodeParam({name: "proxyProfileId", value: proxyProfileId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
-        return this.httpClient.request<ProxyProfileModel>('patch', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<ProxyProfileModel>('patch', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 body: jsonPatchOperation,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );

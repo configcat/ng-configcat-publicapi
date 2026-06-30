@@ -9,12 +9,9 @@
  */
 
 
-export type StaleFlagStaleInEnvironmentsType = 'staleInAnyEnvironments' | 'staleInAllEnvironments';
-
 export const StaleFlagStaleInEnvironmentsType = {
-
-    StaleInAnyEnvironments: 'staleInAnyEnvironments' as StaleFlagStaleInEnvironmentsType,
-
-    StaleInAllEnvironments: 'staleInAllEnvironments' as StaleFlagStaleInEnvironmentsType
-};
+    StaleInAnyEnvironments: 'staleInAnyEnvironments',
+    StaleInAllEnvironments: 'staleInAllEnvironments'
+} as const;
+export type StaleFlagStaleInEnvironmentsType = typeof StaleFlagStaleInEnvironmentsType[keyof typeof StaleFlagStaleInEnvironmentsType];
 

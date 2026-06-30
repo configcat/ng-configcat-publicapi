@@ -12,44 +12,25 @@
 /**
  * The comparison operator the evaluation process must use when it compares the given user attribute\'s value with the comparison value.
  */
-export type RolloutRuleComparator = 'isOneOf' | 'isNotOneOf' | 'contains' | 'doesNotContain' | 'semVerIsOneOf' | 'semVerIsNotOneOf' | 'semVerLess' | 'semVerLessOrEquals' | 'semVerGreater' | 'semVerGreaterOrEquals' | 'numberEquals' | 'numberDoesNotEqual' | 'numberLess' | 'numberLessOrEquals' | 'numberGreater' | 'numberGreaterOrEquals' | 'sensitiveIsOneOf' | 'sensitiveIsNotOneOf';
-
 export const RolloutRuleComparator = {
-
-    IsOneOf: 'isOneOf' as RolloutRuleComparator,
-
-    IsNotOneOf: 'isNotOneOf' as RolloutRuleComparator,
-
-    Contains: 'contains' as RolloutRuleComparator,
-
-    DoesNotContain: 'doesNotContain' as RolloutRuleComparator,
-
-    SemVerIsOneOf: 'semVerIsOneOf' as RolloutRuleComparator,
-
-    SemVerIsNotOneOf: 'semVerIsNotOneOf' as RolloutRuleComparator,
-
-    SemVerLess: 'semVerLess' as RolloutRuleComparator,
-
-    SemVerLessOrEquals: 'semVerLessOrEquals' as RolloutRuleComparator,
-
-    SemVerGreater: 'semVerGreater' as RolloutRuleComparator,
-
-    SemVerGreaterOrEquals: 'semVerGreaterOrEquals' as RolloutRuleComparator,
-
-    NumberEquals: 'numberEquals' as RolloutRuleComparator,
-
-    NumberDoesNotEqual: 'numberDoesNotEqual' as RolloutRuleComparator,
-
-    NumberLess: 'numberLess' as RolloutRuleComparator,
-
-    NumberLessOrEquals: 'numberLessOrEquals' as RolloutRuleComparator,
-
-    NumberGreater: 'numberGreater' as RolloutRuleComparator,
-
-    NumberGreaterOrEquals: 'numberGreaterOrEquals' as RolloutRuleComparator,
-
-    SensitiveIsOneOf: 'sensitiveIsOneOf' as RolloutRuleComparator,
-
-    SensitiveIsNotOneOf: 'sensitiveIsNotOneOf' as RolloutRuleComparator
-};
+    IsOneOf: 'isOneOf',
+    IsNotOneOf: 'isNotOneOf',
+    Contains: 'contains',
+    DoesNotContain: 'doesNotContain',
+    SemVerIsOneOf: 'semVerIsOneOf',
+    SemVerIsNotOneOf: 'semVerIsNotOneOf',
+    SemVerLess: 'semVerLess',
+    SemVerLessOrEquals: 'semVerLessOrEquals',
+    SemVerGreater: 'semVerGreater',
+    SemVerGreaterOrEquals: 'semVerGreaterOrEquals',
+    NumberEquals: 'numberEquals',
+    NumberDoesNotEqual: 'numberDoesNotEqual',
+    NumberLess: 'numberLess',
+    NumberLessOrEquals: 'numberLessOrEquals',
+    NumberGreater: 'numberGreater',
+    NumberGreaterOrEquals: 'numberGreaterOrEquals',
+    SensitiveIsOneOf: 'sensitiveIsOneOf',
+    SensitiveIsNotOneOf: 'sensitiveIsNotOneOf'
+} as const;
+export type RolloutRuleComparator = typeof RolloutRuleComparator[keyof typeof RolloutRuleComparator];
 

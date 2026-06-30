@@ -14,15 +14,15 @@ export interface AuditLogItemModel {
     auditLogId: number;
     auditLogDateTime: string;
     auditLogTypeEnum: AuditLogType;
-    changeSetId: string | null;
     truncated: boolean;
-    auditLogType: string | null;
+    modelVersion: number;
+    auditLogType: string;
     userEmail: string | null;
-    userName: string | null;
-    where: string | null;
+    userName: string;
+    where: string;
     why: string | null;
-    actionTarget: string | null;
-    details: string | null;
+    actionTarget: string;
+    details: string;
 }
 export namespace AuditLogItemModel {
 }

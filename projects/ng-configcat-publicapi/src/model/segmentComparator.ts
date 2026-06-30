@@ -12,12 +12,9 @@
 /**
  * The segment comparison operator used during the evaluation process.
  */
-export type SegmentComparator = 'isIn' | 'isNotIn';
-
 export const SegmentComparator = {
-
-    IsIn: 'isIn' as SegmentComparator,
-
-    IsNotIn: 'isNotIn' as SegmentComparator
-};
+    IsIn: 'isIn',
+    IsNotIn: 'isNotIn'
+} as const;
+export type SegmentComparator = typeof SegmentComparator[keyof typeof SegmentComparator];
 

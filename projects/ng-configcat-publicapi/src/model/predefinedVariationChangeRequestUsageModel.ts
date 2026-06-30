@@ -7,13 +7,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { IntegrationModel } from './integrationModel';
 
 
-export interface IntegrationsModel { 
-    /**
-     * The Integrations of the Product.
-     */
-    integrations: Array<IntegrationModel>;
+export interface PredefinedVariationChangeRequestUsageModel { 
+    changeRequestId: number;
+    changeRequestTitle: string;
+    settingId: number;
+    environmentId: string;
 }
 

@@ -7,6 +7,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { PredefinedVariationChangeRequestUsageModel } from './predefinedVariationChangeRequestUsageModel';
 import { PredefinedVariationValueModel } from './predefinedVariationValueModel';
 import { PredefinedVariationUsageModel } from './predefinedVariationUsageModel';
 
@@ -14,15 +15,15 @@ import { PredefinedVariationUsageModel } from './predefinedVariationUsageModel';
 export interface PredefinedVariationWithUsagesModel { 
     value: PredefinedVariationValueModel;
     /**
-     * The name of the Feature Flag or Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
+     * The name of the Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
      */
     name: string | null;
     /**
-     * The name of the Feature Flag or Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
+     * The name of the Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
      */
     hint: string | null;
     /**
-     * The Feature Flag or Predefined Variation\'s identifier.
+     * The Predefined Variation\'s identifier.
      */
     predefinedVariationId: string;
     /**
@@ -33,5 +34,13 @@ export interface PredefinedVariationWithUsagesModel {
      * The Feature Flag or Setting Variation\'s usages in the Environments you don\'t have access to.
      */
     usagesInOtherEnvironments: number;
+    /**
+     * The Feature Flag or Setting Variation\'s usages in the given Change Requests.
+     */
+    changeRequestUsages: Array<PredefinedVariationChangeRequestUsageModel>;
+    /**
+     * The Feature Flag or Setting Variation\'s usages in the Change Requests you don\'t have access to.
+     */
+    changeRequestUsagesInOtherEnvironments: number;
 }
 

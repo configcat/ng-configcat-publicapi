@@ -10,7 +10,7 @@
 
 
 /**
- * Represents the value of a Feature Flag or Predefined Variation.
+ * Represents the value of a Predefined Variation.
  */
 export interface UpdatePredefinedVariationValueModel { 
     /**

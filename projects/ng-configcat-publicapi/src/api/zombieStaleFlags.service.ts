@@ -11,10 +11,10 @@
 
 import { Inject, Injectable, Optional }                      from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams,
-         HttpResponse, HttpEvent, HttpParameterCodec, HttpContext 
+         HttpResponse, HttpEvent, HttpContext 
         }       from '@angular/common/http';
-import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
+import { OpenApiHttpParams, QueryParamStyle } from '../query.params';
 
 // @ts-ignore
 import { StaleFlagProductModel } from '../model/staleFlagProductModel';
@@ -42,6 +42,7 @@ export class ZombieStaleFlagsService extends BaseService {
     /**
      * List Zombie (stale) flags for Product
      * This endpoint returns the list of Zombie (stale) flags for a given Product  and the result can be optionally filtered by various parameters.
+     * @endpoint get /v1/products/{productId}/staleflags
      * @param productId The identifier of the Product.
      * @param scope The scope of the report.
      * @param staleFlagAgeDays The inactivity in days after a feature flag should be considered stale.
@@ -50,6 +51,7 @@ export class ZombieStaleFlagsService extends BaseService {
      * @param ignoredTagIds Ignore feature flags from the report based on their tag identifiers.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getStaleflags(productId: string, scope?: StaleFlagReminderScope, staleFlagAgeDays?: number, staleFlagStaleInEnvironmentsType?: StaleFlagStaleInEnvironmentsType, ignoredEnvironmentIds?: Array<string>, ignoredTagIds?: Array<number>, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<StaleFlagProductModel>;
     public getStaleflags(productId: string, scope?: StaleFlagReminderScope, staleFlagAgeDays?: number, staleFlagStaleInEnvironmentsType?: StaleFlagStaleInEnvironmentsType, ignoredEnvironmentIds?: Array<string>, ignoredTagIds?: Array<number>, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<StaleFlagProductModel>>;
@@ -59,25 +61,52 @@ export class ZombieStaleFlagsService extends BaseService {
             throw new Error('Required parameter productId was null or undefined when calling getStaleflags.');
         }
 
-        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
-        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-          <any>scope, 'scope');
-        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-          <any>staleFlagAgeDays, 'staleFlagAgeDays');
-        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-          <any>staleFlagStaleInEnvironmentsType, 'staleFlagStaleInEnvironmentsType');
-        if (ignoredEnvironmentIds) {
-            ignoredEnvironmentIds.forEach((element) => {
-                localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-                  <any>element, 'ignoredEnvironmentIds');
-            })
-        }
-        if (ignoredTagIds) {
-            ignoredTagIds.forEach((element) => {
-                localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-                  <any>element, 'ignoredTagIds');
-            })
-        }
+        let localVarQueryParameters = new OpenApiHttpParams(this.encoder);
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'scope',
+            <any>scope,
+            QueryParamStyle.Form,
+            true,
+        );
+
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'staleFlagAgeDays',
+            <any>staleFlagAgeDays,
+            QueryParamStyle.Form,
+            true,
+        );
+
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'staleFlagStaleInEnvironmentsType',
+            <any>staleFlagStaleInEnvironmentsType,
+            QueryParamStyle.Form,
+            true,
+        );
+
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'ignoredEnvironmentIds',
+            <any>ignoredEnvironmentIds,
+            QueryParamStyle.Form,
+            true,
+        );
+
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'ignoredTagIds',
+            <any>ignoredTagIds,
+            QueryParamStyle.Form,
+            true,
+        );
+
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -108,15 +137,16 @@ export class ZombieStaleFlagsService extends BaseService {
         }
 
         let localVarPath = `/v1/products/${this.configuration.encodeParam({name: "productId", value: productId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/staleflags`;
-        return this.httpClient.request<StaleFlagProductModel>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<StaleFlagProductModel>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                params: localVarQueryParameters,
+                params: localVarQueryParameters.toHttpParams(),
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );

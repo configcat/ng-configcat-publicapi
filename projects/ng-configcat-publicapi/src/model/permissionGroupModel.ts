@@ -7,8 +7,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { PermissionGroupEnvironmentAccessModel } from './permissionGroupEnvironmentAccessModel';
+import { ApprovalPermissionType } from './approvalPermissionType';
 import { EnvironmentAccessType } from './environmentAccessType';
-import { EnvironmentAccessModel } from './environmentAccessModel';
+import { EnvironmentApprovalPermissionType } from './environmentApprovalPermissionType';
+import { PermissionGroupEnvironmentApprovalPermissionModel } from './permissionGroupEnvironmentApprovalPermissionModel';
 import { AccessType } from './accessType';
 import { ProductModel } from './productModel';
 
@@ -111,8 +114,14 @@ export interface PermissionGroupModel {
     /**
      * List of environment specific permissions.
      */
-    environmentAccesses: Array<EnvironmentAccessModel>;
+    environmentAccesses: Array<PermissionGroupEnvironmentAccessModel>;
     product: ProductModel;
+    approvalPermissionType: ApprovalPermissionType;
+    newEnvironmentApprovalPermissionType: EnvironmentApprovalPermissionType;
+    /**
+     * List of environment specific approval permissions.
+     */
+    environmentApprovalPermissions: Array<PermissionGroupEnvironmentApprovalPermissionModel>;
 }
 export namespace PermissionGroupModel {
 }

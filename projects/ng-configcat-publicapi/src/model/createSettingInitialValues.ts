@@ -30,6 +30,10 @@ export interface CreateSettingInitialValues {
      */
     order?: number | null;
     /**
+     * Indicates whether this setting should validate string values as JSON values.
+     */
+    isJson?: boolean | null;
+    /**
      * The key of the Feature Flag or Setting.
      */
     key: string;

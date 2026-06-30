@@ -9,14 +9,10 @@
  */
 
 
-export type IntegrationLinkType = 'trello' | 'jira' | 'monday';
-
 export const IntegrationLinkType = {
-
-    Trello: 'trello' as IntegrationLinkType,
-
-    Jira: 'jira' as IntegrationLinkType,
-
-    Monday: 'monday' as IntegrationLinkType
-};
+    Trello: 'trello',
+    Jira: 'jira',
+    Monday: 'monday'
+} as const;
+export type IntegrationLinkType = typeof IntegrationLinkType[keyof typeof IntegrationLinkType];
 

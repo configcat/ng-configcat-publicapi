@@ -9,214 +9,123 @@
  */
 
 
-export type AuditLogType = 'productCreated' | 'productChanged' | 'productOwnershipTransferred' | 'productDeleted' | 'productsReordered' | 'teamMemberInvited' | 'teamMemberInvitationRevoked' | 'teamMemberJoined' | 'teamMemberPermissionGroupChanged' | 'teamMemberRemoved' | 'teamMemberLeft' | 'teamMemberInvitationChanged' | 'teamMemberInvitationResent' | 'teamMemberInvitationRejected' | 'configCreated' | 'configChanged' | 'configDeleted' | 'configsReordered' | 'environmentCreated' | 'environmentChanged' | 'environmentDeleted' | 'environmentsReordered' | 'settingCreated' | 'settingChanged' | 'settingDeleted' | 'settingsReordered' | 'predefinedVariationsChanged' | 'settingConvertedToPredefinedVariations' | 'settingConvertedToFreeFormValues' | 'settingValueChanged' | 'webHookCreated' | 'webHookChanged' | 'webHookDeleted' | 'permissionGroupCreated' | 'permissionGroupChanged' | 'permissionGroupDeleted' | 'permissionGroupDefault' | 'apiKeyAdded' | 'apiKeyRemoved' | 'integrationAdded' | 'integrationChanged' | 'integrationRemoved' | 'apiKeyConnected' | 'integrationLinkAdded' | 'integrationLinkRemoved' | 'organizationAdded' | 'organizationRemoved' | 'organizationChanged' | 'organizationSubscriptionTypeChanged' | 'organizationAdminChanged' | 'organizationAdminLeft' | 'twoFactorDisabledForMember' | 'tagAdded' | 'tagChanged' | 'tagRemoved' | 'settingTagAdded' | 'settingTagRemoved' | 'publicApiAccessTokenAdded' | 'publicApiAccessTokenRemoved' | 'domainAdded' | 'domainVerified' | 'domainRemoved' | 'domainSamlConfigured' | 'domainSamlDeleted' | 'autoProvisioningConfigurationChanged' | 'samlIdpConfigurationAdded' | 'samlIdpConfigurationRemoved' | 'samlIdpConfigurationUpdated' | 'autoProvisioningEnabledChanged' | 'organizationMemberJoined' | 'organizationMemberProductJoinRequested' | 'organizationMemberProductJoinRequestRejected' | 'organizationMemberProductJoinRequestApproved' | 'organizationMemberRemoved' | 'codeReferencesUploaded' | 'codeReferenceDeleted' | 'codeReferenceStaleBranchDeleted' | 'segmentCreated' | 'segmentChanged' | 'segmentDeleted' | 'webhookSigningKeyDeleted' | 'webhookSigningKeyCreated' | 'userProvisioningConfigurationChanged' | 'syncGroupProvisioningRuleChanged' | 'syncGroupsReordered' | 'syncUserProvisioningEnabled' | 'syncUserProvisioningDisabled' | 'userEmailChanged' | 'userFullNameChanged' | 'userDisabled' | 'awsConnected' | 'awsDisconnected' | 'userEnabled' | 'syncUserDeleted' | 'syncGroupDeleted' | 'proxyConfigurationCreated' | 'proxyConfigurationChanged' | 'proxyConfigurationDeleted' | 'proxyConfigurationSecretRegenerated' | 'proxyNotificationSettingsUpdated' | 'proxyNotificationSettingsDeleted' | 'proxyNotificationSigningKeyAdded' | 'proxyNotificationSigningKeyDeleted';
-
 export const AuditLogType = {
-
-    ProductCreated: 'productCreated' as AuditLogType,
-
-    ProductChanged: 'productChanged' as AuditLogType,
-
-    ProductOwnershipTransferred: 'productOwnershipTransferred' as AuditLogType,
-
-    ProductDeleted: 'productDeleted' as AuditLogType,
-
-    ProductsReordered: 'productsReordered' as AuditLogType,
-
-    TeamMemberInvited: 'teamMemberInvited' as AuditLogType,
-
-    TeamMemberInvitationRevoked: 'teamMemberInvitationRevoked' as AuditLogType,
-
-    TeamMemberJoined: 'teamMemberJoined' as AuditLogType,
-
-    TeamMemberPermissionGroupChanged: 'teamMemberPermissionGroupChanged' as AuditLogType,
-
-    TeamMemberRemoved: 'teamMemberRemoved' as AuditLogType,
-
-    TeamMemberLeft: 'teamMemberLeft' as AuditLogType,
-
-    TeamMemberInvitationChanged: 'teamMemberInvitationChanged' as AuditLogType,
-
-    TeamMemberInvitationResent: 'teamMemberInvitationResent' as AuditLogType,
-
-    TeamMemberInvitationRejected: 'teamMemberInvitationRejected' as AuditLogType,
-
-    ConfigCreated: 'configCreated' as AuditLogType,
-
-    ConfigChanged: 'configChanged' as AuditLogType,
-
-    ConfigDeleted: 'configDeleted' as AuditLogType,
-
-    ConfigsReordered: 'configsReordered' as AuditLogType,
-
-    EnvironmentCreated: 'environmentCreated' as AuditLogType,
-
-    EnvironmentChanged: 'environmentChanged' as AuditLogType,
-
-    EnvironmentDeleted: 'environmentDeleted' as AuditLogType,
-
-    EnvironmentsReordered: 'environmentsReordered' as AuditLogType,
-
-    SettingCreated: 'settingCreated' as AuditLogType,
-
-    SettingChanged: 'settingChanged' as AuditLogType,
-
-    SettingDeleted: 'settingDeleted' as AuditLogType,
-
-    SettingsReordered: 'settingsReordered' as AuditLogType,
-
-    PredefinedVariationsChanged: 'predefinedVariationsChanged' as AuditLogType,
-
-    SettingConvertedToPredefinedVariations: 'settingConvertedToPredefinedVariations' as AuditLogType,
-
-    SettingConvertedToFreeFormValues: 'settingConvertedToFreeFormValues' as AuditLogType,
-
-    SettingValueChanged: 'settingValueChanged' as AuditLogType,
-
-    WebHookCreated: 'webHookCreated' as AuditLogType,
-
-    WebHookChanged: 'webHookChanged' as AuditLogType,
-
-    WebHookDeleted: 'webHookDeleted' as AuditLogType,
-
-    PermissionGroupCreated: 'permissionGroupCreated' as AuditLogType,
-
-    PermissionGroupChanged: 'permissionGroupChanged' as AuditLogType,
-
-    PermissionGroupDeleted: 'permissionGroupDeleted' as AuditLogType,
-
-    PermissionGroupDefault: 'permissionGroupDefault' as AuditLogType,
-
-    ApiKeyAdded: 'apiKeyAdded' as AuditLogType,
-
-    ApiKeyRemoved: 'apiKeyRemoved' as AuditLogType,
-
-    IntegrationAdded: 'integrationAdded' as AuditLogType,
-
-    IntegrationChanged: 'integrationChanged' as AuditLogType,
-
-    IntegrationRemoved: 'integrationRemoved' as AuditLogType,
-
-    ApiKeyConnected: 'apiKeyConnected' as AuditLogType,
-
-    IntegrationLinkAdded: 'integrationLinkAdded' as AuditLogType,
-
-    IntegrationLinkRemoved: 'integrationLinkRemoved' as AuditLogType,
-
-    OrganizationAdded: 'organizationAdded' as AuditLogType,
-
-    OrganizationRemoved: 'organizationRemoved' as AuditLogType,
-
-    OrganizationChanged: 'organizationChanged' as AuditLogType,
-
-    OrganizationSubscriptionTypeChanged: 'organizationSubscriptionTypeChanged' as AuditLogType,
-
-    OrganizationAdminChanged: 'organizationAdminChanged' as AuditLogType,
-
-    OrganizationAdminLeft: 'organizationAdminLeft' as AuditLogType,
-
-    TwoFactorDisabledForMember: 'twoFactorDisabledForMember' as AuditLogType,
-
-    TagAdded: 'tagAdded' as AuditLogType,
-
-    TagChanged: 'tagChanged' as AuditLogType,
-
-    TagRemoved: 'tagRemoved' as AuditLogType,
-
-    SettingTagAdded: 'settingTagAdded' as AuditLogType,
-
-    SettingTagRemoved: 'settingTagRemoved' as AuditLogType,
-
-    PublicApiAccessTokenAdded: 'publicApiAccessTokenAdded' as AuditLogType,
-
-    PublicApiAccessTokenRemoved: 'publicApiAccessTokenRemoved' as AuditLogType,
-
-    DomainAdded: 'domainAdded' as AuditLogType,
-
-    DomainVerified: 'domainVerified' as AuditLogType,
-
-    DomainRemoved: 'domainRemoved' as AuditLogType,
-
-    DomainSamlConfigured: 'domainSamlConfigured' as AuditLogType,
-
-    DomainSamlDeleted: 'domainSamlDeleted' as AuditLogType,
-
-    AutoProvisioningConfigurationChanged: 'autoProvisioningConfigurationChanged' as AuditLogType,
-
-    SamlIdpConfigurationAdded: 'samlIdpConfigurationAdded' as AuditLogType,
-
-    SamlIdpConfigurationRemoved: 'samlIdpConfigurationRemoved' as AuditLogType,
-
-    SamlIdpConfigurationUpdated: 'samlIdpConfigurationUpdated' as AuditLogType,
-
-    AutoProvisioningEnabledChanged: 'autoProvisioningEnabledChanged' as AuditLogType,
-
-    OrganizationMemberJoined: 'organizationMemberJoined' as AuditLogType,
-
-    OrganizationMemberProductJoinRequested: 'organizationMemberProductJoinRequested' as AuditLogType,
-
-    OrganizationMemberProductJoinRequestRejected: 'organizationMemberProductJoinRequestRejected' as AuditLogType,
-
-    OrganizationMemberProductJoinRequestApproved: 'organizationMemberProductJoinRequestApproved' as AuditLogType,
-
-    OrganizationMemberRemoved: 'organizationMemberRemoved' as AuditLogType,
-
-    CodeReferencesUploaded: 'codeReferencesUploaded' as AuditLogType,
-
-    CodeReferenceDeleted: 'codeReferenceDeleted' as AuditLogType,
-
-    CodeReferenceStaleBranchDeleted: 'codeReferenceStaleBranchDeleted' as AuditLogType,
-
-    SegmentCreated: 'segmentCreated' as AuditLogType,
-
-    SegmentChanged: 'segmentChanged' as AuditLogType,
-
-    SegmentDeleted: 'segmentDeleted' as AuditLogType,
-
-    WebhookSigningKeyDeleted: 'webhookSigningKeyDeleted' as AuditLogType,
-
-    WebhookSigningKeyCreated: 'webhookSigningKeyCreated' as AuditLogType,
-
-    UserProvisioningConfigurationChanged: 'userProvisioningConfigurationChanged' as AuditLogType,
-
-    SyncGroupProvisioningRuleChanged: 'syncGroupProvisioningRuleChanged' as AuditLogType,
-
-    SyncGroupsReordered: 'syncGroupsReordered' as AuditLogType,
-
-    SyncUserProvisioningEnabled: 'syncUserProvisioningEnabled' as AuditLogType,
-
-    SyncUserProvisioningDisabled: 'syncUserProvisioningDisabled' as AuditLogType,
-
-    UserEmailChanged: 'userEmailChanged' as AuditLogType,
-
-    UserFullNameChanged: 'userFullNameChanged' as AuditLogType,
-
-    UserDisabled: 'userDisabled' as AuditLogType,
-
-    AwsConnected: 'awsConnected' as AuditLogType,
-
-    AwsDisconnected: 'awsDisconnected' as AuditLogType,
-
-    UserEnabled: 'userEnabled' as AuditLogType,
-
-    SyncUserDeleted: 'syncUserDeleted' as AuditLogType,
-
-    SyncGroupDeleted: 'syncGroupDeleted' as AuditLogType,
-
-    ProxyConfigurationCreated: 'proxyConfigurationCreated' as AuditLogType,
-
-    ProxyConfigurationChanged: 'proxyConfigurationChanged' as AuditLogType,
-
-    ProxyConfigurationDeleted: 'proxyConfigurationDeleted' as AuditLogType,
-
-    ProxyConfigurationSecretRegenerated: 'proxyConfigurationSecretRegenerated' as AuditLogType,
-
-    ProxyNotificationSettingsUpdated: 'proxyNotificationSettingsUpdated' as AuditLogType,
-
-    ProxyNotificationSettingsDeleted: 'proxyNotificationSettingsDeleted' as AuditLogType,
-
-    ProxyNotificationSigningKeyAdded: 'proxyNotificationSigningKeyAdded' as AuditLogType,
-
-    ProxyNotificationSigningKeyDeleted: 'proxyNotificationSigningKeyDeleted' as AuditLogType
-};
+    ProductCreated: 'productCreated',
+    ProductChanged: 'productChanged',
+    ProductDeleted: 'productDeleted',
+    ProductsReordered: 'productsReordered',
+    ProductPreferencesUpdated: 'productPreferencesUpdated',
+    TeamMemberInvited: 'teamMemberInvited',
+    TeamMemberInvitationRevoked: 'teamMemberInvitationRevoked',
+    TeamMemberJoined: 'teamMemberJoined',
+    TeamMemberPermissionGroupChanged: 'teamMemberPermissionGroupChanged',
+    TeamMemberRemoved: 'teamMemberRemoved',
+    TeamMemberLeft: 'teamMemberLeft',
+    TeamMemberInvitationChanged: 'teamMemberInvitationChanged',
+    TeamMemberInvitationResent: 'teamMemberInvitationResent',
+    TeamMemberInvitationRejected: 'teamMemberInvitationRejected',
+    TeamMemberAddedToProduct: 'teamMemberAddedToProduct',
+    ConfigCreated: 'configCreated',
+    ConfigChanged: 'configChanged',
+    ConfigDeleted: 'configDeleted',
+    ConfigsReordered: 'configsReordered',
+    EnvironmentCreated: 'environmentCreated',
+    EnvironmentChanged: 'environmentChanged',
+    EnvironmentDeleted: 'environmentDeleted',
+    EnvironmentsReordered: 'environmentsReordered',
+    SettingCreated: 'settingCreated',
+    SettingChanged: 'settingChanged',
+    SettingDeleted: 'settingDeleted',
+    SettingsReordered: 'settingsReordered',
+    PredefinedVariationsChanged: 'predefinedVariationsChanged',
+    SettingConvertedToPredefinedVariations: 'settingConvertedToPredefinedVariations',
+    SettingConvertedToFreeFormValues: 'settingConvertedToFreeFormValues',
+    SettingValueChanged: 'settingValueChanged',
+    WebHookCreated: 'webHookCreated',
+    WebHookChanged: 'webHookChanged',
+    WebHookDeleted: 'webHookDeleted',
+    PermissionGroupCreated: 'permissionGroupCreated',
+    PermissionGroupChanged: 'permissionGroupChanged',
+    PermissionGroupDeleted: 'permissionGroupDeleted',
+    PermissionGroupDefault: 'permissionGroupDefault',
+    ApiKeyAdded: 'apiKeyAdded',
+    ApiKeyRemoved: 'apiKeyRemoved',
+    IntegrationAdded: 'integrationAdded',
+    IntegrationChanged: 'integrationChanged',
+    IntegrationRemoved: 'integrationRemoved',
+    ApiKeyConnected: 'apiKeyConnected',
+    IntegrationLinkAdded: 'integrationLinkAdded',
+    IntegrationLinkRemoved: 'integrationLinkRemoved',
+    OrganizationAdded: 'organizationAdded',
+    OrganizationChanged: 'organizationChanged',
+    OrganizationSubscriptionTypeChanged: 'organizationSubscriptionTypeChanged',
+    OrganizationAdminChanged: 'organizationAdminChanged',
+    OrganizationAdminLeft: 'organizationAdminLeft',
+    TwoFactorDisabledForMember: 'twoFactorDisabledForMember',
+    TagAdded: 'tagAdded',
+    TagChanged: 'tagChanged',
+    TagRemoved: 'tagRemoved',
+    SettingTagAdded: 'settingTagAdded',
+    SettingTagRemoved: 'settingTagRemoved',
+    PublicApiAccessTokenAdded: 'publicApiAccessTokenAdded',
+    PublicApiAccessTokenRemoved: 'publicApiAccessTokenRemoved',
+    DomainAdded: 'domainAdded',
+    DomainVerified: 'domainVerified',
+    DomainRemoved: 'domainRemoved',
+    AutoProvisioningConfigurationChanged: 'autoProvisioningConfigurationChanged',
+    SamlIdpConfigurationAdded: 'samlIdpConfigurationAdded',
+    SamlIdpConfigurationRemoved: 'samlIdpConfigurationRemoved',
+    SamlIdpConfigurationUpdated: 'samlIdpConfigurationUpdated',
+    AutoProvisioningEnabledChanged: 'autoProvisioningEnabledChanged',
+    OrganizationMemberJoined: 'organizationMemberJoined',
+    OrganizationMemberProductJoinRequested: 'organizationMemberProductJoinRequested',
+    OrganizationMemberProductJoinRequestRejected: 'organizationMemberProductJoinRequestRejected',
+    OrganizationMemberProductJoinRequestApproved: 'organizationMemberProductJoinRequestApproved',
+    OrganizationMemberRemoved: 'organizationMemberRemoved',
+    CodeReferencesUploaded: 'codeReferencesUploaded',
+    CodeReferenceDeleted: 'codeReferenceDeleted',
+    CodeReferenceStaleBranchDeleted: 'codeReferenceStaleBranchDeleted',
+    SegmentCreated: 'segmentCreated',
+    SegmentChanged: 'segmentChanged',
+    SegmentDeleted: 'segmentDeleted',
+    WebhookSigningKeyDeleted: 'webhookSigningKeyDeleted',
+    WebhookSigningKeyCreated: 'webhookSigningKeyCreated',
+    UserProvisioningConfigurationChanged: 'userProvisioningConfigurationChanged',
+    SyncGroupProvisioningRuleChanged: 'syncGroupProvisioningRuleChanged',
+    SyncGroupsReordered: 'syncGroupsReordered',
+    SyncUserProvisioningEnabled: 'syncUserProvisioningEnabled',
+    SyncUserProvisioningDisabled: 'syncUserProvisioningDisabled',
+    UserEmailChanged: 'userEmailChanged',
+    UserFullNameChanged: 'userFullNameChanged',
+    UserDisabled: 'userDisabled',
+    AwsConnected: 'awsConnected',
+    AwsDisconnected: 'awsDisconnected',
+    UserEnabled: 'userEnabled',
+    SyncUserDeleted: 'syncUserDeleted',
+    SyncGroupDeleted: 'syncGroupDeleted',
+    ProxyConfigurationCreated: 'proxyConfigurationCreated',
+    ProxyConfigurationChanged: 'proxyConfigurationChanged',
+    ProxyConfigurationDeleted: 'proxyConfigurationDeleted',
+    ProxyConfigurationSecretRegenerated: 'proxyConfigurationSecretRegenerated',
+    ProxyNotificationSettingsUpdated: 'proxyNotificationSettingsUpdated',
+    ProxyNotificationSettingsDeleted: 'proxyNotificationSettingsDeleted',
+    ProxyNotificationSigningKeyAdded: 'proxyNotificationSigningKeyAdded',
+    ProxyNotificationSigningKeyDeleted: 'proxyNotificationSigningKeyDeleted',
+    ChangeRequestCreated: 'changeRequestCreated',
+    ChangeRequestUpdated: 'changeRequestUpdated',
+    ChangeRequestSettingValuesUpdated: 'changeRequestSettingValuesUpdated',
+    ChangeRequestSettingValueRebased: 'changeRequestSettingValueRebased',
+    ChangeRequestApproved: 'changeRequestApproved',
+    ChangeRequestApprovalDismissed: 'changeRequestApprovalDismissed',
+    ChangeRequestApplied: 'changeRequestApplied',
+    ChangeRequestAppliedOnSchedule: 'changeRequestAppliedOnSchedule',
+    ChangeRequestClosed: 'changeRequestClosed',
+    ChangeRequestNeedsAttention: 'changeRequestNeedsAttention',
+    ChangeRequestCommentAdded: 'changeRequestCommentAdded',
+    ChangeRequestCommentEdited: 'changeRequestCommentEdited',
+    ChangeRequestCommentDeleted: 'changeRequestCommentDeleted',
+    ChangeRequestSettingDeleted: 'changeRequestSettingDeleted',
+    ChangeRequestNeedsAttentionFixed: 'changeRequestNeedsAttentionFixed'
+} as const;
+export type AuditLogType = typeof AuditLogType[keyof typeof AuditLogType];
 

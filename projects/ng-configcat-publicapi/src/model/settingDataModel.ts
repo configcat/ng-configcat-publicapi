@@ -32,6 +32,10 @@ export interface SettingDataModel {
     hint: string | null;
     settingType: SettingType;
     /**
+     * Indicates whether this setting should validate string values as JSON values.
+     */
+    isJson: boolean;
+    /**
      * The order of the Feature Flag or Setting represented on the ConfigCat Dashboard.
      */
     order: number;
