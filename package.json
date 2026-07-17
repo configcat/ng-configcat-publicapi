@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@angular/build": "^21.2.15",
-    "@angular/cli": "^21.2.15",
+    "@angular/cli": "^21.2.19",
     "@angular/compiler-cli": "^21.2.17",
     "@types/node": "^22.15.30",
     "ng-packagr": "^21.0.1",
