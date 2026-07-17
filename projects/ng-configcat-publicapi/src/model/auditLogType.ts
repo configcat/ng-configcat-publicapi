@@ -125,7 +125,8 @@ export const AuditLogType = {
     ChangeRequestCommentEdited: 'changeRequestCommentEdited',
     ChangeRequestCommentDeleted: 'changeRequestCommentDeleted',
     ChangeRequestSettingDeleted: 'changeRequestSettingDeleted',
-    ChangeRequestNeedsAttentionFixed: 'changeRequestNeedsAttentionFixed'
+    ChangeRequestNeedsAttentionFixed: 'changeRequestNeedsAttentionFixed',
+    ChangeRequestOwnershipClaimed: 'changeRequestOwnershipClaimed'
 } as const;
 export type AuditLogType = typeof AuditLogType[keyof typeof AuditLogType];
 
