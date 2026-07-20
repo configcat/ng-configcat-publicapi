@@ -2,8 +2,8 @@
   "name": "ng-configcat-publicapi",
   "version": "6.0.0",
   "peerDependencies": {
-    "@angular/common": "^21.1.17",
-    "@angular/core": "^21.1.17"
+    "@angular/common": "^22.0.7",
+    "@angular/core": "^22.0.7"
   },
   "dependencies": {
     "tslib": "^2.6.2"
