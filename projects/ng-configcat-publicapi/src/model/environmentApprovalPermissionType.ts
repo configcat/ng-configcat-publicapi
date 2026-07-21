@@ -15,7 +15,7 @@
 export const EnvironmentApprovalPermissionType = {
     CannotApprove: 'cannotApprove',
     CanApproveOthers: 'canApproveOthers',
-    CanBypassApproves: 'canBypassApproves'
+    CanBypassApproval: 'canBypassApproval'
 } as const;
 export type EnvironmentApprovalPermissionType = typeof EnvironmentApprovalPermissionType[keyof typeof EnvironmentApprovalPermissionType];
 
