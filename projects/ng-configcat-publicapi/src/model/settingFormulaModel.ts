@@ -59,7 +59,18 @@ export interface SettingFormulaModel {
     changeRequestCount: number;
     config: ConfigModel;
     environment: EnvironmentModel;
+    /**
+     * Indicates whether you have Read-only access to the Environment.
+     */
     readOnly: boolean;
     featureFlagLimitations: FeatureFlagLimitations;
+    /**
+     * Indicates that a mandatory approval is required for saving and publishing.
+     */
+    approveRequired: boolean;
+    /**
+     * Indicates whether the user can bypass the approval flow.
+     */
+    canBypassApproval: boolean;
 }
 
