@@ -33,5 +33,9 @@ export interface ConfigSettingFormulasModel {
      * Indicates whether the user can bypass the approval flow.
      */
     canBypassApproval: boolean;
+    /**
+     * Indicates that a mandatory note is required for saving and publishing.
+     */
+    reasonRequired: boolean;
 }
 
