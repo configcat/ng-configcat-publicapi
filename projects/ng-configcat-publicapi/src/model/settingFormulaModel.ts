@@ -18,6 +18,9 @@ import { TargetingRuleModel } from './targetingRuleModel';
 
 
 export interface SettingFormulaModel { 
+    /**
+     * The version identifier of the last change made to the Feature Flag or Setting in the Environment. It can be used to make sure concurrent updates are not overwriting each other. If the version identifier does not match the current version, the update will be rejected with a 409 Conflict response.
+     */
     lastVersionId: string;
     defaultValue: ValueModel;
     /**
@@ -59,7 +62,22 @@ export interface SettingFormulaModel {
     changeRequestCount: number;
     config: ConfigModel;
     environment: EnvironmentModel;
+    /**
+     * Indicates whether you have Read-only access to the Environment.
+     */
     readOnly: boolean;
     featureFlagLimitations: FeatureFlagLimitations;
+    /**
+     * Indicates that a mandatory approval is required for saving and publishing.
+     */
+    approveRequired: boolean;
+    /**
+     * Indicates whether the user can bypass the approval flow.
+     */
+    canBypassApproval: boolean;
+    /**
+     * Indicates that a mandatory note required for saving and publishing.
+     */
+    reasonRequired: boolean;
 }
 

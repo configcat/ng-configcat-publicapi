@@ -1,5 +1,7 @@
 export * from './auditLogs.service';
 import { AuditLogsService } from './auditLogs.service';
+export * from './changeRequestsApprovalFlowScheduledChangesBeta.service';
+import { ChangeRequestsApprovalFlowScheduledChangesBetaService } from './changeRequestsApprovalFlowScheduledChangesBeta.service';
 export * from './codeReferences.service';
 import { CodeReferencesService } from './codeReferences.service';
 export * from './configs.service';
@@ -42,4 +44,4 @@ export * from './webhooks.service';
 import { WebhooksService } from './webhooks.service';
 export * from './zombieStaleFlags.service';
 import { ZombieStaleFlagsService } from './zombieStaleFlags.service';
-export const APIS = [AuditLogsService, CodeReferencesService, ConfigsService, EnvironmentsService, FeatureFlagSettingValuesService, FeatureFlagSettingValuesUsingSDKKeyService, FeatureFlagSettingValuesUsingSDKKeyV2Service, FeatureFlagSettingValuesV2Service, FeatureFlagsSettingsService, IntegrationLinksService, IntegrationsService, MeService, MembersService, OrganizationsService, PermissionGroupsService, ProductsService, ProxyProfilesService, SDKKeysService, SegmentsService, TagsService, WebhooksService, ZombieStaleFlagsService];
+export const APIS = [AuditLogsService, ChangeRequestsApprovalFlowScheduledChangesBetaService, CodeReferencesService, ConfigsService, EnvironmentsService, FeatureFlagSettingValuesService, FeatureFlagSettingValuesUsingSDKKeyService, FeatureFlagSettingValuesUsingSDKKeyV2Service, FeatureFlagSettingValuesV2Service, FeatureFlagsSettingsService, IntegrationLinksService, IntegrationsService, MeService, MembersService, OrganizationsService, PermissionGroupsService, ProductsService, ProxyProfilesService, SDKKeysService, SegmentsService, TagsService, WebhooksService, ZombieStaleFlagsService];

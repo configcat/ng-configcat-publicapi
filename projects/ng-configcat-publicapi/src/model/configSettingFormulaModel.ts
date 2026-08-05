@@ -15,6 +15,9 @@ import { TargetingRuleModel } from './targetingRuleModel';
 
 
 export interface ConfigSettingFormulaModel { 
+    /**
+     * The version identifier of the last change made to the Feature Flag or Setting in the Environment. It can be used to make sure concurrent updates are not overwriting each other. If the version identifier does not match the current version, the update will be rejected with a 409 Conflict response.
+     */
     lastVersionId: string;
     defaultValue: ValueModel;
     /**

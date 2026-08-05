@@ -15,7 +15,7 @@
 export const ApprovalPermissionType = {
     CannotApprove: 'cannotApprove',
     CanApproveOthers: 'canApproveOthers',
-    CanBypassApproves: 'canBypassApproves',
+    CanBypassApproval: 'canBypassApproval',
     Custom: 'custom'
 } as const;
 export type ApprovalPermissionType = typeof ApprovalPermissionType[keyof typeof ApprovalPermissionType];
