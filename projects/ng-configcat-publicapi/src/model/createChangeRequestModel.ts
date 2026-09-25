@@ -28,6 +28,10 @@ export interface CreateChangeRequestModel {
      */
     bypassApproval?: boolean;
     /**
+     * When true, email notifications are sent to team members with approval permission about this Change Request.
+     */
+    sendNotificationsToApprovers?: boolean;
+    /**
      * The list of models describing the proposed changes to the Settings included in the new Change Request.
      */
     proposedChanges?: Array<CreateChangeRequestProposedChangeModel>;

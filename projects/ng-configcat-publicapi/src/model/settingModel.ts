@@ -37,6 +37,9 @@ export interface SettingModel {
      */
     order: number;
     settingType: SettingType;
+    /**
+     * Indicates whether this setting should validate string values as JSON values.
+     */
     isJson: boolean;
     /**
      * Identifier of the Feature Flag\'s Config.

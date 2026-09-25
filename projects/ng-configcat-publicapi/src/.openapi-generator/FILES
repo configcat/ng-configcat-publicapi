@@ -4,7 +4,7 @@ api.base.service.ts
 api.module.ts
 api/api.ts
 api/auditLogs.service.ts
-api/changeRequestsApprovalFlowScheduledChangesBeta.service.ts
+api/changeRequestsApprovalFlowScheduledChanges.service.ts
 api/codeReferences.service.ts
 api/configs.service.ts
 api/environments.service.ts
@@ -24,6 +24,7 @@ api/proxyProfiles.service.ts
 api/sDKKeys.service.ts
 api/segments.service.ts
 api/tags.service.ts
+api/usageQuota.service.ts
 api/webhooks.service.ts
 api/zombieStaleFlags.service.ts
 configuration.ts
@@ -91,6 +92,7 @@ model/createTagModel.ts
 model/deleteIntegrationLinkModel.ts
 model/deleteRepositoryReportsRequest.ts
 model/deletedSettingModel.ts
+model/detailedStatisticV2Model.ts
 model/environmentAccessType.ts
 model/environmentApprovalPermissionType.ts
 model/environmentModel.ts
@@ -121,6 +123,7 @@ model/organizationLimitations.ts
 model/organizationMemberModel.ts
 model/organizationMembersModel.ts
 model/organizationModel.ts
+model/organizationMonthlyStatisticV2Model.ts
 model/organizationPermissionGroupModel.ts
 model/organizationPermissionModel.ts
 model/organizationProductModel.ts
@@ -141,6 +144,7 @@ model/preferencesModel.ts
 model/prerequisiteComparator.ts
 model/prerequisiteFlagConditionModel.ts
 model/productModel.ts
+model/productMonthlyStatisticV2Model.ts
 model/proxyProfileListModel.ts
 model/proxyProfileModel.ts
 model/proxyProfileSdkKeyItem.ts
@@ -181,6 +185,7 @@ model/staleFlagSettingModel.ts
 model/staleFlagSettingTagModel.ts
 model/staleFlagSettingValueModel.ts
 model/staleFlagStaleInEnvironmentsType.ts
+model/statisticsV2Model.ts
 model/tagModel.ts
 model/targetingRuleModel.ts
 model/updateApproveRequiredEnvironmentModel.ts

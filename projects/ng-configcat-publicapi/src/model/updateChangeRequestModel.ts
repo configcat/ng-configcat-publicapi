@@ -26,5 +26,9 @@ export interface UpdateChangeRequestModel {
      * The updated bypass-approval flag for scheduled changes.
      */
     bypassApproval?: boolean | null;
+    /**
+     * The updated flag for whether email notifications should be sent to team members with approval permission about this Change Request.
+     */
+    sendNotificationsToApprovers?: boolean | null;
 }
 
