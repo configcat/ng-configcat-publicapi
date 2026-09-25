@@ -103,6 +103,10 @@ export interface ChangeRequestSummaryModel {
      * Full name of the user who closed the Change Request.
      */
     closedByUserFullName: string | null;
+    /**
+     * When true, email notifications are sent to team members with approval permission about this Change Request.
+     */
+    sendNotificationsToApprovers: boolean;
 }
 export namespace ChangeRequestSummaryModel {
 }

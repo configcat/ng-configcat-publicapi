@@ -33,6 +33,10 @@ export interface ChangeRequestProposedChangeModel {
     settingHint: string | null;
     settingType: SettingType;
     /**
+     * Indicates whether this setting should validate string values as JSON values.
+     */
+    isJson: boolean;
+    /**
      * Indicates whether the proposed changes to the Setting are in conflict with concurrently published changes.
      */
     hasConflict: boolean;

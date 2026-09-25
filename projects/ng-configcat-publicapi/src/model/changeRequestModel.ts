@@ -124,6 +124,10 @@ export interface ChangeRequestModel {
      * Indicates whether approval flow is bypassed.
      */
     bypassApproval: boolean;
+    /**
+     * When true, email notifications are sent to team members with approval permission about this Change Request.
+     */
+    sendNotificationsToApprovers: boolean;
 }
 export namespace ChangeRequestModel {
 }
